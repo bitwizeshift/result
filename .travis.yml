@@ -1,0 +1,272 @@
+################################################################################
+# Travis-CI
+# ---------
+# Pipeline: Build -> Test -> Validate -> Deploy
+#
+# Build: Builds the project
+# Test: Runs unit tests
+# Validate: Runs sanitizers
+# Deploy: Publishes documentation and binary
+################################################################################
+
+# Setup
+################################################################################
+
+# Enable C++
+language: cpp
+cache: ccache
+
+dist: trusty
+sudo: required
+group: edge
+
+branches:
+  except:
+    - prototype/.*
+    - gh-pages
+
+# Set python version to 3.6
+python:
+  - "3.6"
+
+# Agents
+################################################################################
+
+linux_gcc49_agent: &linux_gcc49_agent
+  os: linux
+  compiler: gcc
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test']
+      packages: ['cmake', 'g++-4.9', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+  env:
+    - CXX_COMPILER=g++-4.9
+
+linux_gcc5_agent: &linux_gcc5_agent
+  os: linux
+  compiler: gcc
+  env:
+    - CXX_COMPILER=g++-5
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test']
+      packages: ['cmake', 'g++-5', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+
+linux_gcc6_agent: &linux_gcc6_agent
+  os: linux
+  compiler: gcc
+  env:
+    - CXX_COMPILER=g++-6
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test']
+      packages: ['cmake', 'g++-6', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+
+linux_gcc7_agent: &linux_gcc7_agent
+  os: linux
+  compiler: gcc
+  env:
+    - CXX_COMPILER=g++-7
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test']
+      packages: ['cmake', 'g++-7', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+
+linux_gcc8_agent: &linux_gcc8_agent
+  os: linux
+  compiler: gcc
+  env:
+    - CXX_COMPILER=g++-8
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test']
+      packages: ['cmake', 'g++-8', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+
+################################################################################
+
+linux_clang35_agent: &linux_clang35_agent
+  os: linux
+  compiler: clang
+  env:
+    - CXX_COMPILER=clang++-3.5
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-8']
+      packages: ['cmake', 'clang-3.5', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+
+linux_clang36_agent: &linux_clang36_agent
+  os: linux
+  compiler: clang
+  env:
+    - CXX_COMPILER=clang++-3.6
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-8']
+      packages: ['cmake', 'clang-3.6', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+
+linux_clang38_agent: &linux_clang38_agent
+  os: linux
+  compiler: clang
+  env:
+    - CXX_COMPILER=clang++-3.8
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-8']
+      packages: ['cmake', 'clang-3.8', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+
+linux_clang8_agent: &linux_clang8_agent
+  os: linux
+  compiler: clang
+  env:
+    - CXX_COMPILER=clang++-8
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-8']
+      packages: ['cmake', 'g++-8', 'clang-8', 'python3', 'python3-pip', 'ninja-build']
+      update: true
+
+################################################################################
+
+osx_build_agent: &osx_build_agent
+  stage: build
+  os: osx
+  language: generic
+  compiler: clang
+  env:
+    - CXX_COMPILER=clang++
+  addons:
+    homebrew:
+      packages: ['cmake', 'ninja', 'python3']
+      update: true
+  script: ./.travis/build.sh
+
+################################################################################
+
+linux_doxygen_agent: &linux_doxygen_agent
+  os: linux
+  compiler: gcc
+  env:
+    - DOXYGEN_AGENT=true
+  addons:
+    apt:
+      packages: ['doxygen']
+
+# Stages
+################################################################################
+
+stages:
+  - build
+  - test
+  - validate
+  - deploy
+
+# Jobs
+################################################################################
+
+jobs:
+  include:
+    # Build
+    ############################################################################
+
+    - <<: *linux_gcc49_agent
+      stage: build
+      name: "Build (linux-g++-4.9)"
+      script: ./.travis/build.sh
+
+    - <<: *linux_gcc5_agent
+      stage: build
+      name: "Build (linux-g++-5)"
+      script: ./.travis/build.sh
+
+    - <<: *linux_gcc6_agent
+      stage: build
+      name: "Build (linux-g++-6)"
+      script: ./.travis/build.sh
+
+    - <<: *linux_gcc7_agent
+      stage: build
+      name: "Build (linux-g++-7)"
+      script: ./.travis/build.sh
+
+    - <<: *linux_gcc8_agent
+      stage: build
+      name: "Build (linux-g++-8)"
+      script: ./.travis/build.sh
+
+      ##########################################################################
+
+    - <<: *linux_clang35_agent
+      stage: build
+      name: "Build (linux-clang++-3.5)"
+      script: ./.travis/build.sh
+
+    - <<: *linux_clang36_agent
+      stage: build
+      name: "Build (linux-clang++-3.6)"
+      script: ./.travis/build.sh
+
+    - <<: *linux_clang8_agent
+      stage: build
+      name: "Build (linux-clang++-8.0)"
+      script: ./.travis/build.sh
+
+      ##########################################################################
+
+    - <<: *osx_build_agent
+      osx_image: xcode9
+      name: "Build (macos-xcode9-clang)"
+
+    - <<: *osx_build_agent
+      osx_image: xcode9.1
+      name: "Build (macos-xcode9.1-clang)"
+
+    - <<: *osx_build_agent
+      osx_image: xcode9.2
+      name: "Build (macos-xcode9.2-clang)"
+
+    - <<: *osx_build_agent
+      osx_image: xcode9.3
+      name: "Build (macos-xcode9.3-clang)"
+
+    - <<: *osx_build_agent
+      osx_image: xcode9.4
+      name: "Build (macos-xcode9.44-clang)"
+
+    - <<: *osx_build_agent
+      osx_image: xcode10
+      name: "Build (macos-xcode10-clang)"
+
+    # Deploy
+    ############################################################################
+
+    - <<: *linux_doxygen_agent
+      stage: deploy
+      name: "Deploy tag (doxygen)"
+      if: (tag =~ ^v) AND (type = push)
+      script: ./.travis/deploy-doxygen.sh
+
+    - <<: *linux_doxygen_agent
+      stage: deploy
+      name: "Deploy latest (doxygen)"
+      if: (branch = master) AND (type = push)
+      script: ./.travis/deploy-doxygen.sh latest
+
+    - <<: *linux_gcc8_agent
+      stage: deploy
+      name: "Deploy"
+      if: (tag =~ ^v) AND (type = push)
+      script: ./.travis/deploy-conan.sh
+
+install:
+  - ./.travis/install.sh
+
+before_script:
+  - ./.travis/before-script.sh
