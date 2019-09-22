@@ -388,9 +388,9 @@ namespace expect {
     >;
 
     template <typename U>
-    static U& reference_to(U& ref);
+    static constexpr U& reference_to(U& ref);
     template <typename U>
-    static U& reference_to(std::reference_wrapper<U> ref);
+    static constexpr U& reference_to(std::reference_wrapper<U> ref);
 
     std::variant<underlying_type,E> m_state;
   };
@@ -661,14 +661,16 @@ inline void expect::expected<T,E>::swap(expected<T,E>& other)
 
 template <typename T, typename E>
 template <typename U>
-inline U& expect::expected<T,E>::reference_to(U& ref)
+inline constexpr U&
+  expect::expected<T,E>::reference_to(U& ref)
 {
   return ref;
 }
 
 template <typename T, typename E>
 template <typename U>
-inline U& expect::expected<T,E>::reference_to(std::reference_wrapper<U> ref)
+inline constexpr U&
+  expect::expected<T,E>::reference_to(std::reference_wrapper<U> ref)
 {
   return ref.get();
 }
