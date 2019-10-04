@@ -346,6 +346,16 @@ namespace expect {
     expected& operator=(const expected& other) = default;
 
     //--------------------------------------------------------------------------
+    // Element Access
+    //--------------------------------------------------------------------------
+  public:
+
+    constexpr T* operator->() noexcept;
+    constexpr const T* operator->() const noexcept;
+    constexpr T& operator*() noexcept;
+    constexpr const T& operator*() const noexcept;
+
+    //--------------------------------------------------------------------------
     // Observers
     //--------------------------------------------------------------------------
   public:
@@ -639,6 +649,39 @@ inline constexpr expect::expected<T,E>::expected(unexpected<E2> e)
 {
 
 }
+
+//------------------------------------------------------------------------------
+// Element Access
+//------------------------------------------------------------------------------
+
+template <typename T, typename E>
+inline constexpr T* expect::expected<T,E>::operator->()
+  noexcept
+{
+  return std::get_if<0>(&m_state);
+}
+
+template <typename T, typename E>
+inline constexpr const T* expect::expected<T,E>::operator->()
+  const noexcept
+{
+  return std::get_if<0>(&m_state);
+}
+
+template <typename T, typename E>
+inline constexpr T& expect::expected<T,E>::operator*()
+  noexcept
+{
+  return (*std::get_if<0>(&m_state));
+}
+
+template <typename T, typename E>
+inline constexpr const T& expect::expected<T,E>::operator*()
+  const noexcept
+{
+  return (*std::get_if<0>(&m_state));
+}
+
 
 //------------------------------------------------------------------------------
 // Observers
