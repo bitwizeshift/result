@@ -619,27 +619,6 @@ inline constexpr const E& expect::unexpected<E>::error()
   return m_error;
 }
 
-template <typename T, typename E>
-inline constexpr expect::expected<T,E>::operator bool()
-  const noexcept
-{
-  return has_value();
-}
-
-template <typename T, typename E>
-inline constexpr bool expect::expected<T,E>::has_value()
-  const noexcept
-{
-  return std::holds_alternative<underlying_type>(m_state);
-}
-
-template <typename T, typename E>
-inline constexpr bool expect::expected<T,E>::has_error()
-  const noexcept
-{
-  return !has_value();
-}
-
 //==============================================================================
 // inline definitions : class : bad_expected_access
 //==============================================================================
@@ -744,61 +723,65 @@ inline constexpr const T& expect::expected<T,E>::operator*()
 template <typename T, typename E>
 inline constexpr T& expect::expected<T,E>::value()
 {
-  if (!std::holds_alternative<underlying_type>(m_state)) {
+  auto* const p = std::get_if<0>(&m_state);
+  if (p == nullptr) {
     throw bad_expected_access{};
   }
 
-  return reference_to(std::get<underlying_type>(m_state));
+  return reference_to(*p);
 }
 
 template <typename T, typename E>
 inline constexpr const T& expect::expected<T,E>::value()
   const
 {
-  if (!std::holds_alternative<underlying_type>(m_state)) {
+  auto* const p = std::get_if<0>(&m_state);
+  if (p == nullptr) {
     throw bad_expected_access{};
   }
 
-  return reference_to(std::get<underlying_type>(m_state));
+  return reference_to(*p);
 }
 
 template <typename T, typename E>
 inline constexpr E& expect::expected<T,E>::error()
 {
-  if (!std::holds_alternative<E>(m_state)) {
+  auto* const p = std::get_if<1>(&m_state);
+  if (p == nullptr) {
     throw bad_expected_access{};
   }
 
-  return std::get<E>(m_state);
+  return *p;
 }
 
 template <typename T, typename E>
 inline constexpr const E& expect::expected<T,E>::error()
   const
 {
-  if (!std::holds_alternative<E>(m_state)) {
+  auto* const p = std::get_if<1>(&m_state);
+  if (p == nullptr) {
     throw bad_expected_access{};
   }
 
-  return std::get<E>(m_state);
+  return *p;
 }
 
-template <typename E>
-inline constexpr expect::expected<void,E>::operator bool()
+template <typename T, typename E>
+inline constexpr expect::expected<T,E>::operator bool()
   const noexcept
 {
   return has_value();
 }
 
-template <typename E>
-inline constexpr bool expect::expected<void,E>::has_value()
+template <typename T, typename E>
+inline constexpr bool expect::expected<T,E>::has_value()
   const noexcept
 {
-  return !m_state.has_value();
+  return std::get_if<0>(&m_state) == nullptr;
 }
 
-template <typename E>
-inline constexpr bool expect::expected<void,E>::has_error()
+template <typename T, typename E>
+inline constexpr bool expect::expected<T,E>::has_error()
   const noexcept
 {
   return !has_value();
@@ -887,6 +870,26 @@ inline constexpr const E& expect::expected<void,E>::error()
     throw bad_expected_access{};
   }
   return (*m_state);
+}
+template <typename E>
+inline constexpr expect::expected<void,E>::operator bool()
+  const noexcept
+{
+  return has_value();
+}
+
+template <typename E>
+inline constexpr bool expect::expected<void,E>::has_value()
+  const noexcept
+{
+  return !m_state.has_value();
+}
+
+template <typename E>
+inline constexpr bool expect::expected<void,E>::has_error()
+  const noexcept
+{
+  return !has_value();
 }
 
 //------------------------------------------------------------------------------
