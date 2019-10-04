@@ -366,6 +366,19 @@ namespace expect {
     constexpr const E& error() const;
     /// \}
 
+    /// \brief Convertable to \c true if this has a value
+    constexpr explicit operator bool() const noexcept;
+
+    /// \brief Returns whether this expected contains a value
+    ///
+    /// \return \c true if this contains a value
+    constexpr bool has_value() const noexcept;
+
+    /// \brief Returns whether this expected contains an error
+    ///
+    /// \return \c true if this contains an error
+    constexpr bool has_error() const noexcept;
+
     //--------------------------------------------------------------------------
     // Modifiers
     //--------------------------------------------------------------------------
@@ -475,6 +488,19 @@ namespace expect {
     constexpr const E& error() const;
     /// \}
 
+    /// \brief Convertable to \c true if this has a value
+    constexpr explicit operator bool() const noexcept;
+
+    /// \brief Returns whether this expected contains a value
+    ///
+    /// \return \c true if this contains a value
+    constexpr bool has_value() const noexcept;
+
+    /// \brief Returns whether this expected contains an error
+    ///
+    /// \return \c true if this contains an error
+    constexpr bool has_error() const noexcept;
+
     //--------------------------------------------------------------------------
     // Modifiers
     //--------------------------------------------------------------------------
@@ -527,6 +553,27 @@ inline constexpr const E& expect::unexpected<E>::error()
   const noexcept
 {
   return m_error;
+}
+
+template <typename T, typename E>
+inline constexpr expect::expected<T,E>::operator bool()
+  const noexcept
+{
+  return has_value();
+}
+
+template <typename T, typename E>
+inline constexpr bool expect::expected<T,E>::has_value()
+  const noexcept
+{
+  return std::holds_alternative<underlying_type>(m_state);
+}
+
+template <typename T, typename E>
+inline constexpr bool expect::expected<T,E>::has_error()
+  const noexcept
+{
+  return !has_value();
 }
 
 //==============================================================================
@@ -637,6 +684,27 @@ inline constexpr const E& expect::expected<T,E>::error()
   }
 
   return std::get<E>(m_state);
+}
+
+template <typename E>
+inline constexpr expect::expected<void,E>::operator bool()
+  const noexcept
+{
+  return has_value();
+}
+
+template <typename E>
+inline constexpr bool expect::expected<void,E>::has_value()
+  const noexcept
+{
+  return !m_state.has_value();
+}
+
+template <typename E>
+inline constexpr bool expect::expected<void,E>::has_error()
+  const noexcept
+{
+  return !has_value();
 }
 
 //------------------------------------------------------------------------------
