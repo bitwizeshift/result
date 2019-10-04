@@ -368,13 +368,10 @@ namespace expect {
     constexpr const T& value() const;
     /// \}
 
-    /// \{
     /// \brief Gets the underlying error from this expected
     ///
     /// \return reference to the underlying error
-    constexpr E& error();
-    constexpr const E& error() const;
-    /// \}
+    constexpr E error() const noexcept;
 
     /// \brief Convertable to \c true if this has a value
     constexpr explicit operator bool() const noexcept;
@@ -490,13 +487,10 @@ namespace expect {
     /// This function is here for symmetry with the non-void specialization
     void value() const;
 
-    /// \{
     /// \brief Gets the underlying error from this expected
     ///
     /// \return reference to the underlying error
-    constexpr E& error();
-    constexpr const E& error() const;
-    /// \}
+    constexpr E error() const noexcept;
 
     /// \brief Convertable to \c true if this has a value
     constexpr explicit operator bool() const noexcept;
@@ -744,23 +738,12 @@ inline constexpr const T& expect::expected<T,E>::value()
 }
 
 template <typename T, typename E>
-inline constexpr E& expect::expected<T,E>::error()
+inline constexpr E expect::expected<T,E>::error()
+   const noexcept
 {
   auto* const p = std::get_if<1>(&m_state);
   if (p == nullptr) {
-    throw bad_expected_access{};
-  }
-
-  return *p;
-}
-
-template <typename T, typename E>
-inline constexpr const E& expect::expected<T,E>::error()
-  const
-{
-  auto* const p = std::get_if<1>(&m_state);
-  if (p == nullptr) {
-    throw bad_expected_access{};
+    return E{};
   }
 
   return *p;
@@ -854,23 +837,15 @@ inline void expect::expected<void,E>::value()
 }
 
 template <typename E>
-inline constexpr E& expect::expected<void,E>::error()
+inline constexpr E expect::expected<void,E>::error()
+  const noexcept
 {
   if (!m_state.has_value()) {
-    throw bad_expected_access{};
+    return E{};
   }
   return (*m_state);
 }
 
-template <typename E>
-inline constexpr const E& expect::expected<void,E>::error()
-  const
-{
-  if (!m_state.has_value()) {
-    throw bad_expected_access{};
-  }
-  return (*m_state);
-}
 template <typename E>
 inline constexpr expect::expected<void,E>::operator bool()
   const noexcept
