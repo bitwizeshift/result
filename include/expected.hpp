@@ -1262,6 +1262,16 @@ namespace expect {
       std::is_assignable<E,E2>::value
     )>;
 
+    // Friending 'extract_error" below was causing some compilers to incorrectly
+    // identify `exp.m_storage.m_error` as being an access violation despite the
+    // friendship. Using a type name instead seems to be ubiquitous across
+    // compilers
+    struct expected_error_extractor
+    {
+      template <typename T, typename E>
+      static constexpr auto get(const expected<T,E>& exp) noexcept -> const E&;
+    };
+
     template <typename T, typename E>
     constexpr auto extract_error(const expected<T,E>& exp) noexcept -> const E&;
 
@@ -1380,8 +1390,7 @@ namespace expect {
 
     // Friendship
 
-    friend constexpr auto detail::extract_error(const expected<T, E>&)
-      noexcept -> const E&;
+    friend detail::expected_error_extractor;
 
     template <typename T2, typename E2>
     friend class expected;
@@ -2005,8 +2014,7 @@ namespace expect {
 
     // Friendship
 
-    friend constexpr auto detail::extract_error(const expected<void, E>&)
-      noexcept -> const E&;
+    friend detail::expected_error_extractor;
 
     template <typename T2, typename E2>
     friend class expected;
@@ -3140,12 +3148,19 @@ auto expect::detail::expected_trivial_move_assign_base<T, E, Enabled>
   return (*this);
 }
 
+template <typename T, typename E>
+inline constexpr
+auto expect::detail::expected_error_extractor::get(const expected<T,E>& exp)
+  noexcept -> const E&
+{
+  return exp.m_storage.m_error;
+}
 
 template <typename T, typename E>
 inline constexpr
 auto expect::detail::extract_error(const expected<T,E>& exp) noexcept -> const E&
 {
-  return exp.m_storage.m_error;
+  return expected_error_extractor::get(exp);
 }
 
 //=============================================================================
