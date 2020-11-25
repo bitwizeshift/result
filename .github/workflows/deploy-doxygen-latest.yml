@@ -1,0 +1,63 @@
+name: Deploy Doxygen (Latest)
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  ci:
+    name: Deployment Agent
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen
+          doxygen --version
+
+      - name: Generate
+        run: |
+          mkdir -p "$(pwd)/build/doc"
+          doxygen "$(pwd)/.codedocs"
+
+      - name: Prepare gh-pages
+        run: |
+          echo "::set-env name=API_DOC_PATH::$(pwd)/dist/api/latest"
+
+          # Clone a git repo for doxygen
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git clone --single-branch -b gh-pages "https://${{ secrets.GITHUB_REPO_REF }}" "dist"
+          git config --global push.default simple
+
+      - name: Update gh-pages
+        run: |
+          # Add a .nojekyll file
+          touch "dist/.nojekyll"
+
+          rm -rf "${API_DOC_PATH}"
+          mkdir -p "${API_DOC_PATH}"
+          mv $(pwd)/build/doc/html/* "${API_DOC_PATH}"
+
+          cd "dist"
+          git add --all
+
+          if ! git diff-index --quiet HEAD --; then
+            git commit \
+              -m "📖 Deploy codedocs to Github Pages" \
+              -m "Documentation updated by build ${{ github.run_number }}." \
+              -m "Commit: '${{ github.sha }}'" \
+              --author "GitHub Action <action@github.com>" \
+              --no-gpg-sign
+          fi
+          cd ..
+
+      - name: Publish
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          directory: dist
