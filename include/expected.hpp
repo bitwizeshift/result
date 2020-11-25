@@ -1969,7 +1969,8 @@ namespace expect {
     template <typename Fn>
     constexpr auto map_error(Fn&& fn) const & -> expected<T, detail::invoke_result_t<Fn,const E&>>;
     template <typename Fn>
-    constexpr auto map_error(Fn&& fn) && -> expected<T, detail::invoke_result_t<Fn,const E&>>;
+    EXPECTED_CPP14_CONSTEXPR
+    auto map_error(Fn&& fn) && -> expected<T, detail::invoke_result_t<Fn,const E&>>;
     /// \}
 
     //-------------------------------------------------------------------------
@@ -3476,16 +3477,16 @@ auto expect::expected<T,E>::has_error()
   return !m_storage.m_has_value;
 }
 
-//-------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 template <typename T, typename E>
 inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T,E>::value()
   & -> value_type&
 {
-  return has_value()
-    ? **this
-    : throw bad_expected_access{};
+  return (has_value() || ((throw bad_expected_access{}), false),
+    m_storage.m_value
+  );
 }
 
 template <typename T, typename E>
@@ -3493,9 +3494,11 @@ inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T,E>::value()
   && -> value_type&&
 {
-  return has_value()
-    ? static_cast<T&&>(**this)
-    : throw bad_expected_access{};
+  using underlying = typename std::remove_reference<T>::type;
+
+  return (has_value() || ((throw bad_expected_access{}), true),
+    static_cast<underlying&&>(static_cast<underlying&>(m_storage.m_value))
+  );
 }
 
 template <typename T, typename E>
@@ -3503,9 +3506,9 @@ inline constexpr
 auto expect::expected<T,E>::value()
   const & -> const value_type&
 {
-  return has_value()
-    ? **this
-    : throw bad_expected_access{};
+  return (has_value() || ((throw bad_expected_access{}), true),
+    m_storage.m_value
+  );
 }
 
 template <typename T, typename E>
@@ -3513,9 +3516,11 @@ inline constexpr
 auto expect::expected<T,E>::value()
   const && -> const value_type&&
 {
-  return has_value()
-    ? static_cast<const T&&>(**this)
-    : throw bad_expected_access{};
+  using underlying = typename std::remove_reference<T>::type;
+
+  return (has_value() || ((throw bad_expected_access{}), true),
+    static_cast<const underlying&&>(static_cast<const underlying&>(m_storage.m_value))
+  );
 }
 
 template <typename T, typename E>
@@ -3669,7 +3674,7 @@ auto expect::expected<T, E>::map(Fn&& fn)
 
 template <typename T, typename E>
 template <typename Fn>
-inline constexpr
+inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::map(Fn&& fn)
   && -> expected<detail::invoke_result_t<Fn,const T&>,E>
 {
@@ -3701,7 +3706,7 @@ auto expect::expected<T, E>::map_error(Fn&& fn)
 
 template <typename T, typename E>
 template <typename Fn>
-inline constexpr
+inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::map_error(Fn&& fn)
   && -> expected<T, detail::invoke_result_t<Fn,const E&>>
 {
@@ -3913,7 +3918,7 @@ auto expect::expected<void, E>::error()
 
 template <typename E>
 template <typename U>
-inline EXPECTED_CPP14_CONSTEXPR
+inline constexpr
 auto expect::expected<void, E>::error_or(U&& default_error)
   const & -> error_type
 {
