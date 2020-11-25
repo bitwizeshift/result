@@ -1108,11 +1108,11 @@ namespace expect {
     };
 
     //=========================================================================
-    // alias : expected_base
+    // alias : expected_storage
     //=========================================================================
 
     template <typename T, typename E>
-    using expected_base = expected_move_assign_base<T, E>;
+    using expected_storage = expected_move_assign_base<T, E>;
 
     //=========================================================================
     // traits : expected
@@ -1336,10 +1336,8 @@ namespace expect {
   /// \tparam E the underlying error type (`std::error_code` by default)
   ///////////////////////////////////////////////////////////////////////////
   template <typename T, typename E = std::error_code>
-  class expected : private detail::expected_base<T, E>
+  class expected
   {
-    using base_type = detail::expected_base<T, E>;
-
     // Type requirements
 
     static_assert(
@@ -1382,7 +1380,11 @@ namespace expect {
 
     // Friendship
 
-    friend constexpr auto detail::extract_error(const expected<T, E>&) noexcept -> const E&;
+    friend constexpr auto detail::extract_error(const expected<T, E>&)
+      noexcept -> const E&;
+
+    template <typename T2, typename E2>
+    friend class expected;
 
     //-------------------------------------------------------------------------
     // Public Member Types
@@ -1866,6 +1868,7 @@ namespace expect {
     //-------------------------------------------------------------------------
     // Monadic Functionalities
     //-------------------------------------------------------------------------
+  public:
 
     /// \{
     /// \brief Returns the contained value if `*this` has a value,
@@ -1959,6 +1962,13 @@ namespace expect {
     template <typename Fn>
     constexpr auto map_error(Fn&& fn) && -> expected<T, detail::invoke_result_t<Fn,const E&>>;
     /// \}
+
+    //-------------------------------------------------------------------------
+    // Private Members
+    //-------------------------------------------------------------------------
+  private:
+
+    detail::expected_storage<T,E> m_storage;
   };
 
   //===========================================================================
@@ -1971,10 +1981,8 @@ namespace expect {
   /// \tparam E the underlying error type (`std::error_code` by default)
   /////////////////////////////////////////////////////////////////////////////
   template <typename E>
-  class expected<void,E> : private detail::expected_base<detail::unit, E>
+  class expected<void,E>
   {
-    using base_type = detail::expected_base<detail::unit, E>;
-
     // Type requirements
 
     static_assert(
@@ -1995,11 +2003,13 @@ namespace expect {
       "default unexpected state."
     );
 
-    // Friendships
+    // Friendship
 
-    // Needed for comparison operators
     friend constexpr auto detail::extract_error(const expected<void, E>&)
       noexcept -> const E&;
+
+    template <typename T2, typename E2>
+    friend class expected;
 
     //-------------------------------------------------------------------------
     // Public Member Types
@@ -2290,6 +2300,7 @@ namespace expect {
     //-------------------------------------------------------------------------
     // Monadic Functionalities
     //-------------------------------------------------------------------------
+  public:
 
     /// \{
     /// \brief Returns the contained error if `*this` has an error,
@@ -2364,6 +2375,13 @@ namespace expect {
     /// \return The expected result of the function invoked
     template <typename Fn>
     constexpr auto map_error(Fn&& fn) const -> expected<void, detail::invoke_result_t<Fn,const E&>>;
+
+    //-------------------------------------------------------------------------
+    // Private Members
+    //-------------------------------------------------------------------------
+  private:
+
+    detail::expected_storage<detail::unit,E> m_storage;
   };
 
   //===========================================================================
@@ -3127,7 +3145,7 @@ template <typename T, typename E>
 inline constexpr
 auto expect::detail::extract_error(const expected<T,E>& exp) noexcept -> const E&
 {
-  return exp.m_error;
+  return exp.m_storage.m_error;
 }
 
 //=============================================================================
@@ -3139,7 +3157,7 @@ template <typename U, typename>
 inline constexpr
 expect::expected<T, E>::expected()
   noexcept(std::is_nothrow_constructible<U>::value)
-  : base_type(in_place)
+  : m_storage(in_place)
 {
 
 }
@@ -3151,14 +3169,10 @@ inline
 expect::expected<T, E>::expected(const expected<T2,E2>& other)
   noexcept(std::is_nothrow_constructible<T,const T2&>::value &&
            std::is_nothrow_constructible<E,const E2&>::value)
-  : base_type(detail::unit{})
+  : m_storage(detail::unit{})
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<T2,E2>, expected<T2,E2>>::value, ""
-  );
-
-  base_type::construct_from_expected(
-    reinterpret_cast<const detail::expected_base<T2,E2>&>(other)
+  m_storage.construct_from_expected(
+    static_cast<const expected<T2,E2>&>(other).m_storage
   );
 }
 
@@ -3169,14 +3183,10 @@ inline
 expect::expected<T, E>::expected(const expected<T2,E2>& other)
   noexcept(std::is_nothrow_constructible<T,const T2&>::value &&
            std::is_nothrow_constructible<E,const E2&>::value)
-  : base_type(detail::unit{})
+  : m_storage(detail::unit{})
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<T2,E2>, expected<T2,E2>>::value, ""
-  );
-
-  base_type::construct_from_expected(
-    reinterpret_cast<const detail::expected_base<T2,E2>&>(other)
+  m_storage.construct_from_expected(
+    static_cast<const expected<T2,E2>&>(other).m_storage
   );
 }
 
@@ -3187,14 +3197,10 @@ inline
 expect::expected<T, E>::expected(expected<T2,E2>&& other)
   noexcept(std::is_nothrow_constructible<T,T2&&>::value &&
            std::is_nothrow_constructible<E,E2&&>::value)
-  : base_type(detail::unit{})
+  : m_storage(detail::unit{})
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<T2,E2>, expected<T2,E2>>::value, ""
-  );
-
-  base_type::construct_from_expected(
-    reinterpret_cast<detail::expected_base<T2,E2>&&>(other)
+  m_storage.construct_from_expected(
+    static_cast<expected<T2,E2>&&>(other).m_storage
   );
 }
 
@@ -3205,14 +3211,10 @@ inline
 expect::expected<T, E>::expected(expected<T2,E2>&& other)
   noexcept(std::is_nothrow_constructible<T,T2&&>::value &&
            std::is_nothrow_constructible<E,E2&&>::value)
-  : base_type(detail::unit{})
+  : m_storage(detail::unit{})
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<T2,E2>, expected<T2,E2>>::value, ""
-  );
-
-  base_type::construct_from_expected(
-    reinterpret_cast<detail::expected_base<T2,E2>&&>(other)
+  m_storage.construct_from_expected(
+    static_cast<expected<T2,E2>&&>(other).m_storage
   );
 }
 
@@ -3223,7 +3225,7 @@ template <typename...Args, typename>
 inline constexpr
 expect::expected<T, E>::expected(in_place_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<T, Args...>::value)
-  : base_type(in_place, detail::forward<Args>(args)...)
+  : m_storage(in_place, detail::forward<Args>(args)...)
 {
 
 }
@@ -3235,7 +3237,7 @@ expect::expected<T, E>::expected(in_place_t,
                                  std::initializer_list<U> ilist,
                                  Args&&...args)
   noexcept(std::is_nothrow_constructible<T, std::initializer_list<U>, Args...>::value)
-  : base_type(in_place, ilist, detail::forward<Args>(args)...)
+  : m_storage(in_place, ilist, detail::forward<Args>(args)...)
 {
 
 }
@@ -3247,7 +3249,7 @@ template <typename...Args, typename>
 inline constexpr
 expect::expected<T, E>::expected(in_place_error_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
-  : base_type(in_place_error, detail::forward<Args>(args)...)
+  : m_storage(in_place_error, detail::forward<Args>(args)...)
 {
 
 }
@@ -3259,7 +3261,7 @@ expect::expected<T, E>::expected(in_place_error_t,
                                  std::initializer_list<U> ilist,
                                  Args&&...args)
   noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value)
-  : base_type(in_place_error, ilist, detail::forward<Args>(args)...)
+  : m_storage(in_place_error, ilist, detail::forward<Args>(args)...)
 {
 
 }
@@ -3271,7 +3273,7 @@ template <typename E2, typename>
 inline constexpr
 expect::expected<T, E>::expected(const unexpected<E2>& e)
   noexcept(std::is_nothrow_constructible<E,const E2&>::value)
-  : base_type(in_place_error, e.error())
+  : m_storage(in_place_error, e.error())
 {
 
 }
@@ -3281,7 +3283,7 @@ template <typename E2, typename>
 inline constexpr
 expect::expected<T, E>::expected(unexpected<E2>&& e)
   noexcept(std::is_nothrow_constructible<E,E2&&>::value)
-  : base_type(in_place_error, static_cast<E2&&>(e.error()))
+  : m_storage(in_place_error, static_cast<E2&&>(e.error()))
 {
 
 }
@@ -3292,7 +3294,7 @@ template <typename U,
 inline constexpr
 expect::expected<T, E>::expected(U&& value)
   noexcept(std::is_nothrow_constructible<T,U>::value)
-  : base_type(in_place, detail::forward<U>(value))
+  : m_storage(in_place, detail::forward<U>(value))
 {
 
 }
@@ -3303,7 +3305,7 @@ template <typename U,
 inline constexpr
 expect::expected<T, E>::expected(U&& value)
   noexcept(std::is_nothrow_constructible<T,U>::value)
-  : base_type(in_place, detail::forward<U>(value))
+  : m_storage(in_place, detail::forward<U>(value))
 {
 
 }
@@ -3318,11 +3320,8 @@ auto expect::expected<T, E>::operator=(const expected<T2,E2>& other)
            std::is_nothrow_assignable<E, const E2&>::value)
   -> expected&
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<T2,E2>, expected<T2,E2>>::value, ""
-  );
-  base_type::assign_from_expected(
-    reinterpret_cast<const detail::expected_base<T2,E2>&>(other)
+  m_storage.assign_from_expected(
+    static_cast<const expected<T2,E2>&>(other).m_storage
   );
   return (*this);
 }
@@ -3335,11 +3334,8 @@ auto expect::expected<T, E>::operator=(expected<T2,E2>&& other)
            std::is_nothrow_assignable<E, E2&&>::value)
   -> expected&
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<T2,E2>, expected<T2,E2>>::value, ""
-  );
-  base_type::assign_from_expected(
-    static_cast<detail::expected_base<T2,E2>&&>(other)
+  m_storage.assign_from_expected(
+    static_cast<expected<T2,E2>&&>(other).m_storage
   );
   return (*this);
 }
@@ -3351,7 +3347,7 @@ auto expect::expected<T, E>::operator=(U&& value)
   noexcept(std::is_nothrow_assignable<T, U>::value)
   -> expected&
 {
-  base_type::assign_value(detail::forward<U>(value));
+  m_storage.assign_value(detail::forward<U>(value));
   return (*this);
 }
 
@@ -3362,7 +3358,7 @@ auto expect::expected<T, E>::operator=(const unexpected<E2>& other)
   noexcept(std::is_nothrow_assignable<E, const E2&>::value)
   -> expected&
 {
-  base_type::assign_error(other.error());
+  m_storage.assign_error(other.error());
   return (*this);
 }
 
@@ -3373,7 +3369,7 @@ auto expect::expected<T, E>::operator=(unexpected<E2>&& other)
   noexcept(std::is_nothrow_assignable<E, E2&&>::value)
   -> expected&
 {
-  base_type::assign_error(static_cast<E2&&>(other.error()));
+  m_storage.assign_error(static_cast<E2&&>(other.error()));
   return (*this);
 }
 
@@ -3414,7 +3410,7 @@ inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::operator*()
   & noexcept -> value_type&
 {
-  return static_cast<T&>(base_type::m_value);
+  return static_cast<T&>(m_storage.m_value);
 }
 
 template <typename T, typename E>
@@ -3422,7 +3418,7 @@ inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::operator*()
   && noexcept -> value_type&&
 {
-  return static_cast<T&&>(static_cast<T&>(base_type::m_value));
+  return static_cast<T&&>(static_cast<T&>(m_storage.m_value));
 }
 
 template <typename T, typename E>
@@ -3430,7 +3426,7 @@ inline constexpr
 auto expect::expected<T, E>::operator*()
   const& noexcept -> const value_type&
 {
-  return static_cast<const T&>(base_type::m_value);
+  return static_cast<const T&>(m_storage.m_value);
 }
 
 template <typename T, typename E>
@@ -3438,7 +3434,7 @@ inline constexpr
 auto expect::expected<T, E>::operator*()
   const&& noexcept -> const value_type&&
 {
-  return static_cast<const T&&>(static_cast<const T&>(base_type::m_value));
+  return static_cast<const T&&>(static_cast<const T&>(m_storage.m_value));
 }
 
 template <typename T, typename E>
@@ -3446,7 +3442,7 @@ inline constexpr
 expect::expected<T,E>::operator bool()
   const noexcept
 {
-  return base_type::m_has_value;
+  return m_storage.m_has_value;
 }
 
 template <typename T, typename E>
@@ -3454,7 +3450,7 @@ inline constexpr
 auto expect::expected<T,E>::has_value()
   const noexcept -> bool
 {
-  return base_type::m_has_value;
+  return m_storage.m_has_value;
 }
 
 template <typename T, typename E>
@@ -3462,7 +3458,7 @@ inline constexpr
 auto expect::expected<T,E>::has_error()
   const noexcept -> bool
 {
-  return !base_type::m_has_value;
+  return !m_storage.m_has_value;
 }
 
 //-------------------------------------------------------------------------
@@ -3520,9 +3516,9 @@ auto expect::expected<T,E>::error() const &
     "'good' state"
   );
 
-  return base_type::m_has_value
+  return m_storage.m_has_value
     ? E()
-    : base_type::m_error;
+    : m_storage.m_error;
 }
 
 template <typename T, typename E>
@@ -3538,9 +3534,9 @@ auto expect::expected<T,E>::error() &&
     "'good' state"
   );
 
-  return base_type::m_has_value
+  return m_storage.m_has_value
     ? E()
-    : static_cast<E&&>(base_type::m_error);
+    : static_cast<E&&>(m_storage.m_error);
 }
 
 //-----------------------------------------------------------------------------
@@ -3552,8 +3548,8 @@ template <typename U>
 constexpr auto expect::expected<T, E>::value_or(U&& default_value)
   const& -> value_type
 {
-  return base_type::m_has_value
-    ? base_type::m_value
+  return m_storage.m_has_value
+    ? m_storage.m_value
     : detail::forward<U>(default_value);
 }
 
@@ -3563,7 +3559,7 @@ inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::value_or(U&& default_value)
   && -> value_type
 {
-  return base_type::m_has_value
+  return m_storage.m_has_value
     ? static_cast<T&&>(**this)
     : detail::forward<U>(default_value);
 }
@@ -3574,9 +3570,9 @@ inline constexpr
 auto expect::expected<T, E>::error_or(U&& default_error)
   const& -> error_type
 {
-  return base_type::m_has_value
+  return m_storage.m_has_value
     ? detail::forward<U>(default_error)
-    : base_type::m_error;
+    : m_storage.m_error;
 }
 
 template <typename T, typename E>
@@ -3585,9 +3581,9 @@ inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::error_or(U&& default_error)
   && -> error_type
 {
-  return base_type::m_has_value
+  return m_storage.m_has_value
     ? detail::forward<U>(default_error)
-    : static_cast<E&&>(base_type::m_error);
+    : static_cast<E&&>(m_storage.m_error);
 }
 
 template <typename T, typename E>
@@ -3616,7 +3612,7 @@ auto expect::expected<T, E>::flat_map(Fn&& fn)
 
   return has_value()
     ? detail::invoke(detail::forward<Fn>(fn), **this)
-    : result_type(in_place_error, base_type::m_error);
+    : result_type(in_place_error, m_storage.m_error);
 }
 
 template <typename T, typename E>
@@ -3634,7 +3630,7 @@ auto expect::expected<T, E>::flat_map(Fn&& fn)
 
   return has_value()
     ? detail::invoke(detail::forward<Fn>(fn), **this)
-    : result_type(in_place_error, static_cast<E&&>(base_type::m_error));
+    : result_type(in_place_error, static_cast<E&&>(m_storage.m_error));
 }
 
 template <typename T, typename E>
@@ -3652,8 +3648,8 @@ auto expect::expected<T, E>::map(Fn&& fn)
   );
 
   return has_value()
-    ? expected_type(detail::invoke(detail::forward<Fn>(fn), base_type::m_value))
-    : expected_type(in_place_error, base_type::m_error);
+    ? expected_type(detail::invoke(detail::forward<Fn>(fn), m_storage.m_value))
+    : expected_type(in_place_error, m_storage.m_error);
 }
 
 template <typename T, typename E>
@@ -3672,7 +3668,7 @@ auto expect::expected<T, E>::map(Fn&& fn)
 
   return has_value()
     ? expected_type(detail::invoke(detail::forward<Fn>(fn), **this))
-    : expected_type(in_place_error, static_cast<E&&>(base_type::m_error));
+    : expected_type(in_place_error, static_cast<E&&>(m_storage.m_error));
 }
 
 template <typename T, typename E>
@@ -3684,7 +3680,7 @@ auto expect::expected<T, E>::map_error(Fn&& fn)
   using result_type = expected<T, detail::invoke_result_t<Fn, const E&>>;
 
   return has_error()
-    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), base_type::m_error))
+    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), m_storage.m_error))
     : result_type(**this);
 }
 
@@ -3697,7 +3693,7 @@ auto expect::expected<T, E>::map_error(Fn&& fn)
   using result_type = expected<T, detail::invoke_result_t<Fn, const E&>>;
 
   return has_error()
-    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), base_type::m_error))
+    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), m_storage.m_error))
     : result_type(static_cast<T&&>(**this));
 }
 
@@ -3713,7 +3709,7 @@ template <typename E>
 inline constexpr
 expect::expected<void, E>::expected()
   noexcept
-  : base_type(in_place)
+  : m_storage(in_place)
 {
 
 }
@@ -3723,14 +3719,10 @@ template <typename U, typename E2, typename>
 inline
 expect::expected<void, E>::expected(const expected<U,E2>& other)
   noexcept(std::is_nothrow_constructible<E,const E2&>::value)
-  : base_type(detail::unit{})
+  : m_storage(detail::unit{})
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<U,E2>, expected<U,E2>>::value, ""
-  );
-
-  base_type::construct_error_from_expected(
-    reinterpret_cast<const detail::expected_base<U,E2>&>(other)
+  m_storage.construct_error_from_expected(
+    static_cast<const expected<U,E2>&>(other).m_storage
   );
 }
 
@@ -3739,14 +3731,10 @@ template <typename U, typename E2, typename>
 inline
 expect::expected<void, E>::expected(expected<U,E2>&& other)
   noexcept(std::is_nothrow_constructible<E,E2&&>::value)
-  : base_type(detail::unit{})
+  : m_storage(detail::unit{})
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<U,E2>, expected<U,E2>>::value, ""
-  );
-
-  base_type::construct_error_from_expected(
-    reinterpret_cast<detail::expected_base<U,E2>&&>(other)
+  m_storage.construct_error_from_expected(
+    static_cast<expected<U,E2>&&>(other).m_storage
   );
 }
 
@@ -3758,7 +3746,7 @@ template <typename...Args, typename>
 inline constexpr
 expect::expected<void, E>::expected(in_place_error_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
-  : base_type(in_place_error, detail::forward<Args>(args)...)
+  : m_storage(in_place_error, detail::forward<Args>(args)...)
 {
 
 }
@@ -3770,7 +3758,7 @@ expect::expected<void, E>::expected(in_place_error_t,
                                     std::initializer_list<U> ilist,
                                     Args&&...args)
   noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value)
-  : base_type(in_place_error, ilist, detail::forward<Args>(args)...)
+  : m_storage(in_place_error, ilist, detail::forward<Args>(args)...)
 {
 
 }
@@ -3782,7 +3770,7 @@ template <typename E2, typename>
 inline constexpr
 expect::expected<void, E>::expected(const unexpected<E2>& e)
   noexcept(std::is_nothrow_constructible<E,const E2&>::value)
-  : base_type(in_place_error, e.error())
+  : m_storage(in_place_error, e.error())
 {
 
 }
@@ -3792,7 +3780,7 @@ template <typename E2, typename>
 inline constexpr
 expect::expected<void, E>::expected(unexpected<E2>&& e)
   noexcept(std::is_nothrow_constructible<E,E2&&>::value)
-  : base_type(in_place_error, static_cast<E2&&>(e.error()))
+  : m_storage(in_place_error, static_cast<E2&&>(e.error()))
 {
 
 }
@@ -3806,12 +3794,8 @@ auto expect::expected<void, E>::operator=(const expected<T2,E2>& other)
   noexcept(std::is_nothrow_assignable<E, const E2&>::value)
   -> expected&
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<T2,E2>, expected<T2,E2>>::value, ""
-  );
-
-  base_type::assign_error_from_expected(
-    reinterpret_cast<const detail::expected_base<T2,E2>&>(other)
+  m_storage.assign_error_from_expected(
+    static_cast<const expected<T2,E2>&>(other).m_storage
   );
   return (*this);
 }
@@ -3823,12 +3807,8 @@ auto expect::expected<void, E>::operator=(expected<T2,E2>&& other)
   noexcept(std::is_nothrow_assignable<E, E2&&>::value)
   -> expected&
 {
-  static_assert(
-    std::is_base_of<detail::expected_base<T2,E2>, expected<T2,E2>>::value, ""
-  );
-
-  base_type::assign_error_from_expected(
-    reinterpret_cast<detail::expected_base<T2,E2>&&>(other)
+  m_storage.assign_error_from_expected(
+    static_cast<expected<T2,E2>&&>(other).m_storage
   );
   return (*this);
 }
@@ -3840,7 +3820,7 @@ auto expect::expected<void, E>::operator=(const unexpected<E2>& other)
   noexcept(std::is_nothrow_assignable<E, const E2&>::value)
   -> expected&
 {
-  base_type::assign_error(other.error());
+  m_storage.assign_error(other.error());
   return (*this);
 }
 
@@ -3851,7 +3831,7 @@ auto expect::expected<void, E>::operator=(unexpected<E2>&& other)
   noexcept(std::is_nothrow_assignable<E, E2&&>::value)
   -> expected&
 {
-  base_type::assign_error(static_cast<E2&&>(other.error()));
+  m_storage.assign_error(static_cast<E2&&>(other.error()));
   return (*this);
 }
 
@@ -3872,7 +3852,7 @@ inline constexpr
 auto expect::expected<void, E>::has_value()
   const noexcept -> bool
 {
-  return base_type::m_has_value;
+  return m_storage.m_has_value;
 }
 
 template <typename E>
@@ -3900,7 +3880,7 @@ auto expect::expected<void, E>::error()
   noexcept(std::is_nothrow_constructible<E>::value &&
            std::is_nothrow_copy_constructible<E>::value) -> E
 {
-  return has_value() ? E{} : base_type::m_error;
+  return has_value() ? E{} : m_storage.m_error;
 }
 
 template <typename E>
@@ -3909,7 +3889,7 @@ auto expect::expected<void, E>::error()
   && noexcept(std::is_nothrow_constructible<E>::value &&
               std::is_nothrow_copy_constructible<E>::value) -> E
 {
-  return has_value() ? E{} : static_cast<E&&>(base_type::m_error);
+  return has_value() ? E{} : static_cast<E&&>(m_storage.m_error);
 }
 
 //-----------------------------------------------------------------------------
@@ -3924,7 +3904,7 @@ auto expect::expected<void, E>::error_or(U&& default_error)
 {
   return has_value()
     ? detail::forward<U>(default_error)
-    : base_type::m_error;
+    : m_storage.m_error;
 }
 
 template <typename E>
@@ -3935,7 +3915,7 @@ auto expect::expected<void, E>::error_or(U&& default_error)
 {
   return has_value()
     ? detail::forward<U>(default_error)
-    : static_cast<E&&>(base_type::m_error);
+    : static_cast<E&&>(m_storage.m_error);
 }
 
 template <typename E>
@@ -3964,7 +3944,7 @@ auto expect::expected<void, E>::flat_map(Fn&& fn)
 
   return has_value()
     ? detail::invoke(detail::forward<Fn>(fn))
-    : result_type(in_place_error, base_type::m_error);
+    : result_type(in_place_error, m_storage.m_error);
 }
 
 template <typename E>
@@ -3982,7 +3962,7 @@ auto expect::expected<void, E>::flat_map(Fn&& fn)
 
   return has_value()
     ? detail::invoke(detail::forward<Fn>(fn))
-    : result_type(in_place_error, static_cast<E&&>(base_type::m_error));
+    : result_type(in_place_error, static_cast<E&&>(m_storage.m_error));
 }
 
 template <typename E>
@@ -4001,7 +3981,7 @@ auto expect::expected<void, E>::map(Fn&& fn)
 
   return has_value()
     ? expected_type(in_place, detail::invoke(detail::forward<Fn>(fn)))
-    : expected_type(in_place_error, base_type::m_error);
+    : expected_type(in_place_error, m_storage.m_error);
 }
 
 template <typename E>
@@ -4020,7 +4000,7 @@ auto expect::expected<void, E>::map(Fn&& fn)
 
   return has_value()
     ? expected_type(in_place, detail::invoke(detail::forward<Fn>(fn)))
-    : expected_type(in_place_error, static_cast<E&&>(base_type::m_error));
+    : expected_type(in_place_error, static_cast<E&&>(m_storage.m_error));
 }
 
 template <typename E>
@@ -4032,7 +4012,7 @@ auto expect::expected<void, E>::map_error(Fn&& fn)
   using result_type = expected<void, detail::invoke_result_t<Fn, const E&>>;
 
   return has_error()
-    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), base_type::m_error))
+    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), m_storage.m_error))
     : result_type{};
 }
 
