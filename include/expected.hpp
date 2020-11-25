@@ -671,7 +671,7 @@ namespace expect {
       //-----------------------------------------------------------------------
 
       /// \brief A no-op for trivial types
-      constexpr auto destroy() const noexcept -> void;
+      auto destroy() const noexcept -> void;
 
       //-----------------------------------------------------------------------
       // Public Members
@@ -2291,7 +2291,7 @@ namespace expect {
     /// \brief Throws an exception if contains an error
     ///
     /// \throws bad_expected_access if `*this` contains an error.
-    constexpr auto value() const -> void;
+    EXPECTED_CPP14_CONSTEXPR auto value() const -> void;
 
     /// \{
     /// \brief Returns the contained error, if one exists, or a
@@ -2872,7 +2872,7 @@ expect::detail::expected_destruct_base<T,E,IsTrivial>
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E, bool IsTrivial>
-inline constexpr
+inline
 auto expect::detail::expected_destruct_base<T, E, IsTrivial>::destroy()
   const noexcept -> void
 {
@@ -3886,7 +3886,7 @@ auto expect::expected<void, E>::has_error()
 //-------------------------------------------------------------------------
 
 template <typename E>
-inline constexpr
+inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<void, E>::value()
   const -> void
 {
