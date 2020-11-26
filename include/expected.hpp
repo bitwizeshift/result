@@ -44,6 +44,17 @@
 # define EXPECTED_CPP17_INLINE
 #endif
 
+
+#if defined(__clang__) && defined(_MSC_VER)
+# define EXPECTED_INLINE_VISIBILITY __attribute__((visibility("hidden"), no_instrument_function))
+#elif defined(__clang__) || defined(__GNUC__)
+# define EXPECTED_INLINE_VISIBILITY __attribute__((visibility("hidden"), always_inline, no_instrument_function))
+#elif defined(_MSC_VER)
+# define EXPECTED_INLINE_VISIBILITY __forceinline
+#else
+# define EXPECTED_INLINE_VISIBILITY
+#endif
+
 #include <stdexcept>    // std::logic_error
 #include <type_traits>  // std::enable_if, std::is_constructible, etc
 #include <new>          // placement-new
@@ -65,7 +76,7 @@ namespace expect {
     using std::forward;
 #else
     template <typename T>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto forward(typename std::remove_reference<T>::type& t)
       noexcept -> T&&
     {
@@ -73,7 +84,7 @@ namespace expect {
     }
 
     template <typename T>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto forward(typename std::remove_reference<T>::type&& t)
       noexcept -> T&&
     {
@@ -107,7 +118,7 @@ namespace expect {
                 std::is_function<T>::value &&
                 std::is_base_of<Base, typename std::decay<Derived>::type>::value
               >::type>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto invoke(T Base::*pmf, Derived&& ref, Args&&... args)
       noexcept(noexcept((::expect::detail::forward<Derived>(ref).*pmf)(::expect::detail::forward<Args>(args)...)))
       -> decltype((::expect::detail::forward<Derived>(ref).*pmf)(::expect::detail::forward<Args>(args)...))
@@ -120,7 +131,7 @@ namespace expect {
                 std::is_function<T>::value &&
                 is_reference_wrapper<typename std::decay<RefWrap>::type>::value
               >::type>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto invoke(T Base::*pmf, RefWrap&& ref, Args&&... args)
       noexcept(noexcept((ref.get().*pmf)(std::forward<Args>(args)...)))
       -> decltype((ref.get().*pmf)(expect::detail::forward<Args>(args)...))
@@ -134,7 +145,7 @@ namespace expect {
                 !is_reference_wrapper<typename std::decay<Pointer>::type>::value &&
                 !std::is_base_of<Base, typename std::decay<Pointer>::type>::value
               >::type>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto invoke(T Base::*pmf, Pointer&& ptr, Args&&... args)
       noexcept(noexcept(((*std::forward<Pointer>(ptr)).*pmf)(std::forward<Args>(args)...)))
       -> decltype(((*expect::detail::forward<Pointer>(ptr)).*pmf)(expect::detail::forward<Args>(args)...))
@@ -147,7 +158,7 @@ namespace expect {
                 !std::is_function<T>::value &&
                 std::is_base_of<Base, typename std::decay<Derived>::type>::value
               >::type>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto invoke(T Base::*pmd, Derived&& ref)
       noexcept(noexcept(std::forward<Derived>(ref).*pmd))
       -> decltype(expect::detail::forward<Derived>(ref).*pmd)
@@ -160,7 +171,7 @@ namespace expect {
                 !std::is_function<T>::value &&
                 is_reference_wrapper<typename std::decay<RefWrap>::type>::value
               >::type>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto invoke(T Base::*pmd, RefWrap&& ref)
       noexcept(noexcept(ref.get().*pmd))
       -> decltype(ref.get().*pmd)
@@ -174,7 +185,7 @@ namespace expect {
                 !is_reference_wrapper<typename std::decay<Pointer>::type>::value &&
                 !std::is_base_of<Base, typename std::decay<Pointer>::type>::value
               >::type>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto invoke(T Base::*pmd, Pointer&& ptr)
       noexcept(noexcept((*std::forward<Pointer>(ptr)).*pmd))
       -> decltype((*expect::detail::forward<Pointer>(ptr)).*pmd)
@@ -184,7 +195,7 @@ namespace expect {
 
     template <typename F, typename... Args,
               typename = typename std::enable_if<!std::is_member_pointer<typename std::decay<F>::type>::value>::type>
-    inline constexpr
+    inline EXPECTED_INLINE_VISIBILITY constexpr
     auto invoke(F&& f, Args&&... args)
         noexcept(noexcept(std::forward<F>(f)(std::forward<Args>(args)...)))
       -> decltype(expect::detail::forward<F>(f)(expect::detail::forward<Args>(args)...))
@@ -2568,7 +2579,7 @@ auto expect::bad_expected_access::what()
 
 template <typename E>
 template <typename...Args, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::unexpected<E>::unexpected(in_place_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
   : m_unexpected(detail::forward<Args>(args)...)
@@ -2579,7 +2590,7 @@ expect::unexpected<E>::unexpected(in_place_t, Args&&...args)
 template <typename E>
 template <typename E2,
           typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_constructible<E,const E2&>::value,int>::type>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::unexpected<E>::unexpected(const error_type& error)
   noexcept(std::is_nothrow_copy_constructible<E>::value)
   : m_unexpected(error)
@@ -2590,7 +2601,7 @@ expect::unexpected<E>::unexpected(const error_type& error)
 template <typename E>
 template <typename E2,
           typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_constructible<E,E2&&>::value,int>::type>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::unexpected<E>::unexpected(error_type&& error)
   noexcept(std::is_nothrow_move_constructible<E>::value)
   : m_unexpected(error)
@@ -2601,7 +2612,7 @@ expect::unexpected<E>::unexpected(error_type&& error)
 template <typename E>
 template <typename E2,
           typename std::enable_if<std::is_lvalue_reference<E2>::value,int>::type>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::unexpected<E>::unexpected(error_type& error)
   noexcept
   : m_unexpected(error)
@@ -2611,7 +2622,7 @@ expect::unexpected<E>::unexpected(error_type& error)
 
 template <typename E>
 template <typename E2, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::unexpected<E>::unexpected(const unexpected<E2>& other)
   noexcept(std::is_nothrow_constructible<E,const E2&>::value)
   : m_unexpected(other.error())
@@ -2621,7 +2632,7 @@ expect::unexpected<E>::unexpected(const unexpected<E2>& other)
 
 template <typename E>
 template <typename E2, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::unexpected<E>::unexpected(unexpected<E2>&& other)
   noexcept(std::is_nothrow_constructible<E,E2&&>::value)
   : m_unexpected(static_cast<unexpected<E2>&&>(other).error())
@@ -2634,7 +2645,7 @@ expect::unexpected<E>::unexpected(unexpected<E2>&& other)
 template <typename E>
 template <typename E2,
           typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_assignable<E,const E2&>::value,int>::type>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::operator=(const error_type& error)
   noexcept(std::is_nothrow_copy_assignable<E>::value) -> unexpected&
 {
@@ -2646,7 +2657,7 @@ auto expect::unexpected<E>::operator=(const error_type& error)
 template <typename E>
 template <typename E2,
           typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_assignable<E,E2&&>::value,int>::type>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::operator=(error_type&& error)
   noexcept(std::is_nothrow_move_assignable<E>::value) -> unexpected&
 {
@@ -2658,7 +2669,7 @@ auto expect::unexpected<E>::operator=(error_type&& error)
 template <typename E>
 template <typename E2,
           typename std::enable_if<std::is_lvalue_reference<E2>::value,int>::type>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::operator=(error_type& error)
   noexcept -> unexpected&
 {
@@ -2669,7 +2680,7 @@ auto expect::unexpected<E>::operator=(error_type& error)
 
 template <typename E>
 template <typename E2, typename>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::operator=(const unexpected<E2>& other)
   noexcept(std::is_nothrow_assignable<E,const E2&>::value)
   -> unexpected&
@@ -2681,7 +2692,7 @@ auto expect::unexpected<E>::operator=(const unexpected<E2>& other)
 
 template <typename E>
 template <typename E2, typename>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::operator=(unexpected<E2>&& other)
   noexcept(std::is_nothrow_assignable<E,E2&&>::value)
   -> unexpected&
@@ -2696,7 +2707,7 @@ auto expect::unexpected<E>::operator=(unexpected<E2>&& other)
 //-----------------------------------------------------------------------------
 
 template <typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::error()
   & noexcept -> error_type&
 {
@@ -2704,7 +2715,7 @@ auto expect::unexpected<E>::error()
 }
 
 template <typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::error()
   && noexcept -> error_type&&
 {
@@ -2712,7 +2723,7 @@ auto expect::unexpected<E>::error()
 }
 
 template <typename E>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::unexpected<E>::error()
   const & noexcept -> const error_type&
 {
@@ -2720,7 +2731,7 @@ auto expect::unexpected<E>::error()
 }
 
 template <typename E>
-constexpr auto expect::unexpected<E>::error()
+inline EXPECTED_INLINE_VISIBILITY constexpr auto expect::unexpected<E>::error()
   const && noexcept -> const error_type&&
 {
   return static_cast<const error_type&&>(static_cast<const error_type&>(m_unexpected));
@@ -2735,7 +2746,7 @@ constexpr auto expect::unexpected<E>::error()
 //-----------------------------------------------------------------------------
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator==(const unexpected<E1>& lhs,
                      const unexpected<E2>& rhs)
   noexcept -> bool
@@ -2744,7 +2755,7 @@ auto expect::operator==(const unexpected<E1>& lhs,
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator!=(const unexpected<E1>& lhs,
                      const unexpected<E2>& rhs)
   noexcept -> bool
@@ -2753,7 +2764,7 @@ auto expect::operator!=(const unexpected<E1>& lhs,
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<(const unexpected<E1>& lhs,
                     const unexpected<E2>& rhs)
   noexcept -> bool
@@ -2762,7 +2773,7 @@ auto expect::operator<(const unexpected<E1>& lhs,
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>(const unexpected<E1>& lhs,
                     const unexpected<E2>& rhs)
   noexcept -> bool
@@ -2771,7 +2782,7 @@ auto expect::operator>(const unexpected<E1>& lhs,
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<=(const unexpected<E1>& lhs,
                      const unexpected<E2>& rhs)
   noexcept -> bool
@@ -2780,7 +2791,7 @@ auto expect::operator<=(const unexpected<E1>& lhs,
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>=(const unexpected<E1>& lhs,
                      const unexpected<E2>& rhs)
   noexcept -> bool
@@ -2793,7 +2804,7 @@ auto expect::operator>=(const unexpected<E1>& lhs,
 //-----------------------------------------------------------------------------
 
 template <typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::make_unexpected(E&& e)
   noexcept(std::is_nothrow_constructible<typename std::decay<E>::type,E>::value)
   -> unexpected<typename std::decay<E>::type>
@@ -2806,7 +2817,7 @@ auto expect::make_unexpected(E&& e)
 }
 
 template <typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::make_unexpected(std::reference_wrapper<E> e)
   noexcept -> unexpected<E&>
 {
@@ -2816,7 +2827,7 @@ auto expect::make_unexpected(std::reference_wrapper<E> e)
 }
 
 template <typename E, typename...Args, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::make_unexpected(Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
   -> unexpected<E>
@@ -2825,7 +2836,7 @@ auto expect::make_unexpected(Args&&...args)
 }
 
 template <typename E>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::swap(unexpected<E>& lhs, unexpected<E>& rhs)
 #if __cplusplus >= 201703L
     noexcept(std::is_nothrow_swappable<E>::value) -> void
@@ -2847,7 +2858,7 @@ auto expect::swap(unexpected<E>& lhs, unexpected<E>& rhs)
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E, bool IsTrivial>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::detail::expected_destruct_base<T, E, IsTrivial>
   ::expected_destruct_base(unit)
   noexcept
@@ -2858,7 +2869,7 @@ expect::detail::expected_destruct_base<T, E, IsTrivial>
 
 template <typename T, typename E, bool IsTrivial>
 template <typename...Args>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::detail::expected_destruct_base<T,E,IsTrivial>
   ::expected_destruct_base(in_place_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<T, Args...>::value)
@@ -2869,7 +2880,7 @@ expect::detail::expected_destruct_base<T,E,IsTrivial>
 
 template <typename T, typename E, bool IsTrivial>
 template <typename...Args>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::detail::expected_destruct_base<T,E,IsTrivial>
   ::expected_destruct_base(in_place_error_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
@@ -2883,7 +2894,7 @@ expect::detail::expected_destruct_base<T,E,IsTrivial>
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E, bool IsTrivial>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_destruct_base<T, E, IsTrivial>::destroy()
   const noexcept -> void
 {
@@ -2899,7 +2910,7 @@ auto expect::detail::expected_destruct_base<T, E, IsTrivial>::destroy()
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::detail::expected_destruct_base<T, E, false>
   ::expected_destruct_base(unit)
   noexcept
@@ -2910,7 +2921,7 @@ expect::detail::expected_destruct_base<T, E, false>
 
 template <typename T, typename E>
 template <typename...Args>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::detail::expected_destruct_base<T,E,false>
   ::expected_destruct_base(in_place_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<T, Args...>::value)
@@ -2921,7 +2932,7 @@ expect::detail::expected_destruct_base<T,E,false>
 
 template <typename T, typename E>
 template <typename...Args>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::detail::expected_destruct_base<T,E,false>
   ::expected_destruct_base(in_place_error_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
@@ -2933,7 +2944,7 @@ expect::detail::expected_destruct_base<T,E,false>
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::detail::expected_destruct_base<T,E,false>
   ::~expected_destruct_base()
   noexcept(std::is_nothrow_destructible<T>::value && std::is_nothrow_destructible<E>::value)
@@ -2946,6 +2957,7 @@ expect::detail::expected_destruct_base<T,E,false>
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E>
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_destruct_base<T, E, false>::destroy()
   -> void
 {
@@ -2966,7 +2978,7 @@ auto expect::detail::expected_destruct_base<T, E, false>::destroy()
 
 template <typename T, typename E>
 template <typename...Args>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_construct_base<T,E>::construct_value(Args&&...args)
   noexcept(std::is_nothrow_constructible<T,Args...>::value)
   -> void
@@ -2980,7 +2992,7 @@ auto expect::detail::expected_construct_base<T,E>::construct_value(Args&&...args
 
 template <typename T, typename E>
 template <typename...Args>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_construct_base<T,E>::construct_error(Args&&...args)
   noexcept(std::is_nothrow_constructible<E,Args...>::value)
   -> void
@@ -2994,7 +3006,7 @@ auto expect::detail::expected_construct_base<T,E>::construct_error(Args&&...args
 
 template <typename T, typename E>
 template <typename Expected>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_construct_base<T,E>::construct_error_from_expected(
   Expected&& other
 ) -> void
@@ -3009,7 +3021,7 @@ auto expect::detail::expected_construct_base<T,E>::construct_error_from_expected
 
 template <typename T, typename E>
 template <typename Expected>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_construct_base<T,E>::construct_from_expected(
   Expected&& other
 ) -> void
@@ -3023,7 +3035,7 @@ auto expect::detail::expected_construct_base<T,E>::construct_from_expected(
 
 template <typename T, typename E>
 template <typename Value>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_construct_base<T,E>::assign_value(Value&& value)
   noexcept(std::is_nothrow_assignable<T,Value>::value)
   -> void
@@ -3038,7 +3050,7 @@ auto expect::detail::expected_construct_base<T,E>::assign_value(Value&& value)
 
 template <typename T, typename E>
 template <typename Error>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_construct_base<T,E>::assign_error(Error&& error)
   noexcept(std::is_nothrow_assignable<E,Error>::value)
   -> void
@@ -3053,7 +3065,7 @@ auto expect::detail::expected_construct_base<T,E>::assign_error(Error&& error)
 
 template <typename T, typename E>
 template <typename Expected>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_construct_base<T, E>::assign_error_from_expected(
   Expected&& other
 ) -> void
@@ -3072,7 +3084,7 @@ auto expect::detail::expected_construct_base<T, E>::assign_error_from_expected(
 
 template <typename T, typename E>
 template <typename Expected>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_construct_base<T,E>::assign_from_expected(Expected&& other)
   -> void
 {
@@ -3091,7 +3103,7 @@ auto expect::detail::expected_construct_base<T,E>::assign_from_expected(Expected
 //=============================================================================
 
 template <typename T, typename E, bool Enabled>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::detail::expected_trivial_copy_ctor_base<T,E,Enabled>
   ::expected_trivial_copy_ctor_base(const expected_trivial_copy_ctor_base& other)
   noexcept(std::is_nothrow_copy_constructible<T>::value &&
@@ -3108,7 +3120,7 @@ expect::detail::expected_trivial_copy_ctor_base<T,E,Enabled>
 //=============================================================================
 
 template <typename T, typename E, bool Enabled>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::detail::expected_trivial_move_ctor_base<T, E, Enabled>
   ::expected_trivial_move_ctor_base(expected_trivial_move_ctor_base&& other)
   noexcept(std::is_nothrow_move_constructible<T>::value &&
@@ -3125,7 +3137,7 @@ expect::detail::expected_trivial_move_ctor_base<T, E, Enabled>
 //=============================================================================
 
 template <typename T, typename E, bool Enabled>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_trivial_copy_assign_base<T, E, Enabled>
   ::operator=(const expected_trivial_copy_assign_base& other)
   noexcept(std::is_nothrow_copy_constructible<T>::value &&
@@ -3145,7 +3157,7 @@ auto expect::detail::expected_trivial_copy_assign_base<T, E, Enabled>
 //=========================================================================
 
 template <typename T, typename E, bool Enabled>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::expected_trivial_move_assign_base<T, E, Enabled>
   ::operator=(expected_trivial_move_assign_base&& other)
   noexcept(std::is_nothrow_move_constructible<T>::value &&
@@ -3161,7 +3173,7 @@ auto expect::detail::expected_trivial_move_assign_base<T, E, Enabled>
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::detail::expected_error_extractor::get(const expected<T,E>& exp)
   noexcept -> const E&
 {
@@ -3169,14 +3181,14 @@ auto expect::detail::expected_error_extractor::get(const expected<T,E>& exp)
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::detail::extract_error(const expected<T,E>& exp) noexcept -> const E&
 {
   return expected_error_extractor::get(exp);
 }
 
 [[noreturn]]
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::detail::throw_bad_expected_access() -> void
 {
 #if defined(EXPECTED_DISABLE_EXCEPTIONS)
@@ -3186,13 +3198,16 @@ auto expect::detail::throw_bad_expected_access() -> void
 #endif
 }
 
+
+
+
 //=============================================================================
 // class : expected<T,E>
 //=============================================================================
 
 template <typename T, typename E>
 template <typename U, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected()
   noexcept(std::is_nothrow_constructible<U>::value)
   : m_storage(in_place)
@@ -3203,7 +3218,7 @@ expect::expected<T, E>::expected()
 template <typename T, typename E>
 template <typename T2, typename E2,
           typename std::enable_if<expect::detail::expected_is_implicit_copy_convertible<T,E,T2,E2>::value,int>::type>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::expected<T, E>::expected(const expected<T2,E2>& other)
   noexcept(std::is_nothrow_constructible<T,const T2&>::value &&
            std::is_nothrow_constructible<E,const E2&>::value)
@@ -3217,7 +3232,7 @@ expect::expected<T, E>::expected(const expected<T2,E2>& other)
 template <typename T, typename E>
 template <typename T2, typename E2,
           typename std::enable_if<expect::detail::expected_is_explicit_copy_convertible<T,E,T2,E2>::value,int>::type>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::expected<T, E>::expected(const expected<T2,E2>& other)
   noexcept(std::is_nothrow_constructible<T,const T2&>::value &&
            std::is_nothrow_constructible<E,const E2&>::value)
@@ -3231,7 +3246,7 @@ expect::expected<T, E>::expected(const expected<T2,E2>& other)
 template <typename T, typename E>
 template <typename T2, typename E2,
           typename std::enable_if<expect::detail::expected_is_implicit_move_convertible<T,E,T2,E2>::value,int>::type>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::expected<T, E>::expected(expected<T2,E2>&& other)
   noexcept(std::is_nothrow_constructible<T,T2&&>::value &&
            std::is_nothrow_constructible<E,E2&&>::value)
@@ -3245,7 +3260,7 @@ expect::expected<T, E>::expected(expected<T2,E2>&& other)
 template <typename T, typename E>
 template <typename T2, typename E2,
           typename std::enable_if<expect::detail::expected_is_explicit_move_convertible<T,E,T2,E2>::value,int>::type>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::expected<T, E>::expected(expected<T2,E2>&& other)
   noexcept(std::is_nothrow_constructible<T,T2&&>::value &&
            std::is_nothrow_constructible<E,E2&&>::value)
@@ -3260,7 +3275,7 @@ expect::expected<T, E>::expected(expected<T2,E2>&& other)
 
 template <typename T, typename E>
 template <typename...Args, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected(in_place_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<T, Args...>::value)
   : m_storage(in_place, detail::forward<Args>(args)...)
@@ -3270,7 +3285,7 @@ expect::expected<T, E>::expected(in_place_t, Args&&...args)
 
 template <typename T, typename E>
 template <typename U, typename...Args, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected(in_place_t,
                                  std::initializer_list<U> ilist,
                                  Args&&...args)
@@ -3284,7 +3299,7 @@ expect::expected<T, E>::expected(in_place_t,
 
 template <typename T, typename E>
 template <typename...Args, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected(in_place_error_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
   : m_storage(in_place_error, detail::forward<Args>(args)...)
@@ -3294,7 +3309,7 @@ expect::expected<T, E>::expected(in_place_error_t, Args&&...args)
 
 template <typename T, typename E>
 template <typename U, typename...Args, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected(in_place_error_t,
                                  std::initializer_list<U> ilist,
                                  Args&&...args)
@@ -3308,7 +3323,7 @@ expect::expected<T, E>::expected(in_place_error_t,
 
 template <typename T, typename E>
 template <typename E2, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected(const unexpected<E2>& e)
   noexcept(std::is_nothrow_constructible<E,const E2&>::value)
   : m_storage(in_place_error, e.error())
@@ -3318,7 +3333,7 @@ expect::expected<T, E>::expected(const unexpected<E2>& e)
 
 template <typename T, typename E>
 template <typename E2, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected(unexpected<E2>&& e)
   noexcept(std::is_nothrow_constructible<E,E2&&>::value)
   : m_storage(in_place_error, static_cast<E2&&>(e.error()))
@@ -3329,7 +3344,7 @@ expect::expected<T, E>::expected(unexpected<E2>&& e)
 template <typename T, typename E>
 template <typename U,
           typename std::enable_if<expect::detail::expected_is_explicit_value_convertible<T,U>::value,int>::type>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected(U&& value)
   noexcept(std::is_nothrow_constructible<T,U>::value)
   : m_storage(in_place, detail::forward<U>(value))
@@ -3340,7 +3355,7 @@ expect::expected<T, E>::expected(U&& value)
 template <typename T, typename E>
 template <typename U,
           typename std::enable_if<expect::detail::expected_is_implicit_value_convertible<T,U>::value,int>::type>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T, E>::expected(U&& value)
   noexcept(std::is_nothrow_constructible<T,U>::value)
   : m_storage(in_place, detail::forward<U>(value))
@@ -3352,7 +3367,7 @@ expect::expected<T, E>::expected(U&& value)
 
 template <typename T, typename E>
 template <typename T2, typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<T, E>::operator=(const expected<T2,E2>& other)
   noexcept(std::is_nothrow_assignable<T, const T2&>::value &&
            std::is_nothrow_assignable<E, const E2&>::value)
@@ -3366,7 +3381,7 @@ auto expect::expected<T, E>::operator=(const expected<T2,E2>& other)
 
 template <typename T, typename E>
 template <typename T2, typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<T, E>::operator=(expected<T2,E2>&& other)
   noexcept(std::is_nothrow_assignable<T, T2&&>::value &&
            std::is_nothrow_assignable<E, E2&&>::value)
@@ -3380,7 +3395,7 @@ auto expect::expected<T, E>::operator=(expected<T2,E2>&& other)
 
 template <typename T, typename E>
 template <typename U, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<T, E>::operator=(U&& value)
   noexcept(std::is_nothrow_assignable<T, U>::value)
   -> expected&
@@ -3391,7 +3406,7 @@ auto expect::expected<T, E>::operator=(U&& value)
 
 template <typename T, typename E>
 template <typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<T, E>::operator=(const unexpected<E2>& other)
   noexcept(std::is_nothrow_assignable<E, const E2&>::value)
   -> expected&
@@ -3402,7 +3417,7 @@ auto expect::expected<T, E>::operator=(const unexpected<E2>& other)
 
 template <typename T, typename E>
 template <typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<T, E>::operator=(unexpected<E2>&& other)
   noexcept(std::is_nothrow_assignable<E, E2&&>::value)
   -> expected&
@@ -3416,7 +3431,7 @@ auto expect::expected<T, E>::operator=(unexpected<E2>&& other)
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::operator->()
   noexcept -> value_type*
 {
@@ -3432,7 +3447,7 @@ auto expect::expected<T, E>::operator->()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::operator->()
   const noexcept -> const value_type*
 {
@@ -3444,7 +3459,7 @@ auto expect::expected<T, E>::operator->()
 }
 
 template <typename T, typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::operator*()
   & noexcept -> value_type&
 {
@@ -3452,7 +3467,7 @@ auto expect::expected<T, E>::operator*()
 }
 
 template <typename T, typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::operator*()
   && noexcept -> value_type&&
 {
@@ -3460,7 +3475,7 @@ auto expect::expected<T, E>::operator*()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::operator*()
   const& noexcept -> const value_type&
 {
@@ -3468,7 +3483,7 @@ auto expect::expected<T, E>::operator*()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::operator*()
   const&& noexcept -> const value_type&&
 {
@@ -3476,7 +3491,7 @@ auto expect::expected<T, E>::operator*()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<T,E>::operator bool()
   const noexcept
 {
@@ -3484,7 +3499,7 @@ expect::expected<T,E>::operator bool()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T,E>::has_value()
   const noexcept -> bool
 {
@@ -3492,7 +3507,7 @@ auto expect::expected<T,E>::has_value()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T,E>::has_error()
   const noexcept -> bool
 {
@@ -3502,7 +3517,7 @@ auto expect::expected<T,E>::has_error()
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T,E>::value()
   & -> value_type&
 {
@@ -3512,7 +3527,7 @@ auto expect::expected<T,E>::value()
 }
 
 template <typename T, typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T,E>::value()
   && -> value_type&&
 {
@@ -3524,7 +3539,7 @@ auto expect::expected<T,E>::value()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T,E>::value()
   const & -> const value_type&
 {
@@ -3534,7 +3549,7 @@ auto expect::expected<T,E>::value()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T,E>::value()
   const && -> const value_type&&
 {
@@ -3546,7 +3561,7 @@ auto expect::expected<T,E>::value()
 }
 
 template <typename T, typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T,E>::error() const &
   noexcept(std::is_nothrow_constructible<E>::value &&
            std::is_nothrow_copy_constructible<E>::value) -> E
@@ -3564,7 +3579,7 @@ auto expect::expected<T,E>::error() const &
 }
 
 template <typename T, typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T,E>::error() &&
   noexcept(std::is_nothrow_constructible<E>::value &&
            std::is_nothrow_move_constructible<E>::value) -> E
@@ -3587,7 +3602,8 @@ auto expect::expected<T,E>::error() &&
 
 template <typename T, typename E>
 template <typename U>
-constexpr auto expect::expected<T, E>::value_or(U&& default_value)
+inline EXPECTED_INLINE_VISIBILITY constexpr
+auto expect::expected<T, E>::value_or(U&& default_value)
   const& -> value_type
 {
   return m_storage.m_has_value
@@ -3597,7 +3613,7 @@ constexpr auto expect::expected<T, E>::value_or(U&& default_value)
 
 template <typename T, typename E>
 template <typename U>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::value_or(U&& default_value)
   && -> value_type
 {
@@ -3608,7 +3624,7 @@ auto expect::expected<T, E>::value_or(U&& default_value)
 
 template <typename T, typename E>
 template <typename U>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::error_or(U&& default_error)
   const& -> error_type
 {
@@ -3619,7 +3635,7 @@ auto expect::expected<T, E>::error_or(U&& default_error)
 
 template <typename T, typename E>
 template <typename U>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::error_or(U&& default_error)
   && -> error_type
 {
@@ -3630,7 +3646,7 @@ auto expect::expected<T, E>::error_or(U&& default_error)
 
 template <typename T, typename E>
 template <typename U>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::and_then(U&& value)
   const -> expected<typename std::decay<U>::type,E>
 {
@@ -3641,7 +3657,7 @@ auto expect::expected<T, E>::and_then(U&& value)
 
 template <typename T, typename E>
 template <typename Fn>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::flat_map(Fn&& fn)
   const & -> detail::invoke_result_t<Fn, const T&>
 {
@@ -3659,7 +3675,7 @@ auto expect::expected<T, E>::flat_map(Fn&& fn)
 
 template <typename T, typename E>
 template <typename Fn>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::flat_map(Fn&& fn)
   && -> detail::invoke_result_t<Fn, const T&>
 {
@@ -3677,7 +3693,7 @@ auto expect::expected<T, E>::flat_map(Fn&& fn)
 
 template <typename T, typename E>
 template <typename Fn>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::map(Fn&& fn)
   const & -> expected<detail::invoke_result_t<Fn,const T&>,E>
 {
@@ -3696,7 +3712,7 @@ auto expect::expected<T, E>::map(Fn&& fn)
 
 template <typename T, typename E>
 template <typename Fn>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::map(Fn&& fn)
   && -> expected<detail::invoke_result_t<Fn,const T&>,E>
 {
@@ -3715,7 +3731,7 @@ auto expect::expected<T, E>::map(Fn&& fn)
 
 template <typename T, typename E>
 template <typename Fn>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::map_error(Fn&& fn)
   const & -> expected<T, detail::invoke_result_t<Fn,const E&>>
 {
@@ -3728,7 +3744,7 @@ auto expect::expected<T, E>::map_error(Fn&& fn)
 
 template <typename T, typename E>
 template <typename Fn>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::map_error(Fn&& fn)
   && -> expected<T, detail::invoke_result_t<Fn,const E&>>
 {
@@ -3748,7 +3764,7 @@ auto expect::expected<T, E>::map_error(Fn&& fn)
 //-----------------------------------------------------------------------------
 
 template <typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<void, E>::expected()
   noexcept
   : m_storage(in_place)
@@ -3758,7 +3774,7 @@ expect::expected<void, E>::expected()
 
 template <typename E>
 template <typename U, typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::expected<void, E>::expected(const expected<U,E2>& other)
   noexcept(std::is_nothrow_constructible<E,const E2&>::value)
   : m_storage(detail::unit{})
@@ -3770,7 +3786,7 @@ expect::expected<void, E>::expected(const expected<U,E2>& other)
 
 template <typename E>
 template <typename U, typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 expect::expected<void, E>::expected(expected<U,E2>&& other)
   noexcept(std::is_nothrow_constructible<E,E2&&>::value)
   : m_storage(detail::unit{})
@@ -3785,7 +3801,7 @@ expect::expected<void, E>::expected(expected<U,E2>&& other)
 
 template <typename E>
 template <typename...Args, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<void, E>::expected(in_place_error_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
   : m_storage(in_place_error, detail::forward<Args>(args)...)
@@ -3795,7 +3811,7 @@ expect::expected<void, E>::expected(in_place_error_t, Args&&...args)
 
 template <typename E>
 template <typename U, typename...Args, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<void, E>::expected(in_place_error_t,
                                     std::initializer_list<U> ilist,
                                     Args&&...args)
@@ -3809,7 +3825,7 @@ expect::expected<void, E>::expected(in_place_error_t,
 
 template <typename E>
 template <typename E2, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<void, E>::expected(const unexpected<E2>& e)
   noexcept(std::is_nothrow_constructible<E,const E2&>::value)
   : m_storage(in_place_error, e.error())
@@ -3819,7 +3835,7 @@ expect::expected<void, E>::expected(const unexpected<E2>& e)
 
 template <typename E>
 template <typename E2, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<void, E>::expected(unexpected<E2>&& e)
   noexcept(std::is_nothrow_constructible<E,E2&&>::value)
   : m_storage(in_place_error, static_cast<E2&&>(e.error()))
@@ -3831,7 +3847,7 @@ expect::expected<void, E>::expected(unexpected<E2>&& e)
 
 template <typename E>
 template <typename T2, typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<void, E>::operator=(const expected<T2,E2>& other)
   noexcept(std::is_nothrow_assignable<E, const E2&>::value)
   -> expected&
@@ -3844,7 +3860,7 @@ auto expect::expected<void, E>::operator=(const expected<T2,E2>& other)
 
 template <typename E>
 template <typename T2, typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<void, E>::operator=(expected<T2,E2>&& other)
   noexcept(std::is_nothrow_assignable<E, E2&&>::value)
   -> expected&
@@ -3857,7 +3873,7 @@ auto expect::expected<void, E>::operator=(expected<T2,E2>&& other)
 
 template <typename E>
 template <typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<void, E>::operator=(const unexpected<E2>& other)
   noexcept(std::is_nothrow_assignable<E, const E2&>::value)
   -> expected&
@@ -3868,7 +3884,7 @@ auto expect::expected<void, E>::operator=(const unexpected<E2>& other)
 
 template <typename E>
 template <typename E2, typename>
-inline
+inline EXPECTED_INLINE_VISIBILITY
 auto expect::expected<void, E>::operator=(unexpected<E2>&& other)
   noexcept(std::is_nothrow_assignable<E, E2&&>::value)
   -> expected&
@@ -3882,7 +3898,7 @@ auto expect::expected<void, E>::operator=(unexpected<E2>&& other)
 //-----------------------------------------------------------------------------
 
 template <typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 expect::expected<void, E>::operator bool()
   const noexcept
 {
@@ -3890,7 +3906,7 @@ expect::expected<void, E>::operator bool()
 }
 
 template <typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::has_value()
   const noexcept -> bool
 {
@@ -3898,7 +3914,7 @@ auto expect::expected<void, E>::has_value()
 }
 
 template <typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::has_error()
   const noexcept -> bool
 {
@@ -3908,7 +3924,7 @@ auto expect::expected<void, E>::has_error()
 //-------------------------------------------------------------------------
 
 template <typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<void, E>::value()
   const -> void
 {
@@ -3916,7 +3932,7 @@ auto expect::expected<void, E>::value()
 }
 
 template <typename E>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::error()
   const &
   noexcept(std::is_nothrow_constructible<E>::value &&
@@ -3926,7 +3942,7 @@ auto expect::expected<void, E>::error()
 }
 
 template <typename E>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<void, E>::error()
   && noexcept(std::is_nothrow_constructible<E>::value &&
               std::is_nothrow_copy_constructible<E>::value) -> E
@@ -3940,7 +3956,7 @@ auto expect::expected<void, E>::error()
 
 template <typename E>
 template <typename U>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::error_or(U&& default_error)
   const & -> error_type
 {
@@ -3951,7 +3967,7 @@ auto expect::expected<void, E>::error_or(U&& default_error)
 
 template <typename E>
 template <typename U>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<void, E>::error_or(U&& default_error)
   && -> error_type
 {
@@ -3962,7 +3978,7 @@ auto expect::expected<void, E>::error_or(U&& default_error)
 
 template <typename E>
 template <typename U>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::and_then(U&& value)
   const -> expected<typename std::decay<U>::type,E>
 {
@@ -3973,7 +3989,7 @@ auto expect::expected<void, E>::and_then(U&& value)
 
 template <typename E>
 template <typename Fn>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::flat_map(Fn&& fn)
   const & -> detail::invoke_result_t<Fn>
 {
@@ -3991,7 +4007,7 @@ auto expect::expected<void, E>::flat_map(Fn&& fn)
 
 template <typename E>
 template <typename Fn>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<void, E>::flat_map(Fn&& fn)
   && -> detail::invoke_result_t<Fn>
 {
@@ -4009,7 +4025,7 @@ auto expect::expected<void, E>::flat_map(Fn&& fn)
 
 template <typename E>
 template <typename Fn>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::map(Fn&& fn)
   const & -> expected<detail::invoke_result_t<Fn>,E>
 {
@@ -4028,7 +4044,7 @@ auto expect::expected<void, E>::map(Fn&& fn)
 
 template <typename E>
 template <typename Fn>
-inline EXPECTED_CPP14_CONSTEXPR
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<void, E>::map(Fn&& fn)
   && -> expected<detail::invoke_result_t<Fn>,E>
 {
@@ -4047,7 +4063,7 @@ auto expect::expected<void, E>::map(Fn&& fn)
 
 template <typename E>
 template <typename Fn>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::map_error(Fn&& fn)
   const -> expected<void, detail::invoke_result_t<Fn,const E&>>
 {
@@ -4067,7 +4083,7 @@ auto expect::expected<void, E>::map_error(Fn&& fn)
 //-----------------------------------------------------------------------------
 
 template <typename T1, typename E1, typename T2, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator==(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
   noexcept -> bool
 {
@@ -4081,7 +4097,7 @@ auto expect::operator==(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
 }
 
 template <typename T1, typename E1, typename T2, typename E2>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator!=(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
   noexcept -> bool
 {
@@ -4095,7 +4111,7 @@ auto expect::operator!=(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
 }
 
 template <typename T1, typename E1, typename T2, typename E2>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>=(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
   noexcept -> bool
 {
@@ -4109,7 +4125,7 @@ auto expect::operator>=(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
 }
 
 template <typename T1, typename E1, typename T2, typename E2>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<=(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
   noexcept -> bool
 {
@@ -4123,7 +4139,7 @@ auto expect::operator<=(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
 }
 
 template <typename T1, typename E1, typename T2, typename E2>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
   noexcept -> bool
 {
@@ -4137,7 +4153,7 @@ auto expect::operator>(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
 }
 
 template <typename T1, typename E1, typename T2, typename E2>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
   noexcept -> bool
 {
@@ -4154,7 +4170,7 @@ auto expect::operator<(const expected<T1,E1>& lhs, const expected<T2,E2>& rhs)
 //-----------------------------------------------------------------------------
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator==(const expected<void,E1>& lhs, const expected<void,E2>& rhs)
   noexcept -> bool
 {
@@ -4168,7 +4184,7 @@ auto expect::operator==(const expected<void,E1>& lhs, const expected<void,E2>& r
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator!=(const expected<void,E1>& lhs, const expected<void,E2>& rhs)
   noexcept -> bool
 {
@@ -4182,7 +4198,7 @@ auto expect::operator!=(const expected<void,E1>& lhs, const expected<void,E2>& r
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>=(const expected<void,E1>& lhs, const expected<void,E2>& rhs)
   noexcept -> bool
 {
@@ -4196,7 +4212,7 @@ auto expect::operator>=(const expected<void,E1>& lhs, const expected<void,E2>& r
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<=(const expected<void,E1>& lhs, const expected<void,E2>& rhs)
   noexcept -> bool
 {
@@ -4210,7 +4226,7 @@ auto expect::operator<=(const expected<void,E1>& lhs, const expected<void,E2>& r
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>(const expected<void,E1>& lhs, const expected<void,E2>& rhs)
   noexcept -> bool
 {
@@ -4224,7 +4240,7 @@ auto expect::operator>(const expected<void,E1>& lhs, const expected<void,E2>& rh
 }
 
 template <typename E1, typename E2>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<(const expected<void,E1>& lhs, const expected<void,E2>& rhs)
   noexcept -> bool
 {
@@ -4241,7 +4257,7 @@ auto expect::operator<(const expected<void,E1>& lhs, const expected<void,E2>& rh
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E, typename U, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator==(const expected<T,E>& exp, const U& value)
   noexcept -> bool
 {
@@ -4249,7 +4265,7 @@ auto expect::operator==(const expected<T,E>& exp, const U& value)
 }
 
 template <typename T, typename U, typename E, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator==(const T& value, const expected<U,E>& exp)
   noexcept -> bool
 {
@@ -4257,7 +4273,7 @@ auto expect::operator==(const T& value, const expected<U,E>& exp)
 }
 
 template <typename T, typename E, typename U, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator!=(const expected<T,E>& exp, const U& value)
   noexcept -> bool
 {
@@ -4265,7 +4281,7 @@ auto expect::operator!=(const expected<T,E>& exp, const U& value)
 }
 
 template <typename T, typename U, typename E, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator!=(const T& value, const expected<U,E>& exp)
   noexcept -> bool
 {
@@ -4273,7 +4289,7 @@ auto expect::operator!=(const T& value, const expected<U,E>& exp)
 }
 
 template <typename T, typename E, typename U, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<=(const expected<T,E>& exp, const U& value)
   noexcept -> bool
 {
@@ -4281,7 +4297,7 @@ auto expect::operator<=(const expected<T,E>& exp, const U& value)
 }
 
 template <typename T, typename U, typename E, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<=(const T& value, const expected<U,E>& exp)
   noexcept -> bool
 {
@@ -4289,7 +4305,7 @@ auto expect::operator<=(const T& value, const expected<U,E>& exp)
 }
 
 template <typename T, typename E, typename U, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>=(const expected<T,E>& exp, const U& value)
   noexcept -> bool
 {
@@ -4297,7 +4313,7 @@ auto expect::operator>=(const expected<T,E>& exp, const U& value)
 }
 
 template <typename T, typename U, typename E, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>=(const T& value, const expected<U,E>& exp)
   noexcept -> bool
 {
@@ -4305,7 +4321,7 @@ auto expect::operator>=(const T& value, const expected<U,E>& exp)
 }
 
 template <typename T, typename E, typename U, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<(const expected<T,E>& exp, const U& value)
   noexcept -> bool
 {
@@ -4313,7 +4329,7 @@ auto expect::operator<(const expected<T,E>& exp, const U& value)
 }
 
 template <typename T, typename U, typename E, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<(const T& value, const expected<U,E>& exp)
   noexcept -> bool
 {
@@ -4321,7 +4337,7 @@ auto expect::operator<(const T& value, const expected<U,E>& exp)
 }
 
 template <typename T, typename E, typename U, typename>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>(const expected<T,E>& exp, const U& value)
   noexcept -> bool
 {
@@ -4329,7 +4345,7 @@ auto expect::operator>(const expected<T,E>& exp, const U& value)
 }
 
 template <typename T, typename U, typename E, typename>
-inline constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>(const T& value, const expected<U,E>& exp)
   noexcept -> bool
 {
@@ -4339,7 +4355,7 @@ auto expect::operator>(const T& value, const expected<U,E>& exp)
 //-----------------------------------------------------------------------------
 
 template <typename T, typename E, typename U>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator==(const expected<T,E>& exp, const unexpected<U>& error)
   noexcept -> bool
 {
@@ -4347,7 +4363,7 @@ auto expect::operator==(const expected<T,E>& exp, const unexpected<U>& error)
 }
 
 template <typename T, typename U, typename E>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator==(const unexpected<T>& error, const expected<E,U>& exp)
   noexcept -> bool
 {
@@ -4355,7 +4371,7 @@ auto expect::operator==(const unexpected<T>& error, const expected<E,U>& exp)
 }
 
 template <typename T, typename E, typename U>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator!=(const expected<T,E>& exp, const unexpected<U>& error)
   noexcept -> bool
 {
@@ -4363,7 +4379,7 @@ auto expect::operator!=(const expected<T,E>& exp, const unexpected<U>& error)
 }
 
 template <typename T, typename U, typename E>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator!=(const unexpected<T>& error, const expected<E,U>& exp)
   noexcept -> bool
 {
@@ -4371,7 +4387,7 @@ auto expect::operator!=(const unexpected<T>& error, const expected<E,U>& exp)
 }
 
 template <typename T, typename E, typename U>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<=(const expected<T,E>& exp, const unexpected<U>& error)
   noexcept -> bool
 {
@@ -4379,7 +4395,7 @@ auto expect::operator<=(const expected<T,E>& exp, const unexpected<U>& error)
 }
 
 template <typename T, typename U, typename E>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<=(const unexpected<T>& error, const expected<E,U>& exp)
   noexcept -> bool
 {
@@ -4387,7 +4403,7 @@ auto expect::operator<=(const unexpected<T>& error, const expected<E,U>& exp)
 }
 
 template <typename T, typename E, typename U>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>=(const expected<T,E>& exp, const unexpected<U>& error)
   noexcept -> bool
 {
@@ -4395,7 +4411,7 @@ auto expect::operator>=(const expected<T,E>& exp, const unexpected<U>& error)
 }
 
 template <typename T, typename U, typename E>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>=(const unexpected<T>& error, const expected<E,U>& exp)
   noexcept -> bool
 {
@@ -4403,7 +4419,7 @@ auto expect::operator>=(const unexpected<T>& error, const expected<E,U>& exp)
 }
 
 template <typename T, typename E, typename U>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<(const expected<T,E>& exp, const unexpected<U>& error)
   noexcept -> bool
 {
@@ -4411,7 +4427,7 @@ auto expect::operator<(const expected<T,E>& exp, const unexpected<U>& error)
 }
 
 template <typename T, typename U, typename E>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator<(const unexpected<T>& error, const expected<E,U>& exp)
   noexcept -> bool
 {
@@ -4419,7 +4435,7 @@ auto expect::operator<(const unexpected<T>& error, const expected<E,U>& exp)
 }
 
 template <typename T, typename E, typename U>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>(const expected<T,E>& exp, const unexpected<U>& error)
   noexcept -> bool
 {
@@ -4427,7 +4443,7 @@ auto expect::operator>(const expected<T,E>& exp, const unexpected<U>& error)
 }
 
 template <typename T, typename U, typename E>
-constexpr
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::operator>(const unexpected<T>& error, const expected<E,U>& exp)
   noexcept -> bool
 {
