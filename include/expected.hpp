@@ -55,6 +55,7 @@
 # define EXPECTED_INLINE_VISIBILITY
 #endif
 
+#include <cstddef>      // std::size_t
 #include <stdexcept>    // std::logic_error
 #include <type_traits>  // std::enable_if, std::is_constructible, etc
 #include <new>          // placement-new
@@ -2549,6 +2550,34 @@ namespace expect {
   constexpr auto operator>(const unexpected<T>& value, const expected<E,U>& exp)
     noexcept -> bool;
 } // namespace expect
+
+namespace std {
+
+  template <typename T, typename E>
+  struct hash<::expect::expected<T,E>>
+  {
+    auto operator()(const expect::expected<T,E>& x) const -> std::size_t
+    {
+      if (x.has_value()) {
+        return std::hash<T>{}(*x) + 1; // add '1' to differentiate from error case
+      }
+      return std::hash<E>{}(::expect::detail::extract_error(x));
+    }
+  };
+
+  template <typename E>
+  struct hash<::expect::expected<void,E>>
+  {
+    auto operator()(const expect::expected<void,E>& x) const -> std::size_t
+    {
+      if (x.has_value()) {
+        return 0;
+      }
+      return std::hash<E>{}(::expect::detail::extract_error(x));
+    }
+  };
+
+} // namespace std
 
 //=============================================================================
 // class : bad_expected_access

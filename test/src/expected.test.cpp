@@ -5085,6 +5085,67 @@ TEST_CASE("operator<(const unexpected<E>&, const expected<T1,E1>&)", "[compare]"
     }
   }
 }
+
+//-----------------------------------------------------------------------------
+// Utility
+//-----------------------------------------------------------------------------
+
+TEST_CASE("std::hash<expected<T,E>>::operator()", "[utility]") {
+  SECTION("Value is active") {
+    SECTION("Hashes value") {
+      const auto sut = expected<int,int>{42};
+
+      const auto result = std::hash<expected<int,int>>{}(sut);
+      static_cast<void>(result);
+
+      SUCCEED();
+    }
+  }
+  SECTION("Error is active") {
+    SECTION("Hashes error") {
+      const auto sut = expected<int,int>{make_unexpected(42)};
+
+      const auto result = std::hash<expected<int,int>>{}(sut);
+      static_cast<void>(result);
+
+      SUCCEED();
+    }
+  }
+
+  SECTION("Hash of T and E are different for the same values for T and E") {
+    const auto value_sut = expected<int,int>{42};
+    const auto error_sut = expected<int,int>{make_unexpected(42)};
+
+    const auto value_hash = std::hash<expected<int,int>>{}(value_sut);
+    const auto error_hash = std::hash<expected<int,int>>{}(error_sut);
+
+    REQUIRE(value_hash != error_hash);
+  }
+}
+
+TEST_CASE("std::hash<expected<void,E>>::operator()", "[utility]") {
+  SECTION("Value is active") {
+    SECTION("Produces '0' hash") {
+      const auto sut = expected<void,int>{};
+
+      const auto result = std::hash<expected<void,int>>{}(sut);
+
+      REQUIRE(result == 0u);
+    }
+  }
+
+  SECTION("Error is active") {
+    SECTION("Hashes error") {
+      const auto sut = expected<void,int>{make_unexpected(42)};
+
+      const auto result = std::hash<expected<void,int>>{}(sut);
+      static_cast<void>(result);
+
+      SUCCEED();
+    }
+  }
+}
+
 } // namespace test
 } // namespace expect
 
