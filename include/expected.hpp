@@ -1286,6 +1286,8 @@ namespace expect {
     {
       template <typename T, typename E>
       static constexpr auto get(const expected<T,E>& exp) noexcept -> const E&;
+      template <typename T, typename E>
+      static constexpr auto get(expected<T,E>& exp) noexcept -> E&;
     };
 
     template <typename T, typename E>
@@ -2549,6 +2551,41 @@ namespace expect {
   template <typename T, typename U, typename E>
   constexpr auto operator>(const unexpected<T>& value, const expected<E,U>& exp)
     noexcept -> bool;
+
+  //---------------------------------------------------------------------------
+  // Utilities
+  //---------------------------------------------------------------------------
+
+  /// \{
+  /// \brief Swaps the contents of \p lhs with \p rhs
+  ///
+  /// \param lhs the left expected
+  /// \param rhs the right expected
+  template <typename T, typename E>
+  auto swap(expected<T,E>& lhs, expected<T,E>& rhs)
+#if __cplusplus >= 201703L
+    noexcept(std::is_nothrow_move_constructible<expected<T,E>>::value &&
+             std::is_nothrow_move_assignable<expected<T,E>>::value &&
+             std::is_nothrow_swappable<T>::value &&
+             std::is_nothrow_swappable<E>::value)
+#else
+    noexcept(std::is_nothrow_move_constructible<expected<T,E>>::value &&
+             std::is_nothrow_move_assignable<expected<T,E>>::value)
+#endif
+    -> void;
+  template <typename E>
+  auto swap(expected<void,E>& lhs, expected<void,E>& rhs)
+#if __cplusplus >= 201703L
+    noexcept(std::is_nothrow_move_constructible<expected<void,E>>::value &&
+             std::is_nothrow_move_assignable<expected<void,E>>::value &&
+             std::is_nothrow_swappable<E>::value)
+#else
+    noexcept(std::is_nothrow_move_constructible<expected<void,E>>::value &&
+             std::is_nothrow_move_assignable<expected<void,E>>::value)
+#endif
+     -> void;
+  /// \}
+
 } // namespace expect
 
 namespace std {
@@ -3211,6 +3248,14 @@ auto expect::detail::expected_error_extractor::get(const expected<T,E>& exp)
 
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
+auto expect::detail::expected_error_extractor::get(expected<T,E>& exp)
+  noexcept -> E&
+{
+  return exp.m_storage.m_error;
+}
+
+template <typename T, typename E>
+inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::detail::extract_error(const expected<T,E>& exp) noexcept -> const E&
 {
   return expected_error_extractor::get(exp);
@@ -3226,9 +3271,6 @@ auto expect::detail::throw_bad_expected_access() -> void
   throw bad_expected_access{};
 #endif
 }
-
-
-
 
 //=============================================================================
 // class : expected<T,E>
@@ -4477,6 +4519,73 @@ auto expect::operator>(const unexpected<T>& error, const expected<E,U>& exp)
   noexcept -> bool
 {
   return exp.has_error() ? error.error() > detail::extract_error(exp) : true;
+}
+
+//-----------------------------------------------------------------------------
+// Utilities
+//-----------------------------------------------------------------------------
+
+template <typename T, typename E>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::swap(expected<T,E>& lhs, expected<T,E>& rhs)
+#if __cplusplus >= 201703L
+  noexcept(std::is_nothrow_move_constructible<expected<T,E>>::value &&
+           std::is_nothrow_move_assignable<expected<T,E>>::value &&
+           std::is_nothrow_swappable<T>::value &&
+           std::is_nothrow_swappable<E>::value)
+#else
+  noexcept(std::is_nothrow_move_constructible<expected<T,E>>::value &&
+           std::is_nothrow_move_assignable<expected<T,E>>::value)
+#endif
+  -> void
+{
+  using std::swap;
+
+  if (lhs.has_value() == rhs.has_value()) {
+    if (lhs.has_value()) {
+      swap(*lhs, *rhs);
+    } else {
+      auto& lhs_error = detail::expected_error_extractor::get(lhs);
+      auto& rhs_error = detail::expected_error_extractor::get(rhs);
+
+      swap(lhs_error, rhs_error);
+    }
+    // If both `expected`s contain values, do nothing
+  } else {
+    auto temp = static_cast<expected<T,E>&&>(lhs);
+    lhs = static_cast<expected<T,E>&&>(rhs);
+    rhs = static_cast<expected<T,E>&&>(temp);
+  }
+}
+
+template <typename E>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::swap(expected<void,E>& lhs, expected<void,E>& rhs)
+#if __cplusplus >= 201703L
+  noexcept(std::is_nothrow_move_constructible<expected<void,E>>::value &&
+           std::is_nothrow_move_assignable<expected<void,E>>::value &&
+           std::is_nothrow_swappable<E>::value)
+#else
+  noexcept(std::is_nothrow_move_constructible<expected<void,E>>::value &&
+           std::is_nothrow_move_assignable<expected<void,E>>::value)
+#endif
+   -> void
+{
+  using std::swap;
+
+  if (lhs.has_value() == rhs.has_value()) {
+    if (lhs.has_error()) {
+      auto& lhs_error = detail::expected_error_extractor::get(lhs);
+      auto& rhs_error = detail::expected_error_extractor::get(rhs);
+
+      swap(lhs_error, rhs_error);
+    }
+    // If both `expected`s contain values, do nothing
+  } else {
+    auto temp = static_cast<expected<void,E>&&>(lhs);
+    lhs = static_cast<expected<void,E>&&>(rhs);
+    rhs = static_cast<expected<void,E>&&>(temp);
+  }
 }
 
 #endif /* MSL_EXPECTED_HPP */
