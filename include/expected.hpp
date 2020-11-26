@@ -272,6 +272,8 @@ namespace expect {
 
   } // namespace detail
 
+#if !defined(EXPECTED_DISABLE_EXCEPTIONS)
+
   //===========================================================================
   // class : bad_expected_access
   //===========================================================================
@@ -303,6 +305,8 @@ namespace expect {
 
     auto what() const noexcept -> const char* override;
   };
+
+#endif
 
   //===========================================================================
   // class : unexpected_type
@@ -1274,6 +1278,9 @@ namespace expect {
 
     template <typename T, typename E>
     constexpr auto extract_error(const expected<T,E>& exp) noexcept -> const E&;
+
+    [[noreturn]]
+    auto throw_bad_expected_access() -> void;
 
   } // namespace detail
 
@@ -2540,12 +2547,16 @@ namespace expect {
 // Observers
 //-----------------------------------------------------------------------------
 
+#if !defined(EXPECTED_DISABLE_EXCEPTIONS)
+
 inline
 auto expect::bad_expected_access::what()
   const noexcept -> const char*
 {
   return "bad_expected_access";
 }
+
+#endif
 
 //=============================================================================
 // class : unexpected
@@ -3164,6 +3175,17 @@ auto expect::detail::extract_error(const expected<T,E>& exp) noexcept -> const E
   return expected_error_extractor::get(exp);
 }
 
+[[noreturn]]
+inline
+auto expect::detail::throw_bad_expected_access() -> void
+{
+#if defined(EXPECTED_DISABLE_EXCEPTIONS)
+  std::abort();
+#else
+  throw bad_expected_access{};
+#endif
+}
+
 //=============================================================================
 // class : expected<T,E>
 //=============================================================================
@@ -3484,7 +3506,7 @@ inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T,E>::value()
   & -> value_type&
 {
-  return (has_value() || ((throw bad_expected_access{}), false),
+  return (has_value() || (detail::throw_bad_expected_access(), false),
     m_storage.m_value
   );
 }
@@ -3496,7 +3518,7 @@ auto expect::expected<T,E>::value()
 {
   using underlying = typename std::remove_reference<T>::type;
 
-  return (has_value() || ((throw bad_expected_access{}), true),
+  return (has_value() || (detail::throw_bad_expected_access(), true),
     static_cast<underlying&&>(static_cast<underlying&>(m_storage.m_value))
   );
 }
@@ -3506,7 +3528,7 @@ inline constexpr
 auto expect::expected<T,E>::value()
   const & -> const value_type&
 {
-  return (has_value() || ((throw bad_expected_access{}), true),
+  return (has_value() || (detail::throw_bad_expected_access(), true),
     m_storage.m_value
   );
 }
@@ -3518,7 +3540,7 @@ auto expect::expected<T,E>::value()
 {
   using underlying = typename std::remove_reference<T>::type;
 
-  return (has_value() || ((throw bad_expected_access{}), true),
+  return (has_value() || (detail::throw_bad_expected_access(), true),
     static_cast<const underlying&&>(static_cast<const underlying&>(m_storage.m_value))
   );
 }
@@ -3890,7 +3912,7 @@ inline EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<void, E>::value()
   const -> void
 {
-  static_cast<void>(has_value() || (throw bad_expected_access{}, true));
+  static_cast<void>(has_value() || (detail::throw_bad_expected_access(), true));
 }
 
 template <typename E>
