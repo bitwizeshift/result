@@ -30,6 +30,11 @@
 #include <type_traits>
 #include <ios> // std::ios_errc
 
+#if defined(_MSC_VER)
+# pragma warning(push)
+# pragma warning(disable: 4244) // Disable warnings about implicit conversions
+#endif
+
 namespace expect {
 namespace test {
 namespace {
@@ -5082,3 +5087,7 @@ TEST_CASE("operator<(const unexpected<E>&, const expected<T1,E1>&)", "[compare]"
 }
 } // namespace test
 } // namespace expect
+
+#if defined(_MSC_VER)
+# pragma warning(pop)
+#endif
