@@ -1,0 +1,7 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="expect::detail::invoke\l_result\< Fn, Args \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/def/structexpect_1_1detail_1_1invoke__result.html"];
+}

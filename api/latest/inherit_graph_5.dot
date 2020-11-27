@@ -1,0 +1,7 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="expect::detail::expected\l_destruct_base.__unnamed__",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dba/unionexpect_1_1detail_1_1expected__destruct__base_8____unnamed____.html"];
+}
