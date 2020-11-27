@@ -33,12 +33,12 @@ jobs:
       - name: Prepare gh-pages
         run: |
           version="v$(conan inspect . --attribute version | sed 's@version: @@g')"
-          echo "::set-env name=API_DOC_PATH::$(pwd)/dist/api/${version}"
+          echo "API_DOC_PATH=$(pwd)/dist/api/${version}" >> $GITHUB_ENV
 
           # Clone a git repo for doxygen
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
-          git clone --single-branch -b gh-pages "https://${{ secrets.GITHUB_REPO_REF }}" "dist"
+          git clone --single-branch -b gh-pages "https://github.com/${GITHUB_REPOSITORY}" "dist"
           git config --global push.default simple
 
       - name: Update gh-pages
