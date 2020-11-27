@@ -5087,7 +5087,183 @@ TEST_CASE("operator<(const unexpected<E>&, const expected<T1,E1>&)", "[compare]"
 }
 
 //-----------------------------------------------------------------------------
-// Utility
+// Utilities
+//-----------------------------------------------------------------------------
+
+TEST_CASE("swap(expected<T,E>&, expected<T,E>&)", "[utility]") {
+  SECTION("lhs and rhs contain a value") {
+    auto lhs_sut = expected<int, int>{42};
+    auto rhs_sut = expected<int, int>{100};
+    const auto lhs_old = lhs_sut;
+    const auto rhs_old = rhs_sut;
+
+    swap(lhs_sut, rhs_sut);
+
+    SECTION("lhs contains value") {
+      REQUIRE(lhs_sut.has_value());
+    }
+    SECTION("rhs contains value") {
+      REQUIRE(rhs_sut.has_value());
+    }
+    SECTION("lhs contains rhs's old value") {
+      REQUIRE(lhs_sut == rhs_old);
+    }
+    SECTION("rhs contains lhs's old value") {
+      REQUIRE(rhs_sut == lhs_old);
+    }
+  }
+  SECTION("lhs and rhs contain an error") {
+    auto lhs_sut = expected<int, int>{make_unexpected(42)};
+    auto rhs_sut = expected<int, int>{make_unexpected(100)};
+    const auto lhs_old = lhs_sut;
+    const auto rhs_old = rhs_sut;
+
+    swap(lhs_sut, rhs_sut);
+
+    SECTION("lhs contains error") {
+      REQUIRE(lhs_sut.has_error());
+    }
+    SECTION("rhs contains error") {
+      REQUIRE(rhs_sut.has_error());
+    }
+    SECTION("lhs contains rhs's old value") {
+      REQUIRE(lhs_sut == rhs_old);
+    }
+    SECTION("rhs contains lhs's old value") {
+      REQUIRE(rhs_sut == lhs_old);
+    }
+  }
+  SECTION("lhs contains a value, rhs contains an error") {
+    auto lhs_sut = expected<int, int>{42};
+    auto rhs_sut = expected<int, int>{make_unexpected(42)};
+    const auto lhs_old = lhs_sut;
+    const auto rhs_old = rhs_sut;
+
+    swap(lhs_sut, rhs_sut);
+
+    SECTION("lhs contains error") {
+      REQUIRE(lhs_sut.has_error());
+    }
+    SECTION("rhs contains value") {
+      REQUIRE(rhs_sut.has_value());
+    }
+    SECTION("lhs contains rhs's old value") {
+      REQUIRE(lhs_sut == rhs_old);
+    }
+    SECTION("rhs contains lhs's old value") {
+      REQUIRE(rhs_sut == lhs_old);
+    }
+  }
+  SECTION("lhs contains an error, rhs contains a value") {
+    auto lhs_sut = expected<int, int>{make_unexpected(42)};
+    auto rhs_sut = expected<int, int>{};
+    const auto lhs_old = lhs_sut;
+    const auto rhs_old = rhs_sut;
+
+    swap(lhs_sut, rhs_sut);
+
+    SECTION("lhs contains value") {
+      REQUIRE(lhs_sut.has_value());
+    }
+    SECTION("rhs contains error") {
+      REQUIRE(rhs_sut.has_error());
+    }
+    SECTION("lhs contains rhs's old value") {
+      REQUIRE(lhs_sut == rhs_old);
+    }
+    SECTION("rhs contains lhs's old value") {
+      REQUIRE(rhs_sut == lhs_old);
+    }
+  }
+}
+
+TEST_CASE("swap(expected<void,E>&, expected<void,E>&)", "[utility]") {
+  SECTION("lhs and rhs contain a value") {
+    auto lhs_sut = expected<void, int>{};
+    auto rhs_sut = expected<void, int>{};
+    const auto lhs_old = lhs_sut;
+    const auto rhs_old = rhs_sut;
+
+    swap(lhs_sut, rhs_sut);
+
+    SECTION("lhs contains value") {
+      REQUIRE(lhs_sut.has_value());
+    }
+    SECTION("rhs contains value") {
+      REQUIRE(rhs_sut.has_value());
+    }
+    SECTION("lhs is unchanged") {
+      REQUIRE(lhs_sut == lhs_old);
+    }
+    SECTION("rhs is unchanged") {
+      REQUIRE(rhs_sut == rhs_old);
+    }
+  }
+  SECTION("lhs and rhs contain an error") {
+    auto lhs_sut = expected<void, int>{make_unexpected(42)};
+    auto rhs_sut = expected<void, int>{make_unexpected(100)};
+    const auto lhs_old = lhs_sut;
+    const auto rhs_old = rhs_sut;
+
+    swap(lhs_sut, rhs_sut);
+
+    SECTION("lhs contains error") {
+      REQUIRE(lhs_sut.has_error());
+    }
+    SECTION("rhs contains error") {
+      REQUIRE(rhs_sut.has_error());
+    }
+    SECTION("lhs contains rhs's old value") {
+      REQUIRE(lhs_sut == rhs_old);
+    }
+    SECTION("rhs contains lhs's old value") {
+      REQUIRE(rhs_sut == lhs_old);
+    }
+  }
+  SECTION("lhs contains a value, rhs contains an error") {
+    auto lhs_sut = expected<void, int>{};
+    auto rhs_sut = expected<void, int>{make_unexpected(42)};
+    const auto lhs_old = lhs_sut;
+    const auto rhs_old = rhs_sut;
+
+    swap(lhs_sut, rhs_sut);
+
+    SECTION("lhs contains error") {
+      REQUIRE(lhs_sut.has_error());
+    }
+    SECTION("rhs contains value") {
+      REQUIRE(rhs_sut.has_value());
+    }
+    SECTION("lhs contains rhs's old value") {
+      REQUIRE(lhs_sut == rhs_old);
+    }
+    SECTION("rhs contains lhs's old value") {
+      REQUIRE(rhs_sut == lhs_old);
+    }
+  }
+  SECTION("lhs contains an error, rhs contains a value") {
+    auto lhs_sut = expected<void, int>{make_unexpected(42)};
+    auto rhs_sut = expected<void, int>{};
+    const auto lhs_old = lhs_sut;
+    const auto rhs_old = rhs_sut;
+
+    swap(lhs_sut, rhs_sut);
+
+    SECTION("lhs contains value") {
+      REQUIRE(lhs_sut.has_value());
+    }
+    SECTION("rhs contains error") {
+      REQUIRE(rhs_sut.has_error());
+    }
+    SECTION("lhs contains rhs's old value") {
+      REQUIRE(lhs_sut == rhs_old);
+    }
+    SECTION("rhs contains lhs's old value") {
+      REQUIRE(rhs_sut == lhs_old);
+    }
+  }
+}
+
 //-----------------------------------------------------------------------------
 
 TEST_CASE("std::hash<expected<T,E>>::operator()", "[utility]") {
