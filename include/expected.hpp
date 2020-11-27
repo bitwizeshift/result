@@ -44,7 +44,6 @@
 # define EXPECTED_CPP17_INLINE
 #endif
 
-
 #if defined(__clang__) && defined(_MSC_VER)
 # define EXPECTED_INLINE_VISIBILITY __attribute__((visibility("hidden"), no_instrument_function))
 #elif defined(__clang__) || defined(__GNUC__)
@@ -93,6 +92,7 @@ namespace expect {
     }
 #endif
   } // namespace detail
+
 
   //===========================================================================
   // utilities : invoke / invoke_result
@@ -1276,7 +1276,7 @@ namespace expect {
     auto throw_bad_expected_access() -> void;
 
   } // namespace detail
-
+  
   /////////////////////////////////////////////////////////////////////////////
   /// \brief The class template `expected` manages expected results from APIs,
   ///        while encoding possible failure conditions.
@@ -1411,7 +1411,7 @@ namespace expect {
     /// \brief Default-constructs an expected with the underlying value type
     ///        active
     ///
-    /// This constructor is only enabled if T is default-constructible
+    /// This constructor is only enabled if `T` is default-constructible
     template <typename U=T,
               typename = typename std::enable_if<std::is_constructible<U>::value>::type>
     constexpr expected()
@@ -1421,18 +1421,18 @@ namespace expect {
     ///
     /// If \p other contains a value, initializes the contained value as if
     /// direct-initializing (but not direct-list-initializing) an object of
-    /// type T with the expression *other.
+    /// type `T` with the expression *other.
     ///
     /// If other contains an error, constructs an object that contains a copy
     /// of that error.
     ///
     /// \note This constructor is defined as deleted if
     ///       `std::is_copy_constructible<T>::value` or
-    ///       `std::is_copy_constructible<E>::value` is false
+    ///       `std::is_copy_constructible<E>::value` is `false`
     ///
     /// \note This constructor is defined as trivial if both
     ///       `std::is_trivially_copy_constructible<T>::value` and
-    ///       `std::is_trivially_copy_constructible<E>::value` are true
+    ///       `std::is_trivially_copy_constructible<E>::value` are `true`
     ///
     /// \param other the expected to copy
     constexpr expected(const expected& other) = default;
@@ -1441,7 +1441,7 @@ namespace expect {
     ///
     /// If other contains a value, initializes the contained value as if
     /// direct-initializing (but not direct-list-initializing) an object
-    /// of type T with the expression std::move(*other) and does not make
+    /// of type T with the expression `std::move(*other)` and does not make
     /// other empty: a moved-from expected still contains a value, but the
     /// value itself is moved from.
     ///
@@ -1450,11 +1450,11 @@ namespace expect {
     ///
     /// \note This constructor is defined as deleted if
     ///       `std::is_move_constructible<T>::value` or
-    ///       `std::is_move_constructible<E>::value` is false
+    ///       `std::is_move_constructible<E>::value` is `false`
     ///
     /// \note This constructor is defined as trivial if both
     ///       `std::is_trivially_move_constructible<T>::value` and
-    ///       `std::is_trivially_move_constructible<E>::value` are true
+    ///       `std::is_trivially_move_constructible<E>::value` are `true`
     ///
     /// \param other the expected to move
     constexpr expected(expected&& other) = default;
@@ -1464,24 +1464,24 @@ namespace expect {
     ///
     /// If \p other contains a value, constructs an expected object
     /// that contains a value, initialized as if direct-initializing
-    /// (but not direct-list-initializing) an object of type T with the
+    /// (but not direct-list-initializing) an object of type `T` with the
     /// expression `*other`.
     ///
     /// If \p other contains an error, constructs an expected object that
     /// contains an error, initialized as if direct-initializing
-    /// (but not direct-list-initializing) an object of type E.
+    /// (but not direct-list-initializing) an object of type `E`.
     ///
     /// \note This constructor does not participate in overload resolution
     ///       unless the following conditions are met:
-    ///       - std::is_constructible_v<T, const U&> is true
+    ///       - `std::is_constructible_v<T, const U&>` is `true`
     ///       - T is not constructible or convertible from any expression
-    ///         of type (possibly const) expected<T2,E2>
+    ///         of type (possibly const) `expected<T2,E2>`
     ///       - E is not constructible or convertible from any expression
-    ///         of type (possible const) expected<T2,E2>
+    ///         of type (possible const) `expected<T2,E2>`
     ///
     /// \note This constructor is explicit if and only if
     ///       `std::is_convertible_v<const T2&, T>` or
-    ///       `std::is_convertible_v<const E2&, E>` is false
+    ///       `std::is_convertible_v<const E2&, E>` is `false`
     ///
     /// \param other the other type to convert
     template <typename T2, typename E2,
@@ -1510,15 +1510,15 @@ namespace expect {
     ///
     /// \note This constructor does not participate in overload resolution
     ///       unless the following conditions are met:
-    ///       - std::is_constructible_v<T, const U&> is true
+    ///       - `std::is_constructible_v<T, const U&>` is `true`
     ///       - T is not constructible or convertible from any expression
-    ///         of type (possibly const) expected<T2,E2>
+    ///         of type (possibly const) `expected<T2,E2>`
     ///       - E is not constructible or convertible from any expression
-    ///         of type (possible const) expected<T2,E2>
+    ///         of type (possible const) `expected<T2,E2>`
     ///
     /// \note This constructor is explicit if and only if
     ///       `std::is_convertible_v<const T2&, T>` or
-    ///       `std::is_convertible_v<const E2&, E>` is false
+    ///       `std::is_convertible_v<const E2&, E>` is `false`
     ///
     /// \param other the other type to convert
     template <typename T2, typename E2,
@@ -1538,8 +1538,8 @@ namespace expect {
     /// \brief Constructs an expected object that contains a value
     ///
     /// the value is initialized as if direct-initializing (but not
-    /// direct-list-initializing) an object of type T from the arguments
-    /// std::forward<Args>(args)...
+    /// direct-list-initializing) an object of type `T` from the arguments
+    /// `std::forward<Args>(args)...`
     ///
     /// \param args the arguments to pass to T's constructor
     template <typename...Args,
@@ -1550,8 +1550,9 @@ namespace expect {
     /// \brief Constructs an expected object that contains a value
     ///
     /// The value is initialized as if direct-initializing (but not
-    /// direct-list-initializing) an object of type T from the arguments
-    /// std::forward<std::initializer_list<U>>(ilist), std::forward<Args>(args)...
+    /// direct-list-initializing) an object of type `T` from the arguments
+    /// `std::forward<std::initializer_list<U>>(ilist)`,
+    /// `std::forward<Args>(args)...`
     ///
     /// \param ilist An initializer list of entries to forward
     /// \param args  the arguments to pass to T's constructor
@@ -1567,8 +1568,8 @@ namespace expect {
     /// \brief Constructs an expected object that contains an error
     ///
     /// the value is initialized as if direct-initializing (but not
-    /// direct-list-initializing) an object of type E from the arguments
-    /// std::forward<Args>(args)...
+    /// direct-list-initializing) an object of type `E` from the arguments
+    /// `std::forward<Args>(args)...`
     ///
     /// \param args the arguments to pass to E's constructor
     template <typename...Args,
@@ -1579,8 +1580,9 @@ namespace expect {
     /// \brief Constructs an expected object that contains an error
     ///
     /// The value is initialized as if direct-initializing (but not
-    /// direct-list-initializing) an object of type E from the arguments
-    /// std::forward<std::initializer_list<U>>(ilist), std::forward<Args>(args)...
+    /// direct-list-initializing) an object of type `E` from the arguments
+    /// `std::forward<std::initializer_list<U>>(ilist)`,
+    /// `std::forward<Args>(args)...`
     ///
     /// \param ilist An initializer list of entries to forward
     /// \param args  the arguments to pass to Es constructor
@@ -1753,13 +1755,13 @@ namespace expect {
     /// or assigned from std::forward<U>(value).
     ///
     /// \note The function does not participate in overload resolution unless
-    ///       - decay_t<U> is not an expected type,
-    ///       - decay_t<U> is not an unexpected type
-    ///       - std::is_nothrow_constructible_v<T, U> is true
-    ///       - std::is_assignable_v<T&, U> is true
-    ///       - and at least one of the following is true:
-    ///           - T is not a scalar type;
-    ///           - decay_t<U> is not T.
+    ///       - `std::decay_t<U>` is not an expected type,
+    ///       - `std::decay_t<U>` is not an unexpected type
+    ///       - `std::is_nothrow_constructible_v<T, U>` is `true`
+    ///       - `std::is_assignable_v<T&, U>` is `true`
+    ///       - and at least one of the following is `true`:
+    ///           - `T` is not a scalar type;
+    ///           - `std::decay_t<U>` is not `T`.
     ///
     /// \param value to assign to the contained value
     /// \return reference to `(*this)`
@@ -1772,8 +1774,8 @@ namespace expect {
     /// \brief Perfect-forwarded assignment
     ///
     /// Depending on whether `*this` contains a value before the call, the
-    /// contained value is either direct-initialized from std::forward<U>(value)
-    /// or assigned from std::forward<U>(value).
+    /// contained value is either direct-initialized from
+    /// `std::forward<U>(value)` or assigned from `std::forward<U>(value)`.
     ///
     /// \note The function does not participate in overload resolution unless
     ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`
@@ -2042,10 +2044,10 @@ namespace expect {
     /// of that error.
     ///
     /// \note This constructor is defined as deleted if
-    ///       `std::is_copy_constructible<E>::value` is false
+    ///       `std::is_copy_constructible<E>::value` is `false`
     ///
     /// \note This constructor is defined as trivial if both
-    ///       `std::is_trivially_copy_constructible<E>::value` are true
+    ///       `std::is_trivially_copy_constructible<E>::value` are `true`
     ///
     /// \param other the expected to copy
     constexpr expected(const expected& other) = default;
@@ -2056,10 +2058,10 @@ namespace expect {
     /// error.
     ///
     /// \note This constructor is defined as deleted if
-    ///       `std::is_move_constructible<E>::value` is false
+    ///       `std::is_move_constructible<E>::value` is `false`
     ///
     /// \note This constructor is defined as trivial if both
-    ///       `std::is_trivially_move_constructible<E>::value` are true
+    ///       `std::is_trivially_move_constructible<E>::value` are `true`
     ///
     /// \param other the expected to move
     constexpr expected(expected&& other) = default;
@@ -2071,16 +2073,16 @@ namespace expect {
     ///
     /// If \p other contains an error, constructs an expected object that
     /// contains an error, initialized as if direct-initializing
-    /// (but not direct-list-initializing) an object of type E.
+    /// (but not direct-list-initializing) an object of type `E`.
     ///
     /// \note This constructor does not participate in overload resolution
     ///       unless the following conditions are met:
-    ///       - std::is_constructible_v<E, const E2&> is true
-    ///       - E is not constructible or convertible from any expression
-    ///         of type (possible const) expected<T2,E2>
+    ///       - `std::is_constructible_v<E, const E2&>` is `true`
+    ///       - `E` is not constructible or convertible from any expression
+    ///         of type (possible const) `expected<T2,E2>`
     ///
     /// \note This constructor is explicit if and only if
-    ///       `std::is_convertible_v<const E2&, E>` is false
+    ///       `std::is_convertible_v<const E2&, E>` is `false`
     ///
     /// \param other the other type to convert
     template <typename U, typename E2,
@@ -2096,15 +2098,15 @@ namespace expect {
     ///
     /// \note This constructor does not participate in overload resolution
     ///       unless the following conditions are met:
-    ///       - std::is_constructible_v<T, const U&> is true
-    ///       - T is not constructible or convertible from any expression
-    ///         of type (possibly const) expected<T2,E2>
-    ///       - E is not constructible or convertible from any expression
-    ///         of type (possible const) expected<T2,E2>
+    ///       - `std::is_constructible_v<T, const U&>` is `true`
+    ///       - `T` is not constructible or convertible from any expression
+    ///         of type (possibly const) `expected<T2,E2>`
+    ///       - `E` is not constructible or convertible from any expression
+    ///         of type (possible const) `expected<T2,E2>`
     ///
     /// \note This constructor is explicit if and only if
     ///       `std::is_convertible_v<const T2&, T>` or
-    ///       `std::is_convertible_v<const E2&, E>` is false
+    ///       `std::is_convertible_v<const E2&, E>` is `false`
     ///
     /// \param other the other type to convert
     template <typename U, typename E2,
@@ -2117,10 +2119,10 @@ namespace expect {
     /// \brief Constructs an expected object that contains an error
     ///
     /// the value is initialized as if direct-initializing (but not
-    /// direct-list-initializing) an object of type E from the arguments
-    /// std::forward<Args>(args)...
+    /// direct-list-initializing) an object of type `E` from the arguments
+    /// `std::forward<Args>(args)...`
     ///
-    /// \param args the arguments to pass to E's constructor
+    /// \param args the arguments to pass to `E`'s constructor
     template <typename...Args,
               typename = typename std::enable_if<std::is_constructible<E,Args...>::value>::type>
     constexpr explicit expected(in_place_error_t, Args&&... args)
@@ -2129,8 +2131,9 @@ namespace expect {
     /// \brief Constructs an expected object that contains an error
     ///
     /// The value is initialized as if direct-initializing (but not
-    /// direct-list-initializing) an object of type E from the arguments
-    /// std::forward<std::initializer_list<U>>(ilist), std::forward<Args>(args)...
+    /// direct-list-initializing) an object of type `E` from the arguments
+    /// `std::forward<std::initializer_list<U>>(ilist)`,
+    /// `std::forward<Args>(args)...`
     ///
     /// \param ilist An initializer list of entries to forward
     /// \param args  the arguments to pass to Es constructor
@@ -2207,7 +2210,7 @@ namespace expect {
     ///
     /// \note The function does not participate in overload resolution unless
     ///       - `std::is_nothrow_constructible_v<E, const E2&>`,
-    ///         `std::is_assignable_v<E&, const E2&>` are all true.
+    ///         `std::is_assignable_v<E&, const E2&>` are all `true`.
     ///
     /// \param other the other expected object to convert
     /// \return reference to `(*this)`
@@ -2230,7 +2233,7 @@ namespace expect {
     ///
     /// \note The function does not participate in overload resolution unless
     ///       - `std::is_nothrow_constructible_v<E, E2&&>`,
-    ///         `std::is_assignable_v<E&, E2&&>` are all true.
+    ///         `std::is_assignable_v<E&, E2&&>` are all `true`.
     ///
     /// \param other the other expected object to convert
     /// \return reference to `(*this)`
