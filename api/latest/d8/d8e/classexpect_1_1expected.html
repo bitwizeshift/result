@@ -459,7 +459,7 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_cons
 </div><div class="memdoc">
 
 <p>Default-constructs an expected with the underlying value type active. </p>
-<p>This constructor is only enabled if T is default-constructible </p>
+<p>This constructor is only enabled if <code>T</code> is default-constructible </p>
 
 </div>
 </div>
@@ -490,11 +490,11 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 </div><div class="memdoc">
 
 <p>Copy constructs this expected. </p>
-<p>If <code>other</code> contains a value, initializes the contained value as if direct-initializing (but not direct-list-initializing) an object of type T with the expression *other.</p>
+<p>If <code>other</code> contains a value, initializes the contained value as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> with the expression *other.</p>
 <p>If other contains an error, constructs an object that contains a copy of that error.</p>
-<dl class="section note"><dt>Note</dt><dd>This constructor is defined as deleted if <code>std::is_copy_constructible&lt;T&gt;::value</code> or <code>std::is_copy_constructible&lt;E&gt;::value</code> is false</dd>
+<dl class="section note"><dt>Note</dt><dd>This constructor is defined as deleted if <code>std::is_copy_constructible&lt;T&gt;::value</code> or <code>std::is_copy_constructible&lt;E&gt;::value</code> is <code>false</code></dd>
 <dd>
-This constructor is defined as trivial if both <code>std::is_trivially_copy_constructible&lt;T&gt;::value</code> and <code>std::is_trivially_copy_constructible&lt;E&gt;::value</code> are true</dd></dl>
+This constructor is defined as trivial if both <code>std::is_trivially_copy_constructible&lt;T&gt;::value</code> and <code>std::is_trivially_copy_constructible&lt;E&gt;::value</code> are <code>true</code></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the expected to copy </td></tr>
@@ -531,11 +531,11 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 </div><div class="memdoc">
 
 <p>Move constructs an expected. </p>
-<p>If other contains a value, initializes the contained value as if direct-initializing (but not direct-list-initializing) an object of type T with the expression std::move(*other) and does not make other empty: a moved-from expected still contains a value, but the value itself is moved from.</p>
+<p>If other contains a value, initializes the contained value as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>std::move(*other)</code> and does not make other empty: a moved-from expected still contains a value, but the value itself is moved from.</p>
 <p>If other contains an error, move-constructs this expected from that error.</p>
-<dl class="section note"><dt>Note</dt><dd>This constructor is defined as deleted if <code>std::is_move_constructible&lt;T&gt;::value</code> or <code>std::is_move_constructible&lt;E&gt;::value</code> is false</dd>
+<dl class="section note"><dt>Note</dt><dd>This constructor is defined as deleted if <code>std::is_move_constructible&lt;T&gt;::value</code> or <code>std::is_move_constructible&lt;E&gt;::value</code> is <code>false</code></dd>
 <dd>
-This constructor is defined as trivial if both <code>std::is_trivially_move_constructible&lt;T&gt;::value</code> and <code>std::is_trivially_move_constructible&lt;E&gt;::value</code> are true</dd></dl>
+This constructor is defined as trivial if both <code>std::is_trivially_move_constructible&lt;T&gt;::value</code> and <code>std::is_trivially_move_constructible&lt;E&gt;::value</code> are <code>true</code></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the expected to move </td></tr>
@@ -574,16 +574,16 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expe
 </div><div class="memdoc">
 
 <p>Converting copy constructor. </p>
-<p>If <code>other</code> contains a value, constructs an expected object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>*other</code>.</p>
-<p>If <code>other</code> contains an error, constructs an expected object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type E.</p>
+<p>If <code>other</code> contains a value, constructs an expected object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> with the expression <code>*other</code>.</p>
+<p>If <code>other</code> contains an error, constructs an expected object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code>.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor does not participate in overload resolution unless the following conditions are met:<ul>
-<li>std::is_constructible_v&lt;T, const U&amp;&gt; is true</li>
-<li>T is not constructible or convertible from any expression of type (possibly const) expected&lt;T2,E2&gt;</li>
-<li>E is not constructible or convertible from any expression of type (possible const) expected&lt;T2,E2&gt;</li>
+<li><code>std::is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code></li>
+<li>T is not constructible or convertible from any expression of type (possibly const) <code>expected&lt;T2,E2&gt;</code></li>
+<li>E is not constructible or convertible from any expression of type (possible const) <code>expected&lt;T2,E2&gt;</code></li>
 </ul>
 </dd>
 <dd>
-This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is false</dd></dl>
+This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is <code>false</code></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the other type to convert </td></tr>
@@ -622,16 +622,16 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expe
 </div><div class="memdoc">
 
 <p>Converting copy constructor. </p>
-<p>If <code>other</code> contains a value, constructs an expected object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>*other</code>.</p>
-<p>If <code>other</code> contains an error, constructs an expected object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type E.</p>
+<p>If <code>other</code> contains a value, constructs an expected object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> with the expression <code>*other</code>.</p>
+<p>If <code>other</code> contains an error, constructs an expected object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code>.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor does not participate in overload resolution unless the following conditions are met:<ul>
-<li>std::is_constructible_v&lt;T, const U&amp;&gt; is true</li>
-<li>T is not constructible or convertible from any expression of type (possibly const) expected&lt;T2,E2&gt;</li>
-<li>E is not constructible or convertible from any expression of type (possible const) expected&lt;T2,E2&gt;</li>
+<li><code>std::is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code></li>
+<li>T is not constructible or convertible from any expression of type (possibly const) <code>expected&lt;T2,E2&gt;</code></li>
+<li>E is not constructible or convertible from any expression of type (possible const) <code>expected&lt;T2,E2&gt;</code></li>
 </ul>
 </dd>
 <dd>
-This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is false</dd></dl>
+This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is <code>false</code></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the other type to convert </td></tr>
@@ -673,13 +673,13 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expe
 <p>If <code>other</code> contains a value, constructs an expected object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>std::move(*other)</code>.</p>
 <p>If <code>other</code> contains an error, constructs an expected object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type E&amp;&amp;.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor does not participate in overload resolution unless the following conditions are met:<ul>
-<li>std::is_constructible_v&lt;T, const U&amp;&gt; is true</li>
-<li>T is not constructible or convertible from any expression of type (possibly const) expected&lt;T2,E2&gt;</li>
-<li>E is not constructible or convertible from any expression of type (possible const) expected&lt;T2,E2&gt;</li>
+<li><code>std::is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code></li>
+<li>T is not constructible or convertible from any expression of type (possibly const) <code>expected&lt;T2,E2&gt;</code></li>
+<li>E is not constructible or convertible from any expression of type (possible const) <code>expected&lt;T2,E2&gt;</code></li>
 </ul>
 </dd>
 <dd>
-This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is false</dd></dl>
+This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is <code>false</code></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the other type to convert </td></tr>
@@ -721,13 +721,13 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expe
 <p>If <code>other</code> contains a value, constructs an expected object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>std::move(*other)</code>.</p>
 <p>If <code>other</code> contains an error, constructs an expected object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type E&amp;&amp;.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor does not participate in overload resolution unless the following conditions are met:<ul>
-<li>std::is_constructible_v&lt;T, const U&amp;&gt; is true</li>
-<li>T is not constructible or convertible from any expression of type (possibly const) expected&lt;T2,E2&gt;</li>
-<li>E is not constructible or convertible from any expression of type (possible const) expected&lt;T2,E2&gt;</li>
+<li><code>std::is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code></li>
+<li>T is not constructible or convertible from any expression of type (possibly const) <code>expected&lt;T2,E2&gt;</code></li>
+<li>E is not constructible or convertible from any expression of type (possible const) <code>expected&lt;T2,E2&gt;</code></li>
 </ul>
 </dd>
 <dd>
-This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is false</dd></dl>
+This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is <code>false</code></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the other type to convert </td></tr>
@@ -776,7 +776,7 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 </div><div class="memdoc">
 
 <p>Constructs an expected object that contains a value. </p>
-<p>the value is initialized as if direct-initializing (but not direct-list-initializing) an object of type T from the arguments std::forward&lt;Args&gt;(args)...</p>
+<p>the value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> from the arguments <code>std::forward&lt;Args&gt;(args)...</code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>the arguments to pass to T's constructor </td></tr>
@@ -831,7 +831,7 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 </div><div class="memdoc">
 
 <p>Constructs an expected object that contains a value. </p>
-<p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type T from the arguments std::forward&lt;std::initializer_list&lt;U&gt;&gt;(ilist), std::forward&lt;Args&gt;(args)...</p>
+<p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> from the arguments <code>std::forward&lt;std::initializer_list&lt;U&gt;&gt;(ilist)</code>, <code>std::forward&lt;Args&gt;(args)...</code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ilist</td><td>An initializer list of entries to forward </td></tr>
@@ -881,7 +881,7 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 </div><div class="memdoc">
 
 <p>Constructs an expected object that contains an error. </p>
-<p>the value is initialized as if direct-initializing (but not direct-list-initializing) an object of type E from the arguments std::forward&lt;Args&gt;(args)...</p>
+<p>the value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code> from the arguments <code>std::forward&lt;Args&gt;(args)...</code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>the arguments to pass to E's constructor </td></tr>
@@ -936,7 +936,7 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 </div><div class="memdoc">
 
 <p>Constructs an expected object that contains an error. </p>
-<p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type E from the arguments std::forward&lt;std::initializer_list&lt;U&gt;&gt;(ilist), std::forward&lt;Args&gt;(args)...</p>
+<p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code> from the arguments <code>std::forward&lt;std::initializer_list&lt;U&gt;&gt;(ilist)</code>, <code>std::forward&lt;Args&gt;(args)...</code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ilist</td><td>An initializer list of entries to forward </td></tr>
@@ -1363,7 +1363,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains an error. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains an error, <code>false</code> if <code>*this</code> contains a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03557">3557</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03560">3560</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1395,7 +1395,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> contains an error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03549">3549</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03552">3552</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1559,7 +1559,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> does not contain a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03541">3541</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03544">3544</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1716,7 +1716,7 @@ template&lt;typename T , typename E &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03483">3483</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03486">3486</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1749,7 +1749,7 @@ template&lt;typename T , typename E &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03499">3499</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03502">3502</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1980,13 +1980,13 @@ template&lt;typename U , typename  = typename std::enable_if&lt;detail::expected
 <p>Perfect-forwarded assignment. </p>
 <p>Depending on whether <code>*this</code> contains a value before the call, the contained value is either direct-initialized from std::forward&lt;U&gt;(value) or assigned from std::forward&lt;U&gt;(value).</p>
 <dl class="section note"><dt>Note</dt><dd>The function does not participate in overload resolution unless<ul>
-<li>decay_t&lt;U&gt; is not an expected type,</li>
-<li>decay_t&lt;U&gt; is not an unexpected type</li>
-<li>std::is_nothrow_constructible_v&lt;T, U&gt; is true</li>
-<li>std::is_assignable_v&lt;T&amp;, U&gt; is true</li>
-<li>and at least one of the following is true:<ul>
-<li>T is not a scalar type;</li>
-<li>decay_t&lt;U&gt; is not T.</li>
+<li><code>std::decay_t&lt;U&gt;</code> is not an expected type,</li>
+<li><code>std::decay_t&lt;U&gt;</code> is not an unexpected type</li>
+<li><code>std::is_nothrow_constructible_v&lt;T, U&gt;</code> is <code>true</code></li>
+<li><code>std::is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code></li>
+<li>and at least one of the following is <code>true</code>:<ul>
+<li><code>T</code> is not a scalar type;</li>
+<li><code>std::decay_t&lt;U&gt;</code> is not <code>T</code>.</li>
 </ul>
 </li>
 </ul>
@@ -2030,7 +2030,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expecte
 </div><div class="memdoc">
 
 <p>Perfect-forwarded assignment. </p>
-<p>Depending on whether <code>*this</code> contains a value before the call, the contained value is either direct-initialized from std::forward&lt;U&gt;(value) or assigned from std::forward&lt;U&gt;(value).</p>
+<p>Depending on whether <code>*this</code> contains a value before the call, the contained value is either direct-initialized from <code>std::forward&lt;U&gt;(value)</code> or assigned from <code>std::forward&lt;U&gt;(value)</code>.</p>
 <dl class="section note"><dt>Note</dt><dd>The function does not participate in overload resolution unless<ul>
 <li><code>std::is_nothrow_constructible_v&lt;E, E2&gt;</code> is <code>true</code></li>
 <li><code>std::is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code></li>
@@ -2080,7 +2080,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expecte
 </div><div class="memdoc">
 
 <p>Perfect-forwarded assignment. </p>
-<p>Depending on whether <code>*this</code> contains a value before the call, the contained value is either direct-initialized from std::forward&lt;U&gt;(value) or assigned from std::forward&lt;U&gt;(value).</p>
+<p>Depending on whether <code>*this</code> contains a value before the call, the contained value is either direct-initialized from <code>std::forward&lt;U&gt;(value)</code> or assigned from <code>std::forward&lt;U&gt;(value)</code>.</p>
 <dl class="section note"><dt>Note</dt><dd>The function does not participate in overload resolution unless<ul>
 <li><code>std::is_nothrow_constructible_v&lt;E, E2&gt;</code> is <code>true</code></li>
 <li><code>std::is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code></li>

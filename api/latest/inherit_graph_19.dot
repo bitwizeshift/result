@@ -1,7 +1,0 @@
-digraph "Graphical Class Hierarchy"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node0 [label="expect::expected\< void, E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d09/classexpect_1_1expected_3_01void_00_01_e_01_4.html",tooltip="Partial specialization of expected<void, E> "];
-}
