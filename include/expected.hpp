@@ -867,261 +867,241 @@ namespace expect {
     // class : expected_trivial_copy_ctor_base
     //=========================================================================
 
-    template <typename T, typename E,
-              bool Enabled = std::is_trivially_copy_constructible<T>::value &&
-                             std::is_trivially_copy_constructible<E>::value>
-    struct expected_trivial_copy_ctor_base : expected_construct_base<T,E>
+    template <typename T, typename E>
+    struct expected_trivial_copy_ctor_base_impl : expected_construct_base<T,E>
     {
       using base_type = expected_construct_base<T,E>;
       using base_type::base_type;
 
-      expected_trivial_copy_ctor_base(const expected_trivial_copy_ctor_base& other)
+      expected_trivial_copy_ctor_base_impl(const expected_trivial_copy_ctor_base_impl& other)
         noexcept(std::is_nothrow_copy_constructible<T>::value &&
                  std::is_nothrow_copy_constructible<E>::value);
-      expected_trivial_copy_ctor_base(expected_trivial_copy_ctor_base&& other) = default;
+      expected_trivial_copy_ctor_base_impl(expected_trivial_copy_ctor_base_impl&& other) = default;
 
-      auto operator=(const expected_trivial_copy_ctor_base& other) -> expected_trivial_copy_ctor_base& = default;
-      auto operator=(expected_trivial_copy_ctor_base&& other) -> expected_trivial_copy_ctor_base& = default;
+      auto operator=(const expected_trivial_copy_ctor_base_impl& other) -> expected_trivial_copy_ctor_base_impl& = default;
+      auto operator=(expected_trivial_copy_ctor_base_impl&& other) -> expected_trivial_copy_ctor_base_impl& = default;
     };
 
     template <typename T, typename E>
-    struct expected_trivial_copy_ctor_base<T, E, true> : expected_construct_base<T,E>
-    {
-      using base_type = expected_construct_base<T,E>;
-      using base_type::base_type;
-    };
+    using expected_trivial_copy_ctor_base = typename std::conditional<
+      std::is_trivially_copy_constructible<T>::value &&
+      std::is_trivially_copy_constructible<E>::value,
+      expected_construct_base<T,E>,
+      expected_trivial_copy_ctor_base_impl<T,E>
+    >::type;
 
     //=========================================================================
     // class : expected_trivial_move_ctor_base
     //=========================================================================
 
-    template <typename T, typename E,
-              bool Enabled = std::is_trivially_move_constructible<T>::value &&
-                             std::is_trivially_move_constructible<E>::value>
-    struct expected_trivial_move_ctor_base : expected_trivial_copy_ctor_base<T,E>
+    template <typename T, typename E>
+    struct expected_trivial_move_ctor_base_impl : expected_trivial_copy_ctor_base<T,E>
     {
       using base_type = expected_trivial_copy_ctor_base<T,E>;
       using base_type::base_type;
 
-      expected_trivial_move_ctor_base(const expected_trivial_move_ctor_base& other) = default;
-      expected_trivial_move_ctor_base(expected_trivial_move_ctor_base&& other)
+      expected_trivial_move_ctor_base_impl(const expected_trivial_move_ctor_base_impl& other) = default;
+      expected_trivial_move_ctor_base_impl(expected_trivial_move_ctor_base_impl&& other)
         noexcept(std::is_nothrow_move_constructible<T>::value &&
                  std::is_nothrow_move_constructible<E>::value);
 
-      auto operator=(const expected_trivial_move_ctor_base& other) -> expected_trivial_move_ctor_base& = default;
-      auto operator=(expected_trivial_move_ctor_base&& other) -> expected_trivial_move_ctor_base& = default;
+      auto operator=(const expected_trivial_move_ctor_base_impl& other) -> expected_trivial_move_ctor_base_impl& = default;
+      auto operator=(expected_trivial_move_ctor_base_impl&& other) -> expected_trivial_move_ctor_base_impl& = default;
     };
 
     template <typename T, typename E>
-    struct expected_trivial_move_ctor_base<T,E,true> : expected_trivial_copy_ctor_base<T,E>
-    {
-      using base_type = expected_trivial_copy_ctor_base<T,E>;
-      using base_type::base_type;
-    };
+    using expected_trivial_move_ctor_base = typename std::conditional<
+      std::is_trivially_move_constructible<T>::value &&
+      std::is_trivially_move_constructible<E>::value,
+      typename expected_trivial_move_ctor_base_impl<T,E>::base_type,
+      expected_trivial_move_ctor_base_impl<T,E>
+    >::type;
 
     //=========================================================================
     // class : expected_trivial_copy_assign_base
     //=========================================================================
 
-    template <typename T, typename E,
-              bool Enabled = std::is_trivially_copy_constructible<T>::value &&
-                             std::is_trivially_copy_constructible<E>::value &&
-                             std::is_trivially_copy_assignable<T>::value &&
-                             std::is_trivially_copy_assignable<E>::value &&
-                             std::is_trivially_destructible<T>::value &&
-                             std::is_trivially_destructible<E>::value>
-    struct expected_trivial_copy_assign_base
+    template <typename T, typename E>
+    struct expected_trivial_copy_assign_base_impl
       : expected_trivial_move_ctor_base<T, E>
     {
       using base_type = expected_trivial_move_ctor_base<T,E>;
       using base_type::base_type;
 
-      expected_trivial_copy_assign_base(const expected_trivial_copy_assign_base& other) = default;
-      expected_trivial_copy_assign_base(expected_trivial_copy_assign_base&& other) = default;
+      expected_trivial_copy_assign_base_impl(const expected_trivial_copy_assign_base_impl& other) = default;
+      expected_trivial_copy_assign_base_impl(expected_trivial_copy_assign_base_impl&& other) = default;
 
-      auto operator=(const expected_trivial_copy_assign_base& other)
+      auto operator=(const expected_trivial_copy_assign_base_impl& other)
         noexcept(std::is_nothrow_copy_constructible<T>::value &&
                  std::is_nothrow_copy_constructible<E>::value &&
                  std::is_nothrow_copy_assignable<T>::value &&
                  std::is_nothrow_copy_assignable<E>::value)
-        -> expected_trivial_copy_assign_base&;
-      auto operator=(expected_trivial_copy_assign_base&& other)
-        -> expected_trivial_copy_assign_base& = default;
+        -> expected_trivial_copy_assign_base_impl&;
+      auto operator=(expected_trivial_copy_assign_base_impl&& other)
+        -> expected_trivial_copy_assign_base_impl& = default;
     };
 
     template <typename T, typename E>
-    struct expected_trivial_copy_assign_base<T,E,true>
-      : expected_trivial_move_ctor_base<T, E>
-    {
-      using base_type = expected_trivial_move_ctor_base<T,E>;
-      using base_type::base_type;
-    };
+    using expected_trivial_copy_assign_base = typename std::conditional<
+      std::is_trivially_copy_constructible<T>::value &&
+      std::is_trivially_copy_constructible<E>::value &&
+      std::is_trivially_copy_assignable<T>::value &&
+      std::is_trivially_copy_assignable<E>::value &&
+      std::is_trivially_destructible<T>::value &&
+      std::is_trivially_destructible<E>::value,
+      expected_trivial_move_ctor_base<T,E>,
+      expected_trivial_copy_assign_base_impl<T,E>
+    >::type;
 
     //=========================================================================
     // class : expected_trivial_move_assign_base
     //=========================================================================
 
-    template <typename T, typename E,
-              bool Enabled = std::is_trivially_move_constructible<T>::value &&
-                             std::is_trivially_move_constructible<E>::value &&
-                             std::is_trivially_move_assignable<T>::value &&
-                             std::is_trivially_move_assignable<E>::value &&
-                             std::is_trivially_destructible<T>::value &&
-                             std::is_trivially_destructible<E>::value>
-    struct expected_trivial_move_assign_base
+    template <typename T, typename E>
+    struct expected_trivial_move_assign_base_impl
       : expected_trivial_copy_assign_base<T, E>
     {
       using base_type = expected_trivial_copy_assign_base<T,E>;
       using base_type::base_type;
 
-      expected_trivial_move_assign_base(const expected_trivial_move_assign_base& other) = default;
-      expected_trivial_move_assign_base(expected_trivial_move_assign_base&& other) = default;
+      expected_trivial_move_assign_base_impl(const expected_trivial_move_assign_base_impl& other) = default;
+      expected_trivial_move_assign_base_impl(expected_trivial_move_assign_base_impl&& other) = default;
 
-      auto operator=(const expected_trivial_move_assign_base& other)
-        -> expected_trivial_move_assign_base& = default;
-      auto operator=(expected_trivial_move_assign_base&& other)
+      auto operator=(const expected_trivial_move_assign_base_impl& other)
+        -> expected_trivial_move_assign_base_impl& = default;
+      auto operator=(expected_trivial_move_assign_base_impl&& other)
         noexcept(std::is_nothrow_move_constructible<T>::value &&
                  std::is_nothrow_move_constructible<E>::value &&
                  std::is_nothrow_move_assignable<T>::value &&
                  std::is_nothrow_move_assignable<E>::value)
-        -> expected_trivial_move_assign_base&;
+        -> expected_trivial_move_assign_base_impl&;
     };
 
     template <typename T, typename E>
-    struct expected_trivial_move_assign_base<T,E,true>
-      : expected_trivial_copy_assign_base<T, E>
-    {
-      using base_type = expected_trivial_copy_assign_base<T,E>;
-      using base_type::base_type;
-    };
+    using expected_trivial_move_assign_base = typename std::conditional<
+      std::is_trivially_move_constructible<T>::value &&
+      std::is_trivially_move_constructible<E>::value &&
+      std::is_trivially_move_assignable<T>::value &&
+      std::is_trivially_move_assignable<E>::value &&
+      std::is_trivially_destructible<T>::value &&
+      std::is_trivially_destructible<E>::value,
+      expected_trivial_copy_assign_base<T,E>,
+      expected_trivial_move_assign_base_impl<T,E>
+    >::type;
 
     //=========================================================================
     // class : expected_copy_ctor_base
     //=========================================================================
 
-    template <typename T, typename E,
-              bool Enabled = std::is_copy_constructible<T>::value &&
-                             std::is_copy_constructible<E>::value>
-    struct expected_copy_ctor_base : expected_trivial_move_assign_base<T,E>
+    template <typename T, typename E>
+    struct expected_copy_ctor_base_impl : expected_trivial_move_assign_base<T,E>
     {
       using base_type = expected_trivial_move_assign_base<T,E>;
       using base_type::base_type;
+
+      expected_copy_ctor_base_impl(const expected_copy_ctor_base_impl& other) = delete;
+      expected_copy_ctor_base_impl(expected_copy_ctor_base_impl&& other) = default;
+
+      auto operator=(const expected_copy_ctor_base_impl& other)
+        -> expected_copy_ctor_base_impl& = default;
+      auto operator=(expected_copy_ctor_base_impl&& other)
+        -> expected_copy_ctor_base_impl& = default;
     };
 
     template <typename T, typename E>
-    struct expected_copy_ctor_base<T, E, false> : expected_trivial_move_assign_base<T,E>
-    {
-      using base_type = expected_trivial_move_assign_base<T,E>;
-      using base_type::base_type;
-
-      expected_copy_ctor_base(const expected_copy_ctor_base& other) = delete;
-      expected_copy_ctor_base(expected_copy_ctor_base&& other) = default;
-
-      auto operator=(const expected_copy_ctor_base& other)
-        -> expected_copy_ctor_base& = default;
-      auto operator=(expected_copy_ctor_base&& other)
-        -> expected_copy_ctor_base& = default;
-
-    };
+    using expected_copy_ctor_base = typename std::conditional<
+      std::is_copy_constructible<T>::value &&
+      std::is_copy_constructible<E>::value,
+      expected_trivial_move_assign_base<T,E>,
+      expected_copy_ctor_base_impl<T,E>
+    >::type;
 
     //=========================================================================
     // class : expected_move_ctor_base
     //=========================================================================
 
-    template <typename T, typename E,
-              bool Enabled = std::is_move_constructible<T>::value &&
-                             std::is_move_constructible<E>::value>
-    struct expected_move_ctor_base : expected_copy_ctor_base<T,E>
+    template <typename T, typename E>
+    struct expected_move_ctor_base_impl : expected_copy_ctor_base<T,E>
     {
       using base_type = expected_copy_ctor_base<T,E>;
       using base_type::base_type;
+
+      expected_move_ctor_base_impl(const expected_move_ctor_base_impl& other) = default;
+      expected_move_ctor_base_impl(expected_move_ctor_base_impl&& other) = delete;
+
+      auto operator=(const expected_move_ctor_base_impl& other)
+        -> expected_move_ctor_base_impl& = default;
+      auto operator=(expected_move_ctor_base_impl&& other)
+        -> expected_move_ctor_base_impl& = default;
     };
 
     template <typename T, typename E>
-    struct expected_move_ctor_base<T,E,false> : expected_copy_ctor_base<T,E>
-    {
-      using base_type = expected_copy_ctor_base<T,E>;
-      using base_type::base_type;
-
-      expected_move_ctor_base(const expected_move_ctor_base& other) = default;
-      expected_move_ctor_base(expected_move_ctor_base&& other) = delete;
-
-      auto operator=(const expected_move_ctor_base& other)
-        -> expected_move_ctor_base& = default;
-      auto operator=(expected_move_ctor_base&& other)
-        -> expected_move_ctor_base& = default;
-    };
+    using expected_move_ctor_base = typename std::conditional<
+      std::is_move_constructible<T>::value &&
+      std::is_move_constructible<E>::value,
+      expected_copy_ctor_base<T,E>,
+      expected_move_ctor_base_impl<T,E>
+    >::type;
 
     //=========================================================================
     // class : expected_copy_assign_base
     //=========================================================================
 
-    template <typename T, typename E,
-              bool Enabled = std::is_nothrow_copy_constructible<T>::value &&
-                             std::is_nothrow_copy_constructible<E>::value &&
-                             std::is_copy_assignable<T>::value &&
-                             std::is_copy_assignable<E>::value>
-    struct expected_copy_assign_base
+    template <typename T, typename E>
+    struct expected_copy_assign_base_impl
       : expected_move_ctor_base<T, E>
     {
       using base_type = expected_move_ctor_base<T, E>;
       using base_type::base_type;
+
+      expected_copy_assign_base_impl(const expected_copy_assign_base_impl& other) = default;
+      expected_copy_assign_base_impl(expected_copy_assign_base_impl&& other) = default;
+
+      auto operator=(const expected_copy_assign_base_impl& other)
+        -> expected_copy_assign_base_impl& = delete;
+      auto operator=(expected_copy_assign_base_impl&& other)
+        -> expected_copy_assign_base_impl& = default;
     };
 
     template <typename T, typename E>
-    struct expected_copy_assign_base<T,E,false>
-      : expected_move_ctor_base<T, E>
-    {
-      using base_type = expected_move_ctor_base<T, E>;
-      using base_type::base_type;
-
-      expected_copy_assign_base(const expected_copy_assign_base& other) = default;
-      expected_copy_assign_base(expected_copy_assign_base&& other) = default;
-
-      auto operator=(const expected_copy_assign_base& other)
-        -> expected_copy_assign_base& = delete;
-      auto operator=(expected_copy_assign_base&& other)
-        -> expected_copy_assign_base& = default;
-    };
+    using expected_copy_assign_base = typename std::conditional<
+      std::is_nothrow_copy_constructible<T>::value &&
+      std::is_nothrow_copy_constructible<E>::value &&
+      std::is_copy_assignable<T>::value &&
+      std::is_copy_assignable<E>::value,
+      typename expected_copy_assign_base_impl<T,E>::base_type,
+      expected_copy_assign_base_impl<T,E>
+    >::type;
 
     //=========================================================================
     // class : expected_move_assign_base
     //=========================================================================
 
-    ///////////////////////////////////////////////////////////////////////////
-    /// \brief A utility base class to disable copy assignment if either T or
-    ///        E aren't nothrow-copy constructible.
-    ///
-    /// This is to ensure that `expected` does not fall into a
-    /// "valueless_by_exception" state
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename T, typename E,
-              bool Enabled = std::is_nothrow_move_constructible<T>::value &&
-                             std::is_nothrow_move_constructible<E>::value &&
-                             std::is_move_assignable<T>::value &&
-                             std::is_move_assignable<E>::value>
-    struct expected_move_assign_base
+    template <typename T, typename E>
+    struct expected_move_assign_base_impl
       : expected_copy_assign_base<T, E>
     {
       using base_type = expected_copy_assign_base<T, E>;
       using base_type::base_type;
+
+      expected_move_assign_base_impl(const expected_move_assign_base_impl& other) = default;
+      expected_move_assign_base_impl(expected_move_assign_base_impl&& other) = default;
+
+      auto operator=(const expected_move_assign_base_impl& other)
+        -> expected_move_assign_base_impl& = default;
+      auto operator=(expected_move_assign_base_impl&& other)
+        -> expected_move_assign_base_impl& = delete;
     };
 
     template <typename T, typename E>
-    struct expected_move_assign_base<T,E,false>
-      : expected_copy_assign_base<T, E>
-    {
-      using base_type = expected_copy_assign_base<T, E>;
-      using base_type::base_type;
-
-      expected_move_assign_base(const expected_move_assign_base& other) = default;
-      expected_move_assign_base(expected_move_assign_base&& other) = default;
-
-      auto operator=(const expected_move_assign_base& other)
-        -> expected_move_assign_base& = default;
-      auto operator=(expected_move_assign_base&& other)
-        -> expected_move_assign_base& = delete;
-    };
+    using expected_move_assign_base = typename std::conditional<
+      std::is_nothrow_move_constructible<T>::value &&
+      std::is_nothrow_move_constructible<E>::value &&
+      std::is_move_assignable<T>::value &&
+      std::is_move_assignable<E>::value,
+      typename expected_move_assign_base_impl<T,E>::base_type,
+      expected_move_assign_base_impl<T,E>
+    >::type;
 
     //=========================================================================
     // alias : expected_storage
@@ -3128,13 +3108,13 @@ auto expect::detail::expected_construct_base<T,E>::assign_from_expected(Expected
 }
 
 //=============================================================================
-// class : expected_trivial_copy_ctor_base
+// class : expected_trivial_copy_ctor_base_impl
 //=============================================================================
 
-template <typename T, typename E, bool Enabled>
+template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY
-expect::detail::expected_trivial_copy_ctor_base<T,E,Enabled>
-  ::expected_trivial_copy_ctor_base(const expected_trivial_copy_ctor_base& other)
+expect::detail::expected_trivial_copy_ctor_base_impl<T,E>
+  ::expected_trivial_copy_ctor_base_impl(const expected_trivial_copy_ctor_base_impl& other)
   noexcept(std::is_nothrow_copy_constructible<T>::value &&
            std::is_nothrow_copy_constructible<E>::value)
   : base_type(unit{})
@@ -3148,10 +3128,10 @@ expect::detail::expected_trivial_copy_ctor_base<T,E,Enabled>
 // class : expected_trivial_move_ctor_base
 //=============================================================================
 
-template <typename T, typename E, bool Enabled>
+template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY
-expect::detail::expected_trivial_move_ctor_base<T, E, Enabled>
-  ::expected_trivial_move_ctor_base(expected_trivial_move_ctor_base&& other)
+expect::detail::expected_trivial_move_ctor_base_impl<T, E>
+  ::expected_trivial_move_ctor_base_impl(expected_trivial_move_ctor_base_impl&& other)
   noexcept(std::is_nothrow_move_constructible<T>::value &&
            std::is_nothrow_move_constructible<E>::value)
   : base_type(unit{})
@@ -3165,15 +3145,15 @@ expect::detail::expected_trivial_move_ctor_base<T, E, Enabled>
 // class : expected_copy_assign_base
 //=============================================================================
 
-template <typename T, typename E, bool Enabled>
+template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY
-auto expect::detail::expected_trivial_copy_assign_base<T, E, Enabled>
-  ::operator=(const expected_trivial_copy_assign_base& other)
+auto expect::detail::expected_trivial_copy_assign_base_impl<T, E>
+  ::operator=(const expected_trivial_copy_assign_base_impl& other)
   noexcept(std::is_nothrow_copy_constructible<T>::value &&
            std::is_nothrow_copy_constructible<E>::value &&
            std::is_nothrow_copy_assignable<T>::value &&
            std::is_nothrow_copy_assignable<E>::value)
-  -> expected_trivial_copy_assign_base&
+  -> expected_trivial_copy_assign_base_impl&
 {
   using ctor_base = expected_construct_base<T,E>;
 
@@ -3185,15 +3165,15 @@ auto expect::detail::expected_trivial_copy_assign_base<T, E, Enabled>
 // class : expected_move_assign_base
 //=========================================================================
 
-template <typename T, typename E, bool Enabled>
+template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY
-auto expect::detail::expected_trivial_move_assign_base<T, E, Enabled>
-  ::operator=(expected_trivial_move_assign_base&& other)
+auto expect::detail::expected_trivial_move_assign_base_impl<T, E>
+  ::operator=(expected_trivial_move_assign_base_impl&& other)
   noexcept(std::is_nothrow_move_constructible<T>::value &&
            std::is_nothrow_move_constructible<E>::value &&
            std::is_nothrow_move_assignable<T>::value &&
            std::is_nothrow_move_assignable<E>::value)
-  -> expected_trivial_move_assign_base&
+  -> expected_trivial_move_assign_base_impl&
 {
   using ctor_base = expected_construct_base<T,E>;
 
