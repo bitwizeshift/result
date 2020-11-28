@@ -108,7 +108,7 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a56ff7452690c244bc4bc095296538973"><td class="memTemplParams" colspan="2">template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_constructible&lt;U&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a56ff7452690c244bc4bc095296538973"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a56ff7452690c244bc4bc095296538973">expected</a> () noexcept(std::is_nothrow_constructible&lt; U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a56ff7452690c244bc4bc095296538973"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a56ff7452690c244bc4bc095296538973">expected</a> () noexcept(std::is_nothrow_constructible&lt; U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:a56ff7452690c244bc4bc095296538973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default-constructs an expected with the underlying value type active.  <a href="#a56ff7452690c244bc4bc095296538973">More...</a><br /></td></tr>
 <tr class="separator:a56ff7452690c244bc4bc095296538973"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a33cc1a7252bbcb794db94e741b66b7"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a9a33cc1a7252bbcb794db94e741b66b7">expected</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;other)=default</td></tr>
@@ -118,19 +118,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac8a6cf52e7a0621b8be2c997c2b52dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructs an expected.  <a href="#ac8a6cf52e7a0621b8be2c997c2b52dc6">More...</a><br /></td></tr>
 <tr class="separator:ac8a6cf52e7a0621b8be2c997c2b52dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3dde16571ddb9c273e15b092d8f1c89"><td class="memTemplParams" colspan="2">template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T,Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:aa3dde16571ddb9c273e15b092d8f1c89"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#aa3dde16571ddb9c273e15b092d8f1c89">expected</a> (<a class="el" href="../../d3/d44/structexpect_1_1in__place__t.html">in_place_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; T, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:aa3dde16571ddb9c273e15b092d8f1c89"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#aa3dde16571ddb9c273e15b092d8f1c89">expected</a> (<a class="el" href="../../d3/d44/structexpect_1_1in__place__t.html">in_place_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; T, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:aa3dde16571ddb9c273e15b092d8f1c89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an expected object that contains a value.  <a href="#aa3dde16571ddb9c273e15b092d8f1c89">More...</a><br /></td></tr>
 <tr class="separator:aa3dde16571ddb9c273e15b092d8f1c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad73a3d4a4eaf00069628a21f3d13cc40"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:ad73a3d4a4eaf00069628a21f3d13cc40"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ad73a3d4a4eaf00069628a21f3d13cc40">expected</a> (<a class="el" href="../../d3/d44/structexpect_1_1in__place__t.html">in_place_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:ad73a3d4a4eaf00069628a21f3d13cc40"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ad73a3d4a4eaf00069628a21f3d13cc40">expected</a> (<a class="el" href="../../d3/d44/structexpect_1_1in__place__t.html">in_place_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:ad73a3d4a4eaf00069628a21f3d13cc40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an expected object that contains a value.  <a href="#ad73a3d4a4eaf00069628a21f3d13cc40">More...</a><br /></td></tr>
 <tr class="separator:ad73a3d4a4eaf00069628a21f3d13cc40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3146257a5a6516afa27f5f0a114889d3"><td class="memTemplParams" colspan="2">template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a3146257a5a6516afa27f5f0a114889d3"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a3146257a5a6516afa27f5f0a114889d3">expected</a> (<a class="el" href="../../dd/dd6/structexpect_1_1in__place__error__t.html">in_place_error_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a3146257a5a6516afa27f5f0a114889d3"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a3146257a5a6516afa27f5f0a114889d3">expected</a> (<a class="el" href="../../dd/dd6/structexpect_1_1in__place__error__t.html">in_place_error_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:a3146257a5a6516afa27f5f0a114889d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an expected object that contains an error.  <a href="#a3146257a5a6516afa27f5f0a114889d3">More...</a><br /></td></tr>
 <tr class="separator:a3146257a5a6516afa27f5f0a114889d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2d3f4904ea87c654f2e3e86b65fa0f1"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:af2d3f4904ea87c654f2e3e86b65fa0f1"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af2d3f4904ea87c654f2e3e86b65fa0f1">expected</a> (<a class="el" href="../../dd/dd6/structexpect_1_1in__place__error__t.html">in_place_error_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:af2d3f4904ea87c654f2e3e86b65fa0f1"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af2d3f4904ea87c654f2e3e86b65fa0f1">expected</a> (<a class="el" href="../../dd/dd6/structexpect_1_1in__place__error__t.html">in_place_error_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:af2d3f4904ea87c654f2e3e86b65fa0f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an expected object that contains an error.  <a href="#af2d3f4904ea87c654f2e3e86b65fa0f1">More...</a><br /></td></tr>
 <tr class="separator:af2d3f4904ea87c654f2e3e86b65fa0f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d109b1d70208db68011dfc8ba74bf99"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a6d109b1d70208db68011dfc8ba74bf99">operator=</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;other) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;=default</td></tr>
@@ -140,15 +140,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a14cb17368a41473fe92f7c5eba873432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assigns the expected stored in <code>other</code>.  <a href="#a14cb17368a41473fe92f7c5eba873432">More...</a><br /></td></tr>
 <tr class="separator:a14cb17368a41473fe92f7c5eba873432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91e0498704b0fe2e3c9c6cbd7cff16c8"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;detail::expected_is_copy_convert_assignable&lt;T,E,T2,E2&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a91e0498704b0fe2e3c9c6cbd7cff16c8"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a91e0498704b0fe2e3c9c6cbd7cff16c8">operator=</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:a91e0498704b0fe2e3c9c6cbd7cff16c8"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a91e0498704b0fe2e3c9c6cbd7cff16c8">operator=</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="memdesc:a91e0498704b0fe2e3c9c6cbd7cff16c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy-converts the state of <code>other</code>.  <a href="#a91e0498704b0fe2e3c9c6cbd7cff16c8">More...</a><br /></td></tr>
 <tr class="separator:a91e0498704b0fe2e3c9c6cbd7cff16c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae99b0749d33c67cbc3ef7a10f083322d"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;detail::expected_is_move_convert_assignable&lt;T,E,T2,E2&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:ae99b0749d33c67cbc3ef7a10f083322d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ae99b0749d33c67cbc3ef7a10f083322d">operator=</a> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:ae99b0749d33c67cbc3ef7a10f083322d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ae99b0749d33c67cbc3ef7a10f083322d">operator=</a> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="memdesc:ae99b0749d33c67cbc3ef7a10f083322d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move-converts the state of <code>other</code>.  <a href="#ae99b0749d33c67cbc3ef7a10f083322d">More...</a><br /></td></tr>
 <tr class="separator:ae99b0749d33c67cbc3ef7a10f083322d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a223bc385e4761dc6e9d1a0a5243af4f7"><td class="memTemplParams" colspan="2">template&lt;typename U , typename  = typename std::enable_if&lt;detail::expected_is_value_assignable&lt;T,U&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a223bc385e4761dc6e9d1a0a5243af4f7"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a223bc385e4761dc6e9d1a0a5243af4f7">operator=</a> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) noexcept(std::is_nothrow_assignable&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:a223bc385e4761dc6e9d1a0a5243af4f7"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a223bc385e4761dc6e9d1a0a5243af4f7">operator=</a> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) noexcept(std::is_nothrow_assignable&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="memdesc:a223bc385e4761dc6e9d1a0a5243af4f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfect-forwarded assignment.  <a href="#a223bc385e4761dc6e9d1a0a5243af4f7">More...</a><br /></td></tr>
 <tr class="separator:a223bc385e4761dc6e9d1a0a5243af4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2a2b051e5728a3e6af7fa07d121f9eb"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ad2a2b051e5728a3e6af7fa07d121f9eb">operator bool</a> () const noexcept</td></tr>
@@ -161,73 +161,105 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1c66bdefc26491f73c493f56a2c427d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains an error.  <a href="#a1c66bdefc26491f73c493f56a2c427d4">More...</a><br /></td></tr>
 <tr class="separator:a1c66bdefc26491f73c493f56a2c427d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13d8c62e51ab410243be16cc8c06be4a"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
-<tr class="memitem:a13d8c62e51ab410243be16cc8c06be4a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a13d8c62e51ab410243be16cc8c06be4a">and_then</a> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) const -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; typename std::decay&lt; U &gt;::type, E &gt;</td></tr>
+<tr class="memitem:a13d8c62e51ab410243be16cc8c06be4a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a13d8c62e51ab410243be16cc8c06be4a">and_then</a> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) const -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; typename std::decay&lt; U &gt;::type, E &gt;</td></tr>
 <tr class="memdesc:a13d8c62e51ab410243be16cc8c06be4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an expected containing <code>value</code> if this expected contains a value, otherwise returns an expected containing the current error.  <a href="#a13d8c62e51ab410243be16cc8c06be4a">More...</a><br /></td></tr>
 <tr class="separator:a13d8c62e51ab410243be16cc8c06be4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60289211324e04672138be878d0991a4"><td class="memTemplParams" colspan="2"><a id="a60289211324e04672138be878d0991a4"></a>
 template&lt;typename T2, typename E2, typename std::enable_if&lt; expect::detail::expected_is_implicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type &gt; </td></tr>
-<tr class="memitem:a60289211324e04672138be878d0991a4"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a60289211324e04672138be878d0991a4"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:a60289211324e04672138be878d0991a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab546e73fec33d2fc89bfa2120c3ab264"><td class="memTemplParams" colspan="2"><a id="ab546e73fec33d2fc89bfa2120c3ab264"></a>
 template&lt;typename T2, typename E2, typename std::enable_if&lt; expect::detail::expected_is_implicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type &gt; </td></tr>
-<tr class="memitem:ab546e73fec33d2fc89bfa2120c3ab264"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:ab546e73fec33d2fc89bfa2120c3ab264"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:ab546e73fec33d2fc89bfa2120c3ab264"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec0c6510785b74d855d9367db22c75ca"><td class="memTemplParams" colspan="2"><a id="aec0c6510785b74d855d9367db22c75ca"></a>
 template&lt;typename... Args, typename &gt; </td></tr>
-<tr class="memitem:aec0c6510785b74d855d9367db22c75ca"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../d3/d44/structexpect_1_1in__place__t.html">in_place_t</a>, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:aec0c6510785b74d855d9367db22c75ca"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../d3/d44/structexpect_1_1in__place__t.html">in_place_t</a>, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:aec0c6510785b74d855d9367db22c75ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cc82708c629ed5b4ce3105936cfa8ba"><td class="memTemplParams" colspan="2"><a id="a7cc82708c629ed5b4ce3105936cfa8ba"></a>
 template&lt;typename U, typename... Args, typename &gt; </td></tr>
-<tr class="memitem:a7cc82708c629ed5b4ce3105936cfa8ba"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../d3/d44/structexpect_1_1in__place__t.html">in_place_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a7cc82708c629ed5b4ce3105936cfa8ba"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../d3/d44/structexpect_1_1in__place__t.html">in_place_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:a7cc82708c629ed5b4ce3105936cfa8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1a2ce9e406d405372308246e1791cbd"><td class="memTemplParams" colspan="2"><a id="ae1a2ce9e406d405372308246e1791cbd"></a>
 template&lt;typename... Args, typename &gt; </td></tr>
-<tr class="memitem:ae1a2ce9e406d405372308246e1791cbd"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../dd/dd6/structexpect_1_1in__place__error__t.html">in_place_error_t</a>, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:ae1a2ce9e406d405372308246e1791cbd"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../dd/dd6/structexpect_1_1in__place__error__t.html">in_place_error_t</a>, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:ae1a2ce9e406d405372308246e1791cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0288103f818eb6dd91e9b7e236e7f9da"><td class="memTemplParams" colspan="2"><a id="a0288103f818eb6dd91e9b7e236e7f9da"></a>
 template&lt;typename U, typename... Args, typename &gt; </td></tr>
-<tr class="memitem:a0288103f818eb6dd91e9b7e236e7f9da"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../dd/dd6/structexpect_1_1in__place__error__t.html">in_place_error_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a0288103f818eb6dd91e9b7e236e7f9da"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../dd/dd6/structexpect_1_1in__place__error__t.html">in_place_error_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:a0288103f818eb6dd91e9b7e236e7f9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff441a9bfab7b17f19df6b2b050dd31a"><td class="memTemplParams" colspan="2"><a id="aff441a9bfab7b17f19df6b2b050dd31a"></a>
 template&lt;typename E2, typename &gt; </td></tr>
-<tr class="memitem:aff441a9bfab7b17f19df6b2b050dd31a"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;e) noexcept(std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:aff441a9bfab7b17f19df6b2b050dd31a"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;e) noexcept(std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:aff441a9bfab7b17f19df6b2b050dd31a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9d5ea60549021b698ca3fb0da6306f9"><td class="memTemplParams" colspan="2"><a id="af9d5ea60549021b698ca3fb0da6306f9"></a>
 template&lt;typename E2, typename &gt; </td></tr>
-<tr class="memitem:af9d5ea60549021b698ca3fb0da6306f9"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;&amp;e) noexcept(std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:af9d5ea60549021b698ca3fb0da6306f9"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (<a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;&amp;e) noexcept(std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:af9d5ea60549021b698ca3fb0da6306f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19775506202ef5e6dceb2d015708245d"><td class="memTemplParams" colspan="2"><a id="a19775506202ef5e6dceb2d015708245d"></a>
 template&lt;typename U, typename std::enable_if&lt; expect::detail::expected_is_explicit_value_convertible&lt; T, U &gt;::value, int &gt;::type&gt; </td></tr>
-<tr class="memitem:a19775506202ef5e6dceb2d015708245d"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a19775506202ef5e6dceb2d015708245d"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expected</b> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="separator:a19775506202ef5e6dceb2d015708245d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8b8ba92cbf7b98c449a6b43505cee23"><td class="memTemplParams" colspan="2"><a id="ae8b8ba92cbf7b98c449a6b43505cee23"></a>
 template&lt;typename T2 , typename E2 , typename &gt; </td></tr>
-<tr class="memitem:ae8b8ba92cbf7b98c449a6b43505cee23"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:ae8b8ba92cbf7b98c449a6b43505cee23"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="separator:ae8b8ba92cbf7b98c449a6b43505cee23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18395aa87c5852dfc7a07443240a6c5d"><td class="memTemplParams" colspan="2"><a id="a18395aa87c5852dfc7a07443240a6c5d"></a>
 template&lt;typename T2 , typename E2 , typename &gt; </td></tr>
-<tr class="memitem:a18395aa87c5852dfc7a07443240a6c5d"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:a18395aa87c5852dfc7a07443240a6c5d"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="separator:a18395aa87c5852dfc7a07443240a6c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbae043dfa851c1ddfdb96e3e0e1cbbb"><td class="memTemplParams" colspan="2"><a id="afbae043dfa851c1ddfdb96e3e0e1cbbb"></a>
 template&lt;typename U , typename &gt; </td></tr>
-<tr class="memitem:afbae043dfa851c1ddfdb96e3e0e1cbbb"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) noexcept(std::is_nothrow_assignable&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:afbae043dfa851c1ddfdb96e3e0e1cbbb"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) noexcept(std::is_nothrow_assignable&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="separator:afbae043dfa851c1ddfdb96e3e0e1cbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af70fda3f915c41695c05937d97df87c3"><td class="memTemplParams" colspan="2"><a id="af70fda3f915c41695c05937d97df87c3"></a>
 template&lt;typename E2 , typename &gt; </td></tr>
-<tr class="memitem:af70fda3f915c41695c05937d97df87c3"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:af70fda3f915c41695c05937d97df87c3"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="separator:af70fda3f915c41695c05937d97df87c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac507f1380c7379cd477bc65f9680a01b"><td class="memTemplParams" colspan="2"><a id="ac507f1380c7379cd477bc65f9680a01b"></a>
 template&lt;typename E2 , typename &gt; </td></tr>
-<tr class="memitem:ac507f1380c7379cd477bc65f9680a01b"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:ac507f1380c7379cd477bc65f9680a01b"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="separator:ac507f1380c7379cd477bc65f9680a01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec312c2d5c30011255c151c499e10673"><td class="memTemplParams" colspan="2"><a id="aec312c2d5c30011255c151c499e10673"></a>
+<tr class="memitem:ab27f55e22733927f6e10035e41fbecbd"><td class="memTemplParams" colspan="2"><a id="ab27f55e22733927f6e10035e41fbecbd"></a>
+template&lt;typename T , typename E &gt; </td></tr>
+<tr class="memitem:ab27f55e22733927f6e10035e41fbecbd"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> () &amp;noexcept -&gt; underlying_value_type &amp;</td></tr>
+<tr class="separator:ab27f55e22733927f6e10035e41fbecbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2dfbd9175569b533b5b3128c40b10ce"><td class="memTemplParams" colspan="2"><a id="ab2dfbd9175569b533b5b3128c40b10ce"></a>
+template&lt;typename U , typename &gt; </td></tr>
+<tr class="memitem:ab2dfbd9175569b533b5b3128c40b10ce"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> () &amp;&amp;noexcept -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
+<tr class="separator:ab2dfbd9175569b533b5b3128c40b10ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e1509944168d76320a3992fc04a1419"><td class="memTemplParams" colspan="2"><a id="a6e1509944168d76320a3992fc04a1419"></a>
+template&lt;typename T , typename E &gt; </td></tr>
+<tr class="memitem:a6e1509944168d76320a3992fc04a1419"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> () const &amp;noexcept -&gt; const_underlying_value_type &amp;</td></tr>
+<tr class="separator:a6e1509944168d76320a3992fc04a1419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36356f704c3b8ecc23c55975fc0aa4dc"><td class="memTemplParams" colspan="2"><a id="a36356f704c3b8ecc23c55975fc0aa4dc"></a>
+template&lt;typename U , typename &gt; </td></tr>
+<tr class="memitem:a36356f704c3b8ecc23c55975fc0aa4dc"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> () const &amp;&amp;noexcept -&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
+<tr class="separator:a36356f704c3b8ecc23c55975fc0aa4dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad92c0d5e592fe48fb6962809a58719d9"><td class="memTemplParams" colspan="2"><a id="ad92c0d5e592fe48fb6962809a58719d9"></a>
+template&lt;typename T , typename E &gt; </td></tr>
+<tr class="memitem:ad92c0d5e592fe48fb6962809a58719d9"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>value</b> () &amp;-&gt; underlying_value_type &amp;</td></tr>
+<tr class="separator:ad92c0d5e592fe48fb6962809a58719d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fcc5ff33c31913becc8520a27779bed"><td class="memTemplParams" colspan="2"><a id="a8fcc5ff33c31913becc8520a27779bed"></a>
+template&lt;typename U , typename &gt; </td></tr>
+<tr class="memitem:a8fcc5ff33c31913becc8520a27779bed"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>value</b> () &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
+<tr class="separator:a8fcc5ff33c31913becc8520a27779bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad01f2a06295ac349dbe61335d10c1ac1"><td class="memTemplParams" colspan="2"><a id="ad01f2a06295ac349dbe61335d10c1ac1"></a>
+template&lt;typename T , typename E &gt; </td></tr>
+<tr class="memitem:ad01f2a06295ac349dbe61335d10c1ac1"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>value</b> () const &amp;-&gt; const_underlying_value_type &amp;</td></tr>
+<tr class="separator:ad01f2a06295ac349dbe61335d10c1ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5f473b6a1969016d29acbeb79e8c6b"><td class="memTemplParams" colspan="2"><a id="adc5f473b6a1969016d29acbeb79e8c6b"></a>
+template&lt;typename U , typename &gt; </td></tr>
+<tr class="memitem:adc5f473b6a1969016d29acbeb79e8c6b"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>value</b> () const &amp;&amp;-&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
+<tr class="separator:adc5f473b6a1969016d29acbeb79e8c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36660666b97b3d0e403ebbd7a9287b60"><td class="memTemplParams" colspan="2"><a id="a36660666b97b3d0e403ebbd7a9287b60"></a>
 template&lt;typename U &gt; </td></tr>
-<tr class="memitem:aec312c2d5c30011255c151c499e10673"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>value_or</b> (U &amp;&amp;default_value) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a></td></tr>
-<tr class="separator:aec312c2d5c30011255c151c499e10673"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade3b1b53e283eccc4a196ce31e2f379b"><td class="memTemplParams" colspan="2"><a id="ade3b1b53e283eccc4a196ce31e2f379b"></a>
+<tr class="memitem:a36660666b97b3d0e403ebbd7a9287b60"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>value_or</b> (U &amp;&amp;default_value) const &amp;-&gt; underlying_value_type</td></tr>
+<tr class="separator:a36660666b97b3d0e403ebbd7a9287b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61538bb554ee051020dd3441dbe92df4"><td class="memTemplParams" colspan="2"><a id="a61538bb554ee051020dd3441dbe92df4"></a>
 template&lt;typename U &gt; </td></tr>
-<tr class="memitem:ade3b1b53e283eccc4a196ce31e2f379b"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>value_or</b> (U &amp;&amp;default_value) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a></td></tr>
-<tr class="separator:ade3b1b53e283eccc4a196ce31e2f379b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61538bb554ee051020dd3441dbe92df4"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>value_or</b> (U &amp;&amp;default_value) &amp;&amp;-&gt; underlying_value_type</td></tr>
+<tr class="separator:a61538bb554ee051020dd3441dbe92df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4e3ad00fde6824555599f9a660eb70a"><td class="memTemplParams" colspan="2"><a id="ac4e3ad00fde6824555599f9a660eb70a"></a>
 template&lt;typename U &gt; </td></tr>
 <tr class="memitem:ac4e3ad00fde6824555599f9a660eb70a"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>error_or</b> (U &amp;&amp;default_error) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#afaf8bcacea70952d1f33674a1434aa3c">error_type</a></td></tr>
@@ -238,7 +270,7 @@ template&lt;typename U &gt; </td></tr>
 <tr class="separator:aabe053c6b5cfb4536a07e8e15f870235"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5266ee681cec552c9422ec3ae30389a"><td class="memTemplParams" colspan="2"><a id="aa5266ee681cec552c9422ec3ae30389a"></a>
 template&lt;typename U &gt; </td></tr>
-<tr class="memitem:aa5266ee681cec552c9422ec3ae30389a"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>and_then</b> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) const -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; typename std::decay&lt; U &gt;::type, E &gt;</td></tr>
+<tr class="memitem:aa5266ee681cec552c9422ec3ae30389a"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>and_then</b> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) const -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; typename std::decay&lt; U &gt;::type, E &gt;</td></tr>
 <tr class="separator:aa5266ee681cec552c9422ec3ae30389a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a416aa6b55c0f7e0a52ccce7177611623"><td class="memTemplParams" colspan="2"><a id="a416aa6b55c0f7e0a52ccce7177611623"></a>
 template&lt;typename Fn &gt; </td></tr>
@@ -266,98 +298,101 @@ template&lt;typename Fn &gt; </td></tr>
 <tr class="separator:a3e23ff8b4498812f7e2b99ad7241c062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:abfc59791ee5704135093ede938adf8bb"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_implicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:abfc59791ee5704135093ede938adf8bb"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#abfc59791ee5704135093ede938adf8bb">expected</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:abfc59791ee5704135093ede938adf8bb"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#abfc59791ee5704135093ede938adf8bb">expected</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:abfc59791ee5704135093ede938adf8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting copy constructor.  <a href="#abfc59791ee5704135093ede938adf8bb">More...</a><br /></td></tr>
 <tr class="separator:abfc59791ee5704135093ede938adf8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfc59791ee5704135093ede938adf8bb"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_explicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:abfc59791ee5704135093ede938adf8bb"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#abfc59791ee5704135093ede938adf8bb">expected</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:abfc59791ee5704135093ede938adf8bb"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#abfc59791ee5704135093ede938adf8bb">expected</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:abfc59791ee5704135093ede938adf8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting copy constructor.  <a href="#abfc59791ee5704135093ede938adf8bb">More...</a><br /></td></tr>
 <tr class="separator:abfc59791ee5704135093ede938adf8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a0a3c97ef0adbe452b04c46e570c110c3"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_implicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a0a3c97ef0adbe452b04c46e570c110c3"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0a3c97ef0adbe452b04c46e570c110c3">expected</a> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a0a3c97ef0adbe452b04c46e570c110c3"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0a3c97ef0adbe452b04c46e570c110c3">expected</a> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:a0a3c97ef0adbe452b04c46e570c110c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting move constructor.  <a href="#a0a3c97ef0adbe452b04c46e570c110c3">More...</a><br /></td></tr>
 <tr class="separator:a0a3c97ef0adbe452b04c46e570c110c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a3c97ef0adbe452b04c46e570c110c3"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_explicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a0a3c97ef0adbe452b04c46e570c110c3"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0a3c97ef0adbe452b04c46e570c110c3">expected</a> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a0a3c97ef0adbe452b04c46e570c110c3"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0a3c97ef0adbe452b04c46e570c110c3">expected</a> (<a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:a0a3c97ef0adbe452b04c46e570c110c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting move constructor.  <a href="#a0a3c97ef0adbe452b04c46e570c110c3">More...</a><br /></td></tr>
 <tr class="separator:a0a3c97ef0adbe452b04c46e570c110c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a0b486d02ebe9b9ca38655ffcd0a5a913"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a0b486d02ebe9b9ca38655ffcd0a5a913"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0b486d02ebe9b9ca38655ffcd0a5a913">expected</a> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;e) noexcept(std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a0b486d02ebe9b9ca38655ffcd0a5a913"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0b486d02ebe9b9ca38655ffcd0a5a913">expected</a> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;e) noexcept(std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:a0b486d02ebe9b9ca38655ffcd0a5a913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the underlying error of this expected.  <a href="#a0b486d02ebe9b9ca38655ffcd0a5a913">More...</a><br /></td></tr>
 <tr class="separator:a0b486d02ebe9b9ca38655ffcd0a5a913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44b3389c607d12b9c7ddb12f7d788c03"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a44b3389c607d12b9c7ddb12f7d788c03"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a44b3389c607d12b9c7ddb12f7d788c03">expected</a> (<a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;&amp;e) noexcept(std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a44b3389c607d12b9c7ddb12f7d788c03"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a44b3389c607d12b9c7ddb12f7d788c03">expected</a> (<a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;&amp;e) noexcept(std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:a44b3389c607d12b9c7ddb12f7d788c03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the underlying error of this expected.  <a href="#a44b3389c607d12b9c7ddb12f7d788c03">More...</a><br /></td></tr>
 <tr class="separator:a44b3389c607d12b9c7ddb12f7d788c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a5eabbb9f5d6473a401ffffe4f643d053"><td class="memTemplParams" colspan="2">template&lt;typename U , typename std::enable_if&lt; detail::expected_is_explicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a5eabbb9f5d6473a401ffffe4f643d053"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5eabbb9f5d6473a401ffffe4f643d053">expected</a> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a5eabbb9f5d6473a401ffffe4f643d053"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5eabbb9f5d6473a401ffffe4f643d053">expected</a> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:a5eabbb9f5d6473a401ffffe4f643d053"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an expected object that contains a value.  <a href="#a5eabbb9f5d6473a401ffffe4f643d053">More...</a><br /></td></tr>
 <tr class="separator:a5eabbb9f5d6473a401ffffe4f643d053"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5eabbb9f5d6473a401ffffe4f643d053"><td class="memTemplParams" colspan="2">template&lt;typename U , typename std::enable_if&lt; detail::expected_is_implicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a5eabbb9f5d6473a401ffffe4f643d053"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5eabbb9f5d6473a401ffffe4f643d053">expected</a> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>)</td></tr>
+<tr class="memitem:a5eabbb9f5d6473a401ffffe4f643d053"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5eabbb9f5d6473a401ffffe4f643d053">expected</a> (U &amp;&amp;<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
 <tr class="memdesc:a5eabbb9f5d6473a401ffffe4f643d053"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an expected object that contains a value.  <a href="#a5eabbb9f5d6473a401ffffe4f643d053">More...</a><br /></td></tr>
 <tr class="separator:a5eabbb9f5d6473a401ffffe4f643d053"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a782a17c4cc75dc65c5928061f9c67612"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expected_is_unexpected_assignable&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a782a17c4cc75dc65c5928061f9c67612"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a782a17c4cc75dc65c5928061f9c67612">operator=</a> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:a782a17c4cc75dc65c5928061f9c67612"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a782a17c4cc75dc65c5928061f9c67612">operator=</a> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="memdesc:a782a17c4cc75dc65c5928061f9c67612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfect-forwarded assignment.  <a href="#a782a17c4cc75dc65c5928061f9c67612">More...</a><br /></td></tr>
 <tr class="separator:a782a17c4cc75dc65c5928061f9c67612"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb43d3ab1b7095a7cc37ef8d0d40a6ea"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expected_is_unexpected_assignable&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:adb43d3ab1b7095a7cc37ef8d0d40a6ea"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#adb43d3ab1b7095a7cc37ef8d0d40a6ea">operator=</a> (<a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
+<tr class="memitem:adb43d3ab1b7095a7cc37ef8d0d40a6ea"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#adb43d3ab1b7095a7cc37ef8d0d40a6ea">operator=</a> (<a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a> &amp;</td></tr>
 <tr class="memdesc:adb43d3ab1b7095a7cc37ef8d0d40a6ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfect-forwarded assignment.  <a href="#adb43d3ab1b7095a7cc37ef8d0d40a6ea">More...</a><br /></td></tr>
 <tr class="separator:adb43d3ab1b7095a7cc37ef8d0d40a6ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:aca4d6d4dc4fae3515b92474a9213d909"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#aca4d6d4dc4fae3515b92474a9213d909">operator-&gt;</a> () noexcept -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> *</td></tr>
-<tr class="memdesc:aca4d6d4dc4fae3515b92474a9213d909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#aca4d6d4dc4fae3515b92474a9213d909">More...</a><br /></td></tr>
-<tr class="separator:aca4d6d4dc4fae3515b92474a9213d909"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2940502878464672442d052aed86f4de"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a2940502878464672442d052aed86f4de">operator-&gt;</a> () const noexcept -&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> *</td></tr>
-<tr class="memdesc:a2940502878464672442d052aed86f4de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a2940502878464672442d052aed86f4de">More...</a><br /></td></tr>
-<tr class="separator:a2940502878464672442d052aed86f4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d952b9aec8a0770a04222483134480a"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5d952b9aec8a0770a04222483134480a">operator-&gt;</a> () noexcept -&gt; underlying_value_type *</td></tr>
+<tr class="memdesc:a5d952b9aec8a0770a04222483134480a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a5d952b9aec8a0770a04222483134480a">More...</a><br /></td></tr>
+<tr class="separator:a5d952b9aec8a0770a04222483134480a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3336ab9010946d09b0800709c7ffab30"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a3336ab9010946d09b0800709c7ffab30">operator-&gt;</a> () const noexcept -&gt; const_underlying_value_type *</td></tr>
+<tr class="memdesc:a3336ab9010946d09b0800709c7ffab30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a3336ab9010946d09b0800709c7ffab30">More...</a><br /></td></tr>
+<tr class="separator:a3336ab9010946d09b0800709c7ffab30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a9075f3d9c3504f68c819539cb1c89527"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a9075f3d9c3504f68c819539cb1c89527">operator*</a> () &amp;noexcept -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;</td></tr>
-<tr class="memdesc:a9075f3d9c3504f68c819539cb1c89527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a9075f3d9c3504f68c819539cb1c89527">More...</a><br /></td></tr>
-<tr class="separator:a9075f3d9c3504f68c819539cb1c89527"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81f436cec9101161fdbd3a1fa711e077"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a81f436cec9101161fdbd3a1fa711e077">operator*</a> () &amp;&amp;noexcept -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
-<tr class="memdesc:a81f436cec9101161fdbd3a1fa711e077"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a81f436cec9101161fdbd3a1fa711e077">More...</a><br /></td></tr>
-<tr class="separator:a81f436cec9101161fdbd3a1fa711e077"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39b94ec313d12c376f6d4fc969dcb565"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a39b94ec313d12c376f6d4fc969dcb565">operator*</a> () const &amp;noexcept -&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;</td></tr>
-<tr class="memdesc:a39b94ec313d12c376f6d4fc969dcb565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a39b94ec313d12c376f6d4fc969dcb565">More...</a><br /></td></tr>
-<tr class="separator:a39b94ec313d12c376f6d4fc969dcb565"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34ddace0b3e34a3beb8fa3a95f121cba"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a34ddace0b3e34a3beb8fa3a95f121cba">operator*</a> () const &amp;&amp;noexcept -&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
-<tr class="memdesc:a34ddace0b3e34a3beb8fa3a95f121cba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a34ddace0b3e34a3beb8fa3a95f121cba">More...</a><br /></td></tr>
-<tr class="separator:a34ddace0b3e34a3beb8fa3a95f121cba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af364d651376f82dcfbeb51d6d71cdc87"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af364d651376f82dcfbeb51d6d71cdc87">operator*</a> () &amp;noexcept -&gt; underlying_value_type &amp;</td></tr>
+<tr class="memdesc:af364d651376f82dcfbeb51d6d71cdc87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#af364d651376f82dcfbeb51d6d71cdc87">More...</a><br /></td></tr>
+<tr class="separator:af364d651376f82dcfbeb51d6d71cdc87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e149645d67b56076c0f7d4d2ecbe14c"><td class="memTemplParams" colspan="2">template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a1e149645d67b56076c0f7d4d2ecbe14c"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a1e149645d67b56076c0f7d4d2ecbe14c">operator*</a> () &amp;&amp;noexcept -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
+<tr class="memdesc:a1e149645d67b56076c0f7d4d2ecbe14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a1e149645d67b56076c0f7d4d2ecbe14c">More...</a><br /></td></tr>
+<tr class="separator:a1e149645d67b56076c0f7d4d2ecbe14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40df612f51d2582d0c4cd77c3d6b281d"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a40df612f51d2582d0c4cd77c3d6b281d">operator*</a> () const &amp;noexcept -&gt; const_underlying_value_type &amp;</td></tr>
+<tr class="memdesc:a40df612f51d2582d0c4cd77c3d6b281d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a40df612f51d2582d0c4cd77c3d6b281d">More...</a><br /></td></tr>
+<tr class="separator:a40df612f51d2582d0c4cd77c3d6b281d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5215dacfbdfd94a52bee399e12eeeb1a"><td class="memTemplParams" colspan="2">template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a5215dacfbdfd94a52bee399e12eeeb1a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5215dacfbdfd94a52bee399e12eeeb1a">operator*</a> () const &amp;&amp;noexcept -&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
+<tr class="memdesc:a5215dacfbdfd94a52bee399e12eeeb1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a5215dacfbdfd94a52bee399e12eeeb1a">More...</a><br /></td></tr>
+<tr class="separator:a5215dacfbdfd94a52bee399e12eeeb1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a8cf0a7544ca1e7d5e394d86f5abdf04c"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> () &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;</td></tr>
-<tr class="memdesc:a8cf0a7544ca1e7d5e394d86f5abdf04c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a8cf0a7544ca1e7d5e394d86f5abdf04c">More...</a><br /></td></tr>
-<tr class="separator:a8cf0a7544ca1e7d5e394d86f5abdf04c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7fa5794f7e5774b60d413f8ecc510e1"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#aa7fa5794f7e5774b60d413f8ecc510e1">value</a> () &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
-<tr class="memdesc:aa7fa5794f7e5774b60d413f8ecc510e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#aa7fa5794f7e5774b60d413f8ecc510e1">More...</a><br /></td></tr>
-<tr class="separator:aa7fa5794f7e5774b60d413f8ecc510e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5f0909d4e7e38105f2011db6f7ee536"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> () &amp;-&gt; underlying_value_type &amp;</td></tr>
+<tr class="memdesc:af5f0909d4e7e38105f2011db6f7ee536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#af5f0909d4e7e38105f2011db6f7ee536">More...</a><br /></td></tr>
+<tr class="separator:af5f0909d4e7e38105f2011db6f7ee536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe60269795f49c0f18a91dbd62fb1f7f"><td class="memTemplParams" colspan="2">template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:abe60269795f49c0f18a91dbd62fb1f7f"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#abe60269795f49c0f18a91dbd62fb1f7f">value</a> () &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
+<tr class="memdesc:abe60269795f49c0f18a91dbd62fb1f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#abe60269795f49c0f18a91dbd62fb1f7f">More...</a><br /></td></tr>
+<tr class="separator:abe60269795f49c0f18a91dbd62fb1f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c2c8e05ed4bfdae15953fa7e5e4d4cf"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0c2c8e05ed4bfdae15953fa7e5e4d4cf">value</a> () const &amp;-&gt; const_underlying_value_type &amp;</td></tr>
+<tr class="memdesc:a0c2c8e05ed4bfdae15953fa7e5e4d4cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a0c2c8e05ed4bfdae15953fa7e5e4d4cf">More...</a><br /></td></tr>
+<tr class="separator:a0c2c8e05ed4bfdae15953fa7e5e4d4cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9433d6d8fa24aa159a57b3448a95f9b"><td class="memTemplParams" colspan="2">template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ab9433d6d8fa24aa159a57b3448a95f9b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ab9433d6d8fa24aa159a57b3448a95f9b">value</a> () const &amp;&amp;-&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
+<tr class="memdesc:ab9433d6d8fa24aa159a57b3448a95f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#ab9433d6d8fa24aa159a57b3448a95f9b">More...</a><br /></td></tr>
+<tr class="separator:ab9433d6d8fa24aa159a57b3448a95f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:aef5025bc316198ba7a5f396c09d5c66a"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#aef5025bc316198ba7a5f396c09d5c66a">value</a> () const &amp;-&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;</td></tr>
-<tr class="memdesc:aef5025bc316198ba7a5f396c09d5c66a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#aef5025bc316198ba7a5f396c09d5c66a">More...</a><br /></td></tr>
-<tr class="separator:aef5025bc316198ba7a5f396c09d5c66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05305188181fbdd56fe48e8bd1a5aa16"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a05305188181fbdd56fe48e8bd1a5aa16">value</a> () const &amp;&amp;-&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;&amp;</td></tr>
-<tr class="memdesc:a05305188181fbdd56fe48e8bd1a5aa16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a05305188181fbdd56fe48e8bd1a5aa16">More...</a><br /></td></tr>
-<tr class="separator:a05305188181fbdd56fe48e8bd1a5aa16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a62493853432ff924906df8c0daa723a9"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a62493853432ff924906df8c0daa723a9">error</a> () const &amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_copy_constructible&lt; E &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; E</td></tr>
+<tr class="memitem:a62493853432ff924906df8c0daa723a9"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a62493853432ff924906df8c0daa723a9">error</a> () const &amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_copy_constructible&lt; E &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; E</td></tr>
 <tr class="memdesc:a62493853432ff924906df8c0daa723a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a62493853432ff924906df8c0daa723a9">More...</a><br /></td></tr>
 <tr class="separator:a62493853432ff924906df8c0daa723a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af660f07c64ead9b641db33ab191e7f43"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af660f07c64ead9b641db33ab191e7f43">error</a> () &amp;&amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a> &amp;&amp;std::is_nothrow_move_constructible&lt; E &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a8cf0a7544ca1e7d5e394d86f5abdf04c">value</a>) -&gt; E</td></tr>
+<tr class="memitem:af660f07c64ead9b641db33ab191e7f43"><td class="memItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af660f07c64ead9b641db33ab191e7f43">error</a> () &amp;&amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_move_constructible&lt; E &gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>) -&gt; E</td></tr>
 <tr class="memdesc:af660f07c64ead9b641db33ab191e7f43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#af660f07c64ead9b641db33ab191e7f43">More...</a><br /></td></tr>
 <tr class="separator:af660f07c64ead9b641db33ab191e7f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a737e87fa5225637932c6bc9cc46a65ea"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
-<tr class="memitem:a737e87fa5225637932c6bc9cc46a65ea"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a737e87fa5225637932c6bc9cc46a65ea">value_or</a> (U &amp;&amp;default_value) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a></td></tr>
-<tr class="memdesc:a737e87fa5225637932c6bc9cc46a65ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">}  <a href="#a737e87fa5225637932c6bc9cc46a65ea">More...</a><br /></td></tr>
-<tr class="separator:a737e87fa5225637932c6bc9cc46a65ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bdcf639417f90251c8ac00322535efb"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
-<tr class="memitem:a9bdcf639417f90251c8ac00322535efb"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a9bdcf639417f90251c8ac00322535efb">value_or</a> (U &amp;&amp;default_value) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a></td></tr>
-<tr class="memdesc:a9bdcf639417f90251c8ac00322535efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a9bdcf639417f90251c8ac00322535efb">More...</a><br /></td></tr>
-<tr class="separator:a9bdcf639417f90251c8ac00322535efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30499d563835840a2b4c0c0adba83a75"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a30499d563835840a2b4c0c0adba83a75"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a30499d563835840a2b4c0c0adba83a75">value_or</a> (U &amp;&amp;default_value) const &amp;-&gt; underlying_value_type</td></tr>
+<tr class="memdesc:a30499d563835840a2b4c0c0adba83a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">}  <a href="#a30499d563835840a2b4c0c0adba83a75">More...</a><br /></td></tr>
+<tr class="separator:a30499d563835840a2b4c0c0adba83a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bde86ac9fea552d8321b671ca341734"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a5bde86ac9fea552d8321b671ca341734"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5bde86ac9fea552d8321b671ca341734">value_or</a> (U &amp;&amp;default_value) &amp;&amp;-&gt; underlying_value_type</td></tr>
+<tr class="memdesc:a5bde86ac9fea552d8321b671ca341734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a5bde86ac9fea552d8321b671ca341734">More...</a><br /></td></tr>
+<tr class="separator:a5bde86ac9fea552d8321b671ca341734"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a2814e2cdb3ac9902a1aec08632f63dab"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
 <tr class="memitem:a2814e2cdb3ac9902a1aec08632f63dab"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a2814e2cdb3ac9902a1aec08632f63dab">error_or</a> (U &amp;&amp;default_error) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#afaf8bcacea70952d1f33674a1434aa3c">error_type</a></td></tr>
@@ -417,7 +452,7 @@ class expect::expected&lt; T, E &gt;</h3>
 <li><code>std::string{}</code> produces an empty string <code>""</code>,</li>
 <li>etc.</li>
 </ul>
-<p>When an <code>expected&lt;T,E&gt;</code> contains either a value or error, the storage for that object is guaranteed to be allocated as part of the expected object's footprint, i.e. no dynamic memory allocation ever takes place. Thus, an expected object models an object, not a pointer, even though the <code><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a9075f3d9c3504f68c819539cb1c89527" title="Accesses the contained value. ">operator*()</a></code> and <code>operator-&gt;()</code> are defined.</p>
+<p>When an <code>expected&lt;T,E&gt;</code> contains either a value or error, the storage for that object is guaranteed to be allocated as part of the expected object's footprint, i.e. no dynamic memory allocation ever takes place. Thus, an expected object models an object, not a pointer, even though the <code><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af364d651376f82dcfbeb51d6d71cdc87" title="Accesses the contained value. ">operator*()</a></code> and <code>operator-&gt;()</code> are defined.</p>
 <p>When an object of type <code>expected&lt;T,E&gt;</code> is contextually converted to <code>bool</code>, the conversion returns <code>true</code> if the object contains a value and <code>false</code> if it contains an error.</p>
 <p><code>expected</code> objects do not have a "valueless" state like <code>variant</code>s do. Once an <code>expected</code> has been constructed with a value or error, the active underlying type can only be changed through assignment which may is only enabled if construction is guaranteed to be <em>non-throwing</em>. This ensures that a valueless state cannot occur naturally.</p>
 <p>Example Use: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span> x) -&gt; expected&lt;std::string&gt;</div><div class="line">{</div><div class="line">  <span class="keywordflow">try</span> {</div><div class="line">    <span class="keywordflow">return</span> std::stoi(x);</div><div class="line">  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp;) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="../../d3/d77/expected_8hpp.html#aacafd42268f3f9fd813f1baae98c6c33">make_unexpected</a>(std::errc::invalid_argument);</div><div class="line">  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::std::out_of_range&amp;) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="../../d3/d77/expected_8hpp.html#aacafd42268f3f9fd813f1baae98c6c33">make_unexpected</a>(std::errc::result_out_of_range);</div><div class="line">  }</div><div class="line">}</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>If using C++17 or above, <code>make_unexpected</code> can be replaced with <code>unexpected{...}</code> thanks to CTAD.</dd></dl>
@@ -1363,7 +1398,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains an error. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains an error, <code>false</code> if <code>*this</code> contains a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03560">3560</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03665">3665</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1395,7 +1430,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> contains an error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03552">3552</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03657">3657</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1559,12 +1594,12 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> does not contain a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03544">3544</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03649">3649</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a9075f3d9c3504f68c819539cb1c89527"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9075f3d9c3504f68c819539cb1c89527">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/4]</span></h2>
+<a id="af364d651376f82dcfbeb51d6d71cdc87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af364d651376f82dcfbeb51d6d71cdc87">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1578,7 +1613,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
           <td class="memname">EXPECTED_CPP14_CONSTEXPR auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> &amp; -&gt;  <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;</td>
+          <td> &amp; -&gt;  underlying_value_type &amp;</td>
         </tr>
       </table>
   </td>
@@ -1594,13 +1629,15 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 
 </div>
 </div>
-<a id="a81f436cec9101161fdbd3a1fa711e077"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81f436cec9101161fdbd3a1fa711e077">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/4]</span></h2>
+<a id="a1e149645d67b56076c0f7d4d2ecbe14c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e149645d67b56076c0f7d4d2ecbe14c">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T, typename E = std::error_code&gt; </div>
+<div class="memtemplate">
+template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1625,8 +1662,8 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 
 </div>
 </div>
-<a id="a39b94ec313d12c376f6d4fc969dcb565"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39b94ec313d12c376f6d4fc969dcb565">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/4]</span></h2>
+<a id="a40df612f51d2582d0c4cd77c3d6b281d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40df612f51d2582d0c4cd77c3d6b281d">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1640,7 +1677,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
           <td class="memname">constexpr auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const &amp; -&gt;  const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;</td>
+          <td> const &amp; -&gt;  const_underlying_value_type &amp;</td>
         </tr>
       </table>
   </td>
@@ -1656,13 +1693,15 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 
 </div>
 </div>
-<a id="a34ddace0b3e34a3beb8fa3a95f121cba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34ddace0b3e34a3beb8fa3a95f121cba">&#9670;&nbsp;</a></span>operator*() <span class="overload">[4/4]</span></h2>
+<a id="a5215dacfbdfd94a52bee399e12eeeb1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5215dacfbdfd94a52bee399e12eeeb1a">&#9670;&nbsp;</a></span>operator*() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T, typename E = std::error_code&gt; </div>
+<div class="memtemplate">
+template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1687,8 +1726,8 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 
 </div>
 </div>
-<a id="aca4d6d4dc4fae3515b92474a9213d909"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca4d6d4dc4fae3515b92474a9213d909">&#9670;&nbsp;</a></span>operator->() <span class="overload">[1/2]</span></h2>
+<a id="a5d952b9aec8a0770a04222483134480a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d952b9aec8a0770a04222483134480a">&#9670;&nbsp;</a></span>operator->() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1702,7 +1741,7 @@ template&lt;typename T , typename E &gt; </div>
           <td class="memname">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::operator-&gt; </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a>*</td>
+          <td> -&gt; underlying_value_type*</td>
         </tr>
       </table>
   </td>
@@ -1716,12 +1755,12 @@ template&lt;typename T , typename E &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03486">3486</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03589">3589</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a2940502878464672442d052aed86f4de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2940502878464672442d052aed86f4de">&#9670;&nbsp;</a></span>operator->() <span class="overload">[2/2]</span></h2>
+<a id="a3336ab9010946d09b0800709c7ffab30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3336ab9010946d09b0800709c7ffab30">&#9670;&nbsp;</a></span>operator->() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1735,7 +1774,7 @@ template&lt;typename T , typename E &gt; </div>
           <td class="memname">EXPECTED_INLINE_VISIBILITY constexpr auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::operator-&gt; </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const -&gt; const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a>*</td>
+          <td> const -&gt; const_underlying_value_type*</td>
         </tr>
       </table>
   </td>
@@ -1749,7 +1788,7 @@ template&lt;typename T , typename E &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03502">3502</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03605">3605</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -2101,8 +2140,8 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expecte
 
 </div>
 </div>
-<a id="a8cf0a7544ca1e7d5e394d86f5abdf04c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cf0a7544ca1e7d5e394d86f5abdf04c">&#9670;&nbsp;</a></span>value() <span class="overload">[1/4]</span></h2>
+<a id="af5f0909d4e7e38105f2011db6f7ee536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5f0909d4e7e38105f2011db6f7ee536">&#9670;&nbsp;</a></span>value() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2113,7 +2152,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
           <td class="memname">EXPECTED_CPP14_CONSTEXPR auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> &amp; -&gt;  <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;</td>
+          <td> &amp; -&gt;  underlying_value_type &amp;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2129,13 +2168,15 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 
 </div>
 </div>
-<a id="aa7fa5794f7e5774b60d413f8ecc510e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7fa5794f7e5774b60d413f8ecc510e1">&#9670;&nbsp;</a></span>value() <span class="overload">[2/4]</span></h2>
+<a id="abe60269795f49c0f18a91dbd62fb1f7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe60269795f49c0f18a91dbd62fb1f7f">&#9670;&nbsp;</a></span>value() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T, typename E = std::error_code&gt; </div>
+<div class="memtemplate">
+template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">EXPECTED_CPP14_CONSTEXPR auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::value </td>
@@ -2157,8 +2198,8 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 
 </div>
 </div>
-<a id="aef5025bc316198ba7a5f396c09d5c66a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef5025bc316198ba7a5f396c09d5c66a">&#9670;&nbsp;</a></span>value() <span class="overload">[3/4]</span></h2>
+<a id="a0c2c8e05ed4bfdae15953fa7e5e4d4cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c2c8e05ed4bfdae15953fa7e5e4d4cf">&#9670;&nbsp;</a></span>value() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2169,7 +2210,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
           <td class="memname">constexpr auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const &amp; -&gt;  const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a> &amp;</td>
+          <td> const &amp; -&gt;  const_underlying_value_type &amp;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2177,7 +2218,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 <p>Returns the contained value. </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">bad_optional_access</td><td>if <code>*this</code> does not contain a value.</td></tr>
+    <tr><td class="paramname"><a class="el" href="../../d0/d2a/classexpect_1_1bad__expected__access.html" title="An exception thrown when expected::value is accessed without a contained value. ">bad_expected_access</a></td><td>if <code>*this</code> does not contain a value.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2185,13 +2226,15 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 
 </div>
 </div>
-<a id="a05305188181fbdd56fe48e8bd1a5aa16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05305188181fbdd56fe48e8bd1a5aa16">&#9670;&nbsp;</a></span>value() <span class="overload">[4/4]</span></h2>
+<a id="ab9433d6d8fa24aa159a57b3448a95f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9433d6d8fa24aa159a57b3448a95f9b">&#9670;&nbsp;</a></span>value() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T, typename E = std::error_code&gt; </div>
+<div class="memtemplate">
+template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">constexpr auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::value </td>
@@ -2205,7 +2248,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 <p>Returns the contained value. </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">bad_optional_access</td><td>if <code>*this</code> does not contain a value.</td></tr>
+    <tr><td class="paramname"><a class="el" href="../../d0/d2a/classexpect_1_1bad__expected__access.html" title="An exception thrown when expected::value is accessed without a contained value. ">bad_expected_access</a></td><td>if <code>*this</code> does not contain a value.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2213,8 +2256,8 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 
 </div>
 </div>
-<a id="a737e87fa5225637932c6bc9cc46a65ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a737e87fa5225637932c6bc9cc46a65ea">&#9670;&nbsp;</a></span>value_or() <span class="overload">[1/2]</span></h2>
+<a id="a30499d563835840a2b4c0c0adba83a75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30499d563835840a2b4c0c0adba83a75">&#9670;&nbsp;</a></span>value_or() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2228,7 +2271,7 @@ template&lt;typename U &gt; </div>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>default_value</em></td><td>)</td>
-          <td> const &amp; -&gt;  <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a></td>
+          <td> const &amp; -&gt;  underlying_value_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2245,8 +2288,8 @@ template&lt;typename U &gt; </div>
 
 </div>
 </div>
-<a id="a9bdcf639417f90251c8ac00322535efb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bdcf639417f90251c8ac00322535efb">&#9670;&nbsp;</a></span>value_or() <span class="overload">[2/2]</span></h2>
+<a id="a5bde86ac9fea552d8321b671ca341734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bde86ac9fea552d8321b671ca341734">&#9670;&nbsp;</a></span>value_or() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2260,7 +2303,7 @@ template&lt;typename U &gt; </div>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>default_value</em></td><td>)</td>
-          <td> &amp;&amp; -&gt;  <a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5dafa59dc5d7410c775d6bbaef5f7db6">value_type</a></td>
+          <td> &amp;&amp; -&gt;  underlying_value_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
