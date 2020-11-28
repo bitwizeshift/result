@@ -157,6 +157,20 @@ struct report_destructor
   bool* output;
 };
 
+struct base
+{
+  virtual ~base() = default;
+  virtual auto get_value() const noexcept -> int { return 42; }
+};
+
+struct derived : public base
+{
+  derived(int value) : value{value}{}
+
+  auto get_value() const noexcept -> int override { return value; }
+  int value;
+};
+
 } // namespace <anonymous>
 
 //=============================================================================
@@ -2590,6 +2604,516 @@ TEST_CASE("expected<T,E>::map_error(Fn&&) &&", "[monadic]") {
       });
 
       REQUIRE(result == error);
+    }
+  }
+}
+
+//=============================================================================
+// class : expected<T, E>
+//=============================================================================
+
+//-----------------------------------------------------------------------------
+// Constructors / Destructor / Assignment
+//-----------------------------------------------------------------------------
+
+TEST_CASE("expected<T&,E>::expected()", "[ctor]") {
+  SECTION("Expected containing a reference is not default-constructible") {
+    using sut_type = expected<int&,int>;
+
+    STATIC_REQUIRE_FALSE(std::is_default_constructible<sut_type>::value);
+  }
+}
+
+TEST_CASE("expected<T&,E>::expected(const expected&)", "[ctor]") {
+  using sut_type = expected<int&,int>;
+
+  SECTION("Expected containing a reference is copy-constructible") {
+    STATIC_REQUIRE(std::is_copy_constructible<sut_type>::value);
+  }
+
+  SECTION("Constructs an expected that references the source value") {
+    auto value = int{42};
+
+    const auto source = sut_type{value};
+    const auto sut = source;
+
+    SECTION("Refers to underlying input") {
+      REQUIRE(&value == &(*sut));
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::expected(expected&&)", "[ctor]") {
+  using sut_type = expected<int&,move_only<std::string>>;
+
+  SECTION("Expected containing a reference is copy-constructible") {
+    STATIC_REQUIRE(std::is_move_constructible<sut_type>::value);
+  }
+
+  SECTION("Constructs an expected that references the source value") {
+    auto value = int{42};
+
+    auto source = sut_type{value};
+    const auto sut = std::move(source);
+
+    SECTION("Refers to underlying input") {
+      REQUIRE(&value == &(*sut));
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::expected(const expected<T2,E2>&)", "[ctor]") {
+  SECTION("other's type holds T by-value") {
+    SECTION("Constructor is disabled") {
+      using from_type = expected<int>;
+      using sut_type = expected<int&>;
+
+      STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, const from_type&>::value);
+    }
+  }
+
+  SECTION("other's type holds T by reference") {
+    using from_type = expected<derived&,int>;
+    using sut_type = expected<base&,int>;
+
+    SECTION("Expected containing a reference is copy-constructible") {
+      STATIC_REQUIRE(std::is_constructible<sut_type, const from_type&>::value);
+    }
+
+    SECTION("Constructs an expected that references the source value") {
+      const auto input = 10;
+      auto value = derived{input};
+
+      const auto source = from_type{value};
+      const auto sut    = sut_type{source};
+
+      SECTION("Refers to underlying input") {
+        REQUIRE(&value == &(*sut));
+      }
+      SECTION("Reference works with hierarchies") {
+        REQUIRE(sut->get_value() == input);
+      }
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::expected(expected<T2,E2>&&)", "[ctor]") {
+
+  SECTION("other's type holds T by-value") {
+    SECTION("Constructor is disabled") {
+      using from_type = expected<int,move_only<std::string>>;
+      using sut_type = expected<int&,move_only<std::string>>;
+
+      STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, from_type&&>::value);
+    }
+  }
+  SECTION("other's type holds T by reference") {
+    using from_type = expected<derived&,move_only<std::string>>;
+    using sut_type = expected<base&,move_only<std::string>>;
+
+    SECTION("Expected containing a reference is copy-constructible") {
+      STATIC_REQUIRE(std::is_constructible<sut_type, from_type&&>::value);
+    }
+
+    SECTION("Constructs an expected that references the source value") {
+      const auto input = 10;
+      auto value = derived{input};
+
+      auto source = from_type{value};
+      const auto sut = sut_type{std::move(source)};
+
+      SECTION("Refers to underlying input") {
+        REQUIRE(&value == &(*sut));
+      }
+      SECTION("Reference works with hierarchies") {
+        REQUIRE(sut->get_value() == input);
+      }
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::expected(in_place_t, Args&&...)", "[ctor]") {
+  using sut_type = expected<base&,int>;
+
+  auto value = derived{42};
+  const sut_type sut{in_place, value};
+
+  SECTION("Contains a value") {
+    REQUIRE(sut.has_value());
+  }
+
+  SECTION("References old input") {
+    REQUIRE(&value == &(*sut));
+  }
+}
+
+TEST_CASE("expected<T&,E>::expected(const unexpected<E2>&)", "[ctor]") {
+  using sut_type = expected<int&,std::string>;
+  const auto source = make_unexpected<std::string>("hello world");
+
+  const sut_type sut{source};
+
+  SECTION("Contains an error") {
+    REQUIRE(sut.has_error());
+  }
+
+  SECTION("Contains an error constructed from a copy of E2") {
+    REQUIRE(sut == source);
+  }
+}
+
+TEST_CASE("expected<T&,E>::expected(unexpected<E2>&&)", "[ctor]") {
+  using sut_type = expected<int&,move_only<std::string>>;
+  auto source = make_unexpected<std::string>("hello world");
+  const auto copy = source;
+
+  const sut_type sut{std::move(source)};
+
+  SECTION("Contains an error") {
+    REQUIRE(sut.has_error());
+  }
+
+  SECTION("Contains an error constructed from E2") {
+    REQUIRE(sut == copy);
+  }
+}
+
+TEST_CASE("expected<T&,E>::expected(U&&)", "[ctor]") {
+  SECTION("Input is lvalue") {
+    using sut_type = expected<base&,int>;
+
+    auto value = derived{42};
+    const sut_type sut{value};
+
+    SECTION("Constructor is enabled") {
+      REQUIRE(std::is_constructible<sut_type,derived&>::value);
+    }
+
+    SECTION("Contains a value") {
+      REQUIRE(sut.has_value());
+    }
+
+    SECTION("References old input") {
+      REQUIRE(&value == &(*sut));
+    }
+  }
+  SECTION("Input is rvalue") {
+    using sut_type = expected<base&,int>;
+
+    SECTION("Constructor is disabled") {
+      REQUIRE_FALSE(std::is_constructible<sut_type,derived&&>::value);
+    }
+  }
+  SECTION("Input is value") {
+    using sut_type = expected<base&,int>;
+
+    SECTION("Constructor is disabled") {
+      REQUIRE_FALSE(std::is_constructible<sut_type,derived>::value);
+    }
+  }
+}
+
+//-----------------------------------------------------------------------------
+
+TEST_CASE("expected<T&,E>::operator=(const expected&)", "[assign]") {
+  SECTION("expected contains a value") {
+    SECTION("other contains a value") {
+      auto value = derived{42};
+      auto next = derived{0};
+
+      const auto source = expected<base&>{next};
+      auto sut = expected<base&>{value};
+
+      sut = source;
+
+      SECTION("Underlying reference is rebound") {
+        REQUIRE(&next == &(*sut));
+      }
+    }
+  }
+  SECTION("expected contains an error") {
+    SECTION("other contains a value") {
+      auto next = derived{0};
+
+      const auto source = expected<base&,int>{next};
+      auto sut = expected<base&,int>{make_unexpected(42)};
+
+      sut = source;
+
+      SECTION("Binds the new reference") {
+        REQUIRE(&next == &(*sut));
+      }
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::operator=(expected&&)", "[assign]") {
+  SECTION("expected contains a value") {
+    SECTION("other contains a value") {
+      auto value = derived{42};
+      auto next = derived{0};
+
+      auto source = expected<base&,move_only<std::string>>{next};
+      auto sut = expected<base&,move_only<std::string>>{value};
+
+      sut = std::move(source);
+
+      SECTION("Underlying reference is rebound") {
+        REQUIRE(&next == &(*sut));
+      }
+    }
+  }
+  SECTION("expected contains an error") {
+    SECTION("other contains a value") {
+      auto next = derived{0};
+
+      auto source = expected<base&,move_only<std::string>>{next};
+      auto sut = expected<base&,move_only<std::string>>{make_unexpected("foo")};
+
+      sut = std::move(source);
+
+      SECTION("Binds the new reference") {
+        REQUIRE(&next == &(*sut));
+      }
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::operator=(const expected<T2,E2>&)", "[assign]") {
+  SECTION("other's type holds T by-value") {
+    SECTION("Assignment is disabled") {
+      using source_type = expected<int>;
+      using sut_type = expected<int&>;
+
+      STATIC_REQUIRE_FALSE(std::is_assignable<sut_type, const source_type&>::value);
+    }
+  }
+  SECTION("expected contains a value") {
+    SECTION("other contains a value") {
+      auto value = derived{42};
+      auto next = derived{0};
+
+      const auto source = expected<derived&>{next};
+      auto sut = expected<base&>{value};
+
+      sut = source;
+
+      SECTION("Underlying reference is rebound") {
+        REQUIRE(&next == &(*sut));
+      }
+    }
+  }
+  SECTION("expected contains an error") {
+    SECTION("other contains a value") {
+      auto next = derived{0};
+
+      const auto source = expected<derived&,int>{next};
+      auto sut = expected<base&,int>{make_unexpected(42)};
+
+      sut = source;
+
+      SECTION("Binds the new reference") {
+        REQUIRE(&next == &(*sut));
+      }
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::operator=(expected<T2,E2>&&)", "[assign]") {
+  SECTION("other's type holds T by-value") {
+    SECTION("Assignment is disabled") {
+      using source_type = expected<int,move_only<std::string>>;
+      using sut_type = expected<int&,move_only<std::string>>;
+
+      STATIC_REQUIRE_FALSE(std::is_assignable<sut_type, source_type&&>::value);
+    }
+  }
+  SECTION("expected contains a value") {
+    SECTION("other contains a value") {
+      auto value = derived{42};
+      auto next = derived{0};
+
+      auto source = expected<derived&,move_only<std::string>>{next};
+      auto sut = expected<base&,move_only<std::string>>{value};
+
+      sut = std::move(source);
+
+      SECTION("Underlying reference is rebound") {
+        REQUIRE(&next == &(*sut));
+      }
+    }
+  }
+  SECTION("expected contains an error") {
+    SECTION("other contains a value") {
+      auto next = derived{0};
+
+      auto source = expected<derived&,move_only<std::string>>{next};
+      auto sut = expected<base&,move_only<std::string>>{make_unexpected("foo")};
+
+      sut = std::move(source);
+
+      SECTION("Binds the new reference") {
+        REQUIRE(&next == &(*sut));
+      }
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::operator=(U&&)", "[assign]") {
+  SECTION("Source contains a value") {
+    auto value = int{42};
+    auto next = int{0};
+
+    auto sut = expected<int&>{value};
+
+    sut = next;
+
+    SECTION("Rebinds the referred-to value") {
+      REQUIRE(&next == &(*sut));
+    }
+  }
+  SECTION("Source contains an error") {
+    auto next = int{0};
+
+    auto sut = expected<int&,int>{
+      make_unexpected(42)
+    };
+
+    sut = next;
+
+    SECTION("Expected contains a value") {
+      REQUIRE(sut.has_value());
+    }
+    SECTION("Binds to the new reference") {
+      REQUIRE(&next == &(*sut));
+    }
+  }
+}
+
+//-----------------------------------------------------------------------------
+// Observers
+//-----------------------------------------------------------------------------
+
+TEST_CASE("expected<T&,E>::operator*() &", "[observers]") {
+  auto value = int{42};
+  auto sut = expected<int&,int>{value};
+
+  SECTION("Returns mutable lvalue reference") {
+    STATIC_REQUIRE(std::is_same<decltype(*sut),int&>::value);
+  }
+  SECTION("Returns reference to referred value") {
+    REQUIRE(&(*sut) == &value);
+  }
+}
+
+TEST_CASE("expected<T&,E>::operator*() const &", "[observers]") {
+  auto value = int{42};
+  const auto sut = expected<int&,int>{value};
+
+  SECTION("Returns lvalue reference that does not propagate constness") {
+    STATIC_REQUIRE(std::is_same<decltype(*sut),int&>::value);
+  }
+  SECTION("Returns reference to referred value") {
+    REQUIRE(&(*sut) == &value);
+  }
+}
+
+TEST_CASE("expected<T&,E>::operator*() &&", "[observers]") {
+  auto value = int{42};
+  auto sut = expected<int&,int>{value};
+
+  SECTION("Returns mutable lvalue reference") {
+    STATIC_REQUIRE(std::is_same<decltype(*std::move(sut)),int&>::value);
+  }
+  SECTION("Returns reference to referred value") {
+    int& x = (*std::move(sut));
+    REQUIRE(&x == &value);
+  }
+}
+
+TEST_CASE("expected<T&,E>::operator*() const &&", "[observers]") {
+  auto value = int{42};
+  const auto sut = expected<int&,int>{value};
+
+  SECTION("Returns mutable Lvalue reference that does not propagate constness") {
+    STATIC_REQUIRE(std::is_same<decltype(*std::move(sut)),int&>::value);
+  }
+  SECTION("Returns reference to referred value") {
+    const int& x = (*std::move(sut));
+    REQUIRE(&x == &value);
+  }
+}
+
+//-----------------------------------------------------------------------------
+
+TEST_CASE("expected<T&,E>::value() &", "[observers]") {
+  SECTION("expected contains a value") {
+    auto value = int{42};
+    auto sut = expected<int&,int>{value};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(sut.value());
+    }
+    SECTION("Returns mutable lvalue reference to internal storage") {
+      STATIC_REQUIRE(std::is_same<decltype(sut.value()),int&>::value);
+    }
+    SECTION("Refers to referenced value") {
+      int& x = sut.value();
+      REQUIRE(&value == &x);
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::value() const &", "[observers]") {
+  SECTION("expected contains a value") {
+    auto value = int{42};
+    const auto sut = expected<int&,int>{value};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(sut.value());
+    }
+    SECTION("Returns mutable lvalue that does not propagate constness") {
+      STATIC_REQUIRE(std::is_same<decltype(sut.value()),int&>::value);
+    }
+    SECTION("Refers to referenced value") {
+      int& x = sut.value();
+      REQUIRE(&value == &x);
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::value() &&", "[observers]") {
+  SECTION("expected contains a value") {
+    auto value = int{42};
+    auto sut = expected<int&,int>{value};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(std::move(sut).value());
+    }
+    SECTION("Returns mutable lvalue") {
+      STATIC_REQUIRE(std::is_same<decltype(std::move(sut).value()),int&>::value);
+    }
+    SECTION("Refers to referenced value") {
+      int& x = std::move(sut).value();
+      REQUIRE(&value == &x);
+    }
+  }
+}
+
+TEST_CASE("expected<T&,E>::value() const &&", "[observers]") {
+  SECTION("expected contains a value") {
+    auto value = int{42};
+    const auto sut = expected<int&,int>{value};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(std::move(sut).value());
+    }
+    SECTION("Returns mutable lvalue that does not propagate constness") {
+      STATIC_REQUIRE(std::is_same<decltype(std::move(sut).value()),int&>::value);
+    }
+    SECTION("Refers to referenced value") {
+      int& x = std::move(sut).value();
+      REQUIRE(&value == &x);
     }
   }
 }
