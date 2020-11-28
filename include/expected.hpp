@@ -861,6 +861,22 @@ namespace expect {
 
       template <typename Expected>
       auto assign_from_expected(Expected&& other) -> void;
+
+      //-----------------------------------------------------------------------
+
+      template <typename ReferenceWrapper>
+      auto construct_value_from_expected_impl(std::true_type, ReferenceWrapper&& reference)
+        noexcept -> void;
+
+      template <typename Value>
+      auto construct_value_from_expected_impl(std::false_type, Value&& value)
+        noexcept(std::is_nothrow_constructible<T,Value>::value) -> void;
+
+      template <typename Expected>
+      auto assign_value_from_expected_impl(std::true_type, Expected&& other) -> void;
+
+      template <typename Expected>
+      auto assign_value_from_expected_impl(std::false_type, Expected&& other) -> void;
     };
 
     //=========================================================================
@@ -3102,7 +3118,10 @@ auto expect::detail::expected_construct_base<T,E>::construct_from_expected(
 ) -> void
 {
   if (other.m_has_value) {
-    construct_value(detail::forward<Expected>(other).m_value);
+    construct_value_from_expected_impl(
+      std::is_lvalue_reference<T>{},
+      detail::forward<Expected>(other).m_value
+    );
   } else {
     construct_error(detail::forward<Expected>(other).m_error);
   }
@@ -3167,11 +3186,68 @@ auto expect::detail::expected_construct_base<T,E>::assign_from_expected(Expected
     base_type::destroy();
     construct_from_expected(detail::forward<Expected>(other));
   } else if (base_type::m_has_value) {
-    base_type::m_value = detail::forward<Expected>(other).m_value;
+    assign_value_from_expected_impl(
+      std::is_lvalue_reference<T>{},
+      detail::forward<Expected>(other)
+    );
   } else {
     base_type::m_error = detail::forward<Expected>(other).m_error;
   }
 }
+
+template <typename T, typename E>
+template <typename ReferenceWrapper>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::detail::expected_construct_base<T,E>::construct_value_from_expected_impl(
+  std::true_type,
+  ReferenceWrapper&& reference
+) noexcept -> void
+{
+  using value_type = typename base_type::underlying_value_type;
+
+  auto* p = static_cast<void*>(std::addressof(this->m_value));
+  new (p) value_type(reference.get());
+  this->m_has_value = true;
+}
+
+template <typename T, typename E>
+template <typename Value>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::detail::expected_construct_base<T,E>::construct_value_from_expected_impl(
+  std::false_type,
+  Value&& value
+) noexcept(std::is_nothrow_constructible<T,Value>::value) -> void
+{
+  using value_type = typename base_type::underlying_value_type;
+
+  auto* p = static_cast<void*>(std::addressof(this->m_value));
+  new (p) value_type(detail::forward<Value>(value));
+  this->m_has_value = true;
+}
+
+template <typename T, typename E>
+template <typename Expected>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::detail::expected_construct_base<T,E>::assign_value_from_expected_impl(
+  std::true_type,
+  Expected&& other
+) -> void
+{
+  // T is a reference; unwrap it
+  base_type::m_value = other.m_value.get();
+}
+
+template <typename T, typename E>
+template <typename Expected>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::detail::expected_construct_base<T,E>::assign_value_from_expected_impl(
+  std::false_type,
+  Expected&& other
+) -> void
+{
+  base_type::m_value = detail::forward<Expected>(other).m_value;
+}
+
 
 //=============================================================================
 // class : expected_trivial_copy_ctor_base_impl
