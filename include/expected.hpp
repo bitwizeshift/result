@@ -861,6 +861,22 @@ namespace expect {
 
       template <typename Expected>
       auto assign_from_expected(Expected&& other) -> void;
+
+      //-----------------------------------------------------------------------
+
+      template <typename ReferenceWrapper>
+      auto construct_value_from_expected_impl(std::true_type, ReferenceWrapper&& reference)
+        noexcept -> void;
+
+      template <typename Value>
+      auto construct_value_from_expected_impl(std::false_type, Value&& value)
+        noexcept(std::is_nothrow_constructible<T,Value>::value) -> void;
+
+      template <typename Expected>
+      auto assign_value_from_expected_impl(std::true_type, Expected&& other) -> void;
+
+      template <typename Expected>
+      auto assign_value_from_expected_impl(std::false_type, Expected&& other) -> void;
     };
 
     //=========================================================================
@@ -1068,7 +1084,7 @@ namespace expect {
     using expected_copy_assign_base = conditionally_nest_type<
       std::is_nothrow_copy_constructible<T>::value &&
       std::is_nothrow_copy_constructible<E>::value &&
-      std::is_copy_assignable<T>::value &&
+      std::is_copy_assignable<wrapped_expected_type<T>>::value &&
       std::is_copy_assignable<E>::value,
       disable_move_assignment<T,E>
     >;
@@ -1097,7 +1113,7 @@ namespace expect {
     using expected_move_assign_base = conditionally_nest_type<
       std::is_nothrow_move_constructible<T>::value &&
       std::is_nothrow_move_constructible<E>::value &&
-      std::is_move_assignable<T>::value &&
+      std::is_move_assignable<wrapped_expected_type<T>>::value &&
       std::is_move_assignable<E>::value,
       disable_copy_assignment<T,E>
     >;
@@ -1148,12 +1164,14 @@ namespace expect {
       std::is_constructible<T1, const T2&>::value &&
       std::is_constructible<E1, const E2&>::value
     )>;
+
     template <typename T1, typename E1, typename T2, typename E2>
     using expected_is_implicit_copy_convertible = std::integral_constant<bool,(
       expected_is_copy_convertible<T1,E1,T2,E2>::value &&
       std::is_convertible<const T2&, T1>::value &&
       std::is_convertible<const E2&, E1>::value
     )>;
+
     template <typename T1, typename E1, typename T2, typename E2>
     using expected_is_explicit_copy_convertible = std::integral_constant<bool,(
       expected_is_copy_convertible<T1,E1,T2,E2>::value &&
@@ -1169,12 +1187,14 @@ namespace expect {
       std::is_constructible<T1, T2&&>::value &&
       std::is_constructible<E1, E2&&>::value
     )>;
+
     template <typename T1, typename E1, typename T2, typename E2>
     using expected_is_implicit_move_convertible = std::integral_constant<bool,(
       expected_is_move_convertible<T1,E1,T2,E2>::value &&
       std::is_convertible<T2&&, T1>::value &&
       std::is_convertible<E2&&, E1>::value
     )>;
+
     template <typename T1, typename E1, typename T2, typename E2>
     using expected_is_explicit_move_convertible = std::integral_constant<bool,(
       expected_is_move_convertible<T1,E1,T2,E2>::value &&
@@ -1191,11 +1211,13 @@ namespace expect {
       !std::is_same<typename std::decay<U>::type, in_place_error_t>::value &&
       !is_expected<typename std::decay<U>::type>::value
     )>;
+
     template <typename T, typename U>
     using expected_is_explicit_value_convertible = std::integral_constant<bool,(
       expected_is_value_convertible<T, U>::value &&
       !std::is_convertible<U&&, T>::value
     )>;
+
     template <typename T, typename U>
     using expected_is_implicit_value_convertible = std::integral_constant<bool,(
       expected_is_value_convertible<T, U>::value &&
@@ -1206,35 +1228,37 @@ namespace expect {
 
     template <typename T1, typename E1, typename T2, typename E2>
     using expected_is_convert_assignable = std::integral_constant<bool,(
-      !expected_is_convertible<T1,E1,T2,E2>::value &&
+      expected_is_convertible<T1,E1,T2,E2>::value &&
 
-      !std::is_assignable<T1&, expected<T2,E2>&>::value &&
-      !std::is_assignable<T1&, const expected<T2,E2>&>::value &&
-      !std::is_assignable<T1&, expected<T2,E2>&&>::value &&
-      !std::is_assignable<T1&, const expected<T2,E2>&&>::value &&
+      std::is_assignable<T1&, expected<T2,E2>&>::value &&
+      std::is_assignable<T1&, const expected<T2,E2>&>::value &&
+      std::is_assignable<T1&, expected<T2,E2>&&>::value &&
+      std::is_assignable<T1&, const expected<T2,E2>&&>::value &&
 
-      !std::is_assignable<E1&, expected<T2,E2>&>::value &&
-      !std::is_assignable<E1&, const expected<T2,E2>&>::value &&
-      !std::is_assignable<E1&, expected<T2,E2>&&>::value &&
-      !std::is_assignable<E1&, const expected<T2,E2>&&>::value
+      std::is_assignable<E1&, expected<T2,E2>&>::value &&
+      std::is_assignable<E1&, const expected<T2,E2>&>::value &&
+      std::is_assignable<E1&, expected<T2,E2>&&>::value &&
+      std::is_assignable<E1&, const expected<T2,E2>&&>::value
     )>;
+
     template <typename T1, typename E1, typename T2, typename E2>
     using expected_is_copy_convert_assignable = std::integral_constant<bool,(
-      !expected_is_convertible<T1,E1,T2,E2>::value::value &&
+      !expected_is_convert_assignable<T1,E1,T2,E2>::value &&
 
       std::is_nothrow_constructible<T1, const T2&>::value &&
-      std::is_assignable<T1&, const T2&>::value &&
+      std::is_assignable<wrapped_expected_type<T1>&, const T2&>::value &&
       std::is_nothrow_constructible<E1, const E2&>::value &&
       std::is_assignable<E1&, const E2&>::value
     )>;
+
     template <typename T1, typename E1, typename T2, typename E2>
     using expected_is_move_convert_assignable = std::integral_constant<bool,(
-      !expected_is_convertible<T1,E1,T2,E2>::value::value &&
+      !expected_is_convert_assignable<T1,E1,T2,E2>::value &&
 
-      std::is_nothrow_constructible<T1, const T2&>::value &&
-      std::is_assignable<T1&, const T2&>::value &&
-      std::is_nothrow_constructible<E1, const E2&>::value &&
-      std::is_assignable<E1&, const E2&>::value
+      std::is_nothrow_constructible<T1, T2&&>::value &&
+      std::is_assignable<T1&, T2&&>::value &&
+      std::is_nothrow_constructible<E1, E2&&>::value &&
+      std::is_assignable<E1&, E2&&>::value
     )>;
 
     //-------------------------------------------------------------------------
@@ -1244,9 +1268,9 @@ namespace expect {
       !is_expected<typename std::decay<U>::type>::value &&
       !is_unexpected<typename std::decay<U>::type>::value &&
       std::is_nothrow_constructible<T,U>::value &&
-      std::is_assignable<T,U>::value &&
+      std::is_assignable<wrapped_expected_type<T>,U>::value &&
       (
-        !std::is_same<typename std::decay<U>::type,T>::value ||
+        !std::is_same<typename std::decay<U>::type,typename std::decay<T>::type>::value ||
         !std::is_scalar<T>::value
       )
     )>;
@@ -1276,7 +1300,7 @@ namespace expect {
     auto throw_bad_expected_access() -> void;
 
   } // namespace detail
-  
+
   /////////////////////////////////////////////////////////////////////////////
   /// \brief The class template `expected` manages expected results from APIs,
   ///        while encoding possible failure conditions.
@@ -1366,6 +1390,11 @@ namespace expect {
       !is_unexpected<typename std::decay<T>::type>::value,
       "It is ill-formed for T to be a (possibly CV-qualified) 'unexpected' type"
     );
+    static_assert(
+      !std::is_rvalue_reference<T>::value,
+      "It is ill-formed for T to be an rvalue 'expected type. "
+      "Only lvalue references are valid."
+    );
 
     static_assert(
       !std::is_abstract<E>::value,
@@ -1385,7 +1414,12 @@ namespace expect {
     );
     static_assert(
       !std::is_same<typename std::decay<E>::type, in_place_t>::value,
-      "It is ill-formed for T to be a (possibly CV-qualified) in_place_t type"
+      "It is ill-formed for E to be a (possibly CV-qualified) in_place_t type"
+    );
+    static_assert(
+      !std::is_reference<E>::value,
+      "It is ill-formed for E to be a reference type. "
+      "Only T types may be lvalue references"
     );
 
     // Friendship
@@ -1394,6 +1428,13 @@ namespace expect {
 
     template <typename T2, typename E2>
     friend class expected;
+
+    using underlying_value_type = typename std::remove_reference<T>::type;
+    using const_underlying_value_type = typename std::conditional<
+      std::is_lvalue_reference<T>::value,
+      underlying_value_type,
+      typename std::add_const<underlying_value_type>::type
+    >::type;
 
     //-------------------------------------------------------------------------
     // Public Member Types
@@ -1807,8 +1848,8 @@ namespace expect {
     /// \note The behavior is undefined if `*this` does not contain a value.
     ///
     /// \return a pointer to the contained value
-    EXPECTED_CPP14_CONSTEXPR auto operator->() noexcept -> value_type*;
-    constexpr auto operator->() const noexcept -> const value_type*;
+    EXPECTED_CPP14_CONSTEXPR auto operator->() noexcept -> underlying_value_type*;
+    constexpr auto operator->() const noexcept -> const_underlying_value_type*;
     /// \}
 
     /// \{
@@ -1817,11 +1858,17 @@ namespace expect {
     /// \note The behaviour is undefined if `*this` does not contain a value
     ///
     /// \return a reference to the contained value
-    EXPECTED_CPP14_CONSTEXPR auto operator*() & noexcept -> value_type&;
+    EXPECTED_CPP14_CONSTEXPR auto operator*() & noexcept -> underlying_value_type&;
+    template <typename U=T,
+              typename=typename std::enable_if<!std::is_lvalue_reference<U>::value>::type>
     EXPECTED_CPP14_CONSTEXPR auto operator*() && noexcept -> value_type&&;
-    constexpr auto operator*() const& noexcept -> const value_type&;
+    constexpr auto operator*() const& noexcept -> const_underlying_value_type&;
+    template <typename U=T,
+              typename=typename std::enable_if<!std::is_lvalue_reference<U>::value>::type>
     constexpr auto operator*() const&& noexcept -> const value_type&&;
     /// \}
+
+    //-------------------------------------------------------------------------
 
     /// \brief Checks whether `*this` contains a value
     ///
@@ -1849,17 +1896,13 @@ namespace expect {
     /// \throws bad_expected_access if `*this` does not contain a value.
     ///
     /// \return the value of `*this`
-    EXPECTED_CPP14_CONSTEXPR auto value() & -> value_type&;
+    EXPECTED_CPP14_CONSTEXPR auto value() & -> underlying_value_type&;
+    template <typename U=T,
+              typename=typename std::enable_if<!std::is_lvalue_reference<U>::value>::type>
     EXPECTED_CPP14_CONSTEXPR auto value() && -> value_type&&;
-    /// \}
-
-    /// \{
-    /// \brief Returns the contained value.
-    ///
-    /// \throws bad_optional_access if `*this` does not contain a value.
-    ///
-    /// \return the value of `*this`
-    constexpr auto value() const & -> const value_type&;
+    constexpr auto value() const & -> const_underlying_value_type&;
+    template <typename U=T,
+              typename=typename std::enable_if<!std::is_lvalue_reference<U>::value>::type>
     constexpr auto value() const && -> const value_type&&;
     /// \}
 
@@ -1888,9 +1931,9 @@ namespace expect {
     /// \param default_value the value to use in case `*this` contains an error
     /// \return the contained value or \p default_value
     template <typename U>
-    constexpr auto value_or(U&& default_value) const & -> value_type;
+    constexpr auto value_or(U&& default_value) const & -> underlying_value_type;
     template <typename U>
-    EXPECTED_CPP14_CONSTEXPR auto value_or(U&& default_value) && -> value_type;
+    EXPECTED_CPP14_CONSTEXPR auto value_or(U&& default_value) && -> underlying_value_type;
     /// \}
 
     /// \{
@@ -2010,9 +2053,9 @@ namespace expect {
       "It is ill-formed for E to be a (possibly CV-qualified) 'unexpected' type"
     );
     static_assert(
-      std::is_default_constructible<E>::value,
-      "E must be default-constructible in order to be retrieved as the "
-      "default unexpected state."
+      !std::is_reference<E>::value,
+      "It is ill-formed for E to be a reference type. "
+      "Only T types may be lvalue references"
     );
 
     // Friendship
@@ -3075,7 +3118,10 @@ auto expect::detail::expected_construct_base<T,E>::construct_from_expected(
 ) -> void
 {
   if (other.m_has_value) {
-    construct_value(detail::forward<Expected>(other).m_value);
+    construct_value_from_expected_impl(
+      std::is_lvalue_reference<T>{},
+      detail::forward<Expected>(other).m_value
+    );
   } else {
     construct_error(detail::forward<Expected>(other).m_error);
   }
@@ -3140,11 +3186,68 @@ auto expect::detail::expected_construct_base<T,E>::assign_from_expected(Expected
     base_type::destroy();
     construct_from_expected(detail::forward<Expected>(other));
   } else if (base_type::m_has_value) {
-    base_type::m_value = detail::forward<Expected>(other).m_value;
+    assign_value_from_expected_impl(
+      std::is_lvalue_reference<T>{},
+      detail::forward<Expected>(other)
+    );
   } else {
     base_type::m_error = detail::forward<Expected>(other).m_error;
   }
 }
+
+template <typename T, typename E>
+template <typename ReferenceWrapper>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::detail::expected_construct_base<T,E>::construct_value_from_expected_impl(
+  std::true_type,
+  ReferenceWrapper&& reference
+) noexcept -> void
+{
+  using value_type = typename base_type::underlying_value_type;
+
+  auto* p = static_cast<void*>(std::addressof(this->m_value));
+  new (p) value_type(reference.get());
+  this->m_has_value = true;
+}
+
+template <typename T, typename E>
+template <typename Value>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::detail::expected_construct_base<T,E>::construct_value_from_expected_impl(
+  std::false_type,
+  Value&& value
+) noexcept(std::is_nothrow_constructible<T,Value>::value) -> void
+{
+  using value_type = typename base_type::underlying_value_type;
+
+  auto* p = static_cast<void*>(std::addressof(this->m_value));
+  new (p) value_type(detail::forward<Value>(value));
+  this->m_has_value = true;
+}
+
+template <typename T, typename E>
+template <typename Expected>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::detail::expected_construct_base<T,E>::assign_value_from_expected_impl(
+  std::true_type,
+  Expected&& other
+) -> void
+{
+  // T is a reference; unwrap it
+  base_type::m_value = other.m_value.get();
+}
+
+template <typename T, typename E>
+template <typename Expected>
+inline EXPECTED_INLINE_VISIBILITY
+auto expect::detail::expected_construct_base<T,E>::assign_value_from_expected_impl(
+  std::false_type,
+  Expected&& other
+) -> void
+{
+  base_type::m_value = detail::forward<Expected>(other).m_value;
+}
+
 
 //=============================================================================
 // class : expected_trivial_copy_ctor_base_impl
@@ -3486,7 +3589,7 @@ auto expect::expected<T, E>::operator=(unexpected<E2>&& other)
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::operator->()
-  noexcept -> value_type*
+  noexcept -> underlying_value_type*
 {
   // Prior to C++17, std::addressof was not `constexpr`.
   // Since `addressof` fixes a relatively obscure issue where users define a
@@ -3502,7 +3605,7 @@ auto expect::expected<T, E>::operator->()
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::operator->()
-  const noexcept -> const value_type*
+  const noexcept -> const_underlying_value_type*
 {
 #if __cplusplus >= 201703L
   return &(**this);
@@ -3514,33 +3617,35 @@ auto expect::expected<T, E>::operator->()
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::operator*()
-  & noexcept -> value_type&
+  & noexcept -> underlying_value_type&
 {
-  return static_cast<T&>(m_storage.m_value);
+  return m_storage.m_value;
 }
 
 template <typename T, typename E>
+template <typename U, typename>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::operator*()
   && noexcept -> value_type&&
 {
-  return static_cast<T&&>(static_cast<T&>(m_storage.m_value));
+  return static_cast<T&&>(m_storage.m_value);
 }
 
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::operator*()
-  const& noexcept -> const value_type&
+  const& noexcept -> const_underlying_value_type&
 {
-  return static_cast<const T&>(m_storage.m_value);
+  return m_storage.m_value;
 }
 
 template <typename T, typename E>
+template <typename U, typename>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::operator*()
   const&& noexcept -> const value_type&&
 {
-  return static_cast<const T&&>(static_cast<const T&>(m_storage.m_value));
+  return static_cast<const T&&>(m_storage.m_value);
 }
 
 template <typename T, typename E>
@@ -3572,7 +3677,7 @@ auto expect::expected<T,E>::has_error()
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T,E>::value()
-  & -> value_type&
+  & -> underlying_value_type&
 {
   return (has_value() || (detail::throw_bad_expected_access(), false),
     m_storage.m_value
@@ -3580,21 +3685,20 @@ auto expect::expected<T,E>::value()
 }
 
 template <typename T, typename E>
+template <typename U, typename>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T,E>::value()
   && -> value_type&&
 {
-  using underlying = typename std::remove_reference<T>::type;
-
   return (has_value() || (detail::throw_bad_expected_access(), true),
-    static_cast<underlying&&>(static_cast<underlying&>(m_storage.m_value))
+    static_cast<value_type&&>(m_storage.m_value)
   );
 }
 
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T,E>::value()
-  const & -> const value_type&
+  const & -> const_underlying_value_type&
 {
   return (has_value() || (detail::throw_bad_expected_access(), true),
     m_storage.m_value
@@ -3602,14 +3706,13 @@ auto expect::expected<T,E>::value()
 }
 
 template <typename T, typename E>
+template <typename U, typename>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T,E>::value()
   const && -> const value_type&&
 {
-  using underlying = typename std::remove_reference<T>::type;
-
   return (has_value() || (detail::throw_bad_expected_access(), true),
-    static_cast<const underlying&&>(static_cast<const underlying&>(m_storage.m_value))
+    (static_cast<const value_type&&>(m_storage.m_value))
   );
 }
 
@@ -3657,7 +3760,7 @@ template <typename T, typename E>
 template <typename U>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<T, E>::value_or(U&& default_value)
-  const& -> value_type
+  const& -> underlying_value_type
 {
   return m_storage.m_has_value
     ? m_storage.m_value
@@ -3668,7 +3771,7 @@ template <typename T, typename E>
 template <typename U>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::value_or(U&& default_value)
-  && -> value_type
+  && -> underlying_value_type
 {
   return m_storage.m_has_value
     ? static_cast<T&&>(**this)
