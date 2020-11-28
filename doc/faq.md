@@ -71,6 +71,34 @@ Since this isn't the intended use of `expected`, these were omitted in favor of
 explicitly using assignment operators that require `noexcept` construction
 (see the above answer on assignment operators for more detail).
 
+#### Why is `expected<T&,E>` supported?
+
+The `expected` type is meant to propogate and support any case that a typical
+API supports, whether it be returning a value, returning `void`, or -- in this
+case -- returning references.
+
+The only alternatives to allow _failing_ to return an indirect type like this
+would be to use either:
+
+* `expected<std::reference_wrapper<T>,E>`, which is verbose, or
+* `expected<T*, E>`, which now requires the caller to check both the error-case
+  along with the `nullptr` case. This would also prevent the ability to use
+  `operator->` or `operator*` shorthands -- since the `value_type` is `T*`.
+
+The decision was made to make this as simple as possible so that practical
+code can be authored with minimal effort, such as:
+
+```cpp
+auto nothrow_at(const std::array<T,N>& arr, std::size_t n)
+  noexcept -> expected<T&,my_error>
+{
+  if (n >= N) {
+    return make_unexpected(my_error::out_of_range);
+  }
+  return arr[n];
+}
+```
+
 #### Why does `unexpected` allow reference error-types, but `expected` does not?
 
 The `expected` API will always either return the stored error object, or a
