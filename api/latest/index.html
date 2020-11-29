@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Expected: Expected</title>
+<title>Expected: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,28 +80,56 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Expected </div>  </div>
+<div class="title">Expected Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><code>expect</code> the <code>unexpected</code></h2>
-<p><b>Expected</b> is a light-weight error-handling mechanism that offers an alternative to exception handling.</p>
-<p>The implementation is based on a very simplified form of the <code>std::expected</code> proposal in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0323r9.html">P0323</a>, using modern C++17 features like <code>std::variant</code> to implement this.</p>
+<div class="textblock"><div class="image">
+<object type="image/svg+xml" data="https://github.com/bitwizeshift/expected/workflows/build/badge.svg" alt="Build Status"></object>
+</div>
+<p> <a href="http://github.com/bitwizeshift/expected/issues"></a> <a href="#tested-compilers"></a> <a href="https://bitwizeshift.github.io/expected/api/latest"></a> <a href="https://raw.githubusercontent.com/bitwizeshift/expected/master/LICENSE"></a> <a href="https://github.com/bitwizeshift/expected/releases"></a></p>
+<h1>Expected</h1>
+<p><b>Expected</b> is a simple and light-weight error-handling mechanism that offers a non-throwing alternative to conventional exception handling.</p>
+<div class="image">
+<img src="doc/src/images/banner.png" alt="Expect the unexpected"/>
+</div>
+<h2>Features</h2>
+<ul>
+<li>[x] Offers a coherent, light-weight alternative to exceptions</li>
+<li>[x] Compatible with <code>C++11</code> (with more features in <code>C++14</code> and <code>C++17</code>)</li>
+<li>[x] Single-header, <b>header-only</b> solution &ndash; easily drops into any project</li>
+<li>[x] Support for value-type, reference-type, and <code>void</code>-type values in <code>expected</code></li>
+<li>[x] Monadic composition functions like <code>map</code>, <code>flat_map</code>, and <code>map_error</code> for easy functional use</li>
+<li>[x] <a href="test/src/expected.test.cpp">Comprehensively unit tested</a> for both static behavior and runtime validation</li>
+</ul>
+<p>For more details and examples on what is available in <b>Expected</b>, please check out the tutorial section.</p>
 <h2>Table of Contents</h2>
 <ul>
-<li><a href="#rationale">Rationale</a> \ A brief rational for what problem this intends to solve</li>
-<li><a href="#features">Features</a> \ A summary of all existing features in <b>Expected</b></li>
-<li><a href="https://bitwizeshift.github.io/expected/api/latest/manual.html">API Reference</a> \ For doxygen-generated API information</li>
+<li><a href="#background">Background</a> \ A background on the problem <b>Expected</b> solves</li>
+<li>Tutorial \ Some simple references of how to use <b>Expected</b></li>
+<li><a href="https://bitwizeshift.github.io/expected/api/latest/">API Reference</a> \ For doxygen-generated API information</li>
 <li>Legal \ Information about how to attribute this project</li>
 <li>How to install \ For a quick guide on how to install/use this in other projects</li>
 <li>FAQ \ A list of frequently asked questions</li>
 <li>.github/CONTRIBUTING.md "Contributing Guidelines" \ Guidelines that must be followed in order to contribute to <b>Expected</b></li>
 </ul>
-<h2>Rationale</h2>
-<p>Error cases in C++ are often difficult to discern from the API. Any function not marked <code>noexcept</code> can be assumed to throw an exception, but what kind of exception, and if it even derives from <code>std::exception</code> is unclear. The best way of determining this is from documentation which can easily fall out of date.</p>
-<p>Having an <code>expected&lt;T, E&gt;</code> type on your API not only semantically encodes that a function is <em>able to</em> fail, it also indicates to the caller <em>how</em> the function may fail, and what discrete, testable conditions may cause it to fail.</p>
-<h2>Features</h2>
-<p><b>TODO</b></p>
-<h2><a class="anchor" id="license"></a>License</h2>
+<h2>Background</h2>
+<p>Error cases in C++ are often difficult to discern from the API. Any function not marked <code>noexcept</code> can be assumed to throw an exception, but the exact <em>type</em> of exception, and if it even derives from <code>std::exception</code>, is ambiguous. Nothing in the language forces which exceptions may propagate from an API, which can make dealing with such APIs complicated.</p>
+<p>Often it is more desirable to achieve <code>noexcept</code> functions where possible, since this allows for better optimizations in containers (e.g. optimal moves/swaps) and less cognitive load on consumers.</p>
+<p>Having an <code>expected&lt;T, E&gt;</code> type on your API not only semantically encodes that a function is <em>able to</em> fail, it also indicates to the caller <em>how</em> the function may fail, and what discrete, testable conditions may cause it to fail &ndash; which is what this library intends to solve.</p>
+<p>As a simple example, compare these two identical functions:</p>
+<div class="fragment"><div class="line"><span class="comment">// (1)</span></div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) -&gt; std::uint32_t;</div><div class="line"></div><div class="line"><span class="comment">// (2)</span></div><div class="line"><span class="keyword">enum class</span> parse_error { overflow=1, underflow=2, bad_input=3};</div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) noexcept -&gt; expected&lt;std::uint32_t,parse_error&gt;;</div></div><!-- fragment --><p>In <code>(1)</code>, it is ambiguous <em>what</em> (if anything) this function may throw on failure, or how this error case may be accounted for.</p>
+<p>In <code>(2)</code>, on the other hand, it is explicit that <code>to_uint32</code> <em>cannot</em> throw &ndash; so there is no need for a <code>catch</code> handler. It's also clear that it may fail for whatever reasons are in <code>parse_error</code>, which discretely enumerates any possible case for failure.</p>
+<h3>Deviations from <code>std::expected</code> proposals</h3>
+<p>Although this library is heavily based on the <code>std::expected</code> proposal, it's important to be aware that this handles a few things differently from what is described in <code>P0323</code>. These deviations are outline below</p>
+<ol type="1">
+<li>This does not implement <code>emplace</code> functions, since this functionality is seen as orthogonal to the goals of <code>expected</code>, which should not be to arbitrarily be an <code>either&lt;T,E&gt;</code> type</li>
+<li><code>expected</code> has been given support for reference <code>T</code> types, so that this may behave as a consistent vocabulary type for error-handling</li>
+<li><code>unexpected</code> has been given support for reference <code>E</code> types, in order to avoid expensive construction of objects only used for comparisons</li>
+<li>Assignment operators are only enabled if the corresponding constructors are marked <code>noexcept</code>. This deviates from <code>std::expected</code>'s proposal of introducing an intermediate object to hold the type during assignment.</li>
+<li>Rather than allowing direct referential access to the underlying error, <code>expected::error()</code> <em>always</em> returns a value that acts as the result's status. The defaut-constructed state of <code>E</code> is always considered the "good" state (e.g. <code>std::error_code{}</code>, <code>std::errc{}</code>, etc). This reduces the number of cases where this API may throw an exception to just <code>value()</code></li>
+<li>Rather than using <code>unexpect_t</code> to denote in-place construction of errors, this library uses <code>in_place_error_t</code>. This is done to prevent having 3 types that all sound similar (<code>expected</code>, <code>unexpected</code>, <code>unexpect_t</code>)</li>
+</ol>
+<h2>License</h2>
 <div class="image">
 <img src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png" align="right"/>
 </div>
@@ -110,8 +138,12 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>Copyright &copy; 2017 Matthew Rodusek</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </p>
 </blockquote>
+<h2>References</h2>
+<ul>
+<li><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0323r9.html">P0323R9</a>: <code>std::expected</code> proposal was used as an inspiration for the general template structure </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
  <!-- start footer part -->
