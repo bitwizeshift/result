@@ -339,6 +339,20 @@ auto consumer_exp = internal_exp.map_error(to_external_error);
 // (consumer-facing) error-code
 ```
 
+A practical example of this composition is chaining a conversion of a
+`string` into an integral value, mapping that value to an enum and converting
+the parse-error to a user-facing error:
+
+```cpp
+auto try_to_uint8(const std::string&) noexcept -> expected<std::uint8_t,parse_error>;
+auto to_client_code(std::uint8_t) noexcept -> client_code;
+auto to_user_error(parse_error) noexcept -> user_error;
+
+// Example composition:
+
+auto result = try_to_uint8(str).map(to_client_code).map_error(to_user_error);
+```
+
 ### Type-erasure with `expected<void,E>`
 
 The `expected<void,E>` specialization is constructible from any `expected<T,E2>`
