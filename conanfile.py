@@ -7,7 +7,7 @@ class ExpectedConan(ConanFile):
     # Package Info
     name = "Expected"
     version = "0.0.1"
-    description = "Expect the unexpected"
+    description = " A lightweight C++11-compatible error-handling mechanism"
     url = "https://github.com/bitwizeshift/Expected"
     author = "Matthew Rodusek <matthew.rodusek@gmail.com>"
     license = "MIT"
@@ -17,7 +17,8 @@ class ExpectedConan(ConanFile):
     exports_sources = ( "CMakeLists.txt",
                         "cmake/*",
                         "include/*",
-                        "LICENSE" )
+                        "test/*",
+                        "LICENSE")
 
     # Settings
     options = {}
@@ -27,26 +28,18 @@ class ExpectedConan(ConanFile):
     # Dependencies
     build_requires = ("Catch2/2.7.1@catchorg/stable")
 
-
-    def configure_cmake(self):
-        cmake = CMake(self)
-
-        cmake.configure()
-        return cmake
-
-
-    def build(self):
-        cmake = self.configure_cmake()
-        cmake.build()
-        # cmake.test()
-
-
     def package(self):
-        cmake = self.configure_cmake()
+        cmake = CMake(self)
+        cmake.definitions["EXPECTED_COMPILE_UNIT_TESTS"] = "ON"
+        cmake.configure()
+
+        # Compile and run the unit tests
+        cmake.build()
+        cmake.build(target="test")
+
         cmake.install()
 
         self.copy(pattern="LICENSE", dst="licenses")
-
 
     def package_id(self):
         self.info.header_only()
