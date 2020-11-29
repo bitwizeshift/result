@@ -10,6 +10,7 @@
 **Expected** is a simple and light-weight error-handling mechanism that offers
 a non-throwing alternative to conventional exception handling.
 
+![Expect the unexpected](doc/src/images/banner.png)
 
 ## Features
 
