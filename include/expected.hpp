@@ -29,8 +29,8 @@
   SOFTWARE.
 */
 
-#ifndef MSL_EXPECTED_HPP
-#define MSL_EXPECTED_HPP
+#ifndef EXPECTED_EXPECTED_HPP
+#define EXPECTED_EXPECTED_HPP
 
 #if __cplusplus >= 201402L
 # define EXPECTED_CPP14_CONSTEXPR constexpr
@@ -4673,4 +4673,4 @@ auto expect::swap(expected<void,E>& lhs, expected<void,E>& rhs)
   }
 }
 
-#endif /* MSL_EXPECTED_HPP */
+#endif /* EXPECTED_EXPECTED_HPP */
