@@ -3,6 +3,7 @@ find_package(Catch2 REQUIRED)
 set(source_files
   src/main.cpp
   src/expected.test.cpp
+  src/expected.constexpr.test.cpp
   src/unexpected.test.cpp
 )
 
