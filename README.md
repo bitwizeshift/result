@@ -1,9 +1,11 @@
-![Build Status](https://github.com/bitwizeshift/expected/workflows/build/badge.svg)
+[![Build Status](https://github.com/bitwizeshift/expected/workflows/build/badge.svg)](https://github.com/bitwizeshift/expected/actions)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e163a49b3b2e4f1e953c32b7cbbb2f28)](https://www.codacy.com/gh/bitwizeshift/expected/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bitwizeshift/expected&amp;utm_campaign=Badge_Grade)
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/expected.svg)](http://github.com/bitwizeshift/expected/issues)
 [![Tested Compilers](https://img.shields.io/badge/compilers-gcc%20%7C%20clang%20%7C%20msvc-blue.svg)](#tested-compilers)
 [![Documentation](https://img.shields.io/badge/docs-doxygen-blue.svg)](https://bitwizeshift.github.io/expected/api/latest)
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/bitwizeshift/expected/master/LICENSE)
 [![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/expected.svg?include_prereleases)](https://github.com/bitwizeshift/expected/releases)
+[![Bintray Releases](https://api.bintray.com/packages/bitwizeshift/Expected/Expected%3Aexpected/images/download.svg)](https://bintray.com/bitwizeshift/Expected/Expected%3Aexpected/_latestVersion)
 
 # Expected
 
