@@ -1443,6 +1443,10 @@ namespace expect {
 
     using value_type = T; ///< The value type of this expected
     using error_type = E; ///< The error type of this expected
+    using unexpected_type = unexpected<E>; ///< The unexpected type
+
+    template <typename U>
+    using rebind = expected<U,E>; ///< Rebinds the expected type
 
     //-------------------------------------------------------------------------
     // Constructor / Destructor / Assignment
@@ -2072,6 +2076,10 @@ namespace expect {
 
     using value_type = void; ///< The value type of this expected
     using error_type = E;    ///< The error type of this expected
+    using unexpected_type = unexpected<E>; ///< The unexpected type
+
+    template <typename U>
+    using rebind = expected<U,E>; ///< Rebinds the expected type
 
     //-------------------------------------------------------------------------
     // Constructor / Assignment
