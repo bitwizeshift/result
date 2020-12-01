@@ -9,7 +9,7 @@ set(EXPECTED_CMAKE_TEMPLATE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/templates")
 
 set(CMAKE_MODULE_PATH "${EXPECTED_CMAKE_MODULE_PATH}" "${CMAKE_MODULE_PATH}")
 
-option(EXPECTED_COMPILE_UNIT_TESTS "Compile and run the unit tests for this library" ON)
+option(EXPECTED_COMPILE_UNIT_TESTS "Compile and run the unit tests for this library" OFF)
 
 if (NOT CMAKE_TESTING_ENABLED AND EXPECTED_COMPILE_UNIT_TESTS)
   enable_testing()

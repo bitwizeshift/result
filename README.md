@@ -1,9 +1,11 @@
 [![Build Status](https://github.com/bitwizeshift/expected/workflows/build/badge.svg)](https://github.com/bitwizeshift/expected/actions)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e163a49b3b2e4f1e953c32b7cbbb2f28)](https://www.codacy.com/gh/bitwizeshift/expected/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bitwizeshift/expected&amp;utm_campaign=Badge_Grade)
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/expected.svg)](http://github.com/bitwizeshift/expected/issues)
+<br>
 [![Tested Compilers](https://img.shields.io/badge/compilers-gcc%20%7C%20clang%20%7C%20msvc-blue.svg)](#tested-compilers)
-[![Documentation](https://img.shields.io/badge/docs-doxygen-blue.svg)](https://bitwizeshift.github.io/expected/api/latest)
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/bitwizeshift/expected/master/LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-doxygen-blue.svg)](https://bitwizeshift.github.io/expected/api/latest)
+<br>
 [![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/expected.svg?include_prereleases)](https://github.com/bitwizeshift/expected/releases)
 [![Bintray Releases](https://api.bintray.com/packages/bitwizeshift/Expected/Expected%3Aexpected/images/download.svg)](https://bintray.com/bitwizeshift/Expected/Expected%3Aexpected/_latestVersion)
 
@@ -19,6 +21,7 @@ a non-throwing alternative to conventional exception handling.
 * [x] Offers a coherent, light-weight alternative to exceptions
 * [x] Compatible with <kbd>C++11</kbd> (with more features in <kbd>C++14</kbd> and <kbd>C++17</kbd>)
 * [x] Single-header, **header-only** solution -- easily drops into any project
+* [x] No dependencies
 * [x] Support for value-type, reference-type, and `void`-type values in `expected`
 * [x] Monadic composition functions like `map`, `flat_map`, and `map_error` for
       easy functional use
@@ -110,6 +113,37 @@ described in `P0323`. These deviations are outline below
 6. Rather than using `unexpect_t` to denote in-place construction of errors,
    this library uses `in_place_error_t`. This is done to prevent having 3 types
    that all sound similar (`expected`, `unexpected`, `unexpect_t`)
+
+## Building the Unit Tests
+
+Building the unit tests are not necessary to use this project. However, if
+you want to contribute to the project or simply test it yourself, you will need
+the following installed:
+
+* [CMake](https://cmake.org): Used for configuring/building the project
+* [Catch2](https://github.com/catchorg/Catch2): the unit-test library
+
+Additionally, you will need to toggle the `EXPECTED_COMPILE_UNIT_TESTS` option
+during cmake configuration to ensure that unit tests configure and build.
+
+The easiest way to install Catch2 is using the [`conan`](https://conan.io/index.html)
+package manager and installing with `conan install <path to conanfile>` from your
+build directory.
+
+A complete example of configuring, compiling, and running the tests:
+
+```sh
+# Make the build directory and enter it
+mkdir build && cd build
+# Install Catch with conan (optional)
+conan install ..
+# Configure the project
+cmake .. -DEXPECTED_COMPILE_UNIT_TESTS=On
+# Build everything
+cmake --build .
+# run the tests
+cmake --build . --target test
+```
 
 ## License
 
