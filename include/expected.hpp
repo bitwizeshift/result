@@ -294,14 +294,14 @@ namespace expect {
   /// \brief An exception thrown when expected::value is accessed without
   ///        a contained value
   /////////////////////////////////////////////////////////////////////////////
-  class bad_expected_access : public std::exception
+  class bad_expected_access : public std::logic_error
   {
     //-------------------------------------------------------------------------
     // Constructor / Assignment
     //-------------------------------------------------------------------------
   public:
 
-    bad_expected_access() = default;
+    bad_expected_access();
     bad_expected_access(const bad_expected_access& other) = default;
     bad_expected_access(bad_expected_access&& other) = default;
 
@@ -309,13 +309,6 @@ namespace expect {
 
     auto operator=(const bad_expected_access& other) -> bad_expected_access& = default;
     auto operator=(bad_expected_access&& other) -> bad_expected_access& = default;
-
-    //-------------------------------------------------------------------------
-    // Observers
-    //-------------------------------------------------------------------------
-  public:
-
-    auto what() const noexcept -> const char* override;
   };
 
 #endif
@@ -2649,21 +2642,21 @@ namespace std {
 
 } // namespace std
 
+#if !defined(EXPECTED_DISABLE_EXCEPTIONS)
+
 //=============================================================================
 // class : bad_expected_access
 //=============================================================================
 
 //-----------------------------------------------------------------------------
-// Observers
+// Constructors
 //-----------------------------------------------------------------------------
 
-#if !defined(EXPECTED_DISABLE_EXCEPTIONS)
-
-inline
-auto expect::bad_expected_access::what()
-  const noexcept -> const char*
+inline EXPECTED_INLINE_VISIBILITY
+expect::bad_expected_access::bad_expected_access()
+  : logic_error{"bad_expected_access"}
 {
-  return "bad_expected_access";
+
 }
 
 #endif
