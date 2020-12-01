@@ -14,32 +14,6 @@ support enables better metaprogramming composition, where a function template
 may arbitrarily call a fallible function without needing to branch on the
 type result.
 
-#### Why is `expected::flat_map_error` absent?
-
-`expected::flat_map` exists to allow for monadic chaining of fallible functions,
-piping the input of one possibly-failing result into another that may fail based
-on that input.
-
-`expected::map_error` was added to allow converting internal error-code types to
-external-facing types, so that users may simply map public and private error
-codes in a simple way. An equivalent `flat_map_error` does not have as much
-utility, since mapping of error codes should not have any coherent reason for
-it to fail in a way that benefits returning an expected.
-
-Whereas
-
-```cpp
-expected<int,E> from_string(int)
-```
-
-makes sense, an
-
-```cpp
-expected<int,E2> from_error(E1)
-```
-
-doesn't make sense -- and was thus not included as part of the monadic API.
-
 #### Why does assignment require `noexcept` constructors?
 
 The `expected` type is meant to uphold an invariant of _always containing state_.
