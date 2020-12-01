@@ -1973,7 +1973,7 @@ namespace expect {
     template <typename Fn>
     constexpr auto flat_map(Fn&& fn) const & -> detail::invoke_result_t<Fn, const T&>;
     template <typename Fn>
-    EXPECTED_CPP14_CONSTEXPR auto flat_map(Fn&& fn) && -> detail::invoke_result_t<Fn, const T&>;
+    EXPECTED_CPP14_CONSTEXPR auto flat_map(Fn&& fn) && -> detail::invoke_result_t<Fn, T&&>;
     /// \}
 
     /// \{
@@ -1992,7 +1992,7 @@ namespace expect {
     template <typename Fn>
     constexpr auto map(Fn&& fn) const & -> expected<detail::invoke_result_t<Fn,const T&>,E>;
     template <typename Fn>
-    EXPECTED_CPP14_CONSTEXPR auto map(Fn&& fn) && -> expected<detail::invoke_result_t<Fn,const T&>,E>;
+    EXPECTED_CPP14_CONSTEXPR auto map(Fn&& fn) && -> expected<detail::invoke_result_t<Fn,T&&>,E>;
     /// \}
 
     /// \{
@@ -2012,7 +2012,7 @@ namespace expect {
     constexpr auto map_error(Fn&& fn) const & -> expected<T, detail::invoke_result_t<Fn,const E&>>;
     template <typename Fn>
     EXPECTED_CPP14_CONSTEXPR
-    auto map_error(Fn&& fn) && -> expected<T, detail::invoke_result_t<Fn,const E&>>;
+    auto map_error(Fn&& fn) && -> expected<T, detail::invoke_result_t<Fn,E&&>>;
     /// \}
 
     //-------------------------------------------------------------------------
@@ -2420,6 +2420,7 @@ namespace expect {
     EXPECTED_CPP14_CONSTEXPR auto map(Fn&& fn) && -> expected<detail::invoke_result_t<Fn>,E>;
     /// \}
 
+    /// \{
     /// \brief Invokes the function \p fn with the error of this expected as
     ///        the argument
     ///
@@ -2430,7 +2431,11 @@ namespace expect {
     /// \param fn the function to invoke with this
     /// \return The expected result of the function invoked
     template <typename Fn>
-    constexpr auto map_error(Fn&& fn) const -> expected<void, detail::invoke_result_t<Fn,const E&>>;
+    constexpr auto map_error(Fn&& fn) const & -> expected<void, detail::invoke_result_t<Fn,const E&>>;
+    template <typename Fn>
+    EXPECTED_CPP14_CONSTEXPR
+    auto map_error(Fn&& fn) && -> expected<void, detail::invoke_result_t<Fn,E&&>>;
+    /// \}
 
     //-------------------------------------------------------------------------
     // Private Members
@@ -3826,7 +3831,7 @@ auto expect::expected<T, E>::flat_map(Fn&& fn)
   );
 
   return has_value()
-    ? detail::invoke(detail::forward<Fn>(fn), **this)
+    ? detail::invoke(detail::forward<Fn>(fn), m_storage.m_value)
     : result_type(in_place_error, m_storage.m_error);
 }
 
@@ -3834,9 +3839,9 @@ template <typename T, typename E>
 template <typename Fn>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::flat_map(Fn&& fn)
-  && -> detail::invoke_result_t<Fn, const T&>
+  && -> detail::invoke_result_t<Fn, T&&>
 {
-  using result_type = detail::invoke_result_t<Fn, const T&>;
+  using result_type = detail::invoke_result_t<Fn, T&&>;
 
   static_assert(
     is_expected<result_type>::value,
@@ -3844,7 +3849,7 @@ auto expect::expected<T, E>::flat_map(Fn&& fn)
   );
 
   return has_value()
-    ? detail::invoke(detail::forward<Fn>(fn), **this)
+    ? detail::invoke(detail::forward<Fn>(fn), static_cast<T&&>(m_storage.m_value))
     : result_type(in_place_error, static_cast<E&&>(m_storage.m_error));
 }
 
@@ -3863,7 +3868,9 @@ auto expect::expected<T, E>::map(Fn&& fn)
   );
 
   return has_value()
-    ? expected_type(detail::invoke(detail::forward<Fn>(fn), m_storage.m_value))
+    ? expected_type(in_place, detail::invoke(
+      detail::forward<Fn>(fn), m_storage.m_value
+    ))
     : expected_type(in_place_error, m_storage.m_error);
 }
 
@@ -3871,9 +3878,9 @@ template <typename T, typename E>
 template <typename Fn>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::map(Fn&& fn)
-  && -> expected<detail::invoke_result_t<Fn,const T&>,E>
+  && -> expected<detail::invoke_result_t<Fn,T&&>,E>
 {
-  using result_type = detail::invoke_result_t<Fn,const T&>;
+  using result_type = detail::invoke_result_t<Fn,T&&>;
   using expected_type = expected<result_type, E>;
 
   static_assert(
@@ -3882,7 +3889,9 @@ auto expect::expected<T, E>::map(Fn&& fn)
   );
 
   return has_value()
-    ? expected_type(detail::invoke(detail::forward<Fn>(fn), **this))
+    ? expected_type(in_place, detail::invoke(
+      detail::forward<Fn>(fn), static_cast<T&&>(m_storage.m_value)
+    ))
     : expected_type(in_place_error, static_cast<E&&>(m_storage.m_error));
 }
 
@@ -3895,21 +3904,25 @@ auto expect::expected<T, E>::map_error(Fn&& fn)
   using result_type = expected<T, detail::invoke_result_t<Fn, const E&>>;
 
   return has_error()
-    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), m_storage.m_error))
-    : result_type(**this);
+    ? result_type(in_place_error, detail::invoke(
+      detail::forward<Fn>(fn), m_storage.m_error
+    ))
+    : result_type(in_place, m_storage.m_value);
 }
 
 template <typename T, typename E>
 template <typename Fn>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::expected<T, E>::map_error(Fn&& fn)
-  && -> expected<T, detail::invoke_result_t<Fn,const E&>>
+  && -> expected<T, detail::invoke_result_t<Fn,E&&>>
 {
-  using result_type = expected<T, detail::invoke_result_t<Fn, const E&>>;
+  using result_type = expected<T, detail::invoke_result_t<Fn, E&&>>;
 
   return has_error()
-    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), m_storage.m_error))
-    : result_type(static_cast<T&&>(**this));
+    ? result_type(in_place_error, detail::invoke(
+      detail::forward<Fn>(fn), static_cast<E&&>(m_storage.m_error)
+    ))
+    : result_type(static_cast<T&&>(m_storage.m_value));
 }
 
 //=============================================================================
@@ -4222,13 +4235,30 @@ template <typename E>
 template <typename Fn>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::expected<void, E>::map_error(Fn&& fn)
-  const -> expected<void, detail::invoke_result_t<Fn,const E&>>
+  const & -> expected<void, detail::invoke_result_t<Fn,const E&>>
 {
   using result_type = expected<void, detail::invoke_result_t<Fn, const E&>>;
 
-  return has_error()
-    ? result_type(in_place_error, detail::invoke(detail::forward<Fn>(fn), m_storage.m_error))
-    : result_type{};
+  return has_value()
+    ? result_type{}
+    : result_type(in_place_error, detail::invoke(
+      detail::forward<Fn>(fn), m_storage.m_error
+    ));
+}
+
+template <typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
+auto expect::expected<void, E>::map_error(Fn&& fn)
+  && -> expected<void, detail::invoke_result_t<Fn,E&&>>
+{
+  using result_type = expected<void, detail::invoke_result_t<Fn, E&&>>;
+
+  return has_value()
+    ? result_type{}
+    : result_type(in_place_error,
+      detail::invoke(detail::forward<Fn>(fn), static_cast<E&&>(m_storage.m_error)
+    ));
 }
 
 //=============================================================================
