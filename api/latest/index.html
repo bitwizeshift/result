@@ -83,7 +83,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">Expected Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a href="https://github.com/bitwizeshift/expected/actions"></a> <a href="https://www.codacy.com/gh/bitwizeshift/expected/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=bitwizeshift/expected&amp;amp;utm_campaign=Badge_Grade"></a> <a href="http://github.com/bitwizeshift/expected/issues"></a> <a href="#tested-compilers"></a> <a href="https://bitwizeshift.github.io/expected/api/latest"></a> <a href="https://raw.githubusercontent.com/bitwizeshift/expected/master/LICENSE"></a> <a href="https://github.com/bitwizeshift/expected/releases"></a> <a href="https://bintray.com/bitwizeshift/Expected/Expected%3Aexpected/_latestVersion"></a></p>
+<div class="textblock"><p><a href="https://github.com/bitwizeshift/expected/actions"></a> <a href="https://www.codacy.com/gh/bitwizeshift/expected/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=bitwizeshift/expected&amp;amp;utm_campaign=Badge_Grade"></a> <a href="http://github.com/bitwizeshift/expected/issues"></a> <br />
+ <a href="#tested-compilers"></a> <a href="https://raw.githubusercontent.com/bitwizeshift/expected/master/LICENSE"></a> <a href="https://bitwizeshift.github.io/expected/api/latest"></a> <br />
+ <a href="https://github.com/bitwizeshift/expected/releases"></a> <a href="https://bintray.com/bitwizeshift/Expected/Expected%3Aexpected/_latestVersion"></a></p>
 <h1>Expected</h1>
 <p><b>Expected</b> is a simple and light-weight error-handling mechanism that offers a non-throwing alternative to conventional exception handling.</p>
 <div class="image">
@@ -94,6 +96,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>[x] Offers a coherent, light-weight alternative to exceptions</li>
 <li>[x] Compatible with <code>C++11</code> (with more features in <code>C++14</code> and <code>C++17</code>)</li>
 <li>[x] Single-header, <b>header-only</b> solution &ndash; easily drops into any project</li>
+<li>[x] No dependencies</li>
 <li>[x] Support for value-type, reference-type, and <code>void</code>-type values in <code>expected</code></li>
 <li>[x] Monadic composition functions like <code>map</code>, <code>flat_map</code>, and <code>map_error</code> for easy functional use</li>
 <li>[x] <a href="test/src/expected.test.cpp">Comprehensively unit tested</a> for both static behavior and runtime validation</li>
@@ -126,7 +129,16 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>Rather than allowing direct referential access to the underlying error, <code>expected::error()</code> <em>always</em> returns a value that acts as the result's status. The defaut-constructed state of <code>E</code> is always considered the "good" state (e.g. <code>std::error_code{}</code>, <code>std::errc{}</code>, etc). This reduces the number of cases where this API may throw an exception to just <code>value()</code></li>
 <li>Rather than using <code>unexpect_t</code> to denote in-place construction of errors, this library uses <code>in_place_error_t</code>. This is done to prevent having 3 types that all sound similar (<code>expected</code>, <code>unexpected</code>, <code>unexpect_t</code>)</li>
 </ol>
-<h2>License</h2>
+<h2>Building the Unit Tests</h2>
+<p>Building the unit tests are not necessary to use this project. However, if you want to contribute to the project or simply test it yourself, you will need the following installed:</p>
+<ul>
+<li><a href="https://cmake.org">CMake</a>: Used for configuring/building the project</li>
+<li><a href="https://github.com/catchorg/Catch2">Catch2</a>: the unit-test library</li>
+</ul>
+<p>Additionally, you will need to toggle the <code>EXPECTED_COMPILE_UNIT_TESTS</code> option during cmake configuration to ensure that unit tests configure and build.</p>
+<p>The easiest way to install Catch2 is using the <a href="https://conan.io/index.html"><code>conan</code></a> package manager and installing with <code>conan install &lt;path to conanfile&gt;</code> from your build directory.</p>
+<p>A complete example of configuring, compiling, and running the tests:</p>
+<div class="fragment"><div class="line"># Make the build directory and enter it</div><div class="line">mkdir build &amp;&amp; cd build</div><div class="line"># Install Catch with conan (optional)</div><div class="line">conan install ..</div><div class="line"># Configure the project</div><div class="line">cmake .. -DEXPECTED_COMPILE_UNIT_TESTS=On</div><div class="line"># Build everything</div><div class="line">cmake --build .</div><div class="line"># run the tests</div><div class="line">cmake --build . --target test</div></div><!-- fragment --><h2>License</h2>
 <div class="image">
 <img src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png" align="right"/>
 </div>
