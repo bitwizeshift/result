@@ -204,10 +204,31 @@ namespace expect {
       return expect::detail::forward<F>(f)(expect::detail::forward<Args>(args)...);
     }
 
-    template <typename Fn, typename...Args>
-    struct invoke_result {
+    template<typename Fn, typename...Args>
+    struct is_invocable
+    {
+      template <typename Fn2, typename...Args2>
+      static auto test( Fn2&&, Args2&&... )
+        -> decltype(invoke(std::declval<Fn2>(), std::declval<Args2>()...), std::true_type{});
+
+      static auto test(...)
+        -> std::false_type;
+
+      using type = decltype(test(std::declval<Fn>(), std::declval<Args>()...));
+      static constexpr bool value = type::value;
+    };
+
+    template <bool B, typename Fn, typename...Args>
+    struct invoke_result_impl {
       using type = decltype(expect::detail::invoke(std::declval<Fn>(), std::declval<Args>()...));
     };
+    template <typename Fn, typename...Args>
+    struct invoke_result_impl<false, Fn, Args...>{};
+
+    template <typename Fn, typename...Args>
+    struct invoke_result
+      : invoke_result_impl<is_invocable<Fn,Args...>::value, Fn, Args...>{};
+
     template <typename Fn, typename...Args>
     using invoke_result_t = typename invoke_result<Fn, Args...>::type;
 #endif
