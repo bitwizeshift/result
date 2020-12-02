@@ -12,6 +12,7 @@ var menudata={children:[
 {text:"h",url:"functions.html#index_h"},
 {text:"m",url:"functions.html#index_m"},
 {text:"o",url:"functions.html#index_o"},
+{text:"r",url:"functions.html#index_r"},
 {text:"u",url:"functions.html#index_u"},
 {text:"v",url:"functions.html#index_v"}]},
 {text:"Functions",url:"functions_func.html",children:[

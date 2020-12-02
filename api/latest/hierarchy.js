@@ -1,7 +1,9 @@
 var hierarchy =
 [
     [ "std::exception", null, [
-      [ "expect::bad_expected_access", "d0/d2a/classexpect_1_1bad__expected__access.html", null ]
+      [ "std::logic_error", null, [
+        [ "expect::bad_expected_access", "d0/d2a/classexpect_1_1bad__expected__access.html", null ]
+      ] ]
     ] ],
     [ "expect::expected< T, E >", "d8/d8e/classexpect_1_1expected.html", null ],
     [ "expect::expected< void, E >", "d1/d09/classexpect_1_1expected_3_01void_00_01_e_01_4.html", null ],

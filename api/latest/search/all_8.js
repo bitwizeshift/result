@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['swap',['swap',['../d3/d77/expected_8hpp.html#a1f462d210a1284e812aca2eaa0399fde',1,'expect::swap(unexpected&lt; E &gt; &amp;lhs, unexpected&lt; E &gt; &amp;rhs) noexcept -&gt; void'],['../d3/d77/expected_8hpp.html#a84924cdf8c81eac79af3a74d4068ecb3',1,'expect::swap(expected&lt; T, E &gt; &amp;lhs, expected&lt; T, E &gt; &amp;rhs) noexcept(std::is_nothrow_move_constructible&lt; expected&lt; T, E &gt;&gt;::value &amp;&amp;std::is_nothrow_move_assignable&lt; expected&lt; T, E &gt;&gt;::value) -&gt; void'],['../d3/d77/expected_8hpp.html#ac75f8dce8dfaf4acb8c7b3cca498bffc',1,'expect::swap(expected&lt; void, E &gt; &amp;lhs, expected&lt; void, E &gt; &amp;rhs) noexcept(std::is_nothrow_move_constructible&lt; expected&lt; void, E &gt;&gt;::value &amp;&amp;std::is_nothrow_move_assignable&lt; expected&lt; void, E &gt;&gt;::value) -&gt; void']]]
+  ['rebind',['rebind',['../d8/d8e/classexpect_1_1expected.html#a2186ab698db814ee7fd630bf5eb8c1d7',1,'expect::expected::rebind()'],['../d1/d09/classexpect_1_1expected_3_01void_00_01_e_01_4.html#aebd893c99e48825108a7eb30301ba199',1,'expect::expected&lt; void, E &gt;::rebind()']]]
 ];

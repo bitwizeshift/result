@@ -104,6 +104,15 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#afaf8bcacea70952d1f33674a1434aa3c">error_type</a> = E</td></tr>
 <tr class="memdesc:afaf8bcacea70952d1f33674a1434aa3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error type of this expected. <br /></td></tr>
 <tr class="separator:afaf8bcacea70952d1f33674a1434aa3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a388b08a48b383b28b2584dba8970f00a"><td class="memItemLeft" align="right" valign="top"><a id="a388b08a48b383b28b2584dba8970f00a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a388b08a48b383b28b2584dba8970f00a">unexpected_type</a> = <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E &gt;</td></tr>
+<tr class="memdesc:a388b08a48b383b28b2584dba8970f00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The unexpected type. <br /></td></tr>
+<tr class="separator:a388b08a48b383b28b2584dba8970f00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2186ab698db814ee7fd630bf5eb8c1d7"><td class="memTemplParams" colspan="2"><a id="a2186ab698db814ee7fd630bf5eb8c1d7"></a>
+template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a2186ab698db814ee7fd630bf5eb8c1d7"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a2186ab698db814ee7fd630bf5eb8c1d7">rebind</a> = <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; U, E &gt;</td></tr>
+<tr class="memdesc:a2186ab698db814ee7fd630bf5eb8c1d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebinds the expected type. <br /></td></tr>
+<tr class="separator:a2186ab698db814ee7fd630bf5eb8c1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -276,26 +285,34 @@ template&lt;typename U &gt; </td></tr>
 template&lt;typename Fn &gt; </td></tr>
 <tr class="memitem:a416aa6b55c0f7e0a52ccce7177611623"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>flat_map</b> (Fn &amp;&amp;fn) const &amp;-&gt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;</td></tr>
 <tr class="separator:a416aa6b55c0f7e0a52ccce7177611623"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af08ee55fd819ee3f4a6a35c9d9e6b9a8"><td class="memTemplParams" colspan="2"><a id="af08ee55fd819ee3f4a6a35c9d9e6b9a8"></a>
+<tr class="memitem:aa9b2d5676b66f2941cc18acd1bbc3fad"><td class="memTemplParams" colspan="2"><a id="aa9b2d5676b66f2941cc18acd1bbc3fad"></a>
 template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:af08ee55fd819ee3f4a6a35c9d9e6b9a8"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>flat_map</b> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;</td></tr>
-<tr class="separator:af08ee55fd819ee3f4a6a35c9d9e6b9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9b2d5676b66f2941cc18acd1bbc3fad"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>flat_map</b> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;</td></tr>
+<tr class="separator:aa9b2d5676b66f2941cc18acd1bbc3fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1e7ac5cbae695741c9d8f6f2ee184f3"><td class="memTemplParams" colspan="2"><a id="ae1e7ac5cbae695741c9d8f6f2ee184f3"></a>
 template&lt;typename Fn &gt; </td></tr>
 <tr class="memitem:ae1e7ac5cbae695741c9d8f6f2ee184f3"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map</b> (Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;, E &gt;</td></tr>
 <tr class="separator:ae1e7ac5cbae695741c9d8f6f2ee184f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a5b9d1ac00e7552fd7c10e4482cacfd"><td class="memTemplParams" colspan="2"><a id="a4a5b9d1ac00e7552fd7c10e4482cacfd"></a>
+<tr class="memitem:ae91bf3f421f92d533d71bf0c443c9bdb"><td class="memTemplParams" colspan="2"><a id="ae91bf3f421f92d533d71bf0c443c9bdb"></a>
 template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a4a5b9d1ac00e7552fd7c10e4482cacfd"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map</b> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;, E &gt;</td></tr>
-<tr class="separator:a4a5b9d1ac00e7552fd7c10e4482cacfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae91bf3f421f92d533d71bf0c443c9bdb"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map</b> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;, E &gt;</td></tr>
+<tr class="separator:ae91bf3f421f92d533d71bf0c443c9bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55c37a3950020be22fa16f3a5ba4b1e6"><td class="memTemplParams" colspan="2"><a id="a55c37a3950020be22fa16f3a5ba4b1e6"></a>
 template&lt;typename Fn &gt; </td></tr>
 <tr class="memitem:a55c37a3950020be22fa16f3a5ba4b1e6"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map_error</b> (Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T, detail::invoke_result_t&lt; Fn, const E &amp;&gt;&gt;</td></tr>
 <tr class="separator:a55c37a3950020be22fa16f3a5ba4b1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e23ff8b4498812f7e2b99ad7241c062"><td class="memTemplParams" colspan="2"><a id="a3e23ff8b4498812f7e2b99ad7241c062"></a>
+<tr class="memitem:a80fd324513246fb0fbd7fe672183c6e3"><td class="memTemplParams" colspan="2"><a id="a80fd324513246fb0fbd7fe672183c6e3"></a>
 template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a3e23ff8b4498812f7e2b99ad7241c062"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map_error</b> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T, detail::invoke_result_t&lt; Fn, const E &amp;&gt;&gt;</td></tr>
-<tr class="separator:a3e23ff8b4498812f7e2b99ad7241c062"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80fd324513246fb0fbd7fe672183c6e3"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map_error</b> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T, detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;&gt;</td></tr>
+<tr class="separator:a80fd324513246fb0fbd7fe672183c6e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d013b34b3715bccba4467dcc76a094"><td class="memTemplParams" colspan="2"><a id="ab1d013b34b3715bccba4467dcc76a094"></a>
+template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:ab1d013b34b3715bccba4467dcc76a094"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>flat_map_error</b> (Fn &amp;&amp;fn) const &amp;-&gt; detail::invoke_result_t&lt; Fn, const E &amp;&gt;</td></tr>
+<tr class="separator:ab1d013b34b3715bccba4467dcc76a094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7cfa47dc93eada1dbf9d392a6197ddb"><td class="memTemplParams" colspan="2"><a id="aa7cfa47dc93eada1dbf9d392a6197ddb"></a>
+template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:aa7cfa47dc93eada1dbf9d392a6197ddb"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>flat_map_error</b> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;</td></tr>
+<tr class="separator:aa7cfa47dc93eada1dbf9d392a6197ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:abfc59791ee5704135093ede938adf8bb"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_implicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
 <tr class="memitem:abfc59791ee5704135093ede938adf8bb"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#abfc59791ee5704135093ede938adf8bb">expected</a> (const <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d8/d8e/classexpect_1_1expected.html#af5f0909d4e7e38105f2011db6f7ee536">value</a>)</td></tr>
@@ -407,28 +424,37 @@ template&lt;typename Fn &gt; </td></tr>
 <tr class="memitem:a103b0d48ff38338a88e62da0139adb84"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a103b0d48ff38338a88e62da0139adb84">flat_map</a> (Fn &amp;&amp;fn) const &amp;-&gt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;</td></tr>
 <tr class="memdesc:a103b0d48ff38338a88e62da0139adb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this expected as the argument.  <a href="#a103b0d48ff38338a88e62da0139adb84">More...</a><br /></td></tr>
 <tr class="separator:a103b0d48ff38338a88e62da0139adb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e2867dc4857a5bb4b03c42675ff2776"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a0e2867dc4857a5bb4b03c42675ff2776"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0e2867dc4857a5bb4b03c42675ff2776">flat_map</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;</td></tr>
-<tr class="memdesc:a0e2867dc4857a5bb4b03c42675ff2776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this expected as the argument.  <a href="#a0e2867dc4857a5bb4b03c42675ff2776">More...</a><br /></td></tr>
-<tr class="separator:a0e2867dc4857a5bb4b03c42675ff2776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16ea72f147a91f766a348f684e2315d5"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a16ea72f147a91f766a348f684e2315d5"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a16ea72f147a91f766a348f684e2315d5">flat_map</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;</td></tr>
+<tr class="memdesc:a16ea72f147a91f766a348f684e2315d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this expected as the argument.  <a href="#a16ea72f147a91f766a348f684e2315d5">More...</a><br /></td></tr>
+<tr class="separator:a16ea72f147a91f766a348f684e2315d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a96e3b539ad7d904c9cd5a4c3b0905158"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
 <tr class="memitem:a96e3b539ad7d904c9cd5a4c3b0905158"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a96e3b539ad7d904c9cd5a4c3b0905158">map</a> (Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;, E &gt;</td></tr>
 <tr class="memdesc:a96e3b539ad7d904c9cd5a4c3b0905158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this expected as the argument.  <a href="#a96e3b539ad7d904c9cd5a4c3b0905158">More...</a><br /></td></tr>
 <tr class="separator:a96e3b539ad7d904c9cd5a4c3b0905158"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae13ee4fd552a7a664f5f63e490ba5573"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:ae13ee4fd552a7a664f5f63e490ba5573"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ae13ee4fd552a7a664f5f63e490ba5573">map</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;, E &gt;</td></tr>
-<tr class="memdesc:ae13ee4fd552a7a664f5f63e490ba5573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this expected as the argument.  <a href="#ae13ee4fd552a7a664f5f63e490ba5573">More...</a><br /></td></tr>
-<tr class="separator:ae13ee4fd552a7a664f5f63e490ba5573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c99a9b3bccba73c8492a14b999e264"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:ab4c99a9b3bccba73c8492a14b999e264"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ab4c99a9b3bccba73c8492a14b999e264">map</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;, E &gt;</td></tr>
+<tr class="memdesc:ab4c99a9b3bccba73c8492a14b999e264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this expected as the argument.  <a href="#ab4c99a9b3bccba73c8492a14b999e264">More...</a><br /></td></tr>
+<tr class="separator:ab4c99a9b3bccba73c8492a14b999e264"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a10113b638ab9897e57f207905561c9f6"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
 <tr class="memitem:a10113b638ab9897e57f207905561c9f6"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a10113b638ab9897e57f207905561c9f6">map_error</a> (Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T, detail::invoke_result_t&lt; Fn, const E &amp;&gt;&gt;</td></tr>
 <tr class="memdesc:a10113b638ab9897e57f207905561c9f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this expected as the argument.  <a href="#a10113b638ab9897e57f207905561c9f6">More...</a><br /></td></tr>
 <tr class="separator:a10113b638ab9897e57f207905561c9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01e949cab2de160315a75798530ab003"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a01e949cab2de160315a75798530ab003"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a01e949cab2de160315a75798530ab003">map_error</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T, detail::invoke_result_t&lt; Fn, const E &amp;&gt;&gt;</td></tr>
-<tr class="memdesc:a01e949cab2de160315a75798530ab003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this expected as the argument.  <a href="#a01e949cab2de160315a75798530ab003">More...</a><br /></td></tr>
-<tr class="separator:a01e949cab2de160315a75798530ab003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6360b70af1fa8c5a9c7f58845976ca4"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:ae6360b70af1fa8c5a9c7f58845976ca4"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#ae6360b70af1fa8c5a9c7f58845976ca4">map_error</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T, detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;&gt;</td></tr>
+<tr class="memdesc:ae6360b70af1fa8c5a9c7f58845976ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this expected as the argument.  <a href="#ae6360b70af1fa8c5a9c7f58845976ca4">More...</a><br /></td></tr>
+<tr class="separator:ae6360b70af1fa8c5a9c7f58845976ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a5f283336d67553f77c78b8b13e00c914"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a5f283336d67553f77c78b8b13e00c914"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a5f283336d67553f77c78b8b13e00c914">flat_map_error</a> (Fn &amp;&amp;fn) const &amp;-&gt; detail::invoke_result_t&lt; Fn, const E &amp;&gt;</td></tr>
+<tr class="memdesc:a5f283336d67553f77c78b8b13e00c914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this expected as the argument.  <a href="#a5f283336d67553f77c78b8b13e00c914">More...</a><br /></td></tr>
+<tr class="separator:a5f283336d67553f77c78b8b13e00c914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0abae7accaddbebeed3eb974540404a0"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a0abae7accaddbebeed3eb974540404a0"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d8e/classexpect_1_1expected.html#a0abae7accaddbebeed3eb974540404a0">flat_map_error</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;</td></tr>
+<tr class="memdesc:a0abae7accaddbebeed3eb974540404a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this expected as the argument.  <a href="#a0abae7accaddbebeed3eb974540404a0">More...</a><br /></td></tr>
+<tr class="separator:a0abae7accaddbebeed3eb974540404a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -464,7 +490,7 @@ class expect::expected&lt; T, E &gt;</h3>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l00252">252</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l00273">273</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a56ff7452690c244bc4bc095296538973"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a56ff7452690c244bc4bc095296538973">&#9670;&nbsp;</a></span>expected() <span class="overload">[1/15]</span></h2>
@@ -1336,8 +1362,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a0e2867dc4857a5bb4b03c42675ff2776"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e2867dc4857a5bb4b03c42675ff2776">&#9670;&nbsp;</a></span>flat_map() <span class="overload">[2/2]</span></h2>
+<a id="a16ea72f147a91f766a348f684e2315d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16ea72f147a91f766a348f684e2315d5">&#9670;&nbsp;</a></span>flat_map() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1351,13 +1377,81 @@ template&lt;typename Fn &gt; </div>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
-          <td> &amp;&amp; -&gt;  detail::invoke_result_t&lt; Fn, const T &amp;&gt;</td>
+          <td> &amp;&amp; -&gt;  detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Invokes the function <code>fn</code> with the value of this expected as the argument. </p>
 <p>If this expected contains an error, an expected of the error is returned</p>
+<p>The function being called must return an <code>expected</code> type or the program is ill-formed</p>
+<p>If this is called on an rvalue of <code>expected</code> which contains an error, the returned <code>expected</code> is constructed from an rvalue of that error.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the function being called </dd></dl>
+
+</div>
+</div>
+<a id="a5f283336d67553f77c78b8b13e00c914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f283336d67553f77c78b8b13e00c914">&#9670;&nbsp;</a></span>flat_map_error() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename E = std::error_code&gt; </div>
+<div class="memtemplate">
+template&lt;typename Fn &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::flat_map_error </td>
+          <td>(</td>
+          <td class="paramtype">Fn &amp;&amp;&#160;</td>
+          <td class="paramname"><em>fn</em></td><td>)</td>
+          <td> const &amp; -&gt;  detail::invoke_result_t&lt; Fn, const E &amp;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invokes the function <code>fn</code> with the error of this expected as the argument. </p>
+<p>If this expected contains a value, an expected of the value is returned</p>
+<p>The function being called must return an <code>expected</code> type or the program is ill-formed</p>
+<p>If this is called on an rvalue of <code>expected</code> which contains an error, the returned <code>expected</code> is constructed from an rvalue of that error.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the function being called </dd></dl>
+
+</div>
+</div>
+<a id="a0abae7accaddbebeed3eb974540404a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0abae7accaddbebeed3eb974540404a0">&#9670;&nbsp;</a></span>flat_map_error() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename E = std::error_code&gt; </div>
+<div class="memtemplate">
+template&lt;typename Fn &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">EXPECTED_CPP14_CONSTEXPR auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::flat_map_error </td>
+          <td>(</td>
+          <td class="paramtype">Fn &amp;&amp;&#160;</td>
+          <td class="paramname"><em>fn</em></td><td>)</td>
+          <td> &amp;&amp; -&gt;  detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invokes the function <code>fn</code> with the error of this expected as the argument. </p>
+<p>If this expected contains a value, an expected of the value is returned</p>
 <p>The function being called must return an <code>expected</code> type or the program is ill-formed</p>
 <p>If this is called on an rvalue of <code>expected</code> which contains an error, the returned <code>expected</code> is constructed from an rvalue of that error.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1398,7 +1492,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains an error. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains an error, <code>false</code> if <code>*this</code> contains a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03665">3665</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03733">3733</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1430,7 +1524,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> contains an error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03657">3657</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03725">3725</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1467,8 +1561,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="ae13ee4fd552a7a664f5f63e490ba5573"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae13ee4fd552a7a664f5f63e490ba5573">&#9670;&nbsp;</a></span>map() <span class="overload">[2/2]</span></h2>
+<a id="ab4c99a9b3bccba73c8492a14b999e264"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4c99a9b3bccba73c8492a14b999e264">&#9670;&nbsp;</a></span>map() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1482,7 +1576,7 @@ template&lt;typename Fn &gt; </div>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
-          <td> &amp;&amp; -&gt;  <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;, E &gt;</td>
+          <td> &amp;&amp; -&gt;  <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;, E &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1533,8 +1627,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a01e949cab2de160315a75798530ab003"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01e949cab2de160315a75798530ab003">&#9670;&nbsp;</a></span>map_error() <span class="overload">[2/2]</span></h2>
+<a id="ae6360b70af1fa8c5a9c7f58845976ca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6360b70af1fa8c5a9c7f58845976ca4">&#9670;&nbsp;</a></span>map_error() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1548,7 +1642,7 @@ template&lt;typename Fn &gt; </div>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
-          <td> &amp;&amp; -&gt;  <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T, detail::invoke_result_t&lt; Fn, const E &amp;&gt;&gt;</td>
+          <td> &amp;&amp; -&gt;  <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; T, detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1594,7 +1688,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> does not contain a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03649">3649</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03717">3717</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1755,7 +1849,7 @@ template&lt;typename T , typename E &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03589">3589</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03657">3657</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1788,7 +1882,7 @@ template&lt;typename T , typename E &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03605">3605</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03673">3673</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
