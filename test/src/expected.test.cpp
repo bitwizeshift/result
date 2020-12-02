@@ -2608,6 +2608,60 @@ TEST_CASE("expected<T,E>::map_error(Fn&&) &&", "[monadic]") {
   }
 }
 
+TEST_CASE("expected<T,E>::flat_map_error(Fn&&) const &", "[monadic]") {
+  SECTION("expected contains a value") {
+    SECTION("Forwards underlying value") {
+      const auto value = 42;
+      const auto sut = expected<int,int>{value};
+
+      const auto result = sut.flat_map_error([&](int x){
+        return expected<long, int>{x};
+      });
+
+      REQUIRE(result == value);
+    }
+  }
+  SECTION("expected contains an error") {
+    SECTION("Maps the error") {
+      const auto error = make_unexpected(42);
+      const auto sut = expected<int, long>{error};
+
+      const auto result = sut.flat_map_error([&](long x){
+        return expected<int, short>{x};
+      });
+
+      REQUIRE(result == error.error());
+    }
+  }
+}
+
+TEST_CASE("expected<T,E>::flat_map_error(Fn&&) &&", "[monadic]") {
+  SECTION("expected contains a value") {
+    SECTION("Default-initializes T") {
+      const auto value = "hello world";
+      auto sut = expected<move_only<std::string>,move_only<std::string>>{value};
+
+      const auto result = std::move(sut).flat_map_error([](move_only<std::string>&& x){
+        return expected<std::string, std::string>{in_place_error, std::move(x)};
+      });
+
+      REQUIRE(result == value);
+    }
+  }
+  SECTION("expected contains an error") {
+    SECTION("Maps the error") {
+      const auto error = make_unexpected("Hello world");
+      auto sut = expected<long,move_only<std::string>>{error};
+
+      const auto result = std::move(sut).flat_map_error([](move_only<std::string>&& x){
+        return expected<int, std::string>{in_place_error, std::move(x)};
+      });
+
+      REQUIRE(result == error);
+    }
+  }
+}
+
 //=============================================================================
 // class : expected<T, E>
 //=============================================================================
@@ -4169,6 +4223,58 @@ TEST_CASE("expected<void,E>::map_error(Fn&&) const", "[monadic]") {
 
       const auto result = sut.map_error([](std::io_errc e){
         return std::error_code{e};
+      });
+
+      REQUIRE(result == error);
+    }
+  }
+}
+
+TEST_CASE("expected<void,E>::flat_map_error(Fn&&) const &", "[monadic]") {
+  SECTION("expected contains a value") {
+    SECTION("Default-initializes T") {
+      const auto sut = expected<void,int>{};
+
+      const auto result = sut.flat_map_error([&](int x){
+        return expected<long, int>{x};
+      });
+
+      REQUIRE(result == long{});
+    }
+  }
+  SECTION("expected contains an error") {
+    SECTION("Maps the error") {
+      const auto error = make_unexpected(42);
+      const auto sut = expected<void, long>{error};
+
+      const auto result = sut.flat_map_error([&](long x){
+        return expected<int, short>{x};
+      });
+
+      REQUIRE(result == error.error());
+    }
+  }
+}
+
+TEST_CASE("expected<void,E>::flat_map_error(Fn&&) &&", "[monadic]") {
+  SECTION("expected contains a value") {
+    SECTION("Default-initializes T") {
+      auto sut = expected<void,move_only<std::string>>{};
+
+      const auto result = std::move(sut).flat_map_error([](move_only<std::string>&& x){
+        return expected<int, std::string>{in_place_error, std::move(x)};
+      });
+
+      REQUIRE(result == int{});
+    }
+  }
+  SECTION("expected contains an error") {
+    SECTION("Maps the error") {
+      const auto error = make_unexpected("Hello world");
+      auto sut = expected<void,move_only<std::string>>{error};
+
+      const auto result = std::move(sut).flat_map_error([](move_only<std::string>&& x){
+        return expected<int, std::string>{in_place_error, std::move(x)};
       });
 
       REQUIRE(result == error);
