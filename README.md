@@ -1,52 +1,72 @@
+# Expected
+
 [![Build Status](https://github.com/bitwizeshift/expected/workflows/build/badge.svg)](https://github.com/bitwizeshift/expected/actions)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e163a49b3b2e4f1e953c32b7cbbb2f28)](https://www.codacy.com/gh/bitwizeshift/expected/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bitwizeshift/expected&amp;utm_campaign=Badge_Grade)
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/expected.svg)](http://github.com/bitwizeshift/expected/issues)
 <br>
-[![Tested Compilers](https://img.shields.io/badge/compilers-gcc%20%7C%20clang%20%7C%20msvc-blue.svg)](#tested-compilers)
-[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/bitwizeshift/expected/master/LICENSE)
-[![Documentation](https://img.shields.io/badge/docs-doxygen-blue.svg)](https://bitwizeshift.github.io/expected/api/latest)
-<br>
 [![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/expected.svg?include_prereleases)](https://github.com/bitwizeshift/expected/releases)
 [![Bintray Releases](https://api.bintray.com/packages/bitwizeshift/Expected/Expected%3Aexpected/images/download.svg)](https://bintray.com/bitwizeshift/Expected/Expected%3Aexpected/_latestVersion)
+<br>
+[![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://gcc.godbolt.org/z/EoGb71)
 
-# Expected
+**Expected** is a modern, simple, and light-weight error-handling alternative to exceptions.
 
-**Expected** is a simple and light-weight error-handling mechanism that offers
-a non-throwing alternative to conventional exception handling.
+## Teaser Sample
 
-![Expect the unexpected](doc/src/images/banner.png)
+```cpp
+template <typename To, typename From>
+auto try_narrow(const From& from) noexcept -> expected<To,narrow_error>
+{
+  const auto to = static_cast<To>(from);
+
+  if ((to < To{}) && (from < From{})) {
+    return make_unexpected(narrow_error::sign_change);
+  }
+  if (static_cast<From>(to) != from) {
+    return make_unexpected(narrow_error::loss_of_data);
+  }
+  return to;
+}
+```
+
+[<kbd>Live Example</kbd>](https://gcc.godbolt.org/z/EoGb71)
 
 ## Features
 
 * [x] Offers a coherent, light-weight alternative to exceptions
 * [x] Compatible with <kbd>C++11</kbd> (with more features in <kbd>C++14</kbd> and <kbd>C++17</kbd>)
 * [x] Single-header, **header-only** solution -- easily drops into any project
+* [x] Zero overhead abstractions -- don't pay for what you don't use.
 * [x] No dependencies
 * [x] Support for value-type, reference-type, and `void`-type values in `expected`
 * [x] Monadic composition functions like `map`, `flat_map`, and `map_error` for
       easy functional use
 * [x] [Comprehensively unit tested](test/src/expected.test.cpp) for both static
       behavior and runtime validation
+* [x] [Incurs minimal cost when optimized](https://gcc.godbolt.org/z/9M7Ksx), especially for trivial types
 
 For more details and examples on what is available in **Expected**, please
 check out the [tutorial](doc/tutorial.md) section.
 
-## Table of Contents
+For details describing how this implementation deviates from the
+`std::expected` proposals, see [this page](doc/deviations-from-proposal.md).
+
+## Documentation
 
 * [Background](#background) \
   A background on the problem **Expected** solves
+* [Installation](doc/installing.md) \
+  For a quick guide on how to install/use this in other projects
 * [Tutorial](doc/tutorial.md) \
-  Some simple references of how to use **Expected**
+  A quick pocket-guide to using **Expected**
+* [Examples](doc/examples.md) \
+  Some preset live-examples of this library in use
 * [API Reference](https://bitwizeshift.github.io/expected/api/latest/) \
   For doxygen-generated API information
-* [Legal](doc/legal.md) \
+* [Attribution](doc/legal.md) \
   Information about how to attribute this project
-* [How to install](doc/installing.md) \
-  For a quick guide on how to install/use this in other projects
 * [FAQ](doc/faq.md) \
   A list of frequently asked questions
-* [Contributing Guidelines](.github/CONTRIBUTING.md) \
-  Guidelines that must be followed in order to contribute to **Expected**
 
 ## Background
 
@@ -84,40 +104,10 @@ so there is no need for a `catch` handler. It's also clear that it may fail for
 whatever reasons are in `parse_error`, which discretely enumerates any possible
 case for failure.
 
-### Deviations from `std::expected` proposals
-
-Although this library is heavily based on the `std::expected` proposal, it's
-important to be aware that this handles a few things differently from what is
-described in `P0323`. These deviations are outline below
-
-1. This does not implement `emplace` functions, since this functionality is
-   seen as orthogonal to the goals of `expected`, which should not be to
-   arbitrarily be an `either<T,E>` type
-
-2. `expected` has been given support for reference `T` types, so that this may
-   behave as a consistent vocabulary type for error-handling
-
-3. `unexpected` has been given support for reference `E` types, in order to
-   avoid expensive construction of objects only used for comparisons
-
-4. Assignment operators are only enabled if the corresponding constructors are
-   marked `noexcept`. This deviates from `std::expected`'s proposal of
-   introducing an intermediate object to hold the type during assignment.
-
-5. Rather than allowing direct referential access to the underlying error,
-   `expected::error()` _always_ returns a value that acts as the result's
-   status. The defaut-constructed state of `E` is always considered the "good"
-   state (e.g. `std::error_code{}`, `std::errc{}`, etc). This reduces the
-   number of cases where this API may throw an exception to just `value()`
-
-6. Rather than using `unexpect_t` to denote in-place construction of errors,
-   this library uses `in_place_error_t`. This is done to prevent having 3 types
-   that all sound similar (`expected`, `unexpected`, `unexpect_t`)
-
 ## Building the Unit Tests
 
 Building the unit tests are not necessary to use this project. However, if
-you want to contribute to the project or simply test it yourself, you will need
+you are interested in running these yourself, you will require
 the following installed:
 
 * [CMake](https://cmake.org): Used for configuring/building the project
@@ -144,6 +134,19 @@ cmake --build .
 # run the tests
 cmake --build . --target test
 ```
+
+## Compiler Compatibility
+
+**Expected** is compatible with any compiler capable of compiling valid
+<kbd>C++11</kbd>. Specifically, this has been tested and is known to work
+with:
+
+* GCC 5, 6, 7, 8, 9, 10
+* Clang 3.5, 3.6, 3.7, 3.8, 3.9, 4, 5, 6, 7, 8, 9, 10, 11
+* Apple Clang (Xcode) 10.3, 11.2, 11.3, 12.3
+* Visual Studio 2015, 2017, 2019
+
+Latest patch level releases are assumed in the versions listed above.
 
 ## License
 
@@ -176,4 +179,5 @@ cmake --build . --target test
 
 * [P0323R9](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0323r9.html):
   `std::expected` proposal was used as an inspiration for the general template
-  structure
+  structure.
+* [bit::stl](https://github.com/bitwizeshift/bit-stl/blob/20f41988d64e1c4820175e32b4b7478bcc3998b7/include/bit/stl/utilities/expected.hpp): the original version that seeded this repository, based off an earlier proposal version.
