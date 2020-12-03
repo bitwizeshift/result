@@ -11,7 +11,7 @@
 
 **Expected** is a modern, simple, and light-weight error-handling alternative to exceptions.
 
-## Teaser Sample
+## Teaser
 
 ```cpp
 template <typename To, typename From>
@@ -19,7 +19,7 @@ auto try_narrow(const From& from) noexcept -> expected<To,narrow_error>
 {
   const auto to = static_cast<To>(from);
 
-  if ((to < To{}) && (from < From{})) {
+  if ((to < To{}) != (from < From{})) {
     return make_unexpected(narrow_error::sign_change);
   }
   if (static_cast<From>(to) != from) {
@@ -29,7 +29,7 @@ auto try_narrow(const From& from) noexcept -> expected<To,narrow_error>
 }
 ```
 
-[<kbd>Live Example</kbd>](https://gcc.godbolt.org/z/EoGb71)
+<kbd>[Live Example](https://gcc.godbolt.org/z/jWKPcG)</kbd>
 
 ## Features
 
