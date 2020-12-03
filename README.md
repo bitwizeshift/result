@@ -54,18 +54,18 @@ For details describing how this implementation deviates from the
 
 * [Background](#background) \
   A background on the problem **Expected** solves
+* [Installation](doc/installing.md) \
+  For a quick guide on how to install/use this in other projects
 * [Tutorial](doc/tutorial.md) \
-  Some simple references of how to use **Expected**
+  A quick pocket-guide to using **Expected**
+* [Examples](doc/examples.md) \
+  Some preset live-examples of this library in use
 * [API Reference](https://bitwizeshift.github.io/expected/api/latest/) \
   For doxygen-generated API information
-* [Legal](doc/legal.md) \
+* [Attribution](doc/legal.md) \
   Information about how to attribute this project
-* [How to install](doc/installing.md) \
-  For a quick guide on how to install/use this in other projects
 * [FAQ](doc/faq.md) \
   A list of frequently asked questions
-* [Contributing Guidelines](.github/CONTRIBUTING.md) \
-  Guidelines that must be followed in order to contribute to **Expected**
 
 ## Background
 
@@ -106,7 +106,7 @@ case for failure.
 ## Building the Unit Tests
 
 Building the unit tests are not necessary to use this project. However, if
-you want to contribute to the project or simply test it yourself, you will need
+you are interested in running these yourself, you will require
 the following installed:
 
 * [CMake](https://cmake.org): Used for configuring/building the project
