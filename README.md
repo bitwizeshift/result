@@ -1,20 +1,36 @@
+# Expected
+
 [![Build Status](https://github.com/bitwizeshift/expected/workflows/build/badge.svg)](https://github.com/bitwizeshift/expected/actions)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e163a49b3b2e4f1e953c32b7cbbb2f28)](https://www.codacy.com/gh/bitwizeshift/expected/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bitwizeshift/expected&amp;utm_campaign=Badge_Grade)
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/expected.svg)](http://github.com/bitwizeshift/expected/issues)
 <br>
-[![Tested Compilers](https://img.shields.io/badge/compilers-gcc%20%7C%20clang%20%7C%20msvc-blue.svg)](#tested-compilers)
+[![Compiler Compatibility](https://img.shields.io/badge/compilers-gcc%20%7C%20clang%20%7C%20msvc-blue.svg)](#compiler-compatibility)
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/bitwizeshift/expected/master/LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-doxygen-blue.svg)](https://bitwizeshift.github.io/expected/api/latest)
 <br>
-[![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/expected.svg?include_prereleases)](https://github.com/bitwizeshift/expected/releases)
-[![Bintray Releases](https://api.bintray.com/packages/bitwizeshift/Expected/Expected%3Aexpected/images/download.svg)](https://bintray.com/bitwizeshift/Expected/Expected%3Aexpected/_latestVersion)
+[![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://gcc.godbolt.org/z/EoGb71)
 
-# Expected
+**Expected** is a modern, simple, and light-weight error-handling alternative to exceptions.
 
-**Expected** is a simple and light-weight error-handling mechanism that offers
-a non-throwing alternative to conventional exception handling.
+## Teaser Sample
 
-![Expect the unexpected](doc/src/images/banner.png)
+```cpp
+template <typename To, typename From>
+auto try_narrow(const From& from) noexcept -> expected<To,narrow_error>
+{
+  const auto to = static_cast<To>(from);
+
+  if ((to < To{}) && (from < From{})) {
+    return make_unexpected(narrow_error::sign_change);
+  }
+  if (static_cast<From>(to) != from) {
+    return make_unexpected(narrow_error::loss_of_data);
+  }
+  return to;
+}
+```
+
+[<kbd>Live Example</kbd>](https://gcc.godbolt.org/z/EoGb71)
 
 ## Features
 
@@ -118,6 +134,19 @@ cmake --build .
 cmake --build . --target test
 ```
 
+## Compiler Compatibility
+
+**Expected** is compatible with any compiler capable of compiling valid
+<kbd>C++11</kbd>. Specifically, this has been tested and is known to work
+with:
+
+* GCC 5, 6, 7, 8, 9, 10
+* Clang 3.5, 3.6, 3.7, 3.8, 3.9, 4, 5, 6, 7, 8, 9, 10, 11
+* Apple Clang (Xcode) 10.3, 11.2, 11.3, 12.3
+* Visual Studio 2015, 2017, 2019
+
+Latest patch level releases are assumed in the versions listed above.
+
 ## License
 
 <img align="right" src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png">
@@ -149,4 +178,5 @@ cmake --build . --target test
 
 * [P0323R9](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0323r9.html):
   `std::expected` proposal was used as an inspiration for the general template
-  structure
+  structure.
+* [bit::stl](https://github.com/bitwizeshift/bit-stl/blob/20f41988d64e1c4820175e32b4b7478bcc3998b7/include/bit/stl/utilities/expected.hpp): the original version that seeded this repository, based off an earlier proposal version.
