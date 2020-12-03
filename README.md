@@ -37,12 +37,14 @@ auto try_narrow(const From& from) noexcept -> expected<To,narrow_error>
 * [x] Offers a coherent, light-weight alternative to exceptions
 * [x] Compatible with <kbd>C++11</kbd> (with more features in <kbd>C++14</kbd> and <kbd>C++17</kbd>)
 * [x] Single-header, **header-only** solution -- easily drops into any project
+* [x] Zero overhead abstractions -- don't pay for what you don't use.
 * [x] No dependencies
 * [x] Support for value-type, reference-type, and `void`-type values in `expected`
 * [x] Monadic composition functions like `map`, `flat_map`, and `map_error` for
       easy functional use
 * [x] [Comprehensively unit tested](test/src/expected.test.cpp) for both static
       behavior and runtime validation
+* [x] [Incurs minimal cost when optimized](https://gcc.godbolt.org/z/9M7Ksx), especially for trivial types
 
 For more details and examples on what is available in **Expected**, please
 check out the [tutorial](doc/tutorial.md) section.
