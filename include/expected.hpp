@@ -641,12 +641,15 @@ namespace expect {
     constexpr bool operator>=(unit, unit) noexcept { return true; }
 
     //=========================================================================
-    // class : detail::expected_destruct_base<T, E, IsTrivial>
+    // class : detail::expected_union<T, E, IsTrivial>
     //=========================================================================
 
     ///////////////////////////////////////////////////////////////////////////
-    /// \brief A base class template for expected guarantees trivial types have
-    ///        a trivial destructor
+    /// \brief A basic utility that acts as a union containing the T and E
+    ///        types
+    ///
+    /// This is specialized on the case that both T and E are trivial, in which
+    /// case `expected_union` is also trivial
     ///
     /// \tparam T the value type expected to be returned
     /// \tparam E the error type returned on failure
@@ -655,7 +658,7 @@ namespace expect {
     template <typename T, typename E,
               bool IsTrivial = std::is_trivially_destructible<T>::value &&
                                std::is_trivially_destructible<E>::value>
-    struct expected_destruct_base
+    struct expected_union
     {
       //-----------------------------------------------------------------------
       // Public Member Types
@@ -672,29 +675,29 @@ namespace expect {
       ///
       /// This is for use with conversion constructors, since it allows a
       /// temporary unused object to be set
-      expected_destruct_base(unit) noexcept;
+      expected_union(unit) noexcept;
 
       /// \brief Constructs the underlying value from the specified \p args
       ///
       /// \param args the arguments to forward to T's constructor
       template <typename...Args>
-      constexpr expected_destruct_base(in_place_t, Args&&...args)
+      constexpr expected_union(in_place_t, Args&&...args)
         noexcept(std::is_nothrow_constructible<T, Args...>::value);
 
       /// \brief Constructs the underlying error from the specified \p args
       ///
       /// \param args the arguments to forward to E's constructor
       template <typename...Args>
-      constexpr expected_destruct_base(in_place_error_t, Args&&...args)
+      constexpr expected_union(in_place_error_t, Args&&...args)
         noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
-      expected_destruct_base(const expected_destruct_base&) = default;
-      expected_destruct_base(expected_destruct_base&&) = default;
+      expected_union(const expected_union&) = default;
+      expected_union(expected_union&&) = default;
 
       //-----------------------------------------------------------------------
 
-      auto operator=(const expected_destruct_base&) -> expected_destruct_base& = default;
-      auto operator=(expected_destruct_base&&) -> expected_destruct_base& = default;
+      auto operator=(const expected_union&) -> expected_union& = default;
+      auto operator=(expected_union&&) -> expected_union& = default;
 
       //-----------------------------------------------------------------------
       // Modifiers
@@ -718,7 +721,7 @@ namespace expect {
     //-------------------------------------------------------------------------
 
     template <typename T, typename E>
-    struct expected_destruct_base<T, E, false>
+    struct expected_union<T, E, false>
     {
       //-----------------------------------------------------------------------
       // Public Member Types
@@ -731,36 +734,40 @@ namespace expect {
       // Constructors / Assignment / Destructor
       //-----------------------------------------------------------------------
 
-      expected_destruct_base(unit) noexcept;
+      /// \brief Constructs an empty object
+      ///
+      /// This is for use with conversion constructors, since it allows a
+      /// temporary unused object to be set
+      expected_union(unit) noexcept;
 
       /// \brief Constructs the underlying value from the specified \p args
       ///
       /// \param args the arguments to forward to T's constructor
       template <typename...Args>
-      constexpr expected_destruct_base(in_place_t, Args&&...args)
+      constexpr expected_union(in_place_t, Args&&...args)
         noexcept(std::is_nothrow_constructible<T, Args...>::value);
 
       /// \brief Constructs the underlying error from the specified \p args
       ///
       /// \param args the arguments to forward to E's constructor
       template <typename...Args>
-      constexpr expected_destruct_base(in_place_error_t, Args&&...args)
+      constexpr expected_union(in_place_error_t, Args&&...args)
         noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
-      expected_destruct_base(const expected_destruct_base&) = default;
-      expected_destruct_base(expected_destruct_base&&) = default;
+      expected_union(const expected_union&) = default;
+      expected_union(expected_union&&) = default;
 
       //-----------------------------------------------------------------------
 
       /// \brief Destroys the underlying stored object
-      ~expected_destruct_base()
+      ~expected_union()
         noexcept(std::is_nothrow_destructible<T>::value &&
                  std::is_nothrow_destructible<E>::value);
 
       //-----------------------------------------------------------------------
 
-      auto operator=(const expected_destruct_base&) -> expected_destruct_base& = default;
-      auto operator=(expected_destruct_base&&) -> expected_destruct_base& = default;
+      auto operator=(const expected_union&) -> expected_union& = default;
+      auto operator=(expected_union&&) -> expected_union& = default;
 
       //-----------------------------------------------------------------------
       // Modifiers
@@ -921,7 +928,7 @@ namespace expect {
       // Public Members
       //-----------------------------------------------------------------------
 
-      using storage_type = expected_destruct_base<T, E>;
+      using storage_type = expected_union<T, E>;
 
       storage_type storage;
     };
@@ -3042,7 +3049,7 @@ auto expect::swap(unexpected<E>& lhs, unexpected<E>& rhs)
 }
 
 //=============================================================================
-// class : detail::expected_destruct_base<T, E, IsTrivial>
+// class : detail::expected_union<T, E, IsTrivial>
 //=============================================================================
 
 //-----------------------------------------------------------------------------
@@ -3051,8 +3058,8 @@ auto expect::swap(unexpected<E>& lhs, unexpected<E>& rhs)
 
 template <typename T, typename E, bool IsTrivial>
 inline EXPECTED_INLINE_VISIBILITY
-expect::detail::expected_destruct_base<T, E, IsTrivial>
-  ::expected_destruct_base(unit)
+expect::detail::expected_union<T, E, IsTrivial>
+  ::expected_union(unit)
   noexcept
   : m_empty{}
 {
@@ -3062,8 +3069,8 @@ expect::detail::expected_destruct_base<T, E, IsTrivial>
 template <typename T, typename E, bool IsTrivial>
 template <typename...Args>
 inline EXPECTED_INLINE_VISIBILITY constexpr
-expect::detail::expected_destruct_base<T,E,IsTrivial>
-  ::expected_destruct_base(in_place_t, Args&&...args)
+expect::detail::expected_union<T,E,IsTrivial>
+  ::expected_union(in_place_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<T, Args...>::value)
   : m_value(detail::forward<Args>(args)...),
     m_has_value{true}
@@ -3073,8 +3080,8 @@ expect::detail::expected_destruct_base<T,E,IsTrivial>
 template <typename T, typename E, bool IsTrivial>
 template <typename...Args>
 inline EXPECTED_INLINE_VISIBILITY constexpr
-expect::detail::expected_destruct_base<T,E,IsTrivial>
-  ::expected_destruct_base(in_place_error_t, Args&&...args)
+expect::detail::expected_union<T,E,IsTrivial>
+  ::expected_union(in_place_error_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
   : m_error(detail::forward<Args>(args)...),
     m_has_value{false}
@@ -3087,14 +3094,14 @@ expect::detail::expected_destruct_base<T,E,IsTrivial>
 
 template <typename T, typename E, bool IsTrivial>
 inline EXPECTED_INLINE_VISIBILITY
-auto expect::detail::expected_destruct_base<T, E, IsTrivial>::destroy()
+auto expect::detail::expected_union<T, E, IsTrivial>::destroy()
   const noexcept -> void
 {
   // do nothing
 }
 
 //=============================================================================
-// class : detail::expected_destruct_base<T, E, false>
+// class : detail::expected_union<T, E, false>
 //=============================================================================
 
 //-----------------------------------------------------------------------------
@@ -3103,8 +3110,8 @@ auto expect::detail::expected_destruct_base<T, E, IsTrivial>::destroy()
 
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY
-expect::detail::expected_destruct_base<T, E, false>
-  ::expected_destruct_base(unit)
+expect::detail::expected_union<T, E, false>
+  ::expected_union(unit)
   noexcept
   : m_empty{}
 {
@@ -3114,8 +3121,8 @@ expect::detail::expected_destruct_base<T, E, false>
 template <typename T, typename E>
 template <typename...Args>
 inline EXPECTED_INLINE_VISIBILITY constexpr
-expect::detail::expected_destruct_base<T,E,false>
-  ::expected_destruct_base(in_place_t, Args&&...args)
+expect::detail::expected_union<T,E,false>
+  ::expected_union(in_place_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<T, Args...>::value)
   : m_value(detail::forward<Args>(args)...),
     m_has_value{true}
@@ -3125,8 +3132,8 @@ expect::detail::expected_destruct_base<T,E,false>
 template <typename T, typename E>
 template <typename...Args>
 inline EXPECTED_INLINE_VISIBILITY constexpr
-expect::detail::expected_destruct_base<T,E,false>
-  ::expected_destruct_base(in_place_error_t, Args&&...args)
+expect::detail::expected_union<T,E,false>
+  ::expected_union(in_place_error_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
   : m_error(detail::forward<Args>(args)...),
     m_has_value{false}
@@ -3137,8 +3144,8 @@ expect::detail::expected_destruct_base<T,E,false>
 
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY
-expect::detail::expected_destruct_base<T,E,false>
-  ::~expected_destruct_base()
+expect::detail::expected_union<T,E,false>
+  ::~expected_union()
   noexcept(std::is_nothrow_destructible<T>::value && std::is_nothrow_destructible<E>::value)
 {
   destroy();
@@ -3150,7 +3157,7 @@ expect::detail::expected_destruct_base<T,E,false>
 
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY
-auto expect::detail::expected_destruct_base<T, E, false>::destroy()
+auto expect::detail::expected_union<T, E, false>::destroy()
   -> void
 {
   if (m_has_value) {
