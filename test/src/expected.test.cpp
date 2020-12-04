@@ -2502,54 +2502,122 @@ TEST_CASE("expected<T,E>::flat_map(Fn&&) &&", "[monadic]") {
 
 TEST_CASE("expected<T,E>::map(Fn&&) const &", "[monadic]") {
   SECTION("expected contains a value") {
-    SECTION("Maps the input") {
-      const auto value = 42;
-      auto sut = expected<int,std::io_errc>{value};
+    SECTION("Function returns non-void") {
+      SECTION("Maps the input") {
+        const auto value = 42;
+        auto sut = expected<int,std::io_errc>{value};
 
-      const auto result = sut.map([](int x){
-        return std::to_string(x);
-      });
+        const auto result = sut.map([](int x){
+          return std::to_string(x);
+        });
 
-      REQUIRE(result == std::to_string(value));
+        REQUIRE(result == std::to_string(value));
+      }
+    }
+    SECTION("Function returns void") {
+      SECTION("Maps input to void") {
+        const auto value = 42;
+        auto sut = expected<int,std::io_errc>{value};
+
+        const auto result = sut.map([](int){});
+
+        SECTION("Result has value") {
+          REQUIRE(result.has_value());
+        }
+        SECTION("Result is expected<void,E>") {
+          STATIC_REQUIRE(std::is_same<decltype(result),const expected<void,std::io_errc>>::value);
+        }
+      }
     }
   }
   SECTION("expected contains an error") {
-    SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
-      auto sut = expected<int,std::io_errc>{error};
+    SECTION("Function returns non-void") {
+      SECTION("Maps the error") {
+        const auto error = make_unexpected(std::io_errc::stream);
+        auto sut = expected<int,std::io_errc>{error};
 
-      const auto result = sut.map([](int x){
-        return std::to_string(x);
-      });
+        const auto result = sut.map([](int x){
+          return std::to_string(x);
+        });
 
-      REQUIRE(result == error);
+        REQUIRE(result == error);
+      }
+    }
+    SECTION("Function returns void") {
+      SECTION("Maps input to void") {
+        const auto error = make_unexpected(std::io_errc::stream);
+        auto sut = expected<int,std::io_errc>{error};
+
+        const auto result = sut.map([](int) -> void{});
+
+        SECTION("Result contains error") {
+          REQUIRE(result == error);
+        }
+        SECTION("Result is expected<void,E>") {
+          STATIC_REQUIRE(std::is_same<decltype(result),const expected<void,std::io_errc>>::value);
+        }
+      }
     }
   }
 }
 
 TEST_CASE("expected<T,E>::map(Fn&&) &&", "[monadic]") {
   SECTION("expected contains a value") {
-    SECTION("Maps the input") {
-      const auto value = 42;
-      auto sut = expected<int,move_only<std::error_code>>{value};
+    SECTION("Function returns non-void") {
+      SECTION("Maps the input") {
+        const auto value = 42;
+        auto sut = expected<int,move_only<std::error_code>>{value};
 
-      const auto result = std::move(sut).map([](int x){
-        return std::to_string(x);
-      });
+        const auto result = std::move(sut).map([](int x){
+          return std::to_string(x);
+        });
 
-      REQUIRE(result == std::to_string(value));
+        REQUIRE(result == std::to_string(value));
+      }
+    }
+    SECTION("Function returns void") {
+      SECTION("Maps input to void") {
+        const auto value = 42;
+        auto sut = expected<int,move_only<std::error_code>>{value};
+
+        const auto result = std::move(sut).map([](int){});
+
+        SECTION("Result has value") {
+          REQUIRE(result.has_value());
+        }
+        SECTION("Result is expected<void,E>") {
+          STATIC_REQUIRE(std::is_same<decltype(result),const expected<void,move_only<std::error_code>>>::value);
+        }
+      }
     }
   }
   SECTION("expected contains an error") {
-    SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
-      auto sut = expected<int,move_only<std::error_code>>{error};
+    SECTION("Function returns non-void") {
+      SECTION("Maps the error") {
+        const auto error = make_unexpected(std::io_errc::stream);
+        auto sut = expected<int,move_only<std::error_code>>{error};
 
-      const auto result = std::move(sut).map([&](int x){
-        return std::to_string(x);
-      });
+        const auto result = std::move(sut).map([&](int x){
+          return std::to_string(x);
+        });
 
-      REQUIRE(result == error);
+        REQUIRE(result == error);
+      }
+    }
+    SECTION("Function returns void") {
+      SECTION("Maps input to void") {
+        const auto error = make_unexpected(std::io_errc::stream);
+        auto sut = expected<int,move_only<std::error_code>>{error};
+
+        const auto result = std::move(sut).map([](int) -> void{});
+
+        SECTION("Result contains the error") {
+          REQUIRE(result == error);
+        }
+        SECTION("Result is expected<void,E>") {
+          STATIC_REQUIRE(std::is_same<decltype(result),const expected<void,move_only<std::error_code>>>::value);
+        }
+      }
     }
   }
 }
@@ -4150,56 +4218,122 @@ TEST_CASE("expected<void,E>::flat_map(Fn&&) &&", "[monadic]") {
 
 TEST_CASE("expected<void,E>::map(Fn&&) const &", "[monadic]") {
   SECTION("expected contains a value") {
-    SECTION("Maps the input") {
-      const auto value = 42;
-      auto sut = expected<void,std::io_errc>{};
+    SECTION("Function returns non-void") {
+      SECTION("Maps the input") {
+        const auto value = 42;
+        auto sut = expected<void,std::io_errc>{};
 
-      const auto result = sut.map([&]{
-        return value;
-      });
+        const auto result = sut.map([&]{
+          return value;
+        });
 
-      REQUIRE(result == value);
+        REQUIRE(result == value);
+      }
+    }
+    SECTION("Function returns void") {
+      SECTION("Maps input to void") {
+        auto sut = expected<void,std::io_errc>{};
+
+        const auto result = sut.map([]{});
+
+        SECTION("Result has value") {
+          REQUIRE(result.has_value());
+        }
+        SECTION("Result is expected<void,E>") {
+          STATIC_REQUIRE(std::is_same<decltype(result),const expected<void,std::io_errc>>::value);
+        }
+      }
     }
   }
   SECTION("expected contains an error") {
-    SECTION("Maps the error") {
-      const auto value = 42;
-      const auto error = make_unexpected(std::io_errc::stream);
-      auto sut = expected<void,std::io_errc>{error};
+    SECTION("Function returns non-void") {
+      SECTION("Maps the error") {
+        const auto value = 42;
+        const auto error = make_unexpected(std::io_errc::stream);
+        auto sut = expected<void,std::io_errc>{error};
 
-      const auto result = sut.map([&]{
-        return value;
-      });
+        const auto result = sut.map([&]{
+          return value;
+        });
 
-      REQUIRE(result == error);
+        REQUIRE(result == error);
+      }
+    }
+    SECTION("Function returns void") {
+      SECTION("Maps input to void") {
+        const auto error = make_unexpected(std::io_errc::stream);
+        auto sut = expected<void,std::io_errc>{error};
+
+        const auto result = sut.map([]{});
+
+        SECTION("Result contains the error") {
+          REQUIRE(result == error);
+        }
+        SECTION("Result is expected<void,E>") {
+          STATIC_REQUIRE(std::is_same<decltype(result),const expected<void,std::io_errc>>::value);
+        }
+      }
     }
   }
 }
 
 TEST_CASE("expected<void,E>::map(Fn&&) &&", "[monadic]") {
   SECTION("expected contains a value") {
-    SECTION("Maps the input") {
-      const auto value = 42;
-      auto sut = expected<void,move_only<std::error_code>>{};
+    SECTION("Function returns non-void") {
+      SECTION("Maps the input") {
+        const auto value = 42;
+        auto sut = expected<void,move_only<std::error_code>>{};
 
-      const auto result = std::move(sut).map([&]{
-        return value;
-      });
+        const auto result = std::move(sut).map([&]{
+          return value;
+        });
 
-      REQUIRE(result == value);
+        REQUIRE(result == value);
+      }
+    }
+    SECTION("Function returns void") {
+      SECTION("Maps input to void") {
+        auto sut = expected<void,move_only<std::error_code>>{};
+
+        const auto result = std::move(sut).map([]{});
+
+        SECTION("Result has value") {
+          REQUIRE(result.has_value());
+        }
+        SECTION("Result is expected<void,E>") {
+          STATIC_REQUIRE(std::is_same<decltype(result),const expected<void,move_only<std::error_code>>>::value);
+        }
+      }
     }
   }
   SECTION("expected contains an error") {
-    SECTION("Maps the error") {
-      const auto value = 42;
-      const auto error = make_unexpected(std::io_errc::stream);
-      auto sut = expected<void,move_only<std::error_code>>{error};
+    SECTION("Function returns non-void") {
+      SECTION("Maps the error") {
+        const auto value = 42;
+        const auto error = make_unexpected(std::io_errc::stream);
+        auto sut = expected<void,move_only<std::error_code>>{error};
 
-      const auto result = std::move(sut).map([&]{
-        return value;
-      });
+        const auto result = std::move(sut).map([&]{
+          return value;
+        });
 
-      REQUIRE(result == error);
+        REQUIRE(result == error);
+      }
+    }
+    SECTION("Function returns void") {
+      SECTION("Maps input to void") {
+        const auto error = make_unexpected(std::io_errc::stream);
+        auto sut = expected<void,move_only<std::error_code>>{error};
+
+        const auto result = std::move(sut).map([]{});
+
+        SECTION("Result contains the error") {
+          REQUIRE(result == error);
+        }
+        SECTION("Result is expected<void,E>") {
+          STATIC_REQUIRE(std::is_same<decltype(result),const expected<void,move_only<std::error_code>>>::value);
+        }
+      }
     }
   }
 }
