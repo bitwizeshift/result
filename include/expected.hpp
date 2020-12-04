@@ -2102,6 +2102,25 @@ namespace expect {
   private:
 
     detail::expected_storage<T,E> m_storage;
+
+    //-------------------------------------------------------------------------
+    // Private Monadic Functions
+    //-------------------------------------------------------------------------
+  private:
+
+    /// \{
+    /// \brief Map implementations for void and non-void functions
+    ///
+    /// \param fn the function
+    template <typename Fn>
+    constexpr auto map_impl(std::true_type, Fn&& fn) const & -> expected<void,E>;
+    template <typename Fn>
+    constexpr auto map_impl(std::false_type, Fn&& fn) const & -> expected<detail::invoke_result_t<Fn,const T&>,E>;
+    template <typename Fn>
+    EXPECTED_CPP14_CONSTEXPR auto map_impl(std::true_type, Fn&& fn) && -> expected<void,E>;
+    template <typename Fn>
+    EXPECTED_CPP14_CONSTEXPR auto map_impl(std::false_type, Fn&& fn) && -> expected<detail::invoke_result_t<Fn,T&&>,E>;
+    /// \}
   };
 
   //===========================================================================
@@ -2545,6 +2564,25 @@ namespace expect {
   private:
 
     detail::expected_storage<detail::unit,E> m_storage;
+
+    //-------------------------------------------------------------------------
+    // Private Monadic Functions
+    //-------------------------------------------------------------------------
+  private:
+
+    /// \{
+    /// \brief Map implementations for void and non-void functions
+    ///
+    /// \param fn the function
+    template <typename Fn>
+    constexpr auto map_impl(std::true_type, Fn&& fn) const & -> expected<void,E>;
+    template <typename Fn>
+    constexpr auto map_impl(std::false_type, Fn&& fn) const & -> expected<detail::invoke_result_t<Fn>,E>;
+    template <typename Fn>
+    EXPECTED_CPP14_CONSTEXPR auto map_impl(std::true_type, Fn&& fn) && -> expected<void,E>;
+    template <typename Fn>
+    EXPECTED_CPP14_CONSTEXPR auto map_impl(std::false_type, Fn&& fn) && -> expected<detail::invoke_result_t<Fn>,E>;
+    /// \}
   };
 
   //===========================================================================
@@ -3996,18 +4034,8 @@ auto expect::expected<T, E>::map(Fn&& fn)
   const & -> expected<detail::invoke_result_t<Fn,const T&>,E>
 {
   using result_type = detail::invoke_result_t<Fn,const T&>;
-  using expected_type = expected<result_type, E>;
 
-  static_assert(
-    !std::is_same<result_type,void>::value,
-    "expected::map functions must return a value or the program is ill-formed"
-  );
-
-  return has_value()
-    ? expected_type(in_place, detail::invoke(
-      detail::forward<Fn>(fn), m_storage.storage.m_value
-    ))
-    : expected_type(in_place_error, m_storage.storage.m_error);
+  return map_impl(std::is_void<result_type>{}, detail::forward<Fn>(fn));
 }
 
 template <typename T, typename E>
@@ -4017,18 +4045,11 @@ auto expect::expected<T, E>::map(Fn&& fn)
   && -> expected<detail::invoke_result_t<Fn,T&&>,E>
 {
   using result_type = detail::invoke_result_t<Fn,T&&>;
-  using expected_type = expected<result_type, E>;
 
-  static_assert(
-    !std::is_same<result_type,void>::value,
-    "expected::map functions must return a value or the program is ill-formed"
+  return static_cast<expected<T,E>&&>(*this).map_impl(
+    std::is_void<result_type>{},
+    detail::forward<Fn>(fn)
   );
-
-  return has_value()
-    ? expected_type(in_place, detail::invoke(
-      detail::forward<Fn>(fn), static_cast<T&&>(m_storage.storage.m_value)
-    ))
-    : expected_type(in_place_error, static_cast<E&&>(m_storage.storage.m_error));
 }
 
 template <typename T, typename E>
@@ -4095,6 +4116,70 @@ auto expect::expected<T, E>::flat_map_error(Fn&& fn)
   return has_value()
     ? result_type(in_place, static_cast<T&&>(m_storage.storage.m_value))
     : detail::invoke(detail::forward<Fn>(fn), static_cast<E&&>(m_storage.storage.m_error));
+}
+
+//-----------------------------------------------------------------------------
+// Private Monadic Functions
+//-----------------------------------------------------------------------------
+
+template <typename T, typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY constexpr
+auto expect::expected<T, E>::map_impl(std::true_type, Fn&& fn)
+  const & -> expected<void,E>
+{
+  using expected_type = expected<void, E>;
+
+  return has_value()
+    ? (detail::invoke(detail::forward<Fn>(fn), m_storage.storage.m_value), expected_type{})
+    : expected_type(in_place_error, m_storage.storage.m_error);
+}
+
+template <typename T, typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY constexpr
+auto expect::expected<T, E>::map_impl(std::false_type, Fn&& fn)
+  const & -> expected<detail::invoke_result_t<Fn,const T&>,E>
+{
+  using result_type = detail::invoke_result_t<Fn,const T&>;
+  using expected_type = expected<result_type, E>;
+
+  return has_value()
+    ? expected_type(in_place, detail::invoke(
+      detail::forward<Fn>(fn), m_storage.storage.m_value
+    ))
+    : expected_type(in_place_error, m_storage.storage.m_error);
+}
+
+template <typename T, typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
+auto expect::expected<T, E>::map_impl(std::true_type, Fn&& fn)
+  && -> expected<void,E>
+{
+  using expected_type = expected<void, E>;
+
+  return has_value()
+    ? (detail::invoke(
+        detail::forward<Fn>(fn), static_cast<T&&>(m_storage.storage.m_value)
+      ), expected_type{})
+    : expected_type(in_place_error, static_cast<E&&>(m_storage.storage.m_error));
+}
+
+template <typename T, typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
+auto expect::expected<T, E>::map_impl(std::false_type, Fn&& fn)
+  && -> expected<detail::invoke_result_t<Fn,T&&>,E>
+{
+  using result_type = detail::invoke_result_t<Fn,T&&>;
+  using expected_type = expected<result_type, E>;
+
+  return has_value()
+    ? expected_type(in_place, detail::invoke(
+      detail::forward<Fn>(fn), static_cast<T&&>(m_storage.storage.m_value)
+    ))
+    : expected_type(in_place_error, static_cast<E&&>(m_storage.storage.m_error));
 }
 
 //=============================================================================
@@ -4372,16 +4457,8 @@ auto expect::expected<void, E>::map(Fn&& fn)
   const & -> expected<detail::invoke_result_t<Fn>,E>
 {
   using result_type = detail::invoke_result_t<Fn>;
-  using expected_type = expected<result_type, E>;
 
-  static_assert(
-    !std::is_same<result_type,void>::value,
-    "expected::map functions must return a value or the program is ill-formed"
-  );
-
-  return has_value()
-    ? expected_type(in_place, detail::invoke(detail::forward<Fn>(fn)))
-    : expected_type(in_place_error, m_storage.storage.m_error);
+  return map_impl(std::is_void<result_type>{}, detail::forward<Fn>(fn));
 }
 
 template <typename E>
@@ -4391,16 +4468,11 @@ auto expect::expected<void, E>::map(Fn&& fn)
   && -> expected<detail::invoke_result_t<Fn>,E>
 {
   using result_type = detail::invoke_result_t<Fn>;
-  using expected_type = expected<result_type, E>;
 
-  static_assert(
-    !std::is_same<result_type,void>::value,
-    "expected::map functions must return a value or the program is ill-formed"
+  return static_cast<expected<void,E>&&>(*this).map_impl(
+    std::is_void<result_type>{},
+    detail::forward<Fn>(fn)
   );
-
-  return has_value()
-    ? expected_type(in_place, detail::invoke(detail::forward<Fn>(fn)))
-    : expected_type(in_place_error, static_cast<E&&>(m_storage.storage.m_error));
 }
 
 template <typename E>
@@ -4477,6 +4549,64 @@ auto expect::expected<void, E>::flat_map_error(Fn&& fn)
   return has_value()
     ? result_type{}
     : detail::invoke(detail::forward<Fn>(fn), static_cast<E&&>(m_storage.storage.m_error));
+}
+
+//-----------------------------------------------------------------------------
+// Private Monadic Functions
+//-----------------------------------------------------------------------------
+
+template <typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY constexpr
+auto expect::expected<void, E>::map_impl(std::true_type, Fn&& fn)
+  const & -> expected<void,E>
+{
+  using expected_type = expected<void, E>;
+
+  return has_value()
+    ? (detail::invoke(detail::forward<Fn>(fn)), expected_type{})
+    : expected_type(in_place_error, m_storage.storage.m_error);
+}
+
+template <typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY constexpr
+auto expect::expected<void, E>::map_impl(std::false_type, Fn&& fn)
+  const & -> expected<detail::invoke_result_t<Fn>,E>
+{
+  using result_type = detail::invoke_result_t<Fn>;
+  using expected_type = expected<result_type, E>;
+
+  return has_value()
+    ? expected_type(in_place, detail::invoke(detail::forward<Fn>(fn)))
+    : expected_type(in_place_error, m_storage.storage.m_error);
+}
+
+template <typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
+auto expect::expected<void, E>::map_impl(std::true_type, Fn&& fn)
+  && -> expected<void,E>
+{
+  using expected_type = expected<void, E>;
+
+  return has_value()
+    ? (detail::invoke(detail::forward<Fn>(fn)), expected_type{})
+    : expected_type(in_place_error, static_cast<E&&>(m_storage.storage.m_error));
+}
+
+template <typename E>
+template <typename Fn>
+inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
+auto expect::expected<void, E>::map_impl(std::false_type, Fn&& fn)
+  && -> expected<detail::invoke_result_t<Fn>,E>
+{
+  using result_type = detail::invoke_result_t<Fn>;
+  using expected_type = expected<result_type, E>;
+
+  return has_value()
+    ? expected_type(in_place, detail::invoke(detail::forward<Fn>(fn)))
+    : expected_type(in_place_error, static_cast<E&&>(m_storage.storage.m_error));
 }
 
 //=============================================================================
