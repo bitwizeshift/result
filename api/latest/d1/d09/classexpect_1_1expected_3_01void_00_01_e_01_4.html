@@ -256,6 +256,22 @@ template&lt;typename Fn &gt; </td></tr>
 template&lt;typename Fn &gt; </td></tr>
 <tr class="memitem:a0ea1f13f77f5ab58fb1cfc74d0283d57"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>flat_map_error</b> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;</td></tr>
 <tr class="separator:a0ea1f13f77f5ab58fb1cfc74d0283d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8213b4e3fe2ab6c9a8c7d7ccbb580ae3"><td class="memTemplParams" colspan="2"><a id="a8213b4e3fe2ab6c9a8c7d7ccbb580ae3"></a>
+template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a8213b4e3fe2ab6c9a8c7d7ccbb580ae3"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map_impl</b> (std::true_type, Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; void, E &gt;</td></tr>
+<tr class="separator:a8213b4e3fe2ab6c9a8c7d7ccbb580ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e439551eeb92ec939e6127a179caed"><td class="memTemplParams" colspan="2"><a id="a50e439551eeb92ec939e6127a179caed"></a>
+template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a50e439551eeb92ec939e6127a179caed"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map_impl</b> (std::false_type, Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn &gt;, E &gt;</td></tr>
+<tr class="separator:a50e439551eeb92ec939e6127a179caed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aeafe338b5d7c85c625239c6e8144f0"><td class="memTemplParams" colspan="2"><a id="a1aeafe338b5d7c85c625239c6e8144f0"></a>
+template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a1aeafe338b5d7c85c625239c6e8144f0"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map_impl</b> (std::true_type, Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; void, E &gt;</td></tr>
+<tr class="separator:a1aeafe338b5d7c85c625239c6e8144f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebdbae3e99f010a5446e32293c04f162"><td class="memTemplParams" colspan="2"><a id="aebdbae3e99f010a5446e32293c04f162"></a>
+template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:aebdbae3e99f010a5446e32293c04f162"><td class="memTemplItemLeft" align="right" valign="top">EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>map_impl</b> (std::false_type, Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expected</a>&lt; detail::invoke_result_t&lt; Fn &gt;, E &gt;</td></tr>
+<tr class="separator:aebdbae3e99f010a5446e32293c04f162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:aa03431a8a61a3f75535c2dc561c0e96c"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:aa03431a8a61a3f75535c2dc561c0e96c"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d1/d09/classexpect_1_1expected_3_01void_00_01_e_01_4.html#aa03431a8a61a3f75535c2dc561c0e96c">expected</a> (const <a class="el" href="../../d7/d1c/classexpect_1_1unexpected.html">unexpected</a>&lt; E2 &gt; &amp;e) noexcept(std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../d1/d09/classexpect_1_1expected_3_01void_00_01_e_01_4.html#a55bef123d7f5821ce1aa898bb8c8f1d5">value</a>)</td></tr>
@@ -346,7 +362,7 @@ class expect::expected&lt; void, E &gt;</h3>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l02117">2117</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l02136">2136</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af006b4ba28fc8e3349228c7e935f91c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af006b4ba28fc8e3349228c7e935f91c1">&#9670;&nbsp;</a></span>expected() <span class="overload">[1/8]</span></h2>
@@ -1023,7 +1039,7 @@ template&lt;typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains an error. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains an error, <code>false</code> if <code>*this</code> contains a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l04248">4248</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l04331">4331</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1055,7 +1071,7 @@ template&lt;typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> contains an error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l04240">4240</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l04323">4323</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1217,7 +1233,7 @@ template&lt;typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> does not contain a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l04232">4232</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l04315">4315</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1530,7 +1546,7 @@ template&lt;typename E &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l04258">4258</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l04341">4341</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
