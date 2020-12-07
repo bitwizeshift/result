@@ -161,6 +161,22 @@ template&lt;typename Fn , typename... Args&gt; </td></tr>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a2a8f8a1fc965da0590bee5d9e18779d8"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expect::detail::wrapped_expected_type</b> = typename std::conditional&lt; std::is_lvalue_reference&lt; T &gt;::value, std::reference_wrapper&lt; typename std::remove_reference&lt; T &gt;::type &gt;, typename std::remove_const&lt; T &gt;::type &gt;::type</td></tr>
 <tr class="separator:a2a8f8a1fc965da0590bee5d9e18779d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85b3a0541e14755d637dff7a0b140e35"><td class="memTemplParams" colspan="2"><a id="a85b3a0541e14755d637dff7a0b140e35"></a>
+template&lt;typename E , typename E2 &gt; </td></tr>
+<tr class="memitem:a85b3a0541e14755d637dff7a0b140e35"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expect::detail::unexpected_is_value_convertible</b> = std::integral_constant&lt; bool,(std::is_constructible&lt; E, E2 &amp;&amp; &gt;::value &amp;&amp;!std::is_same&lt; typename std::decay&lt; E2 &gt;::type, in_place_t &gt;::value &amp;&amp;!is_unexpected&lt; typename std::decay&lt; E2 &gt;::type &gt;::value &amp;&amp;!is_expected&lt; typename std::decay&lt; E2 &gt;::type &gt;::value)&gt;</td></tr>
+<tr class="separator:a85b3a0541e14755d637dff7a0b140e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f12659ede9aa7d7b59e1ad76ecce3f8"><td class="memTemplParams" colspan="2"><a id="a3f12659ede9aa7d7b59e1ad76ecce3f8"></a>
+template&lt;typename E , typename E2 &gt; </td></tr>
+<tr class="memitem:a3f12659ede9aa7d7b59e1ad76ecce3f8"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expect::detail::unexpected_is_explicit_value_convertible</b> = std::integral_constant&lt; bool,(unexpected_is_value_convertible&lt; E, E2 &gt;::value &amp;&amp;!std::is_convertible&lt; E2 &amp;&amp;, E &gt;::value)&gt;</td></tr>
+<tr class="separator:a3f12659ede9aa7d7b59e1ad76ecce3f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65f72dfdab2acba241f02438e3d0fd27"><td class="memTemplParams" colspan="2"><a id="a65f72dfdab2acba241f02438e3d0fd27"></a>
+template&lt;typename E , typename E2 &gt; </td></tr>
+<tr class="memitem:a65f72dfdab2acba241f02438e3d0fd27"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expect::detail::unexpected_is_implicit_value_convertible</b> = std::integral_constant&lt; bool,(unexpected_is_value_convertible&lt; E, E2 &gt;::value &amp;&amp;std::is_convertible&lt; E2 &amp;&amp;, E &gt;::value)&gt;</td></tr>
+<tr class="separator:a65f72dfdab2acba241f02438e3d0fd27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba1aae52988a43c97af1bf1bf65bf8b5"><td class="memTemplParams" colspan="2"><a id="aba1aae52988a43c97af1bf1bf65bf8b5"></a>
+template&lt;typename E , typename E2 &gt; </td></tr>
+<tr class="memitem:aba1aae52988a43c97af1bf1bf65bf8b5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expect::detail::unexpected_is_value_assignable</b> = std::integral_constant&lt; bool,(!is_expected&lt; typename std::decay&lt; E2 &gt;::type &gt;::value &amp;&amp;!is_unexpected&lt; typename std::decay&lt; E2 &gt;::type &gt;::value &amp;&amp;std::is_assignable&lt; wrapped_expected_type&lt; E &gt;, E2 &gt;::value)&gt;</td></tr>
+<tr class="separator:aba1aae52988a43c97af1bf1bf65bf8b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab7b2e10a2bb7b8f4230d3d59398677b"><td class="memTemplParams" colspan="2"><a id="aab7b2e10a2bb7b8f4230d3d59398677b"></a>
 template&lt;bool Condition, typename Base &gt; </td></tr>
 <tr class="memitem:aab7b2e10a2bb7b8f4230d3d59398677b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expect::detail::conditionally_nest_type</b> = typename std::conditional&lt; Condition, typename Base::base_type, Base &gt;::type</td></tr>
