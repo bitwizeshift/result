@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_5ftype',['error_type',['../d8/d8e/classexpect_1_1expected.html#afaf8bcacea70952d1f33674a1434aa3c',1,'expect::expected::error_type()'],['../d1/d09/classexpect_1_1expected_3_01void_00_01_e_01_4.html#a5ace3498e08bf2cd9a39619c10fdf103',1,'expect::expected&lt; void, E &gt;::error_type()']]]
+  ['error_5ftype',['error_type',['../da/d9c/classcpp_1_1bitwizeshift_1_1expected.html#aadbcca63b44bbd3b48a5427ade1844ed',1,'cpp::bitwizeshift::expected::error_type()'],['../dd/da3/classcpp_1_1bitwizeshift_1_1expected_3_01void_00_01_e_01_4.html#a25c0dc7512d2cebee6409cac80e9fa91',1,'cpp::bitwizeshift::expected&lt; void, E &gt;::error_type()']]]
 ];

@@ -3,9 +3,7 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="true_type",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node1 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 [label="expect::is_expected\l\< expected\< T, E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/d31/structexpect_1_1is__expected_3_01expected_3_01_t_00_01_e_01_4_01_4.html"];
-  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="expect::is_unexpected\l\< unexpected\< E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d92/structexpect_1_1is__unexpected_3_01unexpected_3_01_e_01_4_01_4.html"];
+  Node0 [label="cpp::bitwizeshift::\ldetail::expected_construct\l_base\< T, E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d78/structcpp_1_1bitwizeshift_1_1detail_1_1expected__construct__base.html",tooltip="Base class of assignment to enable construction and assignment. "];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="cpp::bitwizeshift::\ldetail::expected_trivial\l_copy_ctor_base_impl\< T, E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d00/structcpp_1_1bitwizeshift_1_1detail_1_1expected__trivial__copy__ctor__base__impl.html"];
 }

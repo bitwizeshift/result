@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['in_5fplace_5ferror_5ft',['in_place_error_t',['../dd/dd6/structexpect_1_1in__place__error__t.html',1,'expect']]],
-  ['in_5fplace_5ft',['in_place_t',['../d3/d44/structexpect_1_1in__place__t.html',1,'expect']]],
-  ['is_5fexpected',['is_expected',['../d6/d81/structexpect_1_1is__expected.html',1,'expect']]],
-  ['is_5fexpected_3c_20expected_3c_20t_2c_20e_20_3e_20_3e',['is_expected&lt; expected&lt; T, E &gt; &gt;',['../da/d31/structexpect_1_1is__expected_3_01expected_3_01_t_00_01_e_01_4_01_4.html',1,'expect']]],
-  ['is_5funexpected',['is_unexpected',['../d9/de2/structexpect_1_1is__unexpected.html',1,'expect']]],
-  ['is_5funexpected_3c_20unexpected_3c_20e_20_3e_20_3e',['is_unexpected&lt; unexpected&lt; E &gt; &gt;',['../d4/d92/structexpect_1_1is__unexpected_3_01unexpected_3_01_e_01_4_01_4.html',1,'expect']]]
+  ['hash_3c_3a_3aexpected_5fns_5fimpl_3a_3aexpected_3c_20t_2c_20e_20_3e_20_3e',['hash&lt;::EXPECTED_NS_IMPL::expected&lt; T, E &gt; &gt;',['../d3/d2a/structstd_1_1hash_3_1_1_e_x_p_e_c_t_e_d___n_s___i_m_p_l_1_1expected_3_01_t_00_01_e_01_4_01_4.html',1,'std']]],
+  ['hash_3c_3a_3aexpected_5fns_5fimpl_3a_3aexpected_3c_20void_2c_20e_20_3e_20_3e',['hash&lt;::EXPECTED_NS_IMPL::expected&lt; void, E &gt; &gt;',['../dd/d57/structstd_1_1hash_3_1_1_e_x_p_e_c_t_e_d___n_s___i_m_p_l_1_1expected_3_01void_00_01_e_01_4_01_4.html',1,'std']]]
 ];
