@@ -1322,7 +1322,7 @@ TEST_CASE("expected<T,E>::operator=(const expected&)", "[assign]") {
     }
     SECTION("expected contains a value") {
       SECTION("'other' contains a value") {
-        using sut_type = expected<int>;
+        using sut_type = expected<int,std::error_code>;
 
         const auto value = 42;
         const sut_type copy{value};
@@ -1472,7 +1472,7 @@ TEST_CASE("expected<T,E>::operator=(expected&&)", "[assign]") {
     }
     SECTION("expected contains a value") {
       SECTION("'other' contains a value") {
-        using sut_type = expected<move_only<std::string>>;
+        using sut_type = expected<move_only<std::string>,std::error_code>;
 
         const auto value = "Hello world";
         sut_type original{value};
@@ -1629,8 +1629,8 @@ SECTION("T is not nothrow constructible from T2") {
     }
     SECTION("expected contains a value") {
       SECTION("'other' contains a value") {
-        using copy_type = expected<const char*>;
-        using sut_type = expected<nonthrowing<std::string>>;
+        using copy_type = expected<const char*,std::error_code>;
+        using sut_type = expected<nonthrowing<std::string>,std::error_code>;
 
         const auto value = "Hello world";
         copy_type original{value};
@@ -1782,8 +1782,8 @@ TEST_CASE("expected<T,E>::operator=(expected<T2,E2>&&)", "[assign]") {
     }
     SECTION("expected contains a value") {
       SECTION("'other' contains a value") {
-        using copy_type = expected<std::string>;
-        using sut_type = expected<move_only<std::string>>;
+        using copy_type = expected<std::string,std::error_code>;
+        using sut_type = expected<move_only<std::string>,std::error_code>;
 
         const auto value = "Hello world";
         copy_type original{value};
@@ -1877,23 +1877,23 @@ TEST_CASE("expected<T,E>::operator=(expected<T2,E2>&&)", "[assign]") {
 TEST_CASE("expected<T,E>::operator=(U&&)", "[assign]") {
   SECTION("T is not nothrow constructible from U") {
     SECTION("expected is not assignable from U") {
-      STATIC_REQUIRE_FALSE(std::is_assignable<expected<throwing<std::string>>,const char*>::value);
+      STATIC_REQUIRE_FALSE(std::is_assignable<expected<throwing<std::string>,std::error_code>,const char*>::value);
     }
   }
   SECTION("T is constructible from U, and nothrow move constructible") {
     SECTION("expected is assignable from U") {
       // This works by creating an intermediate `expected` object which then
       // is moved through non-throwing move-assignment
-      STATIC_REQUIRE(std::is_assignable<expected<std::string>,const char*>::value);
+      STATIC_REQUIRE(std::is_assignable<expected<std::string,std::error_code>,const char*>::value);
     }
   }
   SECTION("T is not assignable or constructible from U") {
     SECTION("expected is not assignable from U") {
-      STATIC_REQUIRE_FALSE(std::is_assignable<expected<int>,const char*>::value);
+      STATIC_REQUIRE_FALSE(std::is_assignable<expected<int,std::error_code>,const char*>::value);
     }
   }
   SECTION("expected contains a value") {
-    using sut_type = expected<int>;
+    using sut_type = expected<int,std::error_code>;
 
     const auto value = 42ll;
     sut_type sut{};
@@ -2236,7 +2236,7 @@ TEST_CASE("expected<T,E>::has_error()", "[observers]") {
 
 TEST_CASE("expected<T,E>::value() &", "[observers]") {
   SECTION("expected contains a value") {
-    auto sut = expected<int>{42};
+    auto sut = expected<int,std::error_code>{42};
     SECTION("Does not throw exception") {
       REQUIRE_NOTHROW(sut.value());
     }
@@ -2257,7 +2257,7 @@ TEST_CASE("expected<T,E>::value() &", "[observers]") {
 
 TEST_CASE("expected<T,E>::value() const &", "[observers]") {
   SECTION("expected contains a value") {
-    const auto sut = expected<int>{42};
+    const auto sut = expected<int,std::error_code>{42};
     SECTION("Does not throw exception") {
       REQUIRE_NOTHROW(sut.value());
     }
@@ -2278,7 +2278,7 @@ TEST_CASE("expected<T,E>::value() const &", "[observers]") {
 
 TEST_CASE("expected<T,E>::value() &&", "[observers]") {
   SECTION("expected contains a value") {
-    auto sut = expected<int>{42};
+    auto sut = expected<int,std::error_code>{42};
     SECTION("Does not throw exception") {
       REQUIRE_NOTHROW(std::move(sut).value());
     }
@@ -2299,7 +2299,7 @@ TEST_CASE("expected<T,E>::value() &&", "[observers]") {
 
 TEST_CASE("expected<T,E>::value() const &&", "[observers]") {
   SECTION("expected contains a value") {
-    const auto sut = expected<int>{42};
+    const auto sut = expected<int,std::error_code>{42};
     SECTION("Does not throw exception") {
       REQUIRE_NOTHROW(std::move(sut).value());
     }
@@ -2450,10 +2450,10 @@ TEST_CASE("expected<T,E>::flat_map(Fn&&) const &", "[monadic]") {
   SECTION("expected contains a value") {
     SECTION("Maps the input") {
       const auto value = 42;
-      const auto sut = expected<int>{value};
+      const auto sut = expected<int,std::error_code>{value};
 
       const auto result = sut.flat_map([](int x){
-        return expected<std::string>{std::to_string(x)};
+        return expected<std::string,std::error_code>{std::to_string(x)};
       });
 
       REQUIRE(result == std::to_string(value));
@@ -2462,10 +2462,10 @@ TEST_CASE("expected<T,E>::flat_map(Fn&&) const &", "[monadic]") {
   SECTION("expected contains an error") {
     SECTION("Maps the error") {
       const auto error = make_unexpected(std::io_errc::stream);
-      const auto sut = expected<int>{error};
+      const auto sut = expected<int,std::error_code>{error};
 
       const auto result = sut.flat_map([](int x){
-        return expected<std::string>{std::to_string(x)};
+        return expected<std::string,std::error_code>{std::to_string(x)};
       });
 
       REQUIRE(result == error);
@@ -2480,7 +2480,7 @@ TEST_CASE("expected<T,E>::flat_map(Fn&&) &&", "[monadic]") {
       auto sut = expected<int,move_only<std::error_code>>{value};
 
       const auto result = std::move(sut).flat_map([](int x){
-        return expected<std::string>{std::to_string(x)};
+        return expected<std::string,std::error_code>{std::to_string(x)};
       });
 
       REQUIRE(result == std::to_string(value));
@@ -2492,7 +2492,7 @@ TEST_CASE("expected<T,E>::flat_map(Fn&&) &&", "[monadic]") {
       auto sut = expected<int,move_only<std::error_code>>{error};
 
       const auto result = std::move(sut).flat_map([](int x){
-        return expected<std::string>{std::to_string(x)};
+        return expected<std::string,std::error_code>{std::to_string(x)};
       });
 
       REQUIRE(result == error);
@@ -2787,8 +2787,8 @@ TEST_CASE("expected<T&,E>::expected(expected&&)", "[ctor]") {
 TEST_CASE("expected<T&,E>::expected(const expected<T2,E2>&)", "[ctor]") {
   SECTION("other's type holds T by-value") {
     SECTION("Constructor is disabled") {
-      using from_type = expected<int>;
-      using sut_type = expected<int&>;
+      using from_type = expected<int,std::error_code>;
+      using sut_type = expected<int&, std::error_code>;
 
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, const from_type&>::value);
     }
@@ -2943,8 +2943,8 @@ TEST_CASE("expected<T&,E>::operator=(const expected&)", "[assign]") {
       auto value = derived{42};
       auto next = derived{0};
 
-      const auto source = expected<base&>{next};
-      auto sut = expected<base&>{value};
+      const auto source = expected<base&,std::error_code>{next};
+      auto sut = expected<base&,std::error_code>{value};
 
       sut = source;
 
@@ -3004,8 +3004,8 @@ TEST_CASE("expected<T&,E>::operator=(expected&&)", "[assign]") {
 TEST_CASE("expected<T&,E>::operator=(const expected<T2,E2>&)", "[assign]") {
   SECTION("other's type holds T by-value") {
     SECTION("Assignment is disabled") {
-      using source_type = expected<int>;
-      using sut_type = expected<int&>;
+      using source_type = expected<int,std::error_code>;
+      using sut_type = expected<int&,std::error_code>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type, const source_type&>::value);
     }
@@ -3015,8 +3015,8 @@ TEST_CASE("expected<T&,E>::operator=(const expected<T2,E2>&)", "[assign]") {
       auto value = derived{42};
       auto next = derived{0};
 
-      const auto source = expected<derived&>{next};
-      auto sut = expected<base&>{value};
+      const auto source = expected<derived&,std::error_code>{next};
+      auto sut = expected<base&,std::error_code>{value};
 
       sut = source;
 
@@ -3086,7 +3086,7 @@ TEST_CASE("expected<T&,E>::operator=(U&&)", "[assign]") {
     auto value = int{42};
     auto next = int{0};
 
-    auto sut = expected<int&>{value};
+    auto sut = expected<int&,std::error_code>{value};
 
     sut = next;
 
@@ -4164,10 +4164,10 @@ TEST_CASE("expected<void,E>::flat_map(Fn&&) const &", "[monadic]") {
   SECTION("expected contains a value") {
     SECTION("Maps the input") {
       const auto value = 42;
-      const auto sut = expected<void>{};
+      const auto sut = expected<void,std::error_code>{};
 
       const auto result = sut.flat_map([&]{
-        return expected<int>{value};
+        return expected<int,std::error_code>{value};
       });
 
       REQUIRE(result == value);
@@ -4177,10 +4177,10 @@ TEST_CASE("expected<void,E>::flat_map(Fn&&) const &", "[monadic]") {
     SECTION("Maps the error") {
       const auto error = make_unexpected(std::io_errc::stream);
       const auto value = 42;
-      const auto sut = expected<void>{error};
+      const auto sut = expected<void,std::error_code>{error};
 
       const auto result = sut.flat_map([&]{
-        return expected<int>{value};
+        return expected<int,std::error_code>{value};
       });
 
       REQUIRE(result == error);
@@ -4195,7 +4195,7 @@ TEST_CASE("expected<void,E>::flat_map(Fn&&) &&", "[monadic]") {
       auto sut = expected<void,move_only<std::error_code>>{};
 
       const auto result = std::move(sut).flat_map([&]{
-        return expected<int>{value};
+        return expected<int,std::error_code>{value};
       });
 
       REQUIRE(result == value);
@@ -4208,7 +4208,7 @@ TEST_CASE("expected<void,E>::flat_map(Fn&&) &&", "[monadic]") {
       auto sut = expected<void,move_only<std::error_code>>{error};
 
       const auto result = std::move(sut).flat_map([&]{
-        return expected<int>{value};
+        return expected<int,std::error_code>{value};
       });
 
       REQUIRE(result == error);

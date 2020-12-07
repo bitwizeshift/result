@@ -32,6 +32,15 @@
 #ifndef EXPECTED_EXPECTED_HPP
 #define EXPECTED_EXPECTED_HPP
 
+#include <cstddef>      // std::size_t
+#include <stdexcept>    // std::logic_error
+#include <type_traits>  // std::enable_if, std::is_constructible, etc
+#include <new>          // placement-new
+#include <memory>       // std::address_of
+#include <functional>   // std::reference_wrapper, std::invoke
+#include <utility>      // std::in_place_t, std::forward
+#include <initializer_list> // std::initializer_list
+
 #if __cplusplus >= 201402L
 # define EXPECTED_CPP14_CONSTEXPR constexpr
 #else
@@ -53,16 +62,6 @@
 #else
 # define EXPECTED_INLINE_VISIBILITY
 #endif
-
-#include <cstddef>      // std::size_t
-#include <stdexcept>    // std::logic_error
-#include <type_traits>  // std::enable_if, std::is_constructible, etc
-#include <new>          // placement-new
-#include <memory>       // std::address_of
-#include <functional>   // std::reference_wrapper, std::invoke
-#include <system_error> // std::error_code
-#include <utility>      // std::in_place_t, std::forward
-#include <initializer_list> // std::initializer_list
 
 namespace expect {
 
@@ -633,12 +632,12 @@ namespace expect {
     // non-member functions : class : unit
     //=========================================================================
 
-    constexpr bool operator==(unit, unit) noexcept { return true; }
-    constexpr bool operator!=(unit, unit) noexcept { return false; }
-    constexpr bool operator<(unit, unit) noexcept { return false; }
-    constexpr bool operator>(unit, unit) noexcept { return false; }
-    constexpr bool operator<=(unit, unit) noexcept { return true; }
-    constexpr bool operator>=(unit, unit) noexcept { return true; }
+    constexpr auto operator==(unit, unit) noexcept -> bool { return true; }
+    constexpr auto operator!=(unit, unit) noexcept -> bool { return false; }
+    constexpr auto operator<(unit, unit) noexcept -> bool { return false; }
+    constexpr auto operator>(unit, unit) noexcept -> bool { return false; }
+    constexpr auto operator<=(unit, unit) noexcept -> bool { return true; }
+    constexpr auto operator>=(unit, unit) noexcept -> bool { return true; }
 
     //=========================================================================
     // class : detail::expected_union<T, E, IsTrivial>
@@ -1421,9 +1420,9 @@ namespace expect {
   ///       `unexpected{...}` thanks to CTAD.
   ///
   /// \tparam T the underlying value type
-  /// \tparam E the underlying error type (`std::error_code` by default)
+  /// \tparam E the underlying error type
   ///////////////////////////////////////////////////////////////////////////
-  template <typename T, typename E = std::error_code>
+  template <typename T, typename E>
   class expected
   {
     // Type requirements
@@ -2130,7 +2129,7 @@ namespace expect {
   /////////////////////////////////////////////////////////////////////////////
   /// \brief Partial specialization of `expected<void, E>`
   ///
-  /// \tparam E the underlying error type (`std::error_code` by default)
+  /// \tparam E the underlying error type
   /////////////////////////////////////////////////////////////////////////////
   template <typename E>
   class expected<void,E>
