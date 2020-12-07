@@ -333,6 +333,37 @@ namespace expect {
 
 #endif
 
+  namespace detail {
+
+    template <typename E, typename E2>
+    using unexpected_is_value_convertible = std::integral_constant<bool,(
+      std::is_constructible<E, E2&&>::value &&
+      !std::is_same<typename std::decay<E2>::type, in_place_t>::value &&
+      !is_unexpected<typename std::decay<E2>::type>::value &&
+      !is_expected<typename std::decay<E2>::type>::value
+    )>;
+
+    template <typename E, typename E2>
+    using unexpected_is_explicit_value_convertible = std::integral_constant<bool,(
+      unexpected_is_value_convertible<E, E2>::value &&
+      !std::is_convertible<E2&&, E>::value
+    )>;
+
+    template <typename E, typename E2>
+    using unexpected_is_implicit_value_convertible = std::integral_constant<bool,(
+      unexpected_is_value_convertible<E, E2>::value &&
+      std::is_convertible<E2&&, E>::value
+    )>;
+
+    template <typename E, typename E2>
+    using unexpected_is_value_assignable = std::integral_constant<bool,(
+      !is_expected<typename std::decay<E2>::type>::value &&
+      !is_unexpected<typename std::decay<E2>::type>::value &&
+      std::is_assignable<wrapped_expected_type<E>,E2>::value
+    )>;
+
+  } // namespace detail
+
   //===========================================================================
   // class : unexpected_type
   //===========================================================================
@@ -364,12 +395,18 @@ namespace expect {
       "Only lvalue references are valid."
     );
 
+    using const_error_type = typename std::conditional<
+      std::is_lvalue_reference<E>::value,
+      E,
+      typename std::add_const<E>::type
+    >::type;
+
     //-------------------------------------------------------------------------
     // Public Member Types
     //-------------------------------------------------------------------------
   public:
 
-    using error_type = typename std::remove_reference<E>::type;
+    using error_type = E;
 
     //-------------------------------------------------------------------------
     // Constructors / Assignment
@@ -392,24 +429,15 @@ namespace expect {
     /// \brief Constructs an unexpected from the given error
     ///
     /// \param error the error to create an unexpected from
-    template <typename E2=E,
-              typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_constructible<E,const E2&>::value,int>::type = 0>
-    constexpr explicit unexpected(const error_type& error)
-      noexcept(std::is_nothrow_copy_constructible<E>::value);
-    template <typename E2=E,
-              typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_constructible<E,E2&&>::value,int>::type = 0>
-    constexpr explicit unexpected(error_type&& error)
-      noexcept(std::is_nothrow_move_constructible<E>::value);
+    template <typename E2,
+              typename std::enable_if<detail::unexpected_is_explicit_value_convertible<E,E2>::value,int>::type = 0>
+    constexpr unexpected(E2&& error)
+      noexcept(std::is_nothrow_constructible<E,E2>::value);
+    template <typename E2,
+              typename std::enable_if<detail::unexpected_is_implicit_value_convertible<E,E2>::value,int>::type = 0>
+    constexpr explicit unexpected(E2&& error)
+      noexcept(std::is_nothrow_constructible<E,E2>::value);
     /// \}
-
-    /// \brief Constructs an unexpected from a reference to the given error
-    ///
-    /// This overload is only enabled
-    ///
-    /// \param error the reference to the error
-    template <typename E2=E,
-              typename std::enable_if<std::is_lvalue_reference<E2>::value,int>::type = 0>
-    constexpr explicit unexpected(error_type& error) noexcept;
 
     /// \brief Constructs this unexpected by copying the contents of an existing
     ///        one
@@ -442,36 +470,15 @@ namespace expect {
     //--------------------------------------------------------------------------
 
     /// \brief Assigns the value of \p error to this unexpected through
-    ///        copy-assignment
-    ///
-    /// \param error the value to assign
-    /// \return reference to `(*this)`
-    template <typename E2=E,
-              typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_assignable<E,const E2&>::value,int>::type = 0>
-    EXPECTED_CPP14_CONSTEXPR
-    auto operator=(const error_type& error)
-      noexcept(std::is_nothrow_copy_assignable<E>::value) -> unexpected&;
-
-    /// \brief Assigns the value of \p error to this unexpected through
     ///        move-assignment
     ///
     /// \param error the value to assign
     /// \return reference to `(*this)`
-    template <typename E2=E,
-              typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_assignable<E,E2&&>::value,int>::type = 0>
+    template <typename E2,
+              typename = typename std::enable_if<detail::unexpected_is_value_assignable<E,E2>::value>::type>
     EXPECTED_CPP14_CONSTEXPR
-    auto operator=(error_type&& error)
-      noexcept(std::is_nothrow_move_assignable<E>::value) -> unexpected&;
-
-    /// \brief Assigns the value of \p error to this unexpected reference
-    ///
-    /// \param error the reference to assign
-    /// \return reference to `(*this)`
-    template <typename E2=E,
-              typename std::enable_if<std::is_lvalue_reference<E2>::value,int>::type = 0>
-    EXPECTED_CPP14_CONSTEXPR
-    auto operator=(error_type& error) noexcept -> unexpected&;
-
+    auto operator=(E2&& error)
+      noexcept(std::is_nothrow_assignable<E,E2>::value || std::is_lvalue_reference<E>::value) -> unexpected&;
 
     /// \brief Assigns the contents of \p other to this by copy-assignment
     ///
@@ -518,9 +525,13 @@ namespace expect {
     /// \return the underlying error
     EXPECTED_CPP14_CONSTEXPR
     auto error() & noexcept -> error_type&;
+    template <typename E2=E,
+              typename = typename std::enable_if<!std::is_lvalue_reference<E2>::value>::type>
     EXPECTED_CPP14_CONSTEXPR
     auto error() && noexcept -> error_type&&;
-    constexpr auto error() const & noexcept -> const error_type&;
+    constexpr auto error() const & noexcept -> const_error_type&;
+    template <typename E2=E,
+              typename = typename std::enable_if<!std::is_lvalue_reference<E2>::value>::type>
     constexpr auto error() const && noexcept -> const error_type&&;
     /// \}
 
@@ -2825,33 +2836,22 @@ expect::unexpected<E>::unexpected(in_place_t, Args&&...args)
 
 template <typename E>
 template <typename E2,
-          typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_constructible<E,const E2&>::value,int>::type>
+          typename std::enable_if<expect::detail::unexpected_is_explicit_value_convertible<E,E2>::value,int>::type>
 inline EXPECTED_INLINE_VISIBILITY constexpr
-expect::unexpected<E>::unexpected(const error_type& error)
-  noexcept(std::is_nothrow_copy_constructible<E>::value)
-  : m_unexpected(error)
+expect::unexpected<E>::unexpected(E2&& error)
+  noexcept(std::is_nothrow_constructible<E,E2>::value)
+  : m_unexpected(detail::forward<E2>(error))
 {
 
 }
 
 template <typename E>
 template <typename E2,
-          typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_constructible<E,E2&&>::value,int>::type>
+          typename std::enable_if<expect::detail::unexpected_is_implicit_value_convertible<E,E2>::value,int>::type>
 inline EXPECTED_INLINE_VISIBILITY constexpr
-expect::unexpected<E>::unexpected(error_type&& error)
-  noexcept(std::is_nothrow_move_constructible<E>::value)
-  : m_unexpected(error)
-{
-
-}
-
-template <typename E>
-template <typename E2,
-          typename std::enable_if<std::is_lvalue_reference<E2>::value,int>::type>
-inline EXPECTED_INLINE_VISIBILITY constexpr
-expect::unexpected<E>::unexpected(error_type& error)
-  noexcept
-  : m_unexpected(error)
+expect::unexpected<E>::unexpected(E2&& error)
+  noexcept(std::is_nothrow_constructible<E,E2>::value)
+  : m_unexpected(detail::forward<E2>(error))
 {
 
 }
@@ -2879,37 +2879,15 @@ expect::unexpected<E>::unexpected(unexpected<E2>&& other)
 //-----------------------------------------------------------------------------
 
 template <typename E>
-template <typename E2,
-          typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_assignable<E,const E2&>::value,int>::type>
+template <typename E2, typename>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
-auto expect::unexpected<E>::operator=(const error_type& error)
-  noexcept(std::is_nothrow_copy_assignable<E>::value) -> unexpected&
+auto expect::unexpected<E>::operator=(E2&& error)
+  noexcept(
+    std::is_nothrow_assignable<E,E2>::value ||
+    std::is_lvalue_reference<E>::value
+  ) -> unexpected&
 {
-  m_unexpected = error;
-
-  return (*this);
-}
-
-template <typename E>
-template <typename E2,
-          typename std::enable_if<!std::is_lvalue_reference<E2>::value && std::is_assignable<E,E2&&>::value,int>::type>
-inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
-auto expect::unexpected<E>::operator=(error_type&& error)
-  noexcept(std::is_nothrow_move_assignable<E>::value) -> unexpected&
-{
-  m_unexpected = static_cast<error_type&&>(error);
-
-  return (*this);
-}
-
-template <typename E>
-template <typename E2,
-          typename std::enable_if<std::is_lvalue_reference<E2>::value,int>::type>
-inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
-auto expect::unexpected<E>::operator=(error_type& error)
-  noexcept -> unexpected&
-{
-  m_unexpected = error;
+  m_unexpected = detail::forward<E2>(error);
 
   return (*this);
 }
@@ -2951,26 +2929,28 @@ auto expect::unexpected<E>::error()
 }
 
 template <typename E>
+template <typename E2, typename>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::error()
   && noexcept -> error_type&&
 {
-  return static_cast<error_type&&>(static_cast<error_type&>(m_unexpected));
+  return static_cast<error_type&&>(m_unexpected);
 }
 
 template <typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::unexpected<E>::error()
-  const & noexcept -> const error_type&
+  const & noexcept -> const_error_type&
 {
   return m_unexpected;
 }
 
 template <typename E>
+template <typename E2, typename>
 inline EXPECTED_INLINE_VISIBILITY constexpr auto expect::unexpected<E>::error()
   const && noexcept -> const error_type&&
 {
-  return static_cast<const error_type&&>(static_cast<const error_type&>(m_unexpected));
+  return static_cast<const error_type&&>(m_unexpected);
 }
 
 //=============================================================================
