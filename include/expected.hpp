@@ -3764,9 +3764,9 @@ auto EXPECTED_NS_IMPL::expected<T, E>::operator->()
   // custom `operator&`, the pre-C++17 implementation has been defined to be
   // `&(**this)` so that it may exist in constexpr contexts.
 #if __cplusplus >= 201703L
-  return &(**this);
-#else
   return std::addressof(**this);
+#else
+  return &(**this);
 #endif
 }
 
@@ -3776,9 +3776,9 @@ auto EXPECTED_NS_IMPL::expected<T, E>::operator->()
   const noexcept -> const_underlying_value_type*
 {
 #if __cplusplus >= 201703L
-  return &(**this);
-#else
   return std::addressof(**this);
+#else
+  return &(**this);
 #endif
 }
 
