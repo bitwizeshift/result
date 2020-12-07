@@ -396,12 +396,18 @@ namespace expect {
       "Only lvalue references are valid."
     );
 
+    using const_error_type = typename std::conditional<
+      std::is_lvalue_reference<E>::value,
+      E,
+      typename std::add_const<E>::type
+    >::type;
+
     //-------------------------------------------------------------------------
     // Public Member Types
     //-------------------------------------------------------------------------
   public:
 
-    using error_type = typename std::remove_reference<E>::type;
+    using error_type = E;
 
     //-------------------------------------------------------------------------
     // Constructors / Assignment
@@ -520,9 +526,13 @@ namespace expect {
     /// \return the underlying error
     EXPECTED_CPP14_CONSTEXPR
     auto error() & noexcept -> error_type&;
+    template <typename E2=E,
+              typename = typename std::enable_if<!std::is_lvalue_reference<E2>::value>::type>
     EXPECTED_CPP14_CONSTEXPR
     auto error() && noexcept -> error_type&&;
-    constexpr auto error() const & noexcept -> const error_type&;
+    constexpr auto error() const & noexcept -> const_error_type&;
+    template <typename E2=E,
+              typename = typename std::enable_if<!std::is_lvalue_reference<E2>::value>::type>
     constexpr auto error() const && noexcept -> const error_type&&;
     /// \}
 
@@ -2920,26 +2930,28 @@ auto expect::unexpected<E>::error()
 }
 
 template <typename E>
+template <typename E2, typename>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto expect::unexpected<E>::error()
   && noexcept -> error_type&&
 {
-  return static_cast<error_type&&>(static_cast<error_type&>(m_unexpected));
+  return static_cast<error_type&&>(m_unexpected);
 }
 
 template <typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto expect::unexpected<E>::error()
-  const & noexcept -> const error_type&
+  const & noexcept -> const_error_type&
 {
   return m_unexpected;
 }
 
 template <typename E>
+template <typename E2, typename>
 inline EXPECTED_INLINE_VISIBILITY constexpr auto expect::unexpected<E>::error()
   const && noexcept -> const error_type&&
 {
-  return static_cast<const error_type&&>(static_cast<const error_type&>(m_unexpected));
+  return static_cast<const error_type&&>(m_unexpected);
 }
 
 //=============================================================================

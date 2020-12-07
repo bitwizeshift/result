@@ -300,11 +300,11 @@ TEST_CASE("unexpected<E&>::error() &&", "[accessor]") {
   auto expected = 42;
   auto sut = unexpected<int&>(expected);
 
-  SECTION("Returns a reference to the internal value") {
-    STATIC_REQUIRE(std::is_same<decltype(std::move(sut).error()),int&&>::value);
+  SECTION("Returns an lvalue reference to the internal value") {
+    STATIC_REQUIRE(std::is_same<decltype(std::move(sut).error()),int&>::value);
   }
   SECTION("Is equal to the input value") {
-    int&& x = std::move(sut).error();
+    int& x = std::move(sut).error();
     REQUIRE(&x == &expected);
   }
 }
@@ -313,8 +313,8 @@ TEST_CASE("unexpected<E&>::error() const &", "[accessor]") {
   auto expected = 42;
   const auto sut = unexpected<int&>(expected);
 
-  SECTION("Returns a reference to the internal value") {
-    STATIC_REQUIRE(std::is_same<decltype(sut.error()),const int&>::value);
+  SECTION("Returns an lvalue reference to the internal value") {
+    STATIC_REQUIRE(std::is_same<decltype(sut.error()),int&>::value);
   }
   SECTION("Is equal to the input value") {
     REQUIRE(&sut.error() == &expected);
@@ -325,11 +325,11 @@ TEST_CASE("unexpected<E&>::error() const &&", "[accessor]") {
   auto expected = 42;
   const auto sut = unexpected<int&>(expected);
 
-  SECTION("Returns a reference to the internal value") {
-    STATIC_REQUIRE(std::is_same<decltype(std::move(sut).error()),const int&&>::value);
+  SECTION("Returns an lvalue reference to the internal value") {
+    STATIC_REQUIRE(std::is_same<decltype(std::move(sut).error()),int&>::value);
   }
   SECTION("Is equal to the input value") {
-    const int&& x = std::move(sut).error();
+    int& x = std::move(sut).error();
     REQUIRE(&x == &expected);
   }
 }
