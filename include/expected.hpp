@@ -38,7 +38,6 @@
 #include <new>          // placement-new
 #include <memory>       // std::address_of
 #include <functional>   // std::reference_wrapper, std::invoke
-#include <system_error> // std::error_code
 #include <utility>      // std::in_place_t, std::forward
 #include <initializer_list> // std::initializer_list
 
@@ -1421,9 +1420,9 @@ namespace expect {
   ///       `unexpected{...}` thanks to CTAD.
   ///
   /// \tparam T the underlying value type
-  /// \tparam E the underlying error type (`std::error_code` by default)
+  /// \tparam E the underlying error type
   ///////////////////////////////////////////////////////////////////////////
-  template <typename T, typename E = std::error_code>
+  template <typename T, typename E>
   class expected
   {
     // Type requirements
@@ -2130,7 +2129,7 @@ namespace expect {
   /////////////////////////////////////////////////////////////////////////////
   /// \brief Partial specialization of `expected<void, E>`
   ///
-  /// \tparam E the underlying error type (`std::error_code` by default)
+  /// \tparam E the underlying error type
   /////////////////////////////////////////////////////////////////////////////
   template <typename E>
   class expected<void,E>
