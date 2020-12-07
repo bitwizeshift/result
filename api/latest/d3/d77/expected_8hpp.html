@@ -98,7 +98,6 @@ $(document).ready(function(){initNavTree('d3/d77/expected_8hpp.html','../../');}
 <code>#include &lt;new&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
-<code>#include &lt;system_error&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;initializer_list&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -341,24 +340,24 @@ template&lt;typename E1 , typename E2 &gt; </td></tr>
 <tr class="memitem:a1f462d210a1284e812aca2eaa0399fde"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/d77/expected_8hpp.html#a1f462d210a1284e812aca2eaa0399fde">expect::swap</a> (unexpected&lt; E &gt; &amp;lhs, unexpected&lt; E &gt; &amp;rhs) noexcept -&gt; void</td></tr>
 <tr class="memdesc:a1f462d210a1284e812aca2eaa0399fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps the contents of two unexpected values.  <a href="../../d3/d77/expected_8hpp.html#a1f462d210a1284e812aca2eaa0399fde">More...</a><br /></td></tr>
 <tr class="separator:a1f462d210a1284e812aca2eaa0399fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9c4c4bca1ab40fcd27a6379e037a017"><td class="memItemLeft" align="right" valign="top"><a id="ae9c4c4bca1ab40fcd27a6379e037a017"></a>
-constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator==</b> (unit, unit) noexcept</td></tr>
-<tr class="separator:ae9c4c4bca1ab40fcd27a6379e037a017"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae9520db152cc7783738f830e73798da"><td class="memItemLeft" align="right" valign="top"><a id="aae9520db152cc7783738f830e73798da"></a>
-constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator!=</b> (unit, unit) noexcept</td></tr>
-<tr class="separator:aae9520db152cc7783738f830e73798da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a269e548666d01c9a8fb53eac581ea517"><td class="memItemLeft" align="right" valign="top"><a id="a269e548666d01c9a8fb53eac581ea517"></a>
-constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator&lt;</b> (unit, unit) noexcept</td></tr>
-<tr class="separator:a269e548666d01c9a8fb53eac581ea517"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf1243855bb450e08820a96c7c8e13dc"><td class="memItemLeft" align="right" valign="top"><a id="abf1243855bb450e08820a96c7c8e13dc"></a>
-constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator&gt;</b> (unit, unit) noexcept</td></tr>
-<tr class="separator:abf1243855bb450e08820a96c7c8e13dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e6463576846a1b9a28f398a31503e39"><td class="memItemLeft" align="right" valign="top"><a id="a1e6463576846a1b9a28f398a31503e39"></a>
-constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator&lt;=</b> (unit, unit) noexcept</td></tr>
-<tr class="separator:a1e6463576846a1b9a28f398a31503e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a163aaa82556a3e51d073bebf36a68f24"><td class="memItemLeft" align="right" valign="top"><a id="a163aaa82556a3e51d073bebf36a68f24"></a>
-constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator&gt;=</b> (unit, unit) noexcept</td></tr>
-<tr class="separator:a163aaa82556a3e51d073bebf36a68f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf432217ece338f500c4e45bbbdf8ab5"><td class="memItemLeft" align="right" valign="top"><a id="acf432217ece338f500c4e45bbbdf8ab5"></a>
+constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator==</b> (unit, unit) noexcept -&gt; bool</td></tr>
+<tr class="separator:acf432217ece338f500c4e45bbbdf8ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80a40c83a29dd222f519843952149c83"><td class="memItemLeft" align="right" valign="top"><a id="a80a40c83a29dd222f519843952149c83"></a>
+constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator!=</b> (unit, unit) noexcept -&gt; bool</td></tr>
+<tr class="separator:a80a40c83a29dd222f519843952149c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a695ad10b93d55d2d2da9ed348c01d5da"><td class="memItemLeft" align="right" valign="top"><a id="a695ad10b93d55d2d2da9ed348c01d5da"></a>
+constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator&lt;</b> (unit, unit) noexcept -&gt; bool</td></tr>
+<tr class="separator:a695ad10b93d55d2d2da9ed348c01d5da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41f01e4296b434928fae2d8d3f8fd7d8"><td class="memItemLeft" align="right" valign="top"><a id="a41f01e4296b434928fae2d8d3f8fd7d8"></a>
+constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator&gt;</b> (unit, unit) noexcept -&gt; bool</td></tr>
+<tr class="separator:a41f01e4296b434928fae2d8d3f8fd7d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a226f7c65d1d5a41af609571320a37829"><td class="memItemLeft" align="right" valign="top"><a id="a226f7c65d1d5a41af609571320a37829"></a>
+constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator&lt;=</b> (unit, unit) noexcept -&gt; bool</td></tr>
+<tr class="separator:a226f7c65d1d5a41af609571320a37829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23ae8e10e58938e4d14a3cb76e764be2"><td class="memItemLeft" align="right" valign="top"><a id="a23ae8e10e58938e4d14a3cb76e764be2"></a>
+constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>expect::detail::operator&gt;=</b> (unit, unit) noexcept -&gt; bool</td></tr>
+<tr class="separator:a23ae8e10e58938e4d14a3cb76e764be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab817eb10a9918dffd76fbca45d5f9bea"><td class="memTemplParams" colspan="2"><a id="ab817eb10a9918dffd76fbca45d5f9bea"></a>
 template&lt;typename T , typename E &gt; </td></tr>
 <tr class="memitem:ab817eb10a9918dffd76fbca45d5f9bea"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>expect::detail::extract_error</b> (const expected&lt; T, E &gt; &amp;exp) noexcept -&gt; const E &amp;</td></tr>

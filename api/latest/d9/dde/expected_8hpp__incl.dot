@@ -16,9 +16,7 @@ digraph "include/expected.hpp"
   Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node6 [label="functional",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node7 [label="system_error",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node7 [label="utility",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node8 [label="utility",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 [label="initializer_list",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node8 [label="initializer_list",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
 }

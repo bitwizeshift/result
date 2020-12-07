@@ -480,7 +480,7 @@ template&lt;typename T2 , typename E2 &gt; </td></tr>
 <tr class="separator:a72092f1c4a7809f1670784a1c76775b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename T, typename E = std::error_code&gt;<br />
+<div class="textblock"><h3>template&lt;typename T, typename E&gt;<br />
 class expect::expected&lt; T, E &gt;</h3>
 
 <p>The class template <code>expected</code> manages expected results from APIs, while encoding possible failure conditions. </p>
@@ -501,12 +501,12 @@ class expect::expected&lt; T, E &gt;</h3>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>the underlying value type </td></tr>
-    <tr><td class="paramname">E</td><td>the underlying error type (<code>std::error_code</code> by default) </td></tr>
+    <tr><td class="paramname">E</td><td>the underlying error type </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l00273">273</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l00272">272</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a56ff7452690c244bc4bc095296538973"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a56ff7452690c244bc4bc095296538973">&#9670;&nbsp;</a></span>expected() <span class="overload">[1/15]</span></h2>
@@ -514,7 +514,7 @@ class expect::expected&lt; T, E &gt;</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_constructible&lt;U&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -546,7 +546,7 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_cons
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -587,7 +587,7 @@ This constructor is defined as trivial if both <code>std::is_trivially_copy_cons
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -628,7 +628,7 @@ This constructor is defined as trivial if both <code>std::is_trivially_move_cons
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_implicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -676,7 +676,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_explicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -724,7 +724,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_implicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -772,7 +772,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::expected_is_explicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -820,7 +820,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T,Args...&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -869,7 +869,7 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -925,7 +925,7 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,Args...&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -974,7 +974,7 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -1030,7 +1030,7 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -1069,7 +1069,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -1108,7 +1108,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename std::enable_if&lt; detail::expected_is_explicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -1152,7 +1152,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;U&amp
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename std::enable_if&lt; detail::expected_is_implicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -1197,7 +1197,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;U&amp
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -1228,7 +1228,7 @@ template&lt;typename U &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1258,7 +1258,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1288,7 +1288,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -1319,7 +1319,7 @@ template&lt;typename U &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -1350,7 +1350,7 @@ template&lt;typename U &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1384,7 +1384,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1418,7 +1418,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1452,7 +1452,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1508,7 +1508,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains an error. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains an error, <code>false</code> if <code>*this</code> contains a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03845">3845</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03844">3844</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1540,7 +1540,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> contains an error </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03837">3837</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03836">3836</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1550,7 +1550,7 @@ template&lt;typename T , typename E &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1583,7 +1583,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1616,7 +1616,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1649,7 +1649,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1704,7 +1704,7 @@ template&lt;typename T , typename E &gt; </div>
 <p>Checks whether <code>*this</code> contains a value. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> does not contain a value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03829">3829</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03828">3828</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1714,7 +1714,7 @@ template&lt;typename T , typename E &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1745,7 +1745,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -1778,7 +1778,7 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lva
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1809,7 +1809,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -1865,7 +1865,7 @@ template&lt;typename T , typename E &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03769">3769</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03768">3768</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1898,7 +1898,7 @@ template&lt;typename T , typename E &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03785">3785</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l03784">3784</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 
 </div>
 </div>
@@ -1908,7 +1908,7 @@ template&lt;typename T , typename E &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1959,7 +1959,7 @@ This assignment operator is defined as trivial if the following conditions are a
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -2010,7 +2010,7 @@ This assignment operator is defined as trivial if the following conditions are a
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;detail::expected_is_copy_convert_assignable&lt;T,E,T2,E2&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -2057,7 +2057,7 @@ template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;detail::expected_is_move_convert_assignable&lt;T,E,T2,E2&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -2104,7 +2104,7 @@ template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename  = typename std::enable_if&lt;detail::expected_is_value_assignable&lt;T,U&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -2156,7 +2156,7 @@ template&lt;typename U , typename  = typename std::enable_if&lt;detail::expected
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expected_is_unexpected_assignable&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -2206,7 +2206,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expecte
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expected_is_unexpected_assignable&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -2256,7 +2256,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::expecte
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">EXPECTED_CPP14_CONSTEXPR auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::value </td>
@@ -2284,7 +2284,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </div>
       <table class="memname">
@@ -2314,7 +2314,7 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lva
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">constexpr auto <a class="el" href="../../d8/d8e/classexpect_1_1expected.html">expect::expected</a>&lt; T, E &gt;::value </td>
@@ -2342,7 +2342,7 @@ template&lt;typename T, typename E = std::error_code&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lvalue_reference&lt;U&gt;::value&gt;::type&gt; </div>
       <table class="memname">
@@ -2372,7 +2372,7 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;!std::is_lva
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -2404,7 +2404,7 @@ template&lt;typename U &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E = std::error_code&gt; </div>
+template&lt;typename T, typename E&gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
