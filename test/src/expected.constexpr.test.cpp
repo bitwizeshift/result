@@ -26,7 +26,7 @@
 
 #include <catch2/catch.hpp>
 
-namespace expect {
+namespace cpp {
 namespace test {
 namespace {
 
@@ -244,4 +244,4 @@ TEST_CASE("constexpr expected<void,E>::error() const &", "[constexpr][observer]"
 }
 
 } // namespace test
-} // namespace expect
+} // namespace cpp

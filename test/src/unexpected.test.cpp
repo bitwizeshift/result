@@ -29,7 +29,7 @@
 #include <utility> // std::reference_wrapper
 #include <type_traits>
 
-namespace expect {
+namespace cpp {
 namespace test {
 namespace {
 
@@ -446,4 +446,4 @@ TEST_CASE("make_unexpected(std::reference_wrapper<E>)", "[utilities]") {
 }
 
 } // namespace test
-} // namespace expect
+} // namespace cpp

@@ -35,7 +35,7 @@
 # pragma warning(disable: 4244) // Disable warnings about implicit conversions
 #endif
 
-namespace expect {
+namespace cpp {
 namespace test {
 namespace {
 
@@ -6087,7 +6087,7 @@ TEST_CASE("std::hash<expected<void,E>>::operator()", "[utility]") {
 }
 
 } // namespace test
-} // namespace expect
+} // namespace cpp
 
 #if defined(_MSC_VER)
 # pragma warning(pop)
