@@ -633,12 +633,12 @@ namespace expect {
     // non-member functions : class : unit
     //=========================================================================
 
-    constexpr bool operator==(unit, unit) noexcept { return true; }
-    constexpr bool operator!=(unit, unit) noexcept { return false; }
-    constexpr bool operator<(unit, unit) noexcept { return false; }
-    constexpr bool operator>(unit, unit) noexcept { return false; }
-    constexpr bool operator<=(unit, unit) noexcept { return true; }
-    constexpr bool operator>=(unit, unit) noexcept { return true; }
+    constexpr auto operator==(unit, unit) noexcept -> bool { return true; }
+    constexpr auto operator!=(unit, unit) noexcept -> bool { return false; }
+    constexpr auto operator<(unit, unit) noexcept -> bool { return false; }
+    constexpr auto operator>(unit, unit) noexcept -> bool { return false; }
+    constexpr auto operator<=(unit, unit) noexcept -> bool { return true; }
+    constexpr auto operator>=(unit, unit) noexcept -> bool { return true; }
 
     //=========================================================================
     // class : detail::expected_union<T, E, IsTrivial>
