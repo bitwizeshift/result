@@ -124,7 +124,7 @@ TEST_CASE("constexpr result<T,E>::result(U&&) (explicit)", "[constexpr][ctor]") 
 }
 
 TEST_CASE("constexpr result<T,E>::result(const unresult<U>&)", "[constexpr][ctor]") {
-  constexpr unexpected<int> value{42};
+  constexpr failure<int> value{42};
   constexpr literal_sut sut{value};
 
   STATIC_REQUIRE(sut.has_error());
@@ -134,9 +134,9 @@ TEST_CASE("constexpr result<T,E>::result(const unresult<U>&)", "[constexpr][ctor
 
 // This constructor cannot be constexpr since C++11 does not allow non-const
 // member functions to be constexpr, which disallows extracting an rvalue
-// references from 'unexpected' in a constant expression. C++14 fixes this
-TEST_CASE("constexpr result<T,E>::result(unexpected<U>&&)") {
-  constexpr literal_sut sut{unexpected<int>{42}};
+// references from 'failure' in a constant expression. C++14 fixes this
+TEST_CASE("constexpr result<T,E>::result(failure<U>&&)") {
+  constexpr literal_sut sut{failure<int>{42}};
 
   STATIC_REQUIRE(sut.has_error());
 }
@@ -162,7 +162,7 @@ TEST_CASE("constexpr result<T,E>::value() const &&", "[constexpr][observer]") {
 
 TEST_CASE("constexpr result<T,E>::error() const &", "[constexpr][observer]") {
   constexpr auto value = 42;
-  constexpr auto error = unexpected<int>{value};
+  constexpr auto error = failure<int>{value};
   constexpr literal_sut sut{error};
 
   STATIC_REQUIRE(sut.error() == value);
@@ -202,8 +202,8 @@ TEST_CASE("constexpr result<void,E>::result(in_place_error_t, Args&&...)", "[con
   STATIC_REQUIRE(sut.has_error());
 }
 
-TEST_CASE("constexpr result<void,E>::result(const unexpected<U>&)", "[constexpr][ctor]") {
-  constexpr unexpected<int> value{42};
+TEST_CASE("constexpr result<void,E>::result(const failure<U>&)", "[constexpr][ctor]") {
+  constexpr failure<int> value{42};
   constexpr result<void,int> sut{value};
 
   STATIC_REQUIRE(sut.has_error());
@@ -213,9 +213,9 @@ TEST_CASE("constexpr result<void,E>::result(const unexpected<U>&)", "[constexpr]
 
 // This constructor cannot be constexpr since C++11 does not allow non-const
 // member functions to be constexpr, which disallows extracting an rvalue
-// references from 'unexpected' in a constant expression. C++14 fixes this
-TEST_CASE("constexpr result<void,E>::result(unexpected<U>&&)") {
-  constexpr result<void,int> sut{unexpected<int>{42}};
+// references from 'failure' in a constant expression. C++14 fixes this
+TEST_CASE("constexpr result<void,E>::result(failure<U>&&)") {
+  constexpr result<void,int> sut{failure<int>{42}};
 
   STATIC_REQUIRE(sut.has_error());
 }
@@ -237,7 +237,7 @@ TEST_CASE("constexpr result<void,E>::value() const", "[constexpr][observer]") {
 
 TEST_CASE("constexpr result<void,E>::error() const &", "[constexpr][observer]") {
   constexpr auto value = 42;
-  constexpr auto error = unexpected<int>{value};
+  constexpr auto error = failure<int>{value};
   constexpr result<void,int> sut{error};
 
   STATIC_REQUIRE(sut.error() == value);

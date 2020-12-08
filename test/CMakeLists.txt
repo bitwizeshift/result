@@ -4,7 +4,7 @@ set(source_files
   src/main.cpp
   src/result.test.cpp
   src/result.constexpr.test.cpp
-  src/unexpected.test.cpp
+  src/failure.test.cpp
 )
 
 add_executable(${PROJECT_NAME}.test

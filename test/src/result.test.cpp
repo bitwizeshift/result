@@ -238,7 +238,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
     }
 
     SECTION("Copy source contained an error") {
-      const auto error = make_unexpected(42);
+      const auto error = fail(42);
       const sut_type source{error};
 
       const auto sut = source;
@@ -278,7 +278,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
     }
 
     SECTION("Copy source contained an error") {
-      const auto error = make_unexpected(42);
+      const auto error = fail(42);
       const sut_type source{error};
 
       const auto sut = source;
@@ -318,7 +318,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
     }
 
     SECTION("Copy source contained an error") {
-      const auto error = make_unexpected("Hello world");
+      const auto error = fail("Hello world");
       const sut_type source{error};
 
       const auto sut = source;
@@ -358,7 +358,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
     }
 
     SECTION("Copy source contained an error") {
-      const auto error = make_unexpected("Goodbye world");
+      const auto error = fail("Goodbye world");
       const sut_type source{error};
 
       const auto sut = source;
@@ -425,7 +425,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
     }
 
     SECTION("Move source contained an error") {
-      const auto error = make_unexpected(42);
+      const auto error = fail(42);
       sut_type source{error};
 
       const auto sut = std::move(source);
@@ -465,7 +465,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
     }
 
     SECTION("Move source contained an error") {
-      const auto error = make_unexpected(42);
+      const auto error = fail(42);
       sut_type source{error};
 
       const auto sut = std::move(source);
@@ -505,7 +505,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
     }
 
     SECTION("Move source contained an error") {
-      const auto error = make_unexpected("Hello world");
+      const auto error = fail("Hello world");
       sut_type source{error};
 
       const auto sut = std::move(source);
@@ -545,7 +545,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
     }
 
     SECTION("Move source contained an error") {
-      const auto error = make_unexpected("Goodbye world");
+      const auto error = fail("Goodbye world");
       sut_type source{error};
 
       const auto sut = std::move(source);
@@ -616,7 +616,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&)", "[ctor]") {
     }
 
     SECTION("Copy source contained an error") {
-      const auto error = make_unexpected("Goodbye world");
+      const auto error = fail("Goodbye world");
       const copy_type source{error};
 
       const sut_type sut = source;
@@ -692,7 +692,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
       }
 
       SECTION("Copy source contained an error") {
-        const auto error = make_unexpected("Goodbye world");
+        const auto error = fail("Goodbye world");
         const copy_type source{error};
 
         const sut_type sut{source};
@@ -733,7 +733,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
       }
 
       SECTION("Copy source contained an error") {
-        const auto error = make_unexpected("Goodbye world");
+        const auto error = fail("Goodbye world");
         const copy_type source{error};
 
         const sut_type sut{source};
@@ -773,7 +773,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
       }
 
       SECTION("Copy source contained an error") {
-        const auto error = make_unexpected("Goodbye world");
+        const auto error = fail("Goodbye world");
         const copy_type source{error};
 
         const sut_type sut{source};
@@ -849,7 +849,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&)", "[ctor]") {
     }
 
     SECTION("Copy source contained an error") {
-      const auto error = make_unexpected("Goodbye world");
+      const auto error = fail("Goodbye world");
       copy_type source{error};
 
       const sut_type sut = std::move(source);
@@ -925,7 +925,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
       }
 
       SECTION("Copy source contained an error") {
-        const auto error = make_unexpected("Goodbye world");
+        const auto error = fail("Goodbye world");
         copy_type source{error};
 
         const sut_type sut{std::move(source)};
@@ -966,7 +966,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
       }
 
       SECTION("Copy source contained an error") {
-        const auto error = make_unexpected("Goodbye world");
+        const auto error = fail("Goodbye world");
         copy_type source{error};
 
         const sut_type sut{std::move(source)};
@@ -1009,7 +1009,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
       }
 
       SECTION("Copy source contained an error") {
-        const auto error = make_unexpected("Goodbye world");
+        const auto error = fail("Goodbye world");
         copy_type source{error};
 
         const sut_type sut{std::move(source)};
@@ -1104,7 +1104,7 @@ TEST_CASE("result<T,E>::result(in_place_error_t, Args&&...)", "[ctor]") {
   }
 
   SECTION("Contains an error constructed from a copy of E2") {
-    REQUIRE(sut == make_unexpected(std::ref(result)));
+    REQUIRE(sut == fail(std::ref(result)));
   }
 }
 
@@ -1122,13 +1122,13 @@ TEST_CASE("result<T,E>::result(in_place_error_t, std::initializer_list<U>, Args&
   }
 
   SECTION("Contains an error constructed from a copy of E2") {
-    REQUIRE(sut == make_unexpected(std::ref(value)));
+    REQUIRE(sut == fail(std::ref(value)));
   }
 }
 
-TEST_CASE("result<T,E>::result(const unexpected<E2>&)", "[ctor]") {
+TEST_CASE("result<T,E>::result(const failure<E2>&)", "[ctor]") {
   using sut_type = result<int,std::string>;
-  const auto source = make_unexpected<std::string>("hello world");
+  const auto source = fail<std::string>("hello world");
 
   const sut_type sut{source};
 
@@ -1141,9 +1141,9 @@ TEST_CASE("result<T,E>::result(const unexpected<E2>&)", "[ctor]") {
   }
 }
 
-TEST_CASE("result<T,E>::result(unexpected<E2>&&)", "[ctor]") {
+TEST_CASE("result<T,E>::result(failure<E2>&&)", "[ctor]") {
   using sut_type = result<int,move_only<std::string>>;
-  auto source = make_unexpected<std::string>("hello world");
+  auto source = fail<std::string>("hello world");
   const auto copy = source;
 
   const sut_type sut{std::move(source)};
@@ -1342,7 +1342,7 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
       SECTION("'other' contains an error") {
         using sut_type = result<report_destructor,const char*>;
 
-        const auto value = make_unexpected("42");
+        const auto value = fail("42");
         auto is_invoked = false;
         const sut_type copy{value};
         sut_type sut{&is_invoked};
@@ -1389,9 +1389,9 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
       SECTION("'other' contains an error") {
         using sut_type = result<int,int>;
 
-        const auto value = make_unexpected(42);
+        const auto value = fail(42);
         const sut_type copy{value};
-        sut_type sut{make_unexpected(0)};
+        sut_type sut{fail(0)};
 
         sut = copy;
         SECTION("Expected can be assigned") {
@@ -1492,7 +1492,7 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
       SECTION("'other' contains an error") {
         using sut_type = result<move_only<report_destructor>,const char*>;
 
-        const auto value = make_unexpected("42");
+        const auto value = fail("42");
         auto is_invoked = false;
         sut_type original{value};
         sut_type sut{&is_invoked};
@@ -1539,9 +1539,9 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
       SECTION("'other' contains an error") {
         using sut_type = result<int,move_only<std::string>>;
 
-        const auto value = make_unexpected("hello world");
+        const auto value = fail("hello world");
         sut_type copy{value};
-        sut_type sut{make_unexpected("goodbye world")};
+        sut_type sut{fail("goodbye world")};
 
         sut = std::move(copy);
         SECTION("Expected can be assigned") {
@@ -1652,7 +1652,7 @@ SECTION("T is not nothrow constructible from T2") {
         using copy_type = result<report_destructor,const char*>;
         using sut_type = result<report_destructor,const char*>;
 
-        const auto value = make_unexpected("42");
+        const auto value = fail("42");
         auto is_invoked = false;
         copy_type original{value};
         sut_type sut{&is_invoked};
@@ -1702,9 +1702,9 @@ SECTION("T is not nothrow constructible from T2") {
         using copy_type = result<int,const char*>;
         using sut_type = result<int,nonthrowing<std::string>>;
 
-        const auto value = make_unexpected("hello world");
+        const auto value = fail("hello world");
         copy_type copy{value};
-        sut_type sut{make_unexpected("goodbye world")};
+        sut_type sut{fail("goodbye world")};
 
         sut = copy;
 
@@ -1804,7 +1804,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
         using copy_type = result<report_destructor,const char*>;
         using sut_type = result<move_only<report_destructor>,const char*>;
 
-        const auto value = make_unexpected("42");
+        const auto value = fail("42");
         auto is_invoked = false;
         copy_type original{value};
         sut_type sut{&is_invoked};
@@ -1854,9 +1854,9 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
         using copy_type = result<int,std::string>;
         using sut_type = result<int,move_only<std::string>>;
 
-        const auto value = make_unexpected("hello world");
+        const auto value = fail("hello world");
         copy_type copy{value};
-        sut_type sut{make_unexpected("goodbye world")};
+        sut_type sut{fail("goodbye world")};
 
         sut = std::move(copy);
 
@@ -1933,10 +1933,10 @@ TEST_CASE("result<T,E>::operator=(U&&)", "[assign]") {
   }
 }
 
-TEST_CASE("result<T,E>::operator=(const unexpected<E2>&)", "[assign]") {
+TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
   SECTION("E cant be constructed or assigned from E2") {
     SECTION("Expected cannot be assigned from E2") {
-      using copy_type = unexpected<not_copy_or_moveable>;
+      using copy_type = failure<not_copy_or_moveable>;
       using sut_type  = result<int,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,const copy_type&>::value);
@@ -1944,7 +1944,7 @@ TEST_CASE("result<T,E>::operator=(const unexpected<E2>&)", "[assign]") {
   }
   SECTION("E is not nothrow constructible from E2") {
     SECTION("Expected is not copy-assignable") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<int,throwing<std::string>>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,const copy_type&>::value);
@@ -1953,7 +1953,7 @@ TEST_CASE("result<T,E>::operator=(const unexpected<E2>&)", "[assign]") {
 
   SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
     SECTION("Expected is move-assignable") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<int,std::string>;
 
       // This works because it generates an intermediate 'result<int, E>' in
@@ -1966,7 +1966,7 @@ TEST_CASE("result<T,E>::operator=(const unexpected<E2>&)", "[assign]") {
 
   SECTION("E can be constructed and assigned from E2") {
     SECTION("active element is T") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<report_destructor, std::string>;
 
       const auto value = copy_type{"hello world"};
@@ -1991,7 +1991,7 @@ TEST_CASE("result<T,E>::operator=(const unexpected<E2>&)", "[assign]") {
     }
 
     SECTION("active element is E") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<int, std::string>;
 
       const auto value = copy_type{"goodbye world"};
@@ -2012,10 +2012,10 @@ TEST_CASE("result<T,E>::operator=(const unexpected<E2>&)", "[assign]") {
   }
 }
 
-TEST_CASE("result<T,E>::operator=(unexpected<E2>&&)", "[assign]") {
+TEST_CASE("result<T,E>::operator=(failure<E2>&&)", "[assign]") {
   SECTION("E cant be constructed or assigned from E2") {
     SECTION("Expected cannot be assigned from E2") {
-      using copy_type = unexpected<not_copy_or_moveable>;
+      using copy_type = failure<not_copy_or_moveable>;
       using sut_type  = result<int,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,copy_type&&>::value);
@@ -2023,7 +2023,7 @@ TEST_CASE("result<T,E>::operator=(unexpected<E2>&&)", "[assign]") {
   }
   SECTION("E is not nothrow move constructible from E2") {
     SECTION("Expected is not move-assignable") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<int,throwing<std::string>>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,copy_type&&>::value);
@@ -2032,7 +2032,7 @@ TEST_CASE("result<T,E>::operator=(unexpected<E2>&&)", "[assign]") {
 
   SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
     SECTION("Expected is move-assignable") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<int,std::string>;
 
       // This works because it generates an intermediate 'result<int, E>' in
@@ -2045,7 +2045,7 @@ TEST_CASE("result<T,E>::operator=(unexpected<E2>&&)", "[assign]") {
 
   SECTION("E can be constructed and assigned from E2") {
     SECTION("active element is T") {
-      using copy_type = unexpected<std::string>;
+      using copy_type = failure<std::string>;
       using sut_type = result<report_destructor, move_only<std::string>>;
 
       auto value = copy_type{"hello world"};
@@ -2071,7 +2071,7 @@ TEST_CASE("result<T,E>::operator=(unexpected<E2>&&)", "[assign]") {
     }
 
     SECTION("active element is E") {
-      using copy_type = unexpected<std::string>;
+      using copy_type = failure<std::string>;
       using sut_type = result<int, move_only<std::string>>;
 
       auto value = copy_type{"goodbye world"};
@@ -2191,7 +2191,7 @@ TEST_CASE("result<T,E>::operator bool()", "[observers]") {
   }
   SECTION("result does not contain a value") {
     SECTION("Returns false") {
-      auto sut = result<int, int>{make_unexpected(42)};
+      auto sut = result<int, int>{fail(42)};
 
       REQUIRE_FALSE(static_cast<bool>(sut));
     }
@@ -2208,7 +2208,7 @@ TEST_CASE("result<T,E>::has_value()", "[observers]") {
   }
   SECTION("result does not contain a value") {
     SECTION("Returns false") {
-      auto sut = result<int, int>{make_unexpected(42)};
+      auto sut = result<int, int>{fail(42)};
 
       REQUIRE_FALSE(sut.has_value());
     }
@@ -2225,7 +2225,7 @@ TEST_CASE("result<T,E>::has_error()", "[observers]") {
   }
   SECTION("result does not contain a value") {
     SECTION("Returns true") {
-      auto sut = result<int, int>{make_unexpected(42)};
+      auto sut = result<int, int>{fail(42)};
 
       REQUIRE(sut.has_error());
     }
@@ -2247,7 +2247,7 @@ TEST_CASE("result<T,E>::value() &", "[observers]") {
   SECTION("result contains an error") {
     SECTION("throws bad_result_access") {
       auto sut = result<int,int>{
-        make_unexpected(42)
+        fail(42)
       };
 
       REQUIRE_THROWS_AS(sut.value(), bad_result_access);
@@ -2268,7 +2268,7 @@ TEST_CASE("result<T,E>::value() const &", "[observers]") {
   SECTION("result contains an error") {
     SECTION("throws bad_result_access") {
       const auto sut = result<int,int>{
-        make_unexpected(42)
+        fail(42)
       };
 
       REQUIRE_THROWS_AS(sut.value(), bad_result_access);
@@ -2289,7 +2289,7 @@ TEST_CASE("result<T,E>::value() &&", "[observers]") {
   SECTION("result contains an error") {
     SECTION("throws bad_result_access") {
       auto sut = result<int,int>{
-        make_unexpected(42)
+        fail(42)
       };
 
       REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access);
@@ -2310,7 +2310,7 @@ TEST_CASE("result<T,E>::value() const &&", "[observers]") {
   SECTION("result contains an error") {
     SECTION("throws bad_result_access") {
       const auto sut = result<int,int>{
-        make_unexpected(42)
+        fail(42)
       };
 
       REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access);
@@ -2334,7 +2334,7 @@ TEST_CASE("result<T,E>::error() const &", "[observers]") {
   SECTION("result contains an error") {
     SECTION("Returns a copy of the exception") {
       const auto value = 42;
-      auto sut = result<int, int>{make_unexpected(value)};
+      auto sut = result<int, int>{fail(value)};
 
       const auto output = sut.error();
 
@@ -2356,7 +2356,7 @@ TEST_CASE("result<T,E>::error() &&", "[observers]") {
   SECTION("result contains an error") {
     SECTION("Returns a copy of the exception") {
       const auto value = std::io_errc::stream;
-      auto sut = result<int, move_only<std::error_code>>{make_unexpected(value)};
+      auto sut = result<int, move_only<std::error_code>>{fail(value)};
 
       const auto output = std::move(sut).error();
 
@@ -2383,7 +2383,7 @@ TEST_CASE("result<T,E>::error_or(U&&) const &", "[monadic]") {
     SECTION("Returns the error") {
       const auto input = std::error_code{std::io_errc::stream};
       auto sut = result<void, std::error_code>{
-        make_unexpected(input)
+        fail(input)
       };
 
       const auto output = sut.error_or(input);
@@ -2410,7 +2410,7 @@ TEST_CASE("result<T,E>::error_or(U&&) &&", "[monadic]") {
       auto input = std::error_code{std::io_errc::stream};
       const auto copy = input;
       auto sut = result<int, move_only<std::error_code>>{
-        make_unexpected(input)
+        fail(input)
       };
 
       const auto output = std::move(sut).error_or(std::move(input));
@@ -2436,7 +2436,7 @@ TEST_CASE("result<T,E>::and_then(U&&) const", "[monadic]") {
   SECTION("result contains an error") {
     SECTION("Maps the error") {
       const auto input = 42;
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       auto sut = result<int, std::error_code>{error};
 
       const auto output = sut.and_then(input);
@@ -2461,7 +2461,7 @@ TEST_CASE("result<T,E>::flat_map(Fn&&) const &", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       const auto sut = result<int,std::error_code>{error};
 
       const auto output = sut.flat_map([](int x){
@@ -2488,7 +2488,7 @@ TEST_CASE("result<T,E>::flat_map(Fn&&) &&", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       auto sut = result<int,move_only<std::error_code>>{error};
 
       const auto output = std::move(sut).flat_map([](int x){
@@ -2533,7 +2533,7 @@ TEST_CASE("result<T,E>::map(Fn&&) const &", "[monadic]") {
   SECTION("result contains an error") {
     SECTION("Function returns non-void") {
       SECTION("Maps the error") {
-        const auto error = make_unexpected(std::io_errc::stream);
+        const auto error = fail(std::io_errc::stream);
         auto sut = result<int,std::io_errc>{error};
 
         const auto output = sut.map([](int x){
@@ -2545,7 +2545,7 @@ TEST_CASE("result<T,E>::map(Fn&&) const &", "[monadic]") {
     }
     SECTION("Function returns void") {
       SECTION("Maps input to void") {
-        const auto error = make_unexpected(std::io_errc::stream);
+        const auto error = fail(std::io_errc::stream);
         auto sut = result<int,std::io_errc>{error};
 
         const auto output = sut.map([](int) -> void{});
@@ -2594,7 +2594,7 @@ TEST_CASE("result<T,E>::map(Fn&&) &&", "[monadic]") {
   SECTION("result contains an error") {
     SECTION("Function returns non-void") {
       SECTION("Maps the error") {
-        const auto error = make_unexpected(std::io_errc::stream);
+        const auto error = fail(std::io_errc::stream);
         auto sut = result<int,move_only<std::error_code>>{error};
 
         const auto output = std::move(sut).map([&](int x){
@@ -2606,7 +2606,7 @@ TEST_CASE("result<T,E>::map(Fn&&) &&", "[monadic]") {
     }
     SECTION("Function returns void") {
       SECTION("Maps input to void") {
-        const auto error = make_unexpected(std::io_errc::stream);
+        const auto error = fail(std::io_errc::stream);
         auto sut = result<int,move_only<std::error_code>>{error};
 
         const auto output = std::move(sut).map([](int) -> void{});
@@ -2637,7 +2637,7 @@ TEST_CASE("result<T,E>::map_error(Fn&&) const &", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       auto sut = result<int,std::io_errc>{error};
 
       const auto output = sut.map_error([](std::io_errc e){
@@ -2664,7 +2664,7 @@ TEST_CASE("result<T,E>::map_error(Fn&&) &&", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       auto sut = result<move_only<std::string>,std::io_errc>{error};
 
       const auto output = std::move(sut).map_error([](std::io_errc e){
@@ -2691,7 +2691,7 @@ TEST_CASE("result<T,E>::flat_map_error(Fn&&) const &", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(42);
+      const auto error = fail(42);
       const auto sut = result<int, long>{error};
 
       const auto output = sut.flat_map_error([&](long x){
@@ -2718,7 +2718,7 @@ TEST_CASE("result<T,E>::flat_map_error(Fn&&) &&", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected("Hello world");
+      const auto error = fail("Hello world");
       auto sut = result<long,move_only<std::string>>{error};
 
       const auto output = std::move(sut).flat_map_error([](move_only<std::string>&& x){
@@ -2869,9 +2869,9 @@ TEST_CASE("result<T&,E>::result(in_place_t, Args&&...)", "[ctor]") {
   }
 }
 
-TEST_CASE("result<T&,E>::result(const unexpected<E2>&)", "[ctor]") {
+TEST_CASE("result<T&,E>::result(const failure<E2>&)", "[ctor]") {
   using sut_type = result<int&,std::string>;
-  const auto source = make_unexpected<std::string>("hello world");
+  const auto source = fail<std::string>("hello world");
 
   const sut_type sut{source};
 
@@ -2884,9 +2884,9 @@ TEST_CASE("result<T&,E>::result(const unexpected<E2>&)", "[ctor]") {
   }
 }
 
-TEST_CASE("result<T&,E>::result(unexpected<E2>&&)", "[ctor]") {
+TEST_CASE("result<T&,E>::result(failure<E2>&&)", "[ctor]") {
   using sut_type = result<int&,move_only<std::string>>;
-  auto source = make_unexpected<std::string>("hello world");
+  auto source = fail<std::string>("hello world");
   const auto copy = source;
 
   const sut_type sut{std::move(source)};
@@ -2958,7 +2958,7 @@ TEST_CASE("result<T&,E>::operator=(const result&)", "[assign]") {
       auto next = derived{0};
 
       const auto source = result<base&,int>{next};
-      auto sut = result<base&,int>{make_unexpected(42)};
+      auto sut = result<base&,int>{fail(42)};
 
       sut = source;
 
@@ -2990,7 +2990,7 @@ TEST_CASE("result<T&,E>::operator=(result&&)", "[assign]") {
       auto next = derived{0};
 
       auto source = result<base&,move_only<std::string>>{next};
-      auto sut = result<base&,move_only<std::string>>{make_unexpected("foo")};
+      auto sut = result<base&,move_only<std::string>>{fail("foo")};
 
       sut = std::move(source);
 
@@ -3030,7 +3030,7 @@ TEST_CASE("result<T&,E>::operator=(const result<T2,E2>&)", "[assign]") {
       auto next = derived{0};
 
       const auto source = result<derived&,int>{next};
-      auto sut = result<base&,int>{make_unexpected(42)};
+      auto sut = result<base&,int>{fail(42)};
 
       sut = source;
 
@@ -3070,7 +3070,7 @@ TEST_CASE("result<T&,E>::operator=(result<T2,E2>&&)", "[assign]") {
       auto next = derived{0};
 
       auto source = result<derived&,move_only<std::string>>{next};
-      auto sut = result<base&,move_only<std::string>>{make_unexpected("foo")};
+      auto sut = result<base&,move_only<std::string>>{fail("foo")};
 
       sut = std::move(source);
 
@@ -3098,7 +3098,7 @@ TEST_CASE("result<T&,E>::operator=(U&&)", "[assign]") {
     auto next = int{0};
 
     auto sut = result<int&,int>{
-      make_unexpected(42)
+      fail(42)
     };
 
     sut = next;
@@ -3286,7 +3286,7 @@ TEST_CASE("result<void,E>::result(const result&)", "[ctor]") {
     }
 
     SECTION("Copy source contained an error") {
-      const auto error = make_unexpected(42);
+      const auto error = fail(42);
       const sut_type source{error};
 
       const auto sut = source;
@@ -3322,7 +3322,7 @@ TEST_CASE("result<void,E>::result(const result&)", "[ctor]") {
     }
 
     SECTION("Copy source contained an error") {
-      const auto error = make_unexpected("Hello world");
+      const auto error = fail("Hello world");
       const sut_type source{error};
 
       const auto sut = source;
@@ -3369,7 +3369,7 @@ TEST_CASE("result<void,E>::result(result&&)", "[ctor]") {
     }
 
     SECTION("Move source contained an error") {
-      const auto error = make_unexpected(42);
+      const auto error = fail(42);
       sut_type source{error};
 
       const auto sut = std::move(source);
@@ -3405,7 +3405,7 @@ TEST_CASE("result<void,E>::result(result&&)", "[ctor]") {
     }
 
     SECTION("Move source contained an error") {
-      const auto error = make_unexpected("Hello world");
+      const auto error = fail("Hello world");
       sut_type source{error};
 
       const auto sut = std::move(source);
@@ -3446,7 +3446,7 @@ TEST_CASE("result<void,E>::result(const result<U,E2>&)", "[ctor]") {
 
     SECTION("Other contains error") {
       const auto other = result<int,long>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto sut = result<void,int>{other};
       SECTION("Constructed result is in an error state") {
@@ -3480,7 +3480,7 @@ TEST_CASE("result<void,E>::result(result<U,E2>&&)", "[ctor]") {
     }
 
     SECTION("Other contains error") {
-      auto error = make_unexpected("Hello world");
+      auto error = fail("Hello world");
       auto other = result<int,move_only<std::string>>{error};
       auto sut = result<void,std::string>{
         std::move(other)
@@ -3516,7 +3516,7 @@ TEST_CASE("result<void,E>::result(in_place_error_t, Args&&...)", "[ctor]") {
   }
 
   SECTION("Contains an error constructed from a copy of E2") {
-    REQUIRE(sut == make_unexpected(std::ref(result)));
+    REQUIRE(sut == fail(std::ref(result)));
   }
 }
 
@@ -3534,13 +3534,13 @@ TEST_CASE("result<void,E>::result(in_place_error_t, std::initializer_list<U>, Ar
   }
 
   SECTION("Contains an error constructed from a copy of E2") {
-    REQUIRE(sut == make_unexpected(std::ref(result)));
+    REQUIRE(sut == fail(std::ref(result)));
   }
 }
 
-TEST_CASE("result<void,E>::result(const unexpected<E2>&)", "[ctor]") {
+TEST_CASE("result<void,E>::result(const failure<E2>&)", "[ctor]") {
   using sut_type = result<void,std::string>;
-  const auto source = make_unexpected<std::string>("hello world");
+  const auto source = fail<std::string>("hello world");
 
   const sut_type sut{source};
 
@@ -3553,9 +3553,9 @@ TEST_CASE("result<void,E>::result(const unexpected<E2>&)", "[ctor]") {
   }
 }
 
-TEST_CASE("result<void,E>::result(unexpected<E2>&&)", "[ctor]") {
+TEST_CASE("result<void,E>::result(failure<E2>&&)", "[ctor]") {
   using sut_type = result<void,move_only<std::string>>;
-  auto source = make_unexpected<std::string>("hello world");
+  auto source = fail<std::string>("hello world");
   const auto copy = source;
 
   const sut_type sut{std::move(source)};
@@ -3626,7 +3626,7 @@ TEST_CASE("result<void,E>::operator=(const result& other)", "[assign]") {
     }
     SECTION("Copies the state of 'other'") {
       SECTION("Original contains value") {
-        const auto output = make_unexpected(std::io_errc::stream);
+        const auto output = fail(std::io_errc::stream);
         const sut_type copy{output};
         sut_type sut{};
 
@@ -3640,9 +3640,9 @@ TEST_CASE("result<void,E>::operator=(const result& other)", "[assign]") {
         }
       }
       SECTION("Original contains error") {
-        const auto output = make_unexpected(std::io_errc::stream);
+        const auto output = fail(std::io_errc::stream);
         const sut_type copy{output};
-        sut_type sut{make_unexpected(std::io_errc{})};
+        sut_type sut{fail(std::io_errc{})};
 
         sut = copy;
 
@@ -3693,7 +3693,7 @@ TEST_CASE("result<void,E>::operator=(result&& other)", "[assign]") {
     }
     SECTION("Copies the state of 'other'") {
       SECTION("Original contains value") {
-        const auto output = make_unexpected(std::io_errc::stream);
+        const auto output = fail(std::io_errc::stream);
         sut_type other{output};
         sut_type sut{};
 
@@ -3707,9 +3707,9 @@ TEST_CASE("result<void,E>::operator=(result&& other)", "[assign]") {
         }
       }
       SECTION("Original contains error") {
-        const auto output = make_unexpected(std::io_errc::stream);
+        const auto output = fail(std::io_errc::stream);
         sut_type other{output};
-        sut_type sut{make_unexpected(std::io_errc{})};
+        sut_type sut{fail(std::io_errc{})};
 
         sut = std::move(other);
 
@@ -3763,7 +3763,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
     }
     SECTION("Copies the state of 'other'") {
       SECTION("Original contains value") {
-        const auto output = make_unexpected(std::io_errc::stream);
+        const auto output = fail(std::io_errc::stream);
         const copy_type other{output};
         sut_type sut{};
 
@@ -3777,9 +3777,9 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
         }
       }
       SECTION("Original contains error") {
-        const auto output = make_unexpected(std::io_errc::stream);
+        const auto output = fail(std::io_errc::stream);
         const sut_type other{output};
-        sut_type sut{make_unexpected(std::io_errc{})};
+        sut_type sut{fail(std::io_errc{})};
 
         sut = other;
 
@@ -3822,7 +3822,7 @@ TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
     }
     SECTION("Copies the state of 'other'") {
       SECTION("Original contains value") {
-        const auto output = make_unexpected(std::io_errc::stream);
+        const auto output = fail(std::io_errc::stream);
         copy_type other{output};
         sut_type sut{};
 
@@ -3836,9 +3836,9 @@ TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
         }
       }
       SECTION("Original contains error") {
-        const auto output = make_unexpected(std::io_errc::stream);
+        const auto output = fail(std::io_errc::stream);
         sut_type other{output};
-        sut_type sut{make_unexpected(std::io_errc{})};
+        sut_type sut{fail(std::io_errc{})};
 
         sut = std::move(other);
 
@@ -3853,10 +3853,10 @@ TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
   }
 }
 
-TEST_CASE("result<void,E>::operator=(const unexpected<E2>&)", "[assign]") {
+TEST_CASE("result<void,E>::operator=(const failure<E2>&)", "[assign]") {
   SECTION("E cant be constructed or assigned from E2") {
     SECTION("Expected cannot be assigned from E2") {
-      using copy_type = unexpected<not_copy_or_moveable>;
+      using copy_type = failure<not_copy_or_moveable>;
       using sut_type  = result<void,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,const copy_type&>::value);
@@ -3864,7 +3864,7 @@ TEST_CASE("result<void,E>::operator=(const unexpected<E2>&)", "[assign]") {
   }
   SECTION("E is not nothrow move constructible from E2") {
     SECTION("Expected is not move-assignable") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<void,throwing<std::string>>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,const copy_type&>::value);
@@ -3873,7 +3873,7 @@ TEST_CASE("result<void,E>::operator=(const unexpected<E2>&)", "[assign]") {
 
   SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
     SECTION("Expected is move-assignable") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<void,std::string>;
 
       // This works because it generates an intermediate 'result<void, E>' in
@@ -3884,7 +3884,7 @@ TEST_CASE("result<void,E>::operator=(const unexpected<E2>&)", "[assign]") {
   }
 
   SECTION("E can be constructed and assigned from E2") {
-    using copy_type = unexpected<long>;
+    using copy_type = failure<long>;
     using sut_type = result<void, int>;
 
     const auto original = copy_type{42};
@@ -3904,10 +3904,10 @@ TEST_CASE("result<void,E>::operator=(const unexpected<E2>&)", "[assign]") {
   }
 }
 
-TEST_CASE("result<void,E>::operator=(unexpected<E2>&&)", "[assign]") {
+TEST_CASE("result<void,E>::operator=(failure<E2>&&)", "[assign]") {
   SECTION("E cant be constructed or assigned from E2") {
     SECTION("Expected cannot be assigned from E2") {
-      using copy_type = unexpected<not_copy_or_moveable>;
+      using copy_type = failure<not_copy_or_moveable>;
       using sut_type  = result<void,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,copy_type&&>::value);
@@ -3915,7 +3915,7 @@ TEST_CASE("result<void,E>::operator=(unexpected<E2>&&)", "[assign]") {
   }
   SECTION("E is not nothrow move constructible from E2") {
     SECTION("Expected is not move-assignable") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<void,throwing<std::string>>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,copy_type&&>::value);
@@ -3924,7 +3924,7 @@ TEST_CASE("result<void,E>::operator=(unexpected<E2>&&)", "[assign]") {
 
   SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
     SECTION("Expected is move-assignable") {
-      using copy_type = unexpected<const char*>;
+      using copy_type = failure<const char*>;
       using sut_type = result<void,std::string>;
 
       // This works because it generates an intermediate 'result<void, E>' in
@@ -3935,7 +3935,7 @@ TEST_CASE("result<void,E>::operator=(unexpected<E2>&&)", "[assign]") {
   }
 
   SECTION("E can be constructed and assigned from E2") {
-    using copy_type = unexpected<long>;
+    using copy_type = failure<long>;
     using sut_type = result<void, int>;
 
     auto other = copy_type{42};
@@ -3970,7 +3970,7 @@ TEST_CASE("result<void,E>::operator bool()", "[observers]") {
   }
   SECTION("result does not contain a value") {
     SECTION("Returns false") {
-      auto sut = result<void, int>{make_unexpected(42)};
+      auto sut = result<void, int>{fail(42)};
 
       REQUIRE_FALSE(static_cast<bool>(sut));
     }
@@ -3987,7 +3987,7 @@ TEST_CASE("result<void,E>::has_value()", "[observers]") {
   }
   SECTION("result does not contain a value") {
     SECTION("Returns false") {
-      auto sut = result<void, int>{make_unexpected(42)};
+      auto sut = result<void, int>{fail(42)};
 
       REQUIRE_FALSE(sut.has_value());
     }
@@ -4004,7 +4004,7 @@ TEST_CASE("result<void,E>::has_error()", "[observers]") {
   }
   SECTION("result does not contain a value") {
     SECTION("Returns true") {
-      auto sut = result<void, int>{make_unexpected(42)};
+      auto sut = result<void, int>{fail(42)};
 
       REQUIRE(sut.has_error());
     }
@@ -4025,7 +4025,7 @@ TEST_CASE("result<void,E>::value()", "[observers]") {
   }
   SECTION("result contains an error") {
     SECTION("Throws bad_result_access") {
-      auto sut = result<void, int>{make_unexpected(42)};
+      auto sut = result<void, int>{fail(42)};
 
       REQUIRE_THROWS_AS(sut.value(), bad_result_access);
     }
@@ -4047,7 +4047,7 @@ TEST_CASE("result<void,E>::error() const &", "[observers]") {
   SECTION("result contains an error") {
     SECTION("Returns a copy of the exception") {
       const auto value = 42;
-      auto sut = result<void, int>{make_unexpected(value)};
+      auto sut = result<void, int>{fail(value)};
 
       const auto output = sut.error();
 
@@ -4069,7 +4069,7 @@ TEST_CASE("result<void,E>::error() &&", "[observers]") {
   SECTION("result contains an error") {
     SECTION("Returns a copy of the exception") {
       const auto value = std::io_errc::stream;
-      auto sut = result<void, move_only<std::error_code>>{make_unexpected(value)};
+      auto sut = result<void, move_only<std::error_code>>{fail(value)};
 
       const auto output = std::move(sut).error();
 
@@ -4097,7 +4097,7 @@ TEST_CASE("result<void,E>::error_or(U&&) const &", "[monadic]") {
     SECTION("Returns the error") {
       const auto input = std::error_code{std::io_errc::stream};
       auto sut = result<void, std::error_code>{
-        make_unexpected(input)
+        fail(input)
       };
 
       const auto output = sut.error_or(input);
@@ -4124,7 +4124,7 @@ TEST_CASE("result<void,E>::error_or(U&&) &&", "[monadic]") {
       auto input = std::error_code{std::io_errc::stream};
       const auto copy = input;
       auto sut = result<void, move_only<std::error_code>>{
-        make_unexpected(input)
+        fail(input)
       };
 
       const auto output = std::move(sut).error_or(std::move(input));
@@ -4150,7 +4150,7 @@ TEST_CASE("result<void,E>::and_then(U&&) const", "[monadic]") {
   SECTION("result contains an error") {
     SECTION("Maps the error") {
       const auto input = 42;
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       auto sut = result<void, std::error_code>{error};
 
       const auto output = sut.and_then(input);
@@ -4175,7 +4175,7 @@ TEST_CASE("result<void,E>::flat_map(Fn&&) const &", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       const auto value = 42;
       const auto sut = result<void,std::error_code>{error};
 
@@ -4203,7 +4203,7 @@ TEST_CASE("result<void,E>::flat_map(Fn&&) &&", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       const auto value = 42;
       auto sut = result<void,move_only<std::error_code>>{error};
 
@@ -4249,7 +4249,7 @@ TEST_CASE("result<void,E>::map(Fn&&) const &", "[monadic]") {
     SECTION("Function returns non-void") {
       SECTION("Maps the error") {
         const auto value = 42;
-        const auto error = make_unexpected(std::io_errc::stream);
+        const auto error = fail(std::io_errc::stream);
         auto sut = result<void,std::io_errc>{error};
 
         const auto output = sut.map([&]{
@@ -4261,7 +4261,7 @@ TEST_CASE("result<void,E>::map(Fn&&) const &", "[monadic]") {
     }
     SECTION("Function returns void") {
       SECTION("Maps input to void") {
-        const auto error = make_unexpected(std::io_errc::stream);
+        const auto error = fail(std::io_errc::stream);
         auto sut = result<void,std::io_errc>{error};
 
         const auto output = sut.map([]{});
@@ -4310,7 +4310,7 @@ TEST_CASE("result<void,E>::map(Fn&&) &&", "[monadic]") {
     SECTION("Function returns non-void") {
       SECTION("Maps the error") {
         const auto value = 42;
-        const auto error = make_unexpected(std::io_errc::stream);
+        const auto error = fail(std::io_errc::stream);
         auto sut = result<void,move_only<std::error_code>>{error};
 
         const auto output = std::move(sut).map([&]{
@@ -4322,7 +4322,7 @@ TEST_CASE("result<void,E>::map(Fn&&) &&", "[monadic]") {
     }
     SECTION("Function returns void") {
       SECTION("Maps input to void") {
-        const auto error = make_unexpected(std::io_errc::stream);
+        const auto error = fail(std::io_errc::stream);
         auto sut = result<void,move_only<std::error_code>>{error};
 
         const auto output = std::move(sut).map([]{});
@@ -4352,7 +4352,7 @@ TEST_CASE("result<void,E>::map_error(Fn&&) const", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(std::io_errc::stream);
+      const auto error = fail(std::io_errc::stream);
       auto sut = result<void,std::io_errc>{error};
 
       const auto output = sut.map_error([](std::io_errc e){
@@ -4378,7 +4378,7 @@ TEST_CASE("result<void,E>::flat_map_error(Fn&&) const &", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected(42);
+      const auto error = fail(42);
       const auto sut = result<void, long>{error};
 
       const auto output = sut.flat_map_error([&](long x){
@@ -4404,7 +4404,7 @@ TEST_CASE("result<void,E>::flat_map_error(Fn&&) &&", "[monadic]") {
   }
   SECTION("result contains an error") {
     SECTION("Maps the error") {
-      const auto error = make_unexpected("Hello world");
+      const auto error = fail("Hello world");
       auto sut = result<void,move_only<std::string>>{error};
 
       const auto output = std::move(sut).flat_map_error([](move_only<std::string>&& x){
@@ -4446,10 +4446,10 @@ TEST_CASE("operator==(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   SECTION("Left and right contain errors") {
     SECTION("Left equal to right") {
       const auto lhs = result<int,int>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns true") {
         REQUIRE(lhs == rhs);
@@ -4457,10 +4457,10 @@ TEST_CASE("operator==(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
     }
     SECTION("Left not equal to right") {
       const auto lhs = result<int,int>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(0)
+        fail(0)
       };
       SECTION("returns false") {
         REQUIRE_FALSE(lhs == rhs);
@@ -4470,7 +4470,7 @@ TEST_CASE("operator==(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<int,int>{};
     const auto rhs = result<long,long>{
-      make_unexpected(42)
+      fail(42)
     };
     SECTION("returns false") {
       REQUIRE_FALSE(lhs == rhs);
@@ -4478,7 +4478,7 @@ TEST_CASE("operator==(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<int,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<long,long>{};
     SECTION("returns false") {
@@ -4509,10 +4509,10 @@ TEST_CASE("operator!=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   SECTION("Left and right contain errors") {
     SECTION("Left equal to right") {
       const auto lhs = result<int,int>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns false") {
         REQUIRE_FALSE(lhs != rhs);
@@ -4520,10 +4520,10 @@ TEST_CASE("operator!=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
     }
     SECTION("Left not equal to right") {
       const auto lhs = result<int,int>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(0)
+        fail(0)
       };
       SECTION("returns true") {
         REQUIRE(lhs != rhs);
@@ -4533,7 +4533,7 @@ TEST_CASE("operator!=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<int,int>{};
     const auto rhs = result<long,long>{
-      make_unexpected(42)
+      fail(42)
     };
     SECTION("returns true") {
       REQUIRE(lhs != rhs);
@@ -4541,7 +4541,7 @@ TEST_CASE("operator!=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<int,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<long,long>{};
     SECTION("returns true") {
@@ -4572,10 +4572,10 @@ TEST_CASE("operator>=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   SECTION("Left and right contain errors") {
     SECTION("Left greater than right") {
       const auto lhs = result<int,int>{
-        make_unexpected(100)
+        fail(100)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
 
       SECTION("returns true") {
@@ -4584,10 +4584,10 @@ TEST_CASE("operator>=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
     }
     SECTION("Left less than right") {
       const auto lhs = result<int,int>{
-        make_unexpected(0)
+        fail(0)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
 
       SECTION("returns false") {
@@ -4598,7 +4598,7 @@ TEST_CASE("operator>=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<int,int>{0};
     const auto rhs = result<long,long>{
-      make_unexpected(42)
+      fail(42)
     };
 
     SECTION("returns true") {
@@ -4607,7 +4607,7 @@ TEST_CASE("operator>=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<int,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<long,long>{0};
 
@@ -4639,10 +4639,10 @@ TEST_CASE("operator<=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   SECTION("Left and right contain errors") {
     SECTION("Left greater than right") {
       const auto lhs = result<int,int>{
-        make_unexpected(100)
+        fail(100)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
 
       SECTION("returns false") {
@@ -4651,10 +4651,10 @@ TEST_CASE("operator<=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
     }
     SECTION("Left less than right") {
       const auto lhs = result<int,int>{
-        make_unexpected(0)
+        fail(0)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
 
       SECTION("returns true") {
@@ -4665,7 +4665,7 @@ TEST_CASE("operator<=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<int,int>{0};
     const auto rhs = result<long,long>{
-      make_unexpected(42)
+      fail(42)
     };
 
     SECTION("returns false") {
@@ -4674,7 +4674,7 @@ TEST_CASE("operator<=(const result<T1,E1>&, const result<T2,E2>&)", "[compare]")
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<int,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<long,long>{0};
 
@@ -4706,10 +4706,10 @@ TEST_CASE("operator>(const result<T1,E1>&, const result<T2,E2>&)", "[compare]") 
   SECTION("Left and right contain errors") {
     SECTION("Left greater than right") {
       const auto lhs = result<int,int>{
-        make_unexpected(100)
+        fail(100)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
 
       SECTION("returns true") {
@@ -4718,10 +4718,10 @@ TEST_CASE("operator>(const result<T1,E1>&, const result<T2,E2>&)", "[compare]") 
     }
     SECTION("Left less than right") {
       const auto lhs = result<int,int>{
-        make_unexpected(0)
+        fail(0)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
 
       SECTION("returns false") {
@@ -4732,7 +4732,7 @@ TEST_CASE("operator>(const result<T1,E1>&, const result<T2,E2>&)", "[compare]") 
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<int,int>{0};
     const auto rhs = result<long,long>{
-      make_unexpected(42)
+      fail(42)
     };
 
     SECTION("returns true") {
@@ -4741,7 +4741,7 @@ TEST_CASE("operator>(const result<T1,E1>&, const result<T2,E2>&)", "[compare]") 
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<int,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<long,long>{0};
 
@@ -4773,10 +4773,10 @@ TEST_CASE("operator<(const result<T1,E1>&, const result<T2,E2>&)", "[compare]") 
   SECTION("Left and right contain errors") {
     SECTION("Left greater than right") {
       const auto lhs = result<int,int>{
-        make_unexpected(100)
+        fail(100)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
 
       SECTION("returns false") {
@@ -4785,10 +4785,10 @@ TEST_CASE("operator<(const result<T1,E1>&, const result<T2,E2>&)", "[compare]") 
     }
     SECTION("Left less than right") {
       const auto lhs = result<int,int>{
-        make_unexpected(0)
+        fail(0)
       };
       const auto rhs = result<long,long>{
-        make_unexpected(42)
+        fail(42)
       };
 
       SECTION("returns true") {
@@ -4799,7 +4799,7 @@ TEST_CASE("operator<(const result<T1,E1>&, const result<T2,E2>&)", "[compare]") 
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<int,int>{0};
     const auto rhs = result<long,long>{
-      make_unexpected(42)
+      fail(42)
     };
 
     SECTION("returns false") {
@@ -4808,7 +4808,7 @@ TEST_CASE("operator<(const result<T1,E1>&, const result<T2,E2>&)", "[compare]") 
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<int,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<long,long>{0};
 
@@ -4832,10 +4832,10 @@ TEST_CASE("operator==(const result<void,E1>&, const result<void,E2>&)", "[compar
   SECTION("Left and right contain errors") {
     SECTION("Left equal to right") {
       const auto lhs = result<void,int>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns true") {
         REQUIRE(lhs == rhs);
@@ -4843,10 +4843,10 @@ TEST_CASE("operator==(const result<void,E1>&, const result<void,E2>&)", "[compar
     }
     SECTION("Left not equal to right") {
       const auto lhs = result<void,int>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(0)
+        fail(0)
       };
       SECTION("returns false") {
         REQUIRE_FALSE(lhs == rhs);
@@ -4856,7 +4856,7 @@ TEST_CASE("operator==(const result<void,E1>&, const result<void,E2>&)", "[compar
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<void,int>{};
     const auto rhs = result<void,long>{
-      make_unexpected(42)
+      fail(42)
     };
     SECTION("returns false") {
       REQUIRE_FALSE(lhs == rhs);
@@ -4864,7 +4864,7 @@ TEST_CASE("operator==(const result<void,E1>&, const result<void,E2>&)", "[compar
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<void,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<void,long>{};
     SECTION("returns false") {
@@ -4885,10 +4885,10 @@ TEST_CASE("operator!=(const result<void,E1>&, const result<void,E2>&)", "[compar
   SECTION("Left and right contain errors") {
     SECTION("Left equal to right") {
       const auto lhs = result<void,int>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns false") {
         REQUIRE_FALSE(lhs != rhs);
@@ -4896,10 +4896,10 @@ TEST_CASE("operator!=(const result<void,E1>&, const result<void,E2>&)", "[compar
     }
     SECTION("Left not equal to right") {
       const auto lhs = result<void,int>{
-        make_unexpected(42)
+        fail(42)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(0)
+        fail(0)
       };
       SECTION("returns true") {
         REQUIRE(lhs != rhs);
@@ -4909,7 +4909,7 @@ TEST_CASE("operator!=(const result<void,E1>&, const result<void,E2>&)", "[compar
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<void,int>{};
     const auto rhs = result<void,long>{
-      make_unexpected(42)
+      fail(42)
     };
     SECTION("returns true") {
       REQUIRE(lhs != rhs);
@@ -4917,7 +4917,7 @@ TEST_CASE("operator!=(const result<void,E1>&, const result<void,E2>&)", "[compar
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<void,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<void,long>{};
     SECTION("returns true") {
@@ -4938,10 +4938,10 @@ TEST_CASE("operator>=(const result<void,E1>&, const result<void,E2>&)", "[compar
   SECTION("Left and right contain errors") {
     SECTION("Left greater than right") {
       const auto lhs = result<void,int>{
-        make_unexpected(100)
+        fail(100)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns true") {
         REQUIRE(lhs >= rhs);
@@ -4949,10 +4949,10 @@ TEST_CASE("operator>=(const result<void,E1>&, const result<void,E2>&)", "[compar
     }
     SECTION("Left less than right") {
       const auto lhs = result<void,int>{
-        make_unexpected(0)
+        fail(0)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns false") {
         REQUIRE_FALSE(lhs >= rhs);
@@ -4962,7 +4962,7 @@ TEST_CASE("operator>=(const result<void,E1>&, const result<void,E2>&)", "[compar
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<void,int>{};
     const auto rhs = result<void,long>{
-      make_unexpected(42)
+      fail(42)
     };
     SECTION("returns true") {
       REQUIRE(lhs >= rhs);
@@ -4970,7 +4970,7 @@ TEST_CASE("operator>=(const result<void,E1>&, const result<void,E2>&)", "[compar
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<void,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<void,long>{};
     SECTION("returns false") {
@@ -4991,10 +4991,10 @@ TEST_CASE("operator<=(const result<void,E1>&, const result<void,E2>&)", "[compar
   SECTION("Left and right contain errors") {
     SECTION("Left greater than right") {
       const auto lhs = result<void,int>{
-        make_unexpected(100)
+        fail(100)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns false") {
         REQUIRE_FALSE(lhs <= rhs);
@@ -5002,10 +5002,10 @@ TEST_CASE("operator<=(const result<void,E1>&, const result<void,E2>&)", "[compar
     }
     SECTION("Left less than right") {
       const auto lhs = result<void,int>{
-        make_unexpected(0)
+        fail(0)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns true") {
         REQUIRE(lhs <= rhs);
@@ -5015,7 +5015,7 @@ TEST_CASE("operator<=(const result<void,E1>&, const result<void,E2>&)", "[compar
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<void,int>{};
     const auto rhs = result<void,long>{
-      make_unexpected(42)
+      fail(42)
     };
     SECTION("returns false") {
       REQUIRE_FALSE(lhs <= rhs);
@@ -5023,7 +5023,7 @@ TEST_CASE("operator<=(const result<void,E1>&, const result<void,E2>&)", "[compar
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<void,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<void,long>{};
     SECTION("returns true") {
@@ -5044,10 +5044,10 @@ TEST_CASE("operator>(const result<void,E1>&, const result<void,E2>&)", "[compare
   SECTION("Left and right contain errors") {
     SECTION("Left greater than right") {
       const auto lhs = result<void,int>{
-        make_unexpected(100)
+        fail(100)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns true") {
         REQUIRE(lhs > rhs);
@@ -5055,10 +5055,10 @@ TEST_CASE("operator>(const result<void,E1>&, const result<void,E2>&)", "[compare
     }
     SECTION("Left less than right") {
       const auto lhs = result<void,int>{
-        make_unexpected(0)
+        fail(0)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns false") {
         REQUIRE_FALSE(lhs > rhs);
@@ -5068,7 +5068,7 @@ TEST_CASE("operator>(const result<void,E1>&, const result<void,E2>&)", "[compare
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<void,int>{};
     const auto rhs = result<void,long>{
-      make_unexpected(42)
+      fail(42)
     };
     SECTION("returns true") {
       REQUIRE(lhs > rhs);
@@ -5076,7 +5076,7 @@ TEST_CASE("operator>(const result<void,E1>&, const result<void,E2>&)", "[compare
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<void,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<void,long>{};
     SECTION("returns false") {
@@ -5097,10 +5097,10 @@ TEST_CASE("operator<(const result<void,E1>&, const result<void,E2>&)", "[compare
   SECTION("Left and right contain errors") {
     SECTION("Left greater than right") {
       const auto lhs = result<void,int>{
-        make_unexpected(100)
+        fail(100)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns false") {
         REQUIRE_FALSE(lhs < rhs);
@@ -5108,10 +5108,10 @@ TEST_CASE("operator<(const result<void,E1>&, const result<void,E2>&)", "[compare
     }
     SECTION("Left less than right") {
       const auto lhs = result<void,int>{
-        make_unexpected(0)
+        fail(0)
       };
       const auto rhs = result<void,long>{
-        make_unexpected(42)
+        fail(42)
       };
       SECTION("returns true") {
         REQUIRE(lhs < rhs);
@@ -5121,7 +5121,7 @@ TEST_CASE("operator<(const result<void,E1>&, const result<void,E2>&)", "[compare
   SECTION("Left contains a value, right contains an error") {
     const auto lhs = result<void,int>{};
     const auto rhs = result<void,long>{
-      make_unexpected(42)
+      fail(42)
     };
     SECTION("returns false") {
       REQUIRE_FALSE(lhs < rhs);
@@ -5129,7 +5129,7 @@ TEST_CASE("operator<(const result<void,E1>&, const result<void,E2>&)", "[compare
   }
   SECTION("Left contains an error, right contains a value") {
     const auto lhs = result<void,int>{
-      make_unexpected(42)
+      fail(42)
     };
     const auto rhs = result<void,long>{};
     SECTION("returns true") {
@@ -5161,7 +5161,7 @@ TEST_CASE("operator==(const result<T1,E1>&, const U&)", "[compare]") {
   }
   SECTION("result contains an error") {
     const auto lhs = result<int,std::string>{
-      make_unexpected("0")
+      fail("0")
     };
     const auto rhs = 0l;
 
@@ -5192,7 +5192,7 @@ TEST_CASE("operator==(const U&, const result<T1,E1>&)", "[compare]") {
   }
   SECTION("result contains an error") {
     const auto rhs = result<int,std::string>{
-      make_unexpected("0")
+      fail("0")
     };
     const auto lhs = 0l;
 
@@ -5223,7 +5223,7 @@ TEST_CASE("operator!=(const result<T1,E1>&, const U&)", "[compare]") {
   }
   SECTION("result contains an error") {
     const auto lhs = result<int,std::string>{
-      make_unexpected("0")
+      fail("0")
     };
     const auto rhs = 0l;
 
@@ -5254,7 +5254,7 @@ TEST_CASE("operator!=(const U&, const result<T1,E1>&)", "[compare]") {
   }
   SECTION("result contains an error") {
     const auto rhs = result<int,std::string>{
-      make_unexpected("0")
+      fail("0")
     };
     const auto lhs = 0l;
 
@@ -5284,7 +5284,7 @@ TEST_CASE("operator>=(const result<T1,E1>&, const U&)", "[compare]") {
   }
   SECTION("Expected contains an error") {
     SECTION("returns true") {
-      const auto lhs = result<int,std::string>{make_unexpected("hello world")};
+      const auto lhs = result<int,std::string>{fail("hello world")};
       const auto rhs = 0l;
 
       REQUIRE(lhs >= rhs);
@@ -5312,7 +5312,7 @@ TEST_CASE("operator>=(const U&, const result<T1,E1>&)", "[compare]") {
   }
   SECTION("Expected contains an error") {
     SECTION("returns true") {
-      const auto rhs = result<int,std::string>{make_unexpected("hello world")};
+      const auto rhs = result<int,std::string>{fail("hello world")};
       const auto lhs = 0l;
 
       REQUIRE_FALSE(lhs >= rhs);
@@ -5340,7 +5340,7 @@ TEST_CASE("operator<=(const result<T1,E1>&, const U&)", "[compare]") {
   }
   SECTION("Expected contains an error") {
     SECTION("returns false") {
-      const auto lhs = result<int,std::string>{make_unexpected("hello world")};
+      const auto lhs = result<int,std::string>{fail("hello world")};
       const auto rhs = 9l;
 
       REQUIRE_FALSE(lhs <= rhs);
@@ -5368,7 +5368,7 @@ TEST_CASE("operator<=(const U&, const result<T1,E1>&)", "[compare]") {
   }
   SECTION("Expected contains an error") {
     SECTION("returns true") {
-      const auto rhs = result<int,std::string>{make_unexpected("hello world")};
+      const auto rhs = result<int,std::string>{fail("hello world")};
       const auto lhs = 9l;
 
       REQUIRE(lhs <= rhs);
@@ -5396,7 +5396,7 @@ TEST_CASE("operator>(const result<T1,E1>&, const U&)", "[compare]") {
   }
   SECTION("Expected contains an error") {
     SECTION("returns false") {
-      const auto lhs = result<int,std::string>{make_unexpected("hello world")};
+      const auto lhs = result<int,std::string>{fail("hello world")};
       const auto rhs = 0l;
 
       REQUIRE_FALSE(lhs > rhs);
@@ -5424,7 +5424,7 @@ TEST_CASE("operator>(const U&, const result<T1,E1>&)", "[compare]") {
   }
   SECTION("Expected contains an error") {
     SECTION("returns true") {
-      const auto rhs = result<int,std::string>{make_unexpected("hello world")};
+      const auto rhs = result<int,std::string>{fail("hello world")};
       const auto lhs = 0l;
 
       REQUIRE(lhs > rhs);
@@ -5452,7 +5452,7 @@ TEST_CASE("operator<(const result<T1,E1>&, const U&)", "[compare]") {
   }
   SECTION("Expected contains an error") {
     SECTION("returns false") {
-      const auto lhs = result<int,std::string>{make_unexpected("hello world")};
+      const auto lhs = result<int,std::string>{fail("hello world")};
       const auto rhs = 9l;
 
       REQUIRE_FALSE(lhs < rhs);
@@ -5480,7 +5480,7 @@ TEST_CASE("operator<(const U&, const result<T1,E1>&)", "[compare]") {
   }
   SECTION("Expected contains an error") {
     SECTION("returns false") {
-      const auto rhs = result<int,std::string>{make_unexpected("hello world")};
+      const auto rhs = result<int,std::string>{fail("hello world")};
       const auto lhs = 9l;
 
       REQUIRE(lhs < rhs);
@@ -5490,29 +5490,29 @@ TEST_CASE("operator<(const U&, const result<T1,E1>&)", "[compare]") {
 
 //-----------------------------------------------------------------------------
 
-TEST_CASE("operator==(const result<T1,E1>&, const unexpected<E>&)", "[compare]") {
+TEST_CASE("operator==(const result<T1,E1>&, const failure<E>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns false") {
       const auto lhs = result<int,std::string>{0};
-      const auto rhs = make_unexpected("hello world");
+      const auto rhs = fail("hello world");
 
       REQUIRE_FALSE(lhs == rhs);
     }
   }
   SECTION("result contains error") {
     const auto lhs = result<int,std::string>{
-      make_unexpected("0")
+      fail("0")
     };
-    SECTION("unexpected compares equal") {
+    SECTION("failure compares equal") {
       SECTION("Returns true") {
-        const auto rhs = make_unexpected("0");
+        const auto rhs = fail("0");
 
         REQUIRE(lhs == rhs);
       }
     }
-    SECTION("unexpected compares unequal") {
+    SECTION("failure compares unequal") {
       SECTION("Returns false") {
-        const auto rhs = make_unexpected("hello");
+        const auto rhs = fail("hello");
 
         REQUIRE_FALSE(lhs == rhs);
       }
@@ -5520,29 +5520,29 @@ TEST_CASE("operator==(const result<T1,E1>&, const unexpected<E>&)", "[compare]")
   }
 }
 
-TEST_CASE("operator==(const unexpected<E>&, const result<T1,E1>&)", "[compare]") {
+TEST_CASE("operator==(const failure<E>&, const result<T1,E1>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns false") {
       const auto rhs = result<int,std::string>{0};
-      const auto lhs = make_unexpected("hello world");
+      const auto lhs = fail("hello world");
 
       REQUIRE_FALSE(lhs == rhs);
     }
   }
   SECTION("result contains error") {
     const auto rhs = result<int,std::string>{
-      make_unexpected("0")
+      fail("0")
     };
-    SECTION("unexpected compares equal") {
+    SECTION("failure compares equal") {
       SECTION("Returns true") {
-        const auto lhs = make_unexpected("0");
+        const auto lhs = fail("0");
 
         REQUIRE(lhs == rhs);
       }
     }
-    SECTION("unexpected compares unequal") {
+    SECTION("failure compares unequal") {
       SECTION("Returns false") {
-        const auto lhs = make_unexpected("hello");
+        const auto lhs = fail("hello");
 
         REQUIRE_FALSE(lhs == rhs);
       }
@@ -5550,29 +5550,29 @@ TEST_CASE("operator==(const unexpected<E>&, const result<T1,E1>&)", "[compare]")
   }
 }
 
-TEST_CASE("operator!=(const result<T1,E1>&, const unexpected<E>&)", "[compare]") {
+TEST_CASE("operator!=(const result<T1,E1>&, const failure<E>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns true") {
       const auto lhs = result<int,std::string>{0};
-      const auto rhs = make_unexpected("hello world");
+      const auto rhs = fail("hello world");
 
       REQUIRE(lhs != rhs);
     }
   }
   SECTION("result contains error") {
     const auto lhs = result<int,std::string>{
-      make_unexpected("0")
+      fail("0")
     };
-    SECTION("unexpected compares equal") {
+    SECTION("failure compares equal") {
       SECTION("Returns false") {
-        const auto rhs = make_unexpected("0");
+        const auto rhs = fail("0");
 
         REQUIRE_FALSE(lhs != rhs);
       }
     }
-    SECTION("unexpected compares unequal") {
+    SECTION("failure compares unequal") {
       SECTION("Returns true") {
-        const auto rhs = make_unexpected("hello");
+        const auto rhs = fail("hello");
 
         REQUIRE(lhs != rhs);
       }
@@ -5580,29 +5580,29 @@ TEST_CASE("operator!=(const result<T1,E1>&, const unexpected<E>&)", "[compare]")
   }
 }
 
-TEST_CASE("operator!=(const unexpected<E>&, const result<T1,E1>&)", "[compare]") {
+TEST_CASE("operator!=(const failure<E>&, const result<T1,E1>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns true") {
       const auto rhs = result<int,std::string>{0};
-      const auto lhs = make_unexpected("hello world");
+      const auto lhs = fail("hello world");
 
       REQUIRE(lhs != rhs);
     }
   }
   SECTION("result contains error") {
     const auto rhs = result<int,std::string>{
-      make_unexpected("0")
+      fail("0")
     };
-    SECTION("unexpected compares equal") {
+    SECTION("failure compares equal") {
       SECTION("Returns false") {
-        const auto lhs = make_unexpected("0");
+        const auto lhs = fail("0");
 
         REQUIRE_FALSE(lhs != rhs);
       }
     }
-    SECTION("unexpected compares unequal") {
+    SECTION("failure compares unequal") {
       SECTION("Returns true") {
-        const auto lhs = make_unexpected("hello");
+        const auto lhs = fail("hello");
 
         REQUIRE(lhs != rhs);
       }
@@ -5610,29 +5610,29 @@ TEST_CASE("operator!=(const unexpected<E>&, const result<T1,E1>&)", "[compare]")
   }
 }
 
-TEST_CASE("operator>=(const result<T1,E1>&, const unexpected<E>&)", "[compare]") {
+TEST_CASE("operator>=(const result<T1,E1>&, const failure<E>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns false") {
       const auto lhs = result<int,std::string>{0};
-      const auto rhs = make_unexpected("hello world");
+      const auto rhs = fail("hello world");
 
       REQUIRE_FALSE(lhs >= rhs);
     }
   }
   SECTION("result contains error") {
     const auto lhs = result<int,std::string>{
-      make_unexpected("5")
+      fail("5")
     };
-    SECTION("result is greater or equal to unexpected") {
+    SECTION("result is greater or equal to failure") {
       SECTION("Returns true") {
-        const auto rhs = make_unexpected("0");
+        const auto rhs = fail("0");
 
         REQUIRE(lhs >= rhs);
       }
     }
-    SECTION("result is not greater or equal to unexpected") {
+    SECTION("result is not greater or equal to failure") {
       SECTION("Returns false") {
-        const auto rhs = make_unexpected("9");
+        const auto rhs = fail("9");
 
         REQUIRE_FALSE(lhs >= rhs);
       }
@@ -5640,10 +5640,10 @@ TEST_CASE("operator>=(const result<T1,E1>&, const unexpected<E>&)", "[compare]")
   }
 }
 
-TEST_CASE("operator>=(const unexpected<E>&, const result<T1,E1>&)", "[compare]") {
+TEST_CASE("operator>=(const failure<E>&, const result<T1,E1>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns false") {
-      const auto lhs = make_unexpected("hello world");
+      const auto lhs = fail("hello world");
       const auto rhs = result<int,std::string>{0};
 
       REQUIRE(lhs >= rhs);
@@ -5651,18 +5651,18 @@ TEST_CASE("operator>=(const unexpected<E>&, const result<T1,E1>&)", "[compare]")
   }
   SECTION("result contains error") {
     const auto rhs = result<int,std::string>{
-      make_unexpected("3")
+      fail("3")
     };
-    SECTION("unexpected is greater or equal to result") {
+    SECTION("failure is greater or equal to result") {
       SECTION("Returns true") {
-        const auto lhs = make_unexpected("5");
+        const auto lhs = fail("5");
 
         REQUIRE(lhs >= rhs);
       }
     }
-    SECTION("unexpected is not greater or equal to result") {
+    SECTION("failure is not greater or equal to result") {
       SECTION("Returns false") {
-        const auto lhs = make_unexpected("0");
+        const auto lhs = fail("0");
 
         REQUIRE_FALSE(lhs >= rhs);
       }
@@ -5670,29 +5670,29 @@ TEST_CASE("operator>=(const unexpected<E>&, const result<T1,E1>&)", "[compare]")
   }
 }
 
-TEST_CASE("operator<=(const result<T1,E1>&, const unexpected<E>&)", "[compare]") {
+TEST_CASE("operator<=(const result<T1,E1>&, const failure<E>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns true") {
       const auto lhs = result<int,std::string>{0};
-      const auto rhs = make_unexpected("hello world");
+      const auto rhs = fail("hello world");
 
       REQUIRE(lhs <= rhs);
     }
   }
   SECTION("result contains error") {
     const auto lhs = result<int,std::string>{
-      make_unexpected("5")
+      fail("5")
     };
-    SECTION("result is less or equal to unexpected") {
+    SECTION("result is less or equal to failure") {
       SECTION("Returns true") {
-        const auto rhs = make_unexpected("9");
+        const auto rhs = fail("9");
 
         REQUIRE(lhs <= rhs);
       }
     }
-    SECTION("result is not less or equal to unexpected") {
+    SECTION("result is not less or equal to failure") {
       SECTION("Returns false") {
-        const auto rhs = make_unexpected("0");
+        const auto rhs = fail("0");
 
         REQUIRE_FALSE(lhs <= rhs);
       }
@@ -5700,10 +5700,10 @@ TEST_CASE("operator<=(const result<T1,E1>&, const unexpected<E>&)", "[compare]")
   }
 }
 
-TEST_CASE("operator<=(const unexpected<E>&, const result<T1,E1>&)", "[compare]") {
+TEST_CASE("operator<=(const failure<E>&, const result<T1,E1>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns true") {
-      const auto lhs = make_unexpected("hello world");
+      const auto lhs = fail("hello world");
       const auto rhs = result<int,std::string>{0};
 
       REQUIRE_FALSE(lhs <= rhs);
@@ -5711,18 +5711,18 @@ TEST_CASE("operator<=(const unexpected<E>&, const result<T1,E1>&)", "[compare]")
   }
   SECTION("result contains error") {
     const auto rhs = result<int,std::string>{
-      make_unexpected("5")
+      fail("5")
     };
-    SECTION("result is less or equal to unexpected") {
+    SECTION("result is less or equal to failure") {
       SECTION("Returns true") {
-        const auto lhs = make_unexpected("0");
+        const auto lhs = fail("0");
 
         REQUIRE(lhs <= rhs);
       }
     }
-    SECTION("result is not less or equal to unexpected") {
+    SECTION("result is not less or equal to failure") {
       SECTION("Returns false") {
-        const auto lhs = make_unexpected("9");
+        const auto lhs = fail("9");
 
         REQUIRE_FALSE(lhs <= rhs);
       }
@@ -5730,29 +5730,29 @@ TEST_CASE("operator<=(const unexpected<E>&, const result<T1,E1>&)", "[compare]")
   }
 }
 
-TEST_CASE("operator>(const result<T1,E1>&, const unexpected<E>&)", "[compare]") {
+TEST_CASE("operator>(const result<T1,E1>&, const failure<E>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns false") {
       const auto lhs = result<int,std::string>{0};
-      const auto rhs = make_unexpected("hello world");
+      const auto rhs = fail("hello world");
 
       REQUIRE_FALSE(lhs > rhs);
     }
   }
   SECTION("result contains error") {
     const auto lhs = result<int,std::string>{
-      make_unexpected("5")
+      fail("5")
     };
-    SECTION("result is greater or equal to unexpected") {
+    SECTION("result is greater or equal to failure") {
       SECTION("Returns true") {
-        const auto rhs = make_unexpected("0");
+        const auto rhs = fail("0");
 
         REQUIRE(lhs > rhs);
       }
     }
-    SECTION("result is not greater or equal to unexpected") {
+    SECTION("result is not greater or equal to failure") {
       SECTION("Returns false") {
-        const auto rhs = make_unexpected("9");
+        const auto rhs = fail("9");
 
         REQUIRE_FALSE(lhs > rhs);
       }
@@ -5760,10 +5760,10 @@ TEST_CASE("operator>(const result<T1,E1>&, const unexpected<E>&)", "[compare]") 
   }
 }
 
-TEST_CASE("operator>(const unexpected<E>&, const result<T1,E1>&)", "[compare]") {
+TEST_CASE("operator>(const failure<E>&, const result<T1,E1>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns false") {
-      const auto lhs = make_unexpected("hello world");
+      const auto lhs = fail("hello world");
       const auto rhs = result<int,std::string>{0};
 
       REQUIRE(lhs > rhs);
@@ -5771,18 +5771,18 @@ TEST_CASE("operator>(const unexpected<E>&, const result<T1,E1>&)", "[compare]") 
   }
   SECTION("result contains error") {
     const auto rhs = result<int,std::string>{
-      make_unexpected("3")
+      fail("3")
     };
-    SECTION("unexpected is greater or equal to result") {
+    SECTION("failure is greater or equal to result") {
       SECTION("Returns true") {
-        const auto lhs = make_unexpected("5");
+        const auto lhs = fail("5");
 
         REQUIRE(lhs > rhs);
       }
     }
-    SECTION("unexpected is not greater or equal to result") {
+    SECTION("failure is not greater or equal to result") {
       SECTION("Returns false") {
-        const auto lhs = make_unexpected("0");
+        const auto lhs = fail("0");
 
         REQUIRE_FALSE(lhs > rhs);
       }
@@ -5790,29 +5790,29 @@ TEST_CASE("operator>(const unexpected<E>&, const result<T1,E1>&)", "[compare]") 
   }
 }
 
-TEST_CASE("operator<(const result<T1,E1>&, const unexpected<E>&)", "[compare]") {
+TEST_CASE("operator<(const result<T1,E1>&, const failure<E>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns true") {
       const auto lhs = result<int,std::string>{0};
-      const auto rhs = make_unexpected("hello world");
+      const auto rhs = fail("hello world");
 
       REQUIRE(lhs < rhs);
     }
   }
   SECTION("result contains error") {
     const auto lhs = result<int,std::string>{
-      make_unexpected("5")
+      fail("5")
     };
-    SECTION("result is less or equal to unexpected") {
+    SECTION("result is less or equal to failure") {
       SECTION("Returns true") {
-        const auto rhs = make_unexpected("9");
+        const auto rhs = fail("9");
 
         REQUIRE(lhs < rhs);
       }
     }
-    SECTION("result is not less or equal to unexpected") {
+    SECTION("result is not less or equal to failure") {
       SECTION("Returns false") {
-        const auto rhs = make_unexpected("0");
+        const auto rhs = fail("0");
 
         REQUIRE_FALSE(lhs < rhs);
       }
@@ -5820,10 +5820,10 @@ TEST_CASE("operator<(const result<T1,E1>&, const unexpected<E>&)", "[compare]") 
   }
 }
 
-TEST_CASE("operator<(const unexpected<E>&, const result<T1,E1>&)", "[compare]") {
+TEST_CASE("operator<(const failure<E>&, const result<T1,E1>&)", "[compare]") {
   SECTION("result contains value") {
     SECTION("Returns true") {
-      const auto lhs = make_unexpected("hello world");
+      const auto lhs = fail("hello world");
       const auto rhs = result<int,std::string>{0};
 
       REQUIRE_FALSE(lhs < rhs);
@@ -5831,18 +5831,18 @@ TEST_CASE("operator<(const unexpected<E>&, const result<T1,E1>&)", "[compare]") 
   }
   SECTION("result contains error") {
     const auto rhs = result<int,std::string>{
-      make_unexpected("5")
+      fail("5")
     };
-    SECTION("result is less or equal to unexpected") {
+    SECTION("result is less or equal to failure") {
       SECTION("Returns true") {
-        const auto lhs = make_unexpected("0");
+        const auto lhs = fail("0");
 
         REQUIRE(lhs < rhs);
       }
     }
-    SECTION("result is not less or equal to unexpected") {
+    SECTION("result is not less or equal to failure") {
       SECTION("Returns false") {
-        const auto lhs = make_unexpected("9");
+        const auto lhs = fail("9");
 
         REQUIRE_FALSE(lhs < rhs);
       }
@@ -5877,8 +5877,8 @@ TEST_CASE("swap(result<T,E>&, result<T,E>&)", "[utility]") {
     }
   }
   SECTION("lhs and rhs contain an error") {
-    auto lhs_sut = result<int, int>{make_unexpected(42)};
-    auto rhs_sut = result<int, int>{make_unexpected(100)};
+    auto lhs_sut = result<int, int>{fail(42)};
+    auto rhs_sut = result<int, int>{fail(100)};
     const auto lhs_old = lhs_sut;
     const auto rhs_old = rhs_sut;
 
@@ -5899,7 +5899,7 @@ TEST_CASE("swap(result<T,E>&, result<T,E>&)", "[utility]") {
   }
   SECTION("lhs contains a value, rhs contains an error") {
     auto lhs_sut = result<int, int>{42};
-    auto rhs_sut = result<int, int>{make_unexpected(42)};
+    auto rhs_sut = result<int, int>{fail(42)};
     const auto lhs_old = lhs_sut;
     const auto rhs_old = rhs_sut;
 
@@ -5919,7 +5919,7 @@ TEST_CASE("swap(result<T,E>&, result<T,E>&)", "[utility]") {
     }
   }
   SECTION("lhs contains an error, rhs contains a value") {
-    auto lhs_sut = result<int, int>{make_unexpected(42)};
+    auto lhs_sut = result<int, int>{fail(42)};
     auto rhs_sut = result<int, int>{};
     const auto lhs_old = lhs_sut;
     const auto rhs_old = rhs_sut;
@@ -5964,8 +5964,8 @@ TEST_CASE("swap(result<void,E>&, result<void,E>&)", "[utility]") {
     }
   }
   SECTION("lhs and rhs contain an error") {
-    auto lhs_sut = result<void, int>{make_unexpected(42)};
-    auto rhs_sut = result<void, int>{make_unexpected(100)};
+    auto lhs_sut = result<void, int>{fail(42)};
+    auto rhs_sut = result<void, int>{fail(100)};
     const auto lhs_old = lhs_sut;
     const auto rhs_old = rhs_sut;
 
@@ -5986,7 +5986,7 @@ TEST_CASE("swap(result<void,E>&, result<void,E>&)", "[utility]") {
   }
   SECTION("lhs contains a value, rhs contains an error") {
     auto lhs_sut = result<void, int>{};
-    auto rhs_sut = result<void, int>{make_unexpected(42)};
+    auto rhs_sut = result<void, int>{fail(42)};
     const auto lhs_old = lhs_sut;
     const auto rhs_old = rhs_sut;
 
@@ -6006,7 +6006,7 @@ TEST_CASE("swap(result<void,E>&, result<void,E>&)", "[utility]") {
     }
   }
   SECTION("lhs contains an error, rhs contains a value") {
-    auto lhs_sut = result<void, int>{make_unexpected(42)};
+    auto lhs_sut = result<void, int>{fail(42)};
     auto rhs_sut = result<void, int>{};
     const auto lhs_old = lhs_sut;
     const auto rhs_old = rhs_sut;
@@ -6043,7 +6043,7 @@ TEST_CASE("std::hash<result<T,E>>::operator()", "[utility]") {
   }
   SECTION("Error is active") {
     SECTION("Hashes error") {
-      const auto sut = result<int,int>{make_unexpected(42)};
+      const auto sut = result<int,int>{fail(42)};
 
       const auto output = std::hash<result<int,int>>{}(sut);
       static_cast<void>(output);
@@ -6054,7 +6054,7 @@ TEST_CASE("std::hash<result<T,E>>::operator()", "[utility]") {
 
   SECTION("Hash of T and E are different for the same values for T and E") {
     const auto value_sut = result<int,int>{42};
-    const auto error_sut = result<int,int>{make_unexpected(42)};
+    const auto error_sut = result<int,int>{fail(42)};
 
     const auto value_hash = std::hash<result<int,int>>{}(value_sut);
     const auto error_hash = std::hash<result<int,int>>{}(error_sut);
@@ -6076,7 +6076,7 @@ TEST_CASE("std::hash<result<void,E>>::operator()", "[utility]") {
 
   SECTION("Error is active") {
     SECTION("Hashes error") {
-      const auto sut = result<void,int>{make_unexpected(42)};
+      const auto sut = result<void,int>{fail(42)};
 
       const auto output = std::hash<result<void,int>>{}(sut);
       static_cast<void>(output);
