@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-/// \file expected.hpp
+/// \file result.hpp
 ///
 /// \brief This header contains the 'expected' monadic type for indicating
 ///        possible error conditions
@@ -29,8 +29,8 @@
   SOFTWARE.
 */
 
-#ifndef EXPECTED_EXPECTED_HPP
-#define EXPECTED_EXPECTED_HPP
+#ifndef RESULT_RESULT_HPP
+#define RESULT_RESULT_HPP
 
 #include <cstddef>      // std::size_t
 #include <stdexcept>    // std::logic_error
@@ -5094,4 +5094,4 @@ auto EXPECTED_NS_IMPL::swap(expected<void,E>& lhs, expected<void,E>& rhs)
 #undef EXPECTED_CPP17_INLINE
 #undef EXPECTED_INLINE_VISIBILITY
 
-#endif /* EXPECTED_EXPECTED_HPP */
+#endif /* RESULT_RESULT_HPP */
