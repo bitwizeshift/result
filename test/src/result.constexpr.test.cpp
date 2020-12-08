@@ -64,7 +64,7 @@ auto operator==(const constexpr_type& lhs, const constexpr_type& rhs)
   return lhs.m_storage == rhs.m_storage;
 }
 
-using literal_sut = expected<constexpr_type, constexpr_type>;
+using literal_sut = result<constexpr_type, constexpr_type>;
 
 static_assert(std::is_literal_type<literal_sut>::value, "");
 static_assert(std::is_trivially_copyable<literal_sut>::value, "");
@@ -73,57 +73,57 @@ static_assert(std::is_trivially_destructible<literal_sut>::value, "");
 } // namespace <anonymous>
 
 //=============================================================================
-// class : expected<T,E>
+// class : result<T,E>
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 // Constructors / Destructor / Assignment
 //-----------------------------------------------------------------------------
 
-TEST_CASE("constexpr expected<T,E>::expected()", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<T,E>::result()", "[constexpr][ctor]") {
   constexpr literal_sut sut{};
 
   STATIC_REQUIRE(sut.has_value());
 }
 
-TEST_CASE("constexpr expected<T,E>::expected(const expected&)", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<T,E>::result(const result&)", "[constexpr][ctor]") {
   constexpr literal_sut original{};
   constexpr literal_sut sut{original};
 
   STATIC_REQUIRE(sut.has_value());
 }
 
-TEST_CASE("constexpr expected<T,E>::expected(expected&&)", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<T,E>::result(result&&)", "[constexpr][ctor]") {
   constexpr literal_sut sut{ force_move(literal_sut{}) };
 
   STATIC_REQUIRE(sut.has_value());
 }
 
-TEST_CASE("constexpr expected<T,E>::expected(in_place_t, Args&&...)", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<T,E>::result(in_place_t, Args&&...)", "[constexpr][ctor]") {
   constexpr literal_sut sut{in_place, 42};
 
   STATIC_REQUIRE(sut.has_value());
 }
 
-TEST_CASE("constexpr expected<T,E>::expected(in_place_error_t, Args&&...)", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<T,E>::result(in_place_error_t, Args&&...)", "[constexpr][ctor]") {
   constexpr literal_sut sut{in_place_error, 42};
 
   STATIC_REQUIRE(sut.has_error());
 }
 
-TEST_CASE("constexpr expected<T,E>::expected(U&&) (implicit)", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<T,E>::result(U&&) (implicit)", "[constexpr][ctor]") {
   constexpr literal_sut sut = 42;
 
   STATIC_REQUIRE(sut.has_value());
 }
 
-TEST_CASE("constexpr expected<T,E>::expected(U&&) (explicit)", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<T,E>::result(U&&) (explicit)", "[constexpr][ctor]") {
   constexpr literal_sut sut{42};
 
   STATIC_REQUIRE(sut.has_value());
 }
 
-TEST_CASE("constexpr expected<T,E>::expected(const unexpected<U>&)", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<T,E>::result(const unresult<U>&)", "[constexpr][ctor]") {
   constexpr unexpected<int> value{42};
   constexpr literal_sut sut{value};
 
@@ -135,7 +135,7 @@ TEST_CASE("constexpr expected<T,E>::expected(const unexpected<U>&)", "[constexpr
 // This constructor cannot be constexpr since C++11 does not allow non-const
 // member functions to be constexpr, which disallows extracting an rvalue
 // references from 'unexpected' in a constant expression. C++14 fixes this
-TEST_CASE("constexpr expected<T,E>::expected(unexpected<U>&&)") {
+TEST_CASE("constexpr result<T,E>::result(unexpected<U>&&)") {
   constexpr literal_sut sut{unexpected<int>{42}};
 
   STATIC_REQUIRE(sut.has_error());
@@ -146,21 +146,21 @@ TEST_CASE("constexpr expected<T,E>::expected(unexpected<U>&&)") {
 // Observers
 //-----------------------------------------------------------------------------
 
-TEST_CASE("constexpr expected<T,E>::value() const &", "[constexpr][observer]") {
+TEST_CASE("constexpr result<T,E>::value() const &", "[constexpr][observer]") {
   constexpr auto value = 42;
   constexpr literal_sut sut{value};
 
   STATIC_REQUIRE(sut.value() == value);
 }
 
-TEST_CASE("constexpr expected<T,E>::value() const &&", "[constexpr][observer]") {
+TEST_CASE("constexpr result<T,E>::value() const &&", "[constexpr][observer]") {
   constexpr auto value = 42;
   constexpr literal_sut sut{value};
 
   STATIC_REQUIRE(static_cast<const literal_sut&&>(sut).value() == value);
 }
 
-TEST_CASE("constexpr expected<T,E>::error() const &", "[constexpr][observer]") {
+TEST_CASE("constexpr result<T,E>::error() const &", "[constexpr][observer]") {
   constexpr auto value = 42;
   constexpr auto error = unexpected<int>{value};
   constexpr literal_sut sut{error};
@@ -169,42 +169,42 @@ TEST_CASE("constexpr expected<T,E>::error() const &", "[constexpr][observer]") {
 }
 
 //=============================================================================
-// class : expected<void,E>
+// class : result<void,E>
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 // Constructors / Destructor / Assignment
 //-----------------------------------------------------------------------------
 
-TEST_CASE("constexpr expected<void,E>::expected()", "[constexpr][ctor]") {
-  constexpr expected<void,int> sut{};
+TEST_CASE("constexpr result<void,E>::result()", "[constexpr][ctor]") {
+  constexpr result<void,int> sut{};
 
   STATIC_REQUIRE(sut.has_value());
 }
 
-TEST_CASE("constexpr expected<void,E>::expected(const expected&)", "[constexpr][ctor]") {
-  constexpr expected<void,int> original{};
-  constexpr expected<void,int> sut{original};
+TEST_CASE("constexpr result<void,E>::result(const result&)", "[constexpr][ctor]") {
+  constexpr result<void,int> original{};
+  constexpr result<void,int> sut{original};
 
   STATIC_REQUIRE(sut.has_value());
 }
 
-TEST_CASE("constexpr expected<void,E>::expected(expected&&)", "[constexpr][ctor]") {
-  constexpr expected<void,int> sut{ force_move(expected<void,int>{}) };
+TEST_CASE("constexpr result<void,E>::result(result&&)", "[constexpr][ctor]") {
+  constexpr result<void,int> sut{ force_move(result<void,int>{}) };
 
   STATIC_REQUIRE(sut.has_value());
 }
 
 
-TEST_CASE("constexpr expected<void,E>::expected(in_place_error_t, Args&&...)", "[constexpr][ctor]") {
-  constexpr expected<void,int> sut{in_place_error, 42};
+TEST_CASE("constexpr result<void,E>::result(in_place_error_t, Args&&...)", "[constexpr][ctor]") {
+  constexpr result<void,int> sut{in_place_error, 42};
 
   STATIC_REQUIRE(sut.has_error());
 }
 
-TEST_CASE("constexpr expected<void,E>::expected(const unexpected<U>&)", "[constexpr][ctor]") {
+TEST_CASE("constexpr result<void,E>::result(const unexpected<U>&)", "[constexpr][ctor]") {
   constexpr unexpected<int> value{42};
-  constexpr expected<void,int> sut{value};
+  constexpr result<void,int> sut{value};
 
   STATIC_REQUIRE(sut.has_error());
 }
@@ -214,8 +214,8 @@ TEST_CASE("constexpr expected<void,E>::expected(const unexpected<U>&)", "[conste
 // This constructor cannot be constexpr since C++11 does not allow non-const
 // member functions to be constexpr, which disallows extracting an rvalue
 // references from 'unexpected' in a constant expression. C++14 fixes this
-TEST_CASE("constexpr expected<void,E>::expected(unexpected<U>&&)") {
-  constexpr expected<void,int> sut{unexpected<int>{42}};
+TEST_CASE("constexpr result<void,E>::result(unexpected<U>&&)") {
+  constexpr result<void,int> sut{unexpected<int>{42}};
 
   STATIC_REQUIRE(sut.has_error());
 }
@@ -227,18 +227,18 @@ TEST_CASE("constexpr expected<void,E>::expected(unexpected<U>&&)") {
 
 #if __cplusplus >= 201402L
 
-TEST_CASE("constexpr expected<void,E>::value() const", "[constexpr][observer]") {
-  constexpr expected<void,int> sut{};
+TEST_CASE("constexpr result<void,E>::value() const", "[constexpr][observer]") {
+  constexpr result<void,int> sut{};
 
   STATIC_REQUIRE((sut.value(),true));
 }
 
 #endif // __cplusplus >= 201402L
 
-TEST_CASE("constexpr expected<void,E>::error() const &", "[constexpr][observer]") {
+TEST_CASE("constexpr result<void,E>::error() const &", "[constexpr][observer]") {
   constexpr auto value = 42;
   constexpr auto error = unexpected<int>{value};
-  constexpr expected<void,int> sut{error};
+  constexpr result<void,int> sut{error};
 
   STATIC_REQUIRE(sut.error() == value);
 }
