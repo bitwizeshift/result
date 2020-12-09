@@ -5,9 +5,9 @@ digraph "Graphical Class Hierarchy"
   rankdir="LR";
   Node2 [label="true_type",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node2 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 [label="cpp::bitwizeshift::\ldetail::is_reference\l_wrapper\< std::reference\l_wrapper\< U \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/de7/structcpp_1_1bitwizeshift_1_1detail_1_1is__reference__wrapper_3_01std_1_1reference__wrapper_3_01_u_01_4_01_4.html"];
+  Node0 [label="EXPECTED_NAMESPACE\l_INTERNAL::bitwizeshift\l::detail::is_reference\l_wrapper\< std::reference\l_wrapper\< U \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d2f/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__rec82048a3b0bb7c03579e8991cb588ab5.html"];
   Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="cpp::bitwizeshift::\lis_expected\< expected\l\< T, E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d12/structcpp_1_1bitwizeshift_1_1is__expected_3_01expected_3_01_t_00_01_e_01_4_01_4.html"];
+  Node4 [label="EXPECTED_NAMESPACE\l_INTERNAL::bitwizeshift\l::is_expected\< expected\l\< T, E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/dec/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__expected_3_0cff6f432a74fe034d32e544d750e7be8.html"];
   Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="cpp::bitwizeshift::\lis_unexpected\< unexpected\l\< E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d6d/structcpp_1_1bitwizeshift_1_1is__unexpected_3_01unexpected_3_01_e_01_4_01_4.html"];
+  Node5 [label="EXPECTED_NAMESPACE\l_INTERNAL::bitwizeshift\l::is_unexpected\< unexpected\< E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/db1/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__unexpected_3_01unexpected_3_01_e_01_4_01_4.html"];
 }

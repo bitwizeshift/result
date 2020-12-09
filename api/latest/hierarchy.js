@@ -2,61 +2,61 @@ var hierarchy =
 [
     [ "std::exception", null, [
       [ "std::logic_error", null, [
-        [ "cpp::bitwizeshift::bad_expected_access", "d2/dea/classcpp_1_1bitwizeshift_1_1bad__expected__access.html", null ]
+        [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::bad_expected_access", "d6/d0a/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1bad__expected__access.html", null ]
       ] ]
     ] ],
-    [ "cpp::bitwizeshift::expected< T, E >", "da/d9c/classcpp_1_1bitwizeshift_1_1expected.html", null ],
-    [ "cpp::bitwizeshift::expected< void, E >", "dd/da3/classcpp_1_1bitwizeshift_1_1expected_3_01void_00_01_e_01_4.html", null ],
-    [ "cpp::bitwizeshift::detail::expected_construct_base< T, E >", "d1/d78/structcpp_1_1bitwizeshift_1_1detail_1_1expected__construct__base.html", [
-      [ "cpp::bitwizeshift::detail::expected_trivial_copy_ctor_base_impl< T, E >", "dd/d00/structcpp_1_1bitwizeshift_1_1detail_1_1expected__trivial__copy__ctor__base__impl.html", null ]
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::expected< T, E >", "df/d25/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1expected.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::expected< void, E >", "dc/d65/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1expected_3_01void_00_01_e_01_4.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_construct_base< T, E >", "dc/d0b/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__construct__base.html", [
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_trivial_copy_ctor_base_impl< T, E >", "dd/d61/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect2f4b93f0a0dfebfe969aa064c70b44dc.html", null ]
     ] ],
     [ "expected_copy_assign_base", null, [
-      [ "cpp::bitwizeshift::detail::disable_copy_assignment< T, E >", "dd/de4/structcpp_1_1bitwizeshift_1_1detail_1_1disable__copy__assignment.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_copy_assignment< T, E >", "df/d92/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__copy__assignment.html", null ]
     ] ],
     [ "expected_copy_ctor_base", null, [
-      [ "cpp::bitwizeshift::detail::disable_move_ctor< T, E >", "d7/dc0/structcpp_1_1bitwizeshift_1_1detail_1_1disable__move__ctor.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_move_ctor< T, E >", "d4/da9/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__move__ctor.html", null ]
     ] ],
-    [ "cpp::bitwizeshift::detail::expected_error_extractor", "d4/d3c/structcpp_1_1bitwizeshift_1_1detail_1_1expected__error__extractor.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_error_extractor", "d2/dfe/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__error__extractor.html", null ],
     [ "expected_move_ctor_base", null, [
-      [ "cpp::bitwizeshift::detail::disable_move_assignment< T, E >", "db/db9/structcpp_1_1bitwizeshift_1_1detail_1_1disable__move__assignment.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_move_assignment< T, E >", "d5/db6/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__move__assignment.html", null ]
     ] ],
     [ "expected_trivial_copy_assign_base", null, [
-      [ "cpp::bitwizeshift::detail::expected_trivial_move_assign_base_impl< T, E >", "d1/d9f/structcpp_1_1bitwizeshift_1_1detail_1_1expected__trivial__move__assign__base__impl.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_trivial_move_assign_base_impl< T, E >", "dc/d8b/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect4df4867d5778e3bf3cc0fb4f5d48e4a7.html", null ]
     ] ],
     [ "expected_trivial_copy_ctor_base", null, [
-      [ "cpp::bitwizeshift::detail::expected_trivial_move_ctor_base_impl< T, E >", "d9/d9c/structcpp_1_1bitwizeshift_1_1detail_1_1expected__trivial__move__ctor__base__impl.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_trivial_move_ctor_base_impl< T, E >", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect48a1e5b982f9ce3b6d1689c59b1eb357.html", null ]
     ] ],
     [ "expected_trivial_move_assign_base", null, [
-      [ "cpp::bitwizeshift::detail::disable_copy_ctor< T, E >", "da/d11/structcpp_1_1bitwizeshift_1_1detail_1_1disable__copy__ctor.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_copy_ctor< T, E >", "d0/d9c/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__copy__ctor.html", null ]
     ] ],
     [ "expected_trivial_move_ctor_base", null, [
-      [ "cpp::bitwizeshift::detail::expected_trivial_copy_assign_base_impl< T, E >", "db/de2/structcpp_1_1bitwizeshift_1_1detail_1_1expected__trivial__copy__assign__base__impl.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_trivial_copy_assign_base_impl< T, E >", "d9/dfb/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect53bc0955682aed5f4196480dd7446f55.html", null ]
     ] ],
-    [ "cpp::bitwizeshift::detail::expected_union< T, E, IsTrivial >", "d4/d36/structcpp_1_1bitwizeshift_1_1detail_1_1expected__union.html", null ],
-    [ "cpp::bitwizeshift::detail::expected_union.__unnamed__", "dd/dad/unioncpp_1_1bitwizeshift_1_1detail_1_1expected__union_8____unnamed____.html", null ],
-    [ "cpp::bitwizeshift::detail::expected_union< T, E >", "d4/d36/structcpp_1_1bitwizeshift_1_1detail_1_1expected__union.html", null ],
-    [ "cpp::bitwizeshift::detail::expected_union< T, E, false >", "d2/d6e/structcpp_1_1bitwizeshift_1_1detail_1_1expected__union_3_01_t_00_01_e_00_01false_01_4.html", null ],
-    [ "cpp::bitwizeshift::detail::expected_union< T, E, false >.__unnamed__", "df/d2d/unioncpp_1_1bitwizeshift_1_1detail_1_1expected__union_3_01_t_00_01_e_00_01false_01_4_8____unnamed____.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union< T, E, IsTrivial >", "d6/d73/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__union.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union.__unnamed__", "df/df9/union_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__union_8____unnamed____.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union< T, E >", "d6/d73/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__union.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union< T, E, false >", "d6/dfd/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expectdc20b33dc5d5b1a11e16be00299d86a0.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union< T, E, false >.__unnamed__", "dd/d6d/union_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expectee69f8e0a548a12a19b88d95e27973e3a.html", null ],
     [ "false_type", null, [
-      [ "cpp::bitwizeshift::detail::is_reference_wrapper< T >", "d1/da9/structcpp_1_1bitwizeshift_1_1detail_1_1is__reference__wrapper.html", null ],
-      [ "cpp::bitwizeshift::is_expected< T >", "d4/d06/structcpp_1_1bitwizeshift_1_1is__expected.html", null ],
-      [ "cpp::bitwizeshift::is_unexpected< T >", "da/dbe/structcpp_1_1bitwizeshift_1_1is__unexpected.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::is_reference_wrapper< T >", "dc/d05/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__reference__wrapper.html", null ],
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::is_expected< T >", "db/db3/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__expected.html", null ],
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::is_unexpected< T >", "de/d0a/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__unexpected.html", null ]
     ] ],
     [ "std::hash<::EXPECTED_NS_IMPL::expected< T, E > >", "d3/d2a/structstd_1_1hash_3_1_1_e_x_p_e_c_t_e_d___n_s___i_m_p_l_1_1expected_3_01_t_00_01_e_01_4_01_4.html", null ],
     [ "std::hash<::EXPECTED_NS_IMPL::expected< void, E > >", "dd/d57/structstd_1_1hash_3_1_1_e_x_p_e_c_t_e_d___n_s___i_m_p_l_1_1expected_3_01void_00_01_e_01_4_01_4.html", null ],
-    [ "cpp::bitwizeshift::in_place_error_t", "d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html", null ],
-    [ "cpp::bitwizeshift::in_place_t", "d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html", null ],
-    [ "cpp::bitwizeshift::detail::invoke_result_impl< B, Fn, Args >", "d2/d88/structcpp_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html", null ],
-    [ "cpp::bitwizeshift::detail::invoke_result_impl< false, Fn, Args... >", "df/de5/structcpp_1_1bitwizeshift_1_1detail_1_1invoke__result__impl_3_01false_00_01_fn_00_01_args_8_8_8_01_4.html", null ],
-    [ "cpp::bitwizeshift::detail::invoke_result_impl< is_invocable< Fn, Args... >::value, Fn, Args... >", "d2/d88/structcpp_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html", [
-      [ "cpp::bitwizeshift::detail::invoke_result< Fn, Args >", "d9/df1/structcpp_1_1bitwizeshift_1_1detail_1_1invoke__result.html", null ]
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::in_place_error_t", "d7/d35/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__error__t.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::in_place_t", "da/d22/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__t.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< B, Fn, Args >", "dd/d60/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< false, Fn, Args... >", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invokec07b3dc51b039c812b3e737e9f663ac2.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< is_invocable< Fn, Args... >::value, Fn, Args... >", "dd/d60/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html", [
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result< Fn, Args >", "d0/d95/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result.html", null ]
     ] ],
-    [ "cpp::bitwizeshift::detail::is_invocable< Fn, Args >", "db/da0/structcpp_1_1bitwizeshift_1_1detail_1_1is__invocable.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::is_invocable< Fn, Args >", "dd/d9a/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__invocable.html", null ],
     [ "true_type", null, [
-      [ "cpp::bitwizeshift::detail::is_reference_wrapper< std::reference_wrapper< U > >", "de/de7/structcpp_1_1bitwizeshift_1_1detail_1_1is__reference__wrapper_3_01std_1_1reference__wrapper_3_01_u_01_4_01_4.html", null ],
-      [ "cpp::bitwizeshift::is_expected< expected< T, E > >", "d3/d12/structcpp_1_1bitwizeshift_1_1is__expected_3_01expected_3_01_t_00_01_e_01_4_01_4.html", null ],
-      [ "cpp::bitwizeshift::is_unexpected< unexpected< E > >", "dc/d6d/structcpp_1_1bitwizeshift_1_1is__unexpected_3_01unexpected_3_01_e_01_4_01_4.html", null ]
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::is_reference_wrapper< std::reference_wrapper< U > >", "dc/d2f/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__rec82048a3b0bb7c03579e8991cb588ab5.html", null ],
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::is_expected< expected< T, E > >", "d2/dec/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__expected_3_0cff6f432a74fe034d32e544d750e7be8.html", null ],
+      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::is_unexpected< unexpected< E > >", "d9/db1/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__unexpected_3_01unexpected_3_01_e_01_4_01_4.html", null ]
     ] ],
-    [ "cpp::bitwizeshift::unexpected< E >", "d2/d86/classcpp_1_1bitwizeshift_1_1unexpected.html", null ],
-    [ "cpp::bitwizeshift::detail::unit", "d2/d63/structcpp_1_1bitwizeshift_1_1detail_1_1unit.html", null ]
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::unexpected< E >", "d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html", null ],
+    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::unit", "db/dee/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1unit.html", null ]
 ];
