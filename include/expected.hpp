@@ -68,7 +68,7 @@
 #endif
 #define EXPECTED_NS_IMPL EXPECTED_NAMESPACE::bitwizeshift
 
-namespace cpp {
+namespace EXPECTED_NAMESPACE {
 inline namespace bitwizeshift {
 
   //===========================================================================
@@ -2774,7 +2774,7 @@ inline namespace bitwizeshift {
   /// \}
 
 } // inline namespace bitwizeshift
-} // namespace cpp
+} // namespace EXPECTED_NAMESPACE
 
 namespace std {
 
