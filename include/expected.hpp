@@ -417,7 +417,7 @@ inline namespace bitwizeshift {
   public:
 
     /// \brief Constructs an unexpected via default construction
-    constexpr unexpected() = default;
+    unexpected() = default;
 
     /// \brief Constructs an unexpected by delegating construction to the
     ///        underlying constructor
@@ -446,13 +446,13 @@ inline namespace bitwizeshift {
     ///        one
     ///
     /// \param other the other unexpected to copy
-    constexpr unexpected(const unexpected& other) = default;
+    /* implicit */ unexpected(const unexpected& other) = default;
 
     /// \brief Constructs this unexpected by moving the contents of an existing
     ///        one
     ///
     /// \param other the other unexpected to move
-    constexpr /* implicit */ unexpected(unexpected&& other) = default;
+    /* implicit */ unexpected(unexpected&& other) = default;
 
     /// \brief Constructs this unexpected by copy-converting \p other
     ///
@@ -467,7 +467,7 @@ inline namespace bitwizeshift {
     /// \param other the other unexpected to copy
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2&&>::value>::type>
-    constexpr unexpected(unexpected<E2>&& other)
+    constexpr /* implicit */ unexpected(unexpected<E2>&& other)
       noexcept(std::is_nothrow_constructible<E,E2&&>::value);
 
     //--------------------------------------------------------------------------
@@ -487,14 +487,12 @@ inline namespace bitwizeshift {
     ///
     /// \param other the other unexpected to copy
     /// \return reference to `(*this)`
-    EXPECTED_CPP14_CONSTEXPR
     auto operator=(const unexpected& other) -> unexpected& = default;
 
     /// \brief Assigns the contents of \p other to this by move-assignment
     ///
     /// \param other the other unexpected to move
     /// \return reference to `(*this)`
-    EXPECTED_CPP14_CONSTEXPR
     auto operator=(unexpected&& other) -> unexpected& = default;
 
     /// \brief Assigns the contents of \p other to this by copy conversion
