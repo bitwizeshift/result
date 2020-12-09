@@ -558,7 +558,7 @@ inline namespace bitwizeshift {
 
 #if __cplusplus >= 201703L
   template <typename T>
-  unexpected(std::reference_wrapper<T>) -> unexpected<T>;
+  unexpected(std::reference_wrapper<T>) -> unexpected<T&>;
 
   template <typename T>
   unexpected(T&&) -> unexpected<typename std::decay<T>::type>;
