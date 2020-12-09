@@ -109,6 +109,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aae8fe304ed2eac59b72d173cf8ecacab"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html#aae8fe304ed2eac59b72d173cf8ecacab">unexpected</a> (<a class="el" href="../../da/d22/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::value)</td></tr>
 <tr class="memdesc:aae8fe304ed2eac59b72d173cf8ecacab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an unexpected by delegating construction to the underlying constructor.  <a href="#aae8fe304ed2eac59b72d173cf8ecacab">More...</a><br /></td></tr>
 <tr class="separator:aae8fe304ed2eac59b72d173cf8ecacab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67a643bc75888c4dcd5c21d15bf5c848"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,std::initializer_list&lt;U&gt;,Args...&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a67a643bc75888c4dcd5c21d15bf5c848"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html#a67a643bc75888c4dcd5c21d15bf5c848">unexpected</a> (<a class="el" href="../../da/d22/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::value)</td></tr>
+<tr class="memdesc:a67a643bc75888c4dcd5c21d15bf5c848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an unexpected by delegating construction to the underlying constructor.  <a href="#a67a643bc75888c4dcd5c21d15bf5c848">More...</a><br /></td></tr>
+<tr class="separator:a67a643bc75888c4dcd5c21d15bf5c848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2690596df00bae9a4666a42d8d72ceb7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html#a2690596df00bae9a4666a42d8d72ceb7">unexpected</a> (const <a class="el" href="../../d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html">unexpected</a> &amp;other)=default</td></tr>
 <tr class="memdesc:a2690596df00bae9a4666a42d8d72ceb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs this unexpected by copying the contents of an existing one.  <a href="#a2690596df00bae9a4666a42d8d72ceb7">More...</a><br /></td></tr>
 <tr class="separator:a2690596df00bae9a4666a42d8d72ceb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,7 +183,7 @@ class EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::unexpected&lt; E &gt;</h3>
 <p class="definition">Definition at line <a class="el" href="../../d3/d77/expected_8hpp_source.html#l00278">278</a> of file <a class="el" href="../../d3/d77/expected_8hpp_source.html">expected.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aae8fe304ed2eac59b72d173cf8ecacab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae8fe304ed2eac59b72d173cf8ecacab">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[1/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aae8fe304ed2eac59b72d173cf8ecacab">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,8 +230,63 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 
 </div>
 </div>
+<a id="a67a643bc75888c4dcd5c21d15bf5c848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67a643bc75888c4dcd5c21d15bf5c848">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[2/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename E&gt; </div>
+<div class="memtemplate">
+template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,std::initializer_list&lt;U&gt;,Args...&gt;::value&gt;::type&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="../../d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html">EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::unexpected</a>&lt; E &gt;::<a class="el" href="../../d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html">unexpected</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/d22/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::initializer_list&lt; U &gt;&#160;</td>
+          <td class="paramname"><em>ilist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs an unexpected by delegating construction to the underlying constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ilist</td><td>the initializer list </td></tr>
+    <tr><td class="paramname">args</td><td>the arguments to forward to E's constructor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ab66dd4a8dea2922bf68fa9df7e8f120b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab66dd4a8dea2922bf68fa9df7e8f120b">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[2/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66dd4a8dea2922bf68fa9df7e8f120b">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[3/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -265,7 +324,7 @@ template&lt;typename E2 , typename std::enable_if&lt; detail::unexpected_is_expl
 </div>
 </div>
 <a id="ab66dd4a8dea2922bf68fa9df7e8f120b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab66dd4a8dea2922bf68fa9df7e8f120b">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[3/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66dd4a8dea2922bf68fa9df7e8f120b">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[4/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -303,7 +362,7 @@ template&lt;typename E2 , typename std::enable_if&lt; detail::unexpected_is_impl
 </div>
 </div>
 <a id="a2690596df00bae9a4666a42d8d72ceb7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2690596df00bae9a4666a42d8d72ceb7">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[4/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2690596df00bae9a4666a42d8d72ceb7">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[5/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -339,7 +398,7 @@ template&lt;typename E&gt; </div>
 </div>
 </div>
 <a id="ab93bd9bc86214ef95c92f6b89bf98abb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab93bd9bc86214ef95c92f6b89bf98abb">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[5/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab93bd9bc86214ef95c92f6b89bf98abb">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[6/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -375,7 +434,7 @@ template&lt;typename E&gt; </div>
 </div>
 </div>
 <a id="a1b4e70ae6fc1f89fda95237a30cf1ac7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b4e70ae6fc1f89fda95237a30cf1ac7">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[6/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b4e70ae6fc1f89fda95237a30cf1ac7">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[7/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -413,7 +472,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 </div>
 </div>
 <a id="a8ce8e6e963bd97eafd2b5cbda1dc4bba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ce8e6e963bd97eafd2b5cbda1dc4bba">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[7/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ce8e6e963bd97eafd2b5cbda1dc4bba">&#9670;&nbsp;</a></span>unexpected() <span class="overload">[8/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
