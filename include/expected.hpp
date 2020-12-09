@@ -404,12 +404,6 @@ inline namespace bitwizeshift {
       "Only lvalue references are valid."
     );
 
-    using const_error_type = typename std::conditional<
-      std::is_lvalue_reference<E>::value,
-      E,
-      typename std::add_const<E>::type
-    >::type;
-
     //-------------------------------------------------------------------------
     // Public Member Types
     //-------------------------------------------------------------------------
@@ -533,15 +527,15 @@ inline namespace bitwizeshift {
     ///
     /// \return the underlying error
     EXPECTED_CPP14_CONSTEXPR
-    auto error() & noexcept -> error_type&;
-    template <typename E2=E,
-              typename = typename std::enable_if<!std::is_lvalue_reference<E2>::value>::type>
+    auto error() & noexcept
+      -> typename std::add_lvalue_reference<E>::type;
     EXPECTED_CPP14_CONSTEXPR
-    auto error() && noexcept -> error_type&&;
-    constexpr auto error() const & noexcept -> const_error_type&;
-    template <typename E2=E,
-              typename = typename std::enable_if<!std::is_lvalue_reference<E2>::value>::type>
-    constexpr auto error() const && noexcept -> const error_type&&;
+    auto error() && noexcept
+      -> typename std::add_rvalue_reference<E>::type;
+    constexpr auto error() const & noexcept
+      -> typename std::add_lvalue_reference<typename std::add_const<E>::type>::type;
+    constexpr auto error() const && noexcept
+      -> typename std::add_rvalue_reference<typename std::add_const<E>::type>::type;
     /// \}
 
     //-------------------------------------------------------------------------
@@ -1502,13 +1496,6 @@ inline namespace bitwizeshift {
     template <typename T2, typename E2>
     friend class expected;
 
-    using underlying_value_type = typename std::remove_reference<T>::type;
-    using const_underlying_value_type = typename std::conditional<
-      std::is_lvalue_reference<T>::value,
-      underlying_value_type,
-      typename std::add_const<underlying_value_type>::type
-    >::type;
-
     //-------------------------------------------------------------------------
     // Public Member Types
     //-------------------------------------------------------------------------
@@ -1925,8 +1912,10 @@ inline namespace bitwizeshift {
     /// \note The behavior is undefined if `*this` does not contain a value.
     ///
     /// \return a pointer to the contained value
-    EXPECTED_CPP14_CONSTEXPR auto operator->() noexcept -> underlying_value_type*;
-    constexpr auto operator->() const noexcept -> const_underlying_value_type*;
+    EXPECTED_CPP14_CONSTEXPR auto operator->()
+      noexcept -> typename std::remove_reference<T>::type*;
+    constexpr auto operator->()
+      const noexcept -> typename std::remove_reference<typename std::add_const<T>::type>::type*;
     /// \}
 
     /// \{
@@ -1935,14 +1924,14 @@ inline namespace bitwizeshift {
     /// \note The behaviour is undefined if `*this` does not contain a value
     ///
     /// \return a reference to the contained value
-    EXPECTED_CPP14_CONSTEXPR auto operator*() & noexcept -> underlying_value_type&;
-    template <typename U=T,
-              typename=typename std::enable_if<!std::is_lvalue_reference<U>::value>::type>
-    EXPECTED_CPP14_CONSTEXPR auto operator*() && noexcept -> value_type&&;
-    constexpr auto operator*() const& noexcept -> const_underlying_value_type&;
-    template <typename U=T,
-              typename=typename std::enable_if<!std::is_lvalue_reference<U>::value>::type>
-    constexpr auto operator*() const&& noexcept -> const value_type&&;
+    EXPECTED_CPP14_CONSTEXPR auto operator*()
+      & noexcept -> typename std::add_lvalue_reference<T>::type;
+    EXPECTED_CPP14_CONSTEXPR auto operator*()
+      && noexcept -> typename std::add_rvalue_reference<T>::type;
+    constexpr auto operator*()
+      const& noexcept -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type;
+    constexpr auto operator*()
+      const&& noexcept -> typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
     /// \}
 
     //-------------------------------------------------------------------------
@@ -1973,14 +1962,14 @@ inline namespace bitwizeshift {
     /// \throws bad_expected_access if `*this` does not contain a value.
     ///
     /// \return the value of `*this`
-    EXPECTED_CPP14_CONSTEXPR auto value() & -> underlying_value_type&;
-    template <typename U=T,
-              typename=typename std::enable_if<!std::is_lvalue_reference<U>::value>::type>
-    EXPECTED_CPP14_CONSTEXPR auto value() && -> value_type&&;
-    constexpr auto value() const & -> const_underlying_value_type&;
-    template <typename U=T,
-              typename=typename std::enable_if<!std::is_lvalue_reference<U>::value>::type>
-    constexpr auto value() const && -> const value_type&&;
+    EXPECTED_CPP14_CONSTEXPR auto value()
+      & -> typename std::add_lvalue_reference<T>::type;
+    EXPECTED_CPP14_CONSTEXPR auto value()
+      && -> typename std::add_rvalue_reference<T>::type;
+    constexpr auto value()
+      const & -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type;
+    constexpr auto value()
+      const && -> typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
     /// \}
 
     /// \{
@@ -2008,9 +1997,11 @@ inline namespace bitwizeshift {
     /// \param default_value the value to use in case `*this` contains an error
     /// \return the contained value or \p default_value
     template <typename U>
-    constexpr auto value_or(U&& default_value) const & -> underlying_value_type;
+    constexpr auto value_or(U&& default_value)
+      const & -> typename std::remove_reference<T>::type;
     template <typename U>
-    EXPECTED_CPP14_CONSTEXPR auto value_or(U&& default_value) && -> underlying_value_type;
+    EXPECTED_CPP14_CONSTEXPR auto value_or(U&& default_value)
+      && -> typename std::remove_reference<T>::type;
     /// \}
 
     /// \{
@@ -2933,34 +2924,39 @@ auto EXPECTED_NS_IMPL::unexpected<E>::operator=(unexpected<E2>&& other)
 template <typename E>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto EXPECTED_NS_IMPL::unexpected<E>::error()
-  & noexcept -> error_type&
+  & noexcept -> typename std::add_lvalue_reference<E>::type
 {
   return m_unexpected;
 }
 
 template <typename E>
-template <typename E2, typename>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto EXPECTED_NS_IMPL::unexpected<E>::error()
-  && noexcept -> error_type&&
+  && noexcept -> typename std::add_rvalue_reference<E>::type
 {
-  return static_cast<error_type&&>(m_unexpected);
+  using reference = typename std::add_rvalue_reference<E>::type;
+
+  return static_cast<reference>(m_unexpected);
 }
 
 template <typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto EXPECTED_NS_IMPL::unexpected<E>::error()
-  const & noexcept -> const_error_type&
+  const & noexcept
+  -> typename std::add_lvalue_reference<typename std::add_const<E>::type>::type
 {
   return m_unexpected;
 }
 
 template <typename E>
-template <typename E2, typename>
-inline EXPECTED_INLINE_VISIBILITY constexpr auto EXPECTED_NS_IMPL::unexpected<E>::error()
-  const && noexcept -> const error_type&&
+inline EXPECTED_INLINE_VISIBILITY constexpr
+auto EXPECTED_NS_IMPL::unexpected<E>::error()
+  const && noexcept
+  -> typename std::add_rvalue_reference<typename std::add_const<E>::type>::type
 {
-  return static_cast<const error_type&&>(m_unexpected);
+  using reference = typename std::add_rvalue_reference<typename std::add_const<E>::type>::type;
+
+  return static_cast<reference>(m_unexpected);
 }
 
 //=============================================================================
@@ -3760,7 +3756,7 @@ auto EXPECTED_NS_IMPL::expected<T, E>::operator=(unexpected<E2>&& other)
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto EXPECTED_NS_IMPL::expected<T, E>::operator->()
-  noexcept -> underlying_value_type*
+  noexcept -> typename std::remove_reference<T>::type*
 {
   // Prior to C++17, std::addressof was not `constexpr`.
   // Since `addressof` fixes a relatively obscure issue where users define a
@@ -3776,7 +3772,7 @@ auto EXPECTED_NS_IMPL::expected<T, E>::operator->()
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto EXPECTED_NS_IMPL::expected<T, E>::operator->()
-  const noexcept -> const_underlying_value_type*
+  const noexcept -> typename std::remove_reference<typename std::add_const<T>::type>::type*
 {
 #if __cplusplus >= 201703L
   return std::addressof(**this);
@@ -3788,35 +3784,37 @@ auto EXPECTED_NS_IMPL::expected<T, E>::operator->()
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto EXPECTED_NS_IMPL::expected<T, E>::operator*()
-  & noexcept -> underlying_value_type&
+  & noexcept -> typename std::add_lvalue_reference<T>::type
 {
   return m_storage.storage.m_value;
 }
 
 template <typename T, typename E>
-template <typename U, typename>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto EXPECTED_NS_IMPL::expected<T, E>::operator*()
-  && noexcept -> value_type&&
+  && noexcept -> typename std::add_rvalue_reference<T>::type
 {
-  return static_cast<T&&>(m_storage.storage.m_value);
+  using reference = typename std::add_rvalue_reference<T>::type;
+
+  return static_cast<reference>(m_storage.storage.m_value);
 }
 
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto EXPECTED_NS_IMPL::expected<T, E>::operator*()
-  const& noexcept -> const_underlying_value_type&
+  const& noexcept -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type
 {
   return m_storage.storage.m_value;
 }
 
 template <typename T, typename E>
-template <typename U, typename>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto EXPECTED_NS_IMPL::expected<T, E>::operator*()
-  const&& noexcept -> const value_type&&
+  const&& noexcept -> typename std::add_rvalue_reference<typename std::add_const<T>::type>::type
 {
-  return static_cast<const T&&>(m_storage.storage.m_value);
+  using reference = typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
+
+  return static_cast<reference>(m_storage.storage.m_value);
 }
 
 template <typename T, typename E>
@@ -3848,7 +3846,7 @@ auto EXPECTED_NS_IMPL::expected<T,E>::has_error()
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto EXPECTED_NS_IMPL::expected<T,E>::value()
-  & -> underlying_value_type&
+  & -> typename std::add_lvalue_reference<T>::type
 {
   return (has_value() || (detail::throw_bad_expected_access(), false),
     m_storage.storage.m_value
@@ -3856,20 +3854,21 @@ auto EXPECTED_NS_IMPL::expected<T,E>::value()
 }
 
 template <typename T, typename E>
-template <typename U, typename>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto EXPECTED_NS_IMPL::expected<T,E>::value()
-  && -> value_type&&
+  && -> typename std::add_rvalue_reference<T>::type
 {
+  using reference = typename std::add_rvalue_reference<T>::type;
+
   return (has_value() || (detail::throw_bad_expected_access(), true),
-    static_cast<value_type&&>(m_storage.storage.m_value)
+    static_cast<reference>(m_storage.storage.m_value)
   );
 }
 
 template <typename T, typename E>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto EXPECTED_NS_IMPL::expected<T,E>::value()
-  const & -> const_underlying_value_type&
+  const & -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type
 {
   return (has_value() || (detail::throw_bad_expected_access(), true),
     m_storage.storage.m_value
@@ -3877,13 +3876,14 @@ auto EXPECTED_NS_IMPL::expected<T,E>::value()
 }
 
 template <typename T, typename E>
-template <typename U, typename>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto EXPECTED_NS_IMPL::expected<T,E>::value()
-  const && -> const value_type&&
+  const && -> typename std::add_rvalue_reference<typename std::add_const<T>::type>::type
 {
+  using reference = typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
+
   return (has_value() || (detail::throw_bad_expected_access(), true),
-    (static_cast<const value_type&&>(m_storage.storage.m_value))
+    (static_cast<reference>(m_storage.storage.m_value))
   );
 }
 
@@ -3931,7 +3931,7 @@ template <typename T, typename E>
 template <typename U>
 inline EXPECTED_INLINE_VISIBILITY constexpr
 auto EXPECTED_NS_IMPL::expected<T, E>::value_or(U&& default_value)
-  const& -> underlying_value_type
+  const& -> typename std::remove_reference<T>::type
 {
   return m_storage.storage.m_has_value
     ? m_storage.storage.m_value
@@ -3942,7 +3942,7 @@ template <typename T, typename E>
 template <typename U>
 inline EXPECTED_INLINE_VISIBILITY EXPECTED_CPP14_CONSTEXPR
 auto EXPECTED_NS_IMPL::expected<T, E>::value_or(U&& default_value)
-  && -> underlying_value_type
+  && -> typename std::remove_reference<T>::type
 {
   return m_storage.storage.m_has_value
     ? static_cast<T&&>(**this)
