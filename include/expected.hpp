@@ -63,12 +63,15 @@
 # define EXPECTED_INLINE_VISIBILITY
 #endif
 
-#if !defined(EXPECTED_NAMESPACE)
-# define EXPECTED_NAMESPACE cpp
+#if defined(EXPECTED_NAMESPACE)
+# define EXPECTED_NAMESPACE_INTERNAL EXPECTED_NAMESPACE
+#else
+# define EXPECTED_NAMESPACE_INTERNAL cpp
 #endif
-#define EXPECTED_NS_IMPL EXPECTED_NAMESPACE::bitwizeshift
 
-namespace EXPECTED_NAMESPACE {
+#define EXPECTED_NS_IMPL EXPECTED_NAMESPACE_INTERNAL::bitwizeshift
+
+namespace EXPECTED_NAMESPACE_INTERNAL {
 inline namespace bitwizeshift {
 
   //===========================================================================
@@ -5063,5 +5066,11 @@ auto EXPECTED_NS_IMPL::swap(expected<void,E>& lhs, expected<void,E>& rhs)
     rhs = static_cast<expected<void,E>&&>(temp);
   }
 }
+
+#undef EXPECTED_NAMESPACE_INTERNAL
+#undef EXPECTED_NS_IMPL
+#undef EXPECTED_CPP14_CONSTEXPR
+#undef EXPECTED_CPP17_INLINE
+#undef EXPECTED_INLINE_VISIBILITY
 
 #endif /* EXPECTED_EXPECTED_HPP */
