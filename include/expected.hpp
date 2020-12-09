@@ -428,6 +428,16 @@ inline namespace bitwizeshift {
     constexpr unexpected(in_place_t, Args&&...args)
       noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
+    /// \brief Constructs an unexpected by delegating construction to the
+    ///        underlying constructor
+    ///
+    /// \param ilist the initializer list
+    /// \param args the arguments to forward to E's constructor
+    template <typename U, typename...Args,
+              typename = typename std::enable_if<std::is_constructible<E,std::initializer_list<U>,Args...>::value>::type>
+    constexpr unexpected(in_place_t, std::initializer_list<U> ilist, Args&&...args)
+      noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value);
+
     /// \{
     /// \brief Constructs an unexpected from the given error
     ///
@@ -2829,6 +2839,19 @@ inline EXPECTED_INLINE_VISIBILITY constexpr
 EXPECTED_NS_IMPL::unexpected<E>::unexpected(in_place_t, Args&&...args)
   noexcept(std::is_nothrow_constructible<E, Args...>::value)
   : m_unexpected(detail::forward<Args>(args)...)
+{
+
+}
+
+template <typename E>
+template <typename U, typename...Args, typename>
+inline EXPECTED_INLINE_VISIBILITY constexpr
+EXPECTED_NS_IMPL::unexpected<E>::unexpected(
+  in_place_t,
+  std::initializer_list<U> ilist,
+  Args&&...args
+) noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value)
+  : m_unexpected(ilist, detail::forward<Args>(args)...)
 {
 
 }
