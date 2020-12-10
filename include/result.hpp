@@ -279,6 +279,7 @@ inline namespace bitwizeshift {
   template <typename, typename>
   class result;
 
+  template <typename>
   class bad_result_access;
 
   //===========================================================================
@@ -315,13 +316,14 @@ inline namespace bitwizeshift {
 #if !defined(RESULT_DISABLE_EXCEPTIONS)
 
   //===========================================================================
-  // class : bad_result_access
+  // class : bad_result_access<E>
   //===========================================================================
 
   /////////////////////////////////////////////////////////////////////////////
   /// \brief An exception thrown when result::value is accessed without
   ///        a contained value
   /////////////////////////////////////////////////////////////////////////////
+  template <typename E>
   class bad_result_access : public std::logic_error
   {
     //-------------------------------------------------------------------------
@@ -329,7 +331,13 @@ inline namespace bitwizeshift {
     //-------------------------------------------------------------------------
   public:
 
-    bad_result_access();
+    /// \brief Constructs this exception using the underlying error type for
+    ///        the error type
+    ///
+    /// \param error the underlying error
+    template <typename E2,
+              typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
+    explicit bad_result_access(E2&& error);
     bad_result_access(const bad_result_access& other) = default;
     bad_result_access(bad_result_access&& other) = default;
 
@@ -337,6 +345,23 @@ inline namespace bitwizeshift {
 
     auto operator=(const bad_result_access& other) -> bad_result_access& = default;
     auto operator=(bad_result_access&& other) -> bad_result_access& = default;
+
+    /// \{
+    /// \brief Gets the underlying error
+    ///
+    /// \return the error
+    auto error() & noexcept -> E&;
+    auto error() && noexcept -> E&&;
+    auto error() const & noexcept -> const E&;
+    auto error() const && noexcept -> const E&&;
+    /// \}
+
+    //-------------------------------------------------------------------------
+    // Private Members
+    //-------------------------------------------------------------------------
+  private:
+
+    E m_error;
   };
 
 #endif
@@ -1370,8 +1395,9 @@ inline namespace bitwizeshift {
     template <typename T, typename E>
     constexpr auto extract_error(const result<T,E>& exp) noexcept -> const E&;
 
+    template <typename E>
     [[noreturn]]
-    auto throw_bad_result_access() -> void;
+    auto throw_bad_result_access(E&& error) -> void;
 
   } // namespace detail
 
@@ -2452,10 +2478,13 @@ inline namespace bitwizeshift {
 
     //-------------------------------------------------------------------------
 
+    /// \{
     /// \brief Throws an exception if contains an error
     ///
     /// \throws bad_result_access if `*this` contains an error.
-    RESULT_CPP14_CONSTEXPR auto value() const -> void;
+    RESULT_CPP14_CONSTEXPR auto value() && -> void;
+    RESULT_CPP14_CONSTEXPR auto value() const & -> void;
+    /// \}
 
     /// \{
     /// \brief Returns the contained error, if one exists, or a
@@ -2815,11 +2844,50 @@ namespace std {
 // Constructors
 //-----------------------------------------------------------------------------
 
+template <typename E>
+template <typename E2, typename>
 inline RESULT_INLINE_VISIBILITY
-RESULT_NS_IMPL::bad_result_access::bad_result_access()
-  : logic_error{"bad_result_access"}
+RESULT_NS_IMPL::bad_result_access<E>::bad_result_access(E2&& error)
+  : logic_error{"error attempting to access value from result containing error"},
+    m_error(detail::forward<E2>(error))
 {
 
+}
+
+//-----------------------------------------------------------------------------
+// Observers
+//-----------------------------------------------------------------------------
+
+template <typename E>
+inline RESULT_INLINE_VISIBILITY
+auto RESULT_NS_IMPL::bad_result_access<E>::error()
+  & noexcept -> E&
+{
+  return m_error;
+}
+
+template <typename E>
+inline RESULT_INLINE_VISIBILITY
+auto RESULT_NS_IMPL::bad_result_access<E>::error()
+  && noexcept -> E&&
+{
+  return static_cast<E&&>(m_error);
+}
+
+template <typename E>
+inline RESULT_INLINE_VISIBILITY
+auto RESULT_NS_IMPL::bad_result_access<E>::error()
+  const & noexcept -> const E&
+{
+  return m_error;
+}
+
+template <typename E>
+inline RESULT_INLINE_VISIBILITY
+auto RESULT_NS_IMPL::bad_result_access<E>::error()
+  const && noexcept -> const E&&
+{
+  return static_cast<const E&&>(m_error);
 }
 
 #endif
@@ -3531,14 +3599,23 @@ auto RESULT_NS_IMPL::detail::extract_error(const result<T,E>& exp) noexcept -> c
   return result_error_extractor::get(exp);
 }
 
+template <typename E>
 [[noreturn]]
 inline RESULT_INLINE_VISIBILITY
-auto RESULT_NS_IMPL::detail::throw_bad_result_access() -> void
+auto RESULT_NS_IMPL::detail::throw_bad_result_access(E&& error) -> void
 {
 #if defined(RESULT_DISABLE_EXCEPTIONS)
   std::abort();
 #else
-  throw bad_result_access{};
+  using exception_type = bad_result_access<
+    typename std::remove_const<
+      typename std::remove_reference<E>::type
+    >::type
+  >;
+
+  throw exception_type{
+    detail::forward<E>(error)
+  };
 #endif
 }
 
@@ -3868,7 +3945,8 @@ inline RESULT_INLINE_VISIBILITY RESULT_CPP14_CONSTEXPR
 auto RESULT_NS_IMPL::result<T,E>::value()
   & -> typename std::add_lvalue_reference<T>::type
 {
-  return (has_value() || (detail::throw_bad_result_access(), false),
+  return (has_value() ||
+    (detail::throw_bad_result_access(m_storage.storage.m_error), false),
     m_storage.storage.m_value
   );
 }
@@ -3880,7 +3958,8 @@ auto RESULT_NS_IMPL::result<T,E>::value()
 {
   using reference = typename std::add_rvalue_reference<T>::type;
 
-  return (has_value() || (detail::throw_bad_result_access(), true),
+  return (has_value() ||
+    (detail::throw_bad_result_access(static_cast<E&&>(m_storage.storage.m_error)), true),
     static_cast<reference>(m_storage.storage.m_value)
   );
 }
@@ -3890,7 +3969,8 @@ inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::result<T,E>::value()
   const & -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type
 {
-  return (has_value() || (detail::throw_bad_result_access(), true),
+  return (has_value() ||
+    (detail::throw_bad_result_access(m_storage.storage.m_error), true),
     m_storage.storage.m_value
   );
 }
@@ -3902,7 +3982,8 @@ auto RESULT_NS_IMPL::result<T,E>::value()
 {
   using reference = typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
 
-  return (has_value() || (detail::throw_bad_result_access(), true),
+  return (has_value() ||
+    (detail::throw_bad_result_access(static_cast<const E&&>(m_storage.storage.m_error)), true),
     (static_cast<reference>(m_storage.storage.m_value))
   );
 }
@@ -4364,9 +4445,23 @@ auto RESULT_NS_IMPL::result<void, E>::has_error()
 template <typename E>
 inline RESULT_INLINE_VISIBILITY RESULT_CPP14_CONSTEXPR
 auto RESULT_NS_IMPL::result<void, E>::value()
-  const -> void
+  const & -> void
 {
-  static_cast<void>(has_value() || (detail::throw_bad_result_access(), true));
+  static_cast<void>(
+    has_value() ||
+    (detail::throw_bad_result_access(m_storage.storage.m_error), true)
+  );
+}
+
+template <typename E>
+inline RESULT_INLINE_VISIBILITY RESULT_CPP14_CONSTEXPR
+auto RESULT_NS_IMPL::result<void, E>::value()
+  && -> void
+{
+  static_cast<void>(
+    has_value() ||
+    (detail::throw_bad_result_access(static_cast<E&&>(m_storage.storage.m_error)), true)
+  );
 }
 
 template <typename E>

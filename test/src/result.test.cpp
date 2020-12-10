@@ -196,7 +196,7 @@ TEST_CASE("result<T,E>::result()", "[ctor]") {
 
       auto sut = sut_type{};
 
-      REQUIRE(sut.value() == value_type());
+      REQUIRE(*sut == value_type());
     }
     SECTION("Invokes T's default-construction") {
       // TODO: Use a static mock
@@ -233,7 +233,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("Copy contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -273,7 +273,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("Copy contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -313,7 +313,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("Copy contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -353,7 +353,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("Copy contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -420,7 +420,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("New result contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -460,7 +460,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("New result contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -500,7 +500,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("New result contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -540,7 +540,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("New result contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -611,7 +611,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("Copy contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -687,7 +687,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
           REQUIRE(sut.has_value());
         }
         SECTION("Copy contains a value equal to the source") {
-          REQUIRE(sut.value() == value);
+          REQUIRE(*sut == value);
         }
       }
 
@@ -728,7 +728,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
           REQUIRE(sut.has_value());
         }
         SECTION("Copy contains a value equal to the source") {
-          REQUIRE(sut.value() == value);
+          REQUIRE(*sut == value);
         }
       }
 
@@ -768,7 +768,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
           REQUIRE(sut.has_value());
         }
         SECTION("Copy contains a value equal to the source") {
-          REQUIRE(sut.value() == value);
+          REQUIRE(*sut == value);
         }
       }
 
@@ -844,7 +844,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&)", "[ctor]") {
         REQUIRE(sut.has_value());
       }
       SECTION("Copy contains a value equal to the source") {
-        REQUIRE(sut.value() == value);
+        REQUIRE(*sut == value);
       }
     }
 
@@ -920,7 +920,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
           REQUIRE(sut.has_value());
         }
         SECTION("Copy contains a value equal to the source") {
-          REQUIRE(sut.value() == value);
+          REQUIRE(*sut == value);
         }
       }
 
@@ -961,7 +961,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
           REQUIRE(sut.has_value());
         }
         SECTION("Copy contains a value equal to the source") {
-          REQUIRE(sut.value() == value);
+          REQUIRE(*sut == value);
         }
       }
 
@@ -1004,7 +1004,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
           REQUIRE(sut.has_value());
         }
         SECTION("Copy contains a value equal to the source") {
-          REQUIRE(sut.value() == value);
+          REQUIRE(*sut == value);
         }
       }
 
@@ -2250,7 +2250,7 @@ TEST_CASE("result<T,E>::value() &", "[observers]") {
         fail(42)
       };
 
-      REQUIRE_THROWS_AS(sut.value(), bad_result_access);
+      REQUIRE_THROWS_AS(sut.value(), bad_result_access<int>);
     }
   }
 }
@@ -2271,7 +2271,7 @@ TEST_CASE("result<T,E>::value() const &", "[observers]") {
         fail(42)
       };
 
-      REQUIRE_THROWS_AS(sut.value(), bad_result_access);
+      REQUIRE_THROWS_AS(sut.value(), bad_result_access<int>);
     }
   }
 }
@@ -2288,11 +2288,11 @@ TEST_CASE("result<T,E>::value() &&", "[observers]") {
   }
   SECTION("result contains an error") {
     SECTION("throws bad_result_access") {
-      auto sut = result<int,int>{
-        fail(42)
+      auto sut = result<int,move_only<std::string>>{
+        fail("hello world")
       };
 
-      REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access);
+      REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access<move_only<std::string>>);
     }
   }
 }
@@ -2313,7 +2313,7 @@ TEST_CASE("result<T,E>::value() const &&", "[observers]") {
         fail(42)
       };
 
-      REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access);
+      REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access<int>);
     }
   }
 }
@@ -4027,7 +4027,7 @@ TEST_CASE("result<void,E>::value()", "[observers]") {
     SECTION("Throws bad_result_access") {
       auto sut = result<void, int>{fail(42)};
 
-      REQUIRE_THROWS_AS(sut.value(), bad_result_access);
+      REQUIRE_THROWS_AS(sut.value(), bad_result_access<int>);
     }
   }
 }
