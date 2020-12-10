@@ -126,6 +126,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result&lt; T, E &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class template <code>result</code> manages result results from APIs, while encoding possible failure conditions.  <a href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">cpp::bitwizeshift::bad_result_access&lt; E &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An exception thrown when <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131" title="Returns the contained value. ">result::value</a> is accessed without a contained value.  <a href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d82/structcpp_1_1bitwizeshift_1_1is__failure.html">cpp::bitwizeshift::is_failure&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dd0/structcpp_1_1bitwizeshift_1_1is__failure_3_01failure_3_01_e_01_4_01_4.html">cpp::bitwizeshift::is_failure&lt; failure&lt; E &gt; &gt;</a></td></tr>
@@ -134,7 +137,7 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc8/structcpp_1_1bitwizeshift_1_1is__result_3_01result_3_01_t_00_01_e_01_4_01_4.html">cpp::bitwizeshift::is_result&lt; result&lt; T, E &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">cpp::bitwizeshift::bad_result_access</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">cpp::bitwizeshift::bad_result_access&lt; E &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An exception thrown when <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131" title="Returns the contained value. ">result::value</a> is accessed without a contained value.  <a href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">cpp::bitwizeshift::failure&lt; E &gt;</a></td></tr>
@@ -396,9 +399,10 @@ constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>cpp::bitwiz
 template&lt;typename T , typename E &gt; </td></tr>
 <tr class="memitem:a471029b3f3bb49863047d88cda0f4c73"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::extract_error</b> (const result&lt; T, E &gt; &amp;exp) noexcept -&gt; const E &amp;</td></tr>
 <tr class="separator:a471029b3f3bb49863047d88cda0f4c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69361d7c472d38e3fe47244e39e7647e"><td class="memItemLeft" align="right" valign="top"><a id="a69361d7c472d38e3fe47244e39e7647e"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::throw_bad_result_access</b> () -&gt; void</td></tr>
-<tr class="separator:a69361d7c472d38e3fe47244e39e7647e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4679d16506de70c4a0d2e872677b8245"><td class="memTemplParams" colspan="2"><a id="a4679d16506de70c4a0d2e872677b8245"></a>
+template&lt;typename E &gt; </td></tr>
+<tr class="memitem:a4679d16506de70c4a0d2e872677b8245"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::throw_bad_result_access</b> (E &amp;&amp;error) -&gt; void</td></tr>
+<tr class="separator:a4679d16506de70c4a0d2e872677b8245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac87d744c88bd6330ae0a00935105a31f"><td class="memTemplParams" colspan="2"><a id="ac87d744c88bd6330ae0a00935105a31f"></a>
 template&lt;typename T1 , typename E1 , typename T2 , typename E2 &gt; </td></tr>
 <tr class="memitem:ac87d744c88bd6330ae0a00935105a31f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::operator==</b> (const result&lt; T1, E1 &gt; &amp;lhs, const result&lt; T2, E2 &gt; &amp;rhs) noexcept -&gt; bool</td></tr>

@@ -2,7 +2,7 @@ var hierarchy =
 [
     [ "std::exception", null, [
       [ "std::logic_error", null, [
-        [ "cpp::bitwizeshift::bad_result_access", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html", null ]
+        [ "cpp::bitwizeshift::bad_result_access< E >", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html", null ]
       ] ]
     ] ],
     [ "cpp::bitwizeshift::failure< E >", "dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html", null ],
