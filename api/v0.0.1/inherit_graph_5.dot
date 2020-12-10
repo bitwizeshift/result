@@ -3,5 +3,9 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="RESULT_NAMESPACE_INTERNAL\l::bitwizeshift::detail\l::invoke_result_impl\< B,\l Fn, Args \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d3c/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html"];
+  Node9 [label="false_type",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node9 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="cpp::bitwizeshift::\lis_failure\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d82/structcpp_1_1bitwizeshift_1_1is__failure.html"];
+  Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="cpp::bitwizeshift::\lis_result\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dff/structcpp_1_1bitwizeshift_1_1is__result.html"];
 }

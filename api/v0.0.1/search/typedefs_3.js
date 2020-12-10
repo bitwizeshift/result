@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value_5ftype',['value_type',['../da/da2/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1result.html#a4735d45115902be45d745e02e4e0d963',1,'RESULT_NAMESPACE_INTERNAL::bitwizeshift::result::value_type()'],['../de/d31/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#aa1df6937f951d73de4acfbac41c6ff91',1,'RESULT_NAMESPACE_INTERNAL::bitwizeshift::result&lt; void, E &gt;::value_type()']]]
+  ['value_5ftype',['value_type',['../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a31818816735f9d348e96cabad0559153',1,'cpp::bitwizeshift::result::value_type()'],['../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#aaf6695e760e61f45455bf9480d5f0992',1,'cpp::bitwizeshift::result&lt; void, E &gt;::value_type()']]]
 ];
