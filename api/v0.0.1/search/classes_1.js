@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['expected',['expected',['../d8/d8e/classexpect_1_1expected.html',1,'expect']]],
-  ['expected_3c_20void_2c_20e_20_3e',['expected&lt; void, E &gt;',['../d1/d09/classexpect_1_1expected_3_01void_00_01_e_01_4.html',1,'expect']]]
+  ['disable_5fcopy_5fassignment',['disable_copy_assignment',['../da/d84/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__copy__assignment.html',1,'RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail']]],
+  ['disable_5fcopy_5fctor',['disable_copy_ctor',['../dd/d69/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__copy__ctor.html',1,'RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail']]],
+  ['disable_5fmove_5fassignment',['disable_move_assignment',['../db/d58/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__move__assignment.html',1,'RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail']]],
+  ['disable_5fmove_5fctor',['disable_move_ctor',['../d7/df3/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__move__ctor.html',1,'RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail']]]
 ];

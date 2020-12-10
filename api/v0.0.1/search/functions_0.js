@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['and_5fthen',['and_then',['../d8/d8e/classexpect_1_1expected.html#a13d8c62e51ab410243be16cc8c06be4a',1,'expect::expected::and_then()'],['../d1/d09/classexpect_1_1expected_3_01void_00_01_e_01_4.html#a73c1a986ac96272951de03649b3ef2f2',1,'expect::expected&lt; void, E &gt;::and_then()']]]
+  ['and_5fthen',['and_then',['../da/da2/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1result.html#af9142e4b19df909c0cb9da237efeece7',1,'RESULT_NAMESPACE_INTERNAL::bitwizeshift::result::and_then()'],['../de/d31/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#aec315ab9eaecb484647445fb3fe658af',1,'RESULT_NAMESPACE_INTERNAL::bitwizeshift::result&lt; void, E &gt;::and_then()']]]
 ];

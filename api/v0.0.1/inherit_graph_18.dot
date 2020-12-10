@@ -1,0 +1,7 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="RESULT_NAMESPACE_INTERNAL\l::bitwizeshift::detail\l::result_union\< T, E, false \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d49/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__un296d8cee2f45125ba046fb9a61870a0b.html"];
+}
