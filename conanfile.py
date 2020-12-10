@@ -2,13 +2,13 @@
 
 from conans import ConanFile, CMake
 
-class ExpectedConan(ConanFile):
+class ResultConan(ConanFile):
 
     # Package Info
-    name = "Expected"
+    name = "Result"
     version = "0.0.1"
     description = " A lightweight C++11-compatible error-handling mechanism"
-    url = "https://github.com/bitwizeshift/Expected"
+    url = "https://github.com/bitwizeshift/Result"
     author = "Matthew Rodusek <matthew.rodusek@gmail.com>"
     license = "MIT"
 
@@ -30,7 +30,7 @@ class ExpectedConan(ConanFile):
 
     def package(self):
         cmake = CMake(self)
-        cmake.definitions["EXPECTED_COMPILE_UNIT_TESTS"] = "ON"
+        cmake.definitions["RESULT_COMPILE_UNIT_TESTS"] = "ON"
         cmake.configure()
 
         # Compile and run the unit tests

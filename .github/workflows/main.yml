@@ -288,7 +288,7 @@ jobs:
           mkdir build
           cd build
           conan install ..
-          cmake .. -DCMAKE_BUILD_TYPE=Debug -DEXPECTED_COMPILE_UNIT_TESTS=On -GNinja
+          cmake .. -DCMAKE_BUILD_TYPE=Debug -DRESULT_COMPILE_UNIT_TESTS=On -GNinja
           cmake --build .
           ctest
 
@@ -298,7 +298,7 @@ jobs:
           mkdir build
           cd build
           conan install ..
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DEXPECTED_COMPILE_UNIT_TESTS=On -GNinja
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DRESULT_COMPILE_UNIT_TESTS=On -GNinja
           cmake --build .
           ctest
 
@@ -325,7 +325,7 @@ jobs:
           mkdir build
           cd build
           conan install ..
-          cmake .. -DCMAKE_BUILD_TYPE=Debug -DEXPECTED_COMPILE_UNIT_TESTS=On
+          cmake .. -DCMAKE_BUILD_TYPE=Debug -DRESULT_COMPILE_UNIT_TESTS=On
           cmake --build .
           ctest
 
@@ -336,6 +336,6 @@ jobs:
           mkdir build
           cd build
           conan install ..
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DEXPECTED_COMPILE_UNIT_TESTS=On
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DRESULT_COMPILE_UNIT_TESTS=On
           cmake --build .
           ctest

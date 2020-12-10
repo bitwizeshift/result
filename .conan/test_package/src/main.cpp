@@ -1,7 +1,7 @@
-#include "expected.hpp"
+#include "result.hpp"
 #include <iostream>
 
-auto get_return_value() noexcept -> expect::expected<int>
+auto get_return_value() noexcept -> cpp::result<int, int>
 {
   return 0;
 }
