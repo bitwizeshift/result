@@ -28,7 +28,7 @@
 ## Are you opening a pull-request?
 
 * The pull request should have a useful title
-* Please make sure your commits follow **Expected**'s
+* Please make sure your commits follow **Result**'s
   [commit standards](../doc/commit-standards.md)
 * Please follow the existing conventions of the library for new contributions
 * Keep descriptions short and simple, but descriptive.

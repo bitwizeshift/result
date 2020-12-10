@@ -31,11 +31,11 @@ jobs:
           conan remote add bintray ${{ secrets.BINTRAY_REMOTE_URL }}
           conan user -p ${{ secrets.BINTRAY_API_KEY }} -r bintray ${{ secrets.BINTRAY_USERNAME }}
           version=$(conan inspect $(pwd) --attribute version | sed 's@version: @@g')
-          echo "CONAN_PACKAGE_PATH=Expected/${version}@expected/stable" >> $GITHUB_ENV
+          echo "CONAN_PACKAGE_PATH=Result/${version}@result/stable" >> $GITHUB_ENV
 
       - name: Package
         run: |
-          conan create . "expected/stable"
+          conan create . "result/stable"
 
       - name: Test Package
         run: |
