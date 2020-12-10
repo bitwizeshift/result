@@ -5,7 +5,7 @@ project(Result.ConanTestPackage)
 include("${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
 conan_set_find_paths()
 
-find_package(Expected REQUIRED)
+find_package(Result REQUIRED)
 
 set(source_files
   src/main.cpp
