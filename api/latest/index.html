@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Expected: Expected</title>
+<title>Result: Result</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Expected
+   <div id="projectname">Result
    </div>
   </td>
  </tr>
@@ -80,15 +80,15 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Expected </div>  </div>
+<div class="title">Result </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a href="https://github.com/bitwizeshift/expected/actions"></a> <a href="https://www.codacy.com/gh/bitwizeshift/expected/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=bitwizeshift/expected&amp;amp;utm_campaign=Badge_Grade"></a> <a href="http://github.com/bitwizeshift/expected/issues"></a> <br />
- <a href="https://github.com/bitwizeshift/expected/releases"></a> <a href="https://bintray.com/bitwizeshift/Expected/Expected%3Aexpected/_latestVersion"></a> <br />
- <a href="https://gcc.godbolt.org/z/EoGb71"></a></p>
-<p><b>Expected</b> is a modern, simple, and light-weight error-handling alternative to exceptions.</p>
+<div class="textblock"><p><a href="https://github.com/bitwizeshift/result/actions"></a> <a href="https://www.codacy.com/gh/bitwizeshift/result/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=bitwizeshift/result&amp;amp;utm_campaign=Badge_Grade"></a> <a href="http://github.com/bitwizeshift/result/issues"></a> <br />
+ <a href="https://github.com/bitwizeshift/result/releases"></a> <a href="https://bintray.com/bitwizeshift/Result/Result%3Aresult/_latestVersion"></a> <br />
+ <a href="https://godbolt.org/z/nKfqbK"></a></p>
+<p><b>Result</b> is a modern, simple, and light-weight error-handling alternative to exceptions.</p>
 <h2>Teaser</h2>
-<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> To, <span class="keyword">typename</span> From&gt;</div><div class="line"><span class="keyword">auto</span> try_narrow(<span class="keyword">const</span> From&amp; from) noexcept -&gt; expected&lt;To,narrow_error&gt;</div><div class="line">{</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> to = <span class="keyword">static_cast&lt;</span>To<span class="keyword">&gt;</span>(from);</div><div class="line"></div><div class="line">  <span class="keywordflow">if</span> ((to &lt; To{}) != (from &lt; From{})) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="d3/d77/expected_8hpp.html#aeab8ff26a6e88e3b273041b401c07d7c">make_unexpected</a>(narrow_error::sign_change);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">if</span> (static_cast&lt;From&gt;(to) != from) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="d3/d77/expected_8hpp.html#aeab8ff26a6e88e3b273041b401c07d7c">make_unexpected</a>(narrow_error::loss_of_data);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">return</span> to;</div><div class="line">}</div></div><!-- fragment --><p><code><a href="https://gcc.godbolt.org/z/jWKPcG">Live Example</a></code></p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> To, <span class="keyword">typename</span> From&gt;</div><div class="line"><span class="keyword">auto</span> try_narrow(<span class="keyword">const</span> From&amp; from) noexcept -&gt; cpp::result&lt;To,narrow_error&gt;</div><div class="line">{</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> to = <span class="keyword">static_cast&lt;</span>To<span class="keyword">&gt;</span>(from);</div><div class="line"></div><div class="line">  <span class="keywordflow">if</span> ((to &lt; To{}) != (from &lt; From{})) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::sign_change);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">if</span> (static_cast&lt;From&gt;(to) != from) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::loss_of_data);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">return</span> to;</div><div class="line">}</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/nKfqbK">Live Example</a></code></p>
 <h2>Features</h2>
 <ul>
 <li>[x] Offers a coherent, light-weight alternative to exceptions</li>
@@ -96,29 +96,29 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>[x] Single-header, <b>header-only</b> solution &ndash; easily drops into any project</li>
 <li>[x] Zero overhead abstractions &ndash; don't pay for what you don't use.</li>
 <li>[x] No dependencies</li>
-<li>[x] Support for value-type, reference-type, and <code>void</code>-type values in <code>expected</code></li>
+<li>[x] Support for value-type, reference-type, and <code>void</code>-type values in <code>result</code></li>
 <li>[x] Monadic composition functions like <code>map</code>, <code>flat_map</code>, and <code>map_error</code> for easy functional use</li>
-<li>[x] <a href="test/src/expected.test.cpp">Comprehensively unit tested</a> for both static behavior and runtime validation</li>
-<li>[x] <a href="https://gcc.godbolt.org/z/9M7Ksx">Incurs minimal cost when optimized</a>, especially for trivial types</li>
+<li>[x] <a href="test/src/result.test.cpp">Comprehensively unit tested</a> for both static behavior and runtime validation</li>
+<li>[x] <a href="https://godbolt.org/z/M69T4v">Incurs minimal cost when optimized</a>, especially for trivial types</li>
 </ul>
-<p>For more details and examples on what is available in <b>Expected</b>, please check out the tutorial section.</p>
-<p>For details describing how this implementation deviates from the <code>std::expected</code> proposals, see this page.</p>
+<p>For more details and examples on what is available in <b>Result</b>, please check out the tutorial section.</p>
+<p>For details describing how this implementation deviates from the <code>std::result</code> proposals, see this page.</p>
 <h2>Documentation</h2>
 <ul>
-<li><a href="#background">Background</a> \ A background on the problem <b>Expected</b> solves</li>
+<li><a href="#background">Background</a> \ A background on the problem <b>Result</b> solves</li>
 <li>Installation \ For a quick guide on how to install/use this in other projects</li>
-<li>Tutorial \ A quick pocket-guide to using <b>Expected</b></li>
+<li>Tutorial \ A quick pocket-guide to using <b>Result</b></li>
 <li>Examples \ Some preset live-examples of this library in use</li>
-<li><a href="https://bitwizeshift.github.io/expected/api/latest/">API Reference</a> \ For doxygen-generated API information</li>
+<li><a href="https://bitwizeshift.github.io/result/api/latest/">API Reference</a> \ For doxygen-generated API information</li>
 <li>Attribution \ Information about how to attribute this project</li>
 <li>FAQ \ A list of frequently asked questions</li>
 </ul>
 <h2>Background</h2>
 <p>Error cases in C++ are often difficult to discern from the API. Any function not marked <code>noexcept</code> can be assumed to throw an exception, but the exact <em>type</em> of exception, and if it even derives from <code>std::exception</code>, is ambiguous. Nothing in the language forces which exceptions may propagate from an API, which can make dealing with such APIs complicated.</p>
 <p>Often it is more desirable to achieve <code>noexcept</code> functions where possible, since this allows for better optimizations in containers (e.g. optimal moves/swaps) and less cognitive load on consumers.</p>
-<p>Having an <code>expected&lt;T, E&gt;</code> type on your API not only semantically encodes that a function is <em>able to</em> fail, it also indicates to the caller <em>how</em> the function may fail, and what discrete, testable conditions may cause it to fail &ndash; which is what this library intends to solve.</p>
+<p>Having a <code>result&lt;T, E&gt;</code> type on your API not only semantically encodes that a function is <em>able to</em> fail, it also indicates to the caller <em>how</em> the function may fail, and what discrete, testable conditions may cause it to fail &ndash; which is what this library intends to solve.</p>
 <p>As a simple example, compare these two identical functions:</p>
-<div class="fragment"><div class="line"><span class="comment">// (1)</span></div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) -&gt; std::uint32_t;</div><div class="line"></div><div class="line"><span class="comment">// (2)</span></div><div class="line"><span class="keyword">enum class</span> parse_error { overflow=1, underflow=2, bad_input=3};</div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) noexcept -&gt; expected&lt;std::uint32_t,parse_error&gt;;</div></div><!-- fragment --><p>In <code>(1)</code>, it is ambiguous <em>what</em> (if anything) this function may throw on failure, or how this error case may be accounted for.</p>
+<div class="fragment"><div class="line"><span class="comment">// (1)</span></div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) -&gt; std::uint32_t;</div><div class="line"></div><div class="line"><span class="comment">// (2)</span></div><div class="line"><span class="keyword">enum class</span> parse_error { overflow=1, underflow=2, bad_input=3};</div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) noexcept -&gt; result&lt;std::uint32_t,parse_error&gt;;</div></div><!-- fragment --><p>In <code>(1)</code>, it is ambiguous <em>what</em> (if anything) this function may throw on failure, or how this error case may be accounted for.</p>
 <p>In <code>(2)</code>, on the other hand, it is explicit that <code>to_uint32</code> <em>cannot</em> throw &ndash; so there is no need for a <code>catch</code> handler. It's also clear that it may fail for whatever reasons are in <code>parse_error</code>, which discretely enumerates any possible case for failure.</p>
 <h2>Building the Unit Tests</h2>
 <p>Building the unit tests are not necessary to use this project. However, if you are interested in running these yourself, you will require the following installed:</p>
@@ -126,11 +126,11 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><a href="https://cmake.org">CMake</a>: Used for configuring/building the project</li>
 <li><a href="https://github.com/catchorg/Catch2">Catch2</a>: the unit-test library</li>
 </ul>
-<p>Additionally, you will need to toggle the <code>EXPECTED_COMPILE_UNIT_TESTS</code> option during cmake configuration to ensure that unit tests configure and build.</p>
+<p>Additionally, you will need to toggle the <code>RESULT_COMPILE_UNIT_TESTS</code> option during cmake configuration to ensure that unit tests configure and build.</p>
 <p>The easiest way to install Catch2 is using the <a href="https://conan.io/index.html"><code>conan</code></a> package manager and installing with <code>conan install &lt;path to conanfile&gt;</code> from your build directory.</p>
 <p>A complete example of configuring, compiling, and running the tests:</p>
-<div class="fragment"><div class="line"># Make the build directory and enter it</div><div class="line">mkdir build &amp;&amp; cd build</div><div class="line"># Install Catch with conan (optional)</div><div class="line">conan install ..</div><div class="line"># Configure the project</div><div class="line">cmake .. -DEXPECTED_COMPILE_UNIT_TESTS=On</div><div class="line"># Build everything</div><div class="line">cmake --build .</div><div class="line"># run the tests</div><div class="line">cmake --build . --target test</div></div><!-- fragment --><h2>Compiler Compatibility</h2>
-<p><b>Expected</b> is compatible with any compiler capable of compiling valid <code>C++11</code>. Specifically, this has been tested and is known to work with:</p>
+<div class="fragment"><div class="line"># Make the build directory and enter it</div><div class="line">mkdir build &amp;&amp; cd build</div><div class="line"># Install Catch with conan (optional)</div><div class="line">conan install ..</div><div class="line"># Configure the project</div><div class="line">cmake .. -DRESULT_COMPILE_UNIT_TESTS=On</div><div class="line"># Build everything</div><div class="line">cmake --build .</div><div class="line"># run the tests</div><div class="line">cmake --build . --target test</div></div><!-- fragment --><h2>Compiler Compatibility</h2>
+<p><b>Result</b> is compatible with any compiler capable of compiling valid <code>C++11</code>. Specifically, this has been tested and is known to work with:</p>
 <ul>
 <li>GCC 5, 6, 7, 8, 9, 10</li>
 <li>Clang 3.5, 3.6, 3.7, 3.8, 3.9, 4, 5, 6, 7, 8, 9, 10, 11</li>
@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="image">
 <img src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png" align="right"/>
 </div>
-<p><b>Expected</b> is licensed under the <a href="http://opensource.org/licenses/MIT">MIT License</a>:</p>
+<p><b>Result</b> is licensed under the <a href="http://opensource.org/licenses/MIT">MIT License</a>:</p>
 <blockquote class="doxtable">
 <p>Copyright &copy; 2017 Matthew Rodusek</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>

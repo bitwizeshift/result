@@ -1,8 +1,0 @@
-var struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect48a1e5b982f9ce3b6d1689c59b1eb357 =
-[
-    [ "base_type", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect48a1e5b982f9ce3b6d1689c59b1eb357.html#a13630d07a99434ed21c45701cccae62d", null ],
-    [ "expected_trivial_move_ctor_base_impl", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect48a1e5b982f9ce3b6d1689c59b1eb357.html#a7b865482608518bd85d60651d9561a6f", null ],
-    [ "expected_trivial_move_ctor_base_impl", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect48a1e5b982f9ce3b6d1689c59b1eb357.html#a499ddc4e8ba0aa1e7eac379be3f269a5", null ],
-    [ "operator=", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect48a1e5b982f9ce3b6d1689c59b1eb357.html#a3cd6ff484dee4335b358acb121f76b18", null ],
-    [ "operator=", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect48a1e5b982f9ce3b6d1689c59b1eb357.html#a8be64bcc6c03c41108d2b7af85662d0e", null ]
-];

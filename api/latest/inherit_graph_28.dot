@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="std::hash\<::EXPECTED\l_NS_IMPL::expected\< void,\l E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d57/structstd_1_1hash_3_1_1_e_x_p_e_c_t_e_d___n_s___i_m_p_l_1_1expected_3_01void_00_01_e_01_4_01_4.html"];
+  Node0 [label="std::hash\<::RESULT\l_NS_IMPL::result\< void,\l E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/de7/structstd_1_1hash_3_1_1_r_e_s_u_l_t___n_s___i_m_p_l_1_1result_3_01void_00_01_e_01_4_01_4.html"];
 }

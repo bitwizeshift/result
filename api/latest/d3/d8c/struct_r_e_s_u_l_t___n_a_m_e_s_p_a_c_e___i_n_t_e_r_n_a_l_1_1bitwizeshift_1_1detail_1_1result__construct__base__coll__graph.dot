@@ -1,0 +1,8 @@
+digraph "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_construct_base&lt; T, E &gt;"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node2 [label="RESULT_NAMESPACE_INTERNAL\l::bitwizeshift::detail\l::result_construct_base\l\< T, E \>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" storage" ,fontname="Helvetica"];
+  Node3 [label="RESULT_NAMESPACE_INTERNAL\l::bitwizeshift::detail\l::result_union\< T, E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d59/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__union.html"];
+}

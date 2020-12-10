@@ -2,61 +2,61 @@ var hierarchy =
 [
     [ "std::exception", null, [
       [ "std::logic_error", null, [
-        [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::bad_expected_access", "d6/d0a/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1bad__expected__access.html", null ]
+        [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::bad_result_access", "dc/ddd/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1bad__result__access.html", null ]
       ] ]
     ] ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::expected< T, E >", "df/d25/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1expected.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::expected< void, E >", "dc/d65/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1expected_3_01void_00_01_e_01_4.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_construct_base< T, E >", "dc/d0b/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__construct__base.html", [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_trivial_copy_ctor_base_impl< T, E >", "dd/d61/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect2f4b93f0a0dfebfe969aa064c70b44dc.html", null ]
-    ] ],
-    [ "expected_copy_assign_base", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_copy_assignment< T, E >", "df/d92/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__copy__assignment.html", null ]
-    ] ],
-    [ "expected_copy_ctor_base", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_move_ctor< T, E >", "d4/da9/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__move__ctor.html", null ]
-    ] ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_error_extractor", "d2/dfe/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__error__extractor.html", null ],
-    [ "expected_move_ctor_base", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_move_assignment< T, E >", "d5/db6/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__move__assignment.html", null ]
-    ] ],
-    [ "expected_trivial_copy_assign_base", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_trivial_move_assign_base_impl< T, E >", "dc/d8b/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect4df4867d5778e3bf3cc0fb4f5d48e4a7.html", null ]
-    ] ],
-    [ "expected_trivial_copy_ctor_base", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_trivial_move_ctor_base_impl< T, E >", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect48a1e5b982f9ce3b6d1689c59b1eb357.html", null ]
-    ] ],
-    [ "expected_trivial_move_assign_base", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_copy_ctor< T, E >", "d0/d9c/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__copy__ctor.html", null ]
-    ] ],
-    [ "expected_trivial_move_ctor_base", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_trivial_copy_assign_base_impl< T, E >", "d9/dfb/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect53bc0955682aed5f4196480dd7446f55.html", null ]
-    ] ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union< T, E, IsTrivial >", "d6/d73/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__union.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union.__unnamed__", "df/df9/union_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__union_8____unnamed____.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union< T, E >", "d6/d73/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expected__union.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union< T, E, false >", "d6/dfd/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expectdc20b33dc5d5b1a11e16be00299d86a0.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::expected_union< T, E, false >.__unnamed__", "dd/d6d/union_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expectee69f8e0a548a12a19b88d95e27973e3a.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::failure< E >", "da/dc4/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1failure.html", null ],
     [ "false_type", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::is_reference_wrapper< T >", "dc/d05/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__reference__wrapper.html", null ],
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::is_expected< T >", "db/db3/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__expected.html", null ],
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::is_unexpected< T >", "de/d0a/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__unexpected.html", null ]
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::is_reference_wrapper< T >", "d5/d01/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__reference__wrapper.html", null ],
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::is_failure< T >", "d1/d42/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__failure.html", null ],
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::is_result< T >", "dd/d5e/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__result.html", null ]
     ] ],
-    [ "std::hash<::EXPECTED_NS_IMPL::expected< T, E > >", "d3/d2a/structstd_1_1hash_3_1_1_e_x_p_e_c_t_e_d___n_s___i_m_p_l_1_1expected_3_01_t_00_01_e_01_4_01_4.html", null ],
-    [ "std::hash<::EXPECTED_NS_IMPL::expected< void, E > >", "dd/d57/structstd_1_1hash_3_1_1_e_x_p_e_c_t_e_d___n_s___i_m_p_l_1_1expected_3_01void_00_01_e_01_4_01_4.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::in_place_error_t", "d7/d35/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__error__t.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::in_place_t", "da/d22/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__t.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< B, Fn, Args >", "dd/d60/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< false, Fn, Args... >", "da/dc5/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invokec07b3dc51b039c812b3e737e9f663ac2.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< is_invocable< Fn, Args... >::value, Fn, Args... >", "dd/d60/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html", [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result< Fn, Args >", "d0/d95/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result.html", null ]
+    [ "std::hash<::RESULT_NS_IMPL::result< T, E > >", "d6/d76/structstd_1_1hash_3_1_1_r_e_s_u_l_t___n_s___i_m_p_l_1_1result_3_01_t_00_01_e_01_4_01_4.html", null ],
+    [ "std::hash<::RESULT_NS_IMPL::result< void, E > >", "d4/de7/structstd_1_1hash_3_1_1_r_e_s_u_l_t___n_s___i_m_p_l_1_1result_3_01void_00_01_e_01_4_01_4.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::in_place_error_t", "d6/d8a/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__error__t.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::in_place_t", "d8/d2a/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1in__place__t.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< B, Fn, Args >", "d8/d3c/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< false, Fn, Args... >", "da/d0d/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__re83c8b20453a7bafc8e529ff4293b2086.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result_impl< is_invocable< Fn, Args... >::value, Fn, Args... >", "d8/d3c/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result__impl.html", [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::invoke_result< Fn, Args >", "da/dfb/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1invoke__result.html", null ]
     ] ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::is_invocable< Fn, Args >", "dd/d9a/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__invocable.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::is_invocable< Fn, Args >", "d9/de0/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__invocable.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::result< T, E >", "da/da2/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1result.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::result< void, E >", "de/d31/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_construct_base< T, E >", "d4/dc8/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__construct__base.html", [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_trivial_copy_ctor_base_impl< T, E >", "d2/dcf/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__trivial__copy__ctor__base__impl.html", null ]
+    ] ],
+    [ "result_copy_assign_base", null, [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_copy_assignment< T, E >", "da/d84/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__copy__assignment.html", null ]
+    ] ],
+    [ "result_copy_ctor_base", null, [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_move_ctor< T, E >", "d7/df3/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__move__ctor.html", null ]
+    ] ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_error_extractor", "d0/dcd/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__error__extractor.html", null ],
+    [ "result_move_ctor_base", null, [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_move_assignment< T, E >", "db/d58/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__move__assignment.html", null ]
+    ] ],
+    [ "result_trivial_copy_assign_base", null, [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_trivial_move_assign_base_impl< T, E >", "df/d87/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__trivial__move__assign__base__impl.html", null ]
+    ] ],
+    [ "result_trivial_copy_ctor_base", null, [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_trivial_move_ctor_base_impl< T, E >", "d6/d7f/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__trivial__move__ctor__base__impl.html", null ]
+    ] ],
+    [ "result_trivial_move_assign_base", null, [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::disable_copy_ctor< T, E >", "dd/d69/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1disable__copy__ctor.html", null ]
+    ] ],
+    [ "result_trivial_move_ctor_base", null, [
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_trivial_copy_assign_base_impl< T, E >", "d3/d83/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__trivial__copy__assign__base__impl.html", null ]
+    ] ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_union< T, E, IsTrivial >", "dd/d59/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__union.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_union.__unnamed__", "da/db6/union_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__union_8____unnamed____.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_union< T, E >", "dd/d59/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__union.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_union< T, E, false >", "d5/d49/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__un296d8cee2f45125ba046fb9a61870a0b.html", null ],
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::result_union< T, E, false >.__unnamed__", "d4/d25/union_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1result__unided7fd4af9264cd01657009c194e8add.html", null ],
     [ "true_type", null, [
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::is_reference_wrapper< std::reference_wrapper< U > >", "dc/d2f/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__rec82048a3b0bb7c03579e8991cb588ab5.html", null ],
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::is_expected< expected< T, E > >", "d2/dec/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__expected_3_0cff6f432a74fe034d32e544d750e7be8.html", null ],
-      [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::is_unexpected< unexpected< E > >", "d9/db1/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__unexpected_3_01unexpected_3_01_e_01_4_01_4.html", null ]
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::is_reference_wrapper< std::reference_wrapper< U > >", "d1/de0/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1is__refere43e2a068656cb4f9e05553095762a28e.html", null ],
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::is_failure< failure< E > >", "d7/d4c/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__failure_3_01failure_3_01_e_01_4_01_4.html", null ],
+      [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::is_result< result< T, E > >", "db/dff/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1is__result_3_01result_3_01_t_00_01_e_01_4_01_4.html", null ]
     ] ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::unexpected< E >", "d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html", null ],
-    [ "EXPECTED_NAMESPACE_INTERNAL::bitwizeshift::detail::unit", "db/dee/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1unit.html", null ]
+    [ "RESULT_NAMESPACE_INTERNAL::bitwizeshift::detail::unit", "de/d6b/struct_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1unit.html", null ]
 ];

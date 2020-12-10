@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['expected',['Expected',['../index.html',1,'']]]
+  ['result',['Result',['../index.html',1,'']]]
 ];

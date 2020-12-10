@@ -1,8 +1,0 @@
-var struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect53bc0955682aed5f4196480dd7446f55 =
-[
-    [ "base_type", "d9/dfb/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect53bc0955682aed5f4196480dd7446f55.html#aa22ab8096ed7b476560c153472f72dea", null ],
-    [ "expected_trivial_copy_assign_base_impl", "d9/dfb/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect53bc0955682aed5f4196480dd7446f55.html#a0e74d28129cca4ed27bc84575c8cd845", null ],
-    [ "expected_trivial_copy_assign_base_impl", "d9/dfb/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect53bc0955682aed5f4196480dd7446f55.html#aa98514877621df383b304732248aebf0", null ],
-    [ "operator=", "d9/dfb/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect53bc0955682aed5f4196480dd7446f55.html#a86ebaaa6cf98374158a76f45ec5904c3", null ],
-    [ "operator=", "d9/dfb/struct_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1detail_1_1expect53bc0955682aed5f4196480dd7446f55.html#a0721a11c697df44062fd2a38b9ca488d", null ]
-];

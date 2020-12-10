@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="EXPECTED_NAMESPACE\l_INTERNAL::bitwizeshift\l::unexpected\< E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/dfe/class_e_x_p_e_c_t_e_d___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1unexpected.html",tooltip="A semantic type used for distinguishing unexpected values in an API that returns expected types..."];
+  Node0 [label="RESULT_NAMESPACE_INTERNAL\l::bitwizeshift::result\l\< void, E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d31/class_r_e_s_u_l_t___n_a_m_e_s_p_a_c_e___i_n_t_e_r_n_a_l_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html",tooltip="Partial specialization of result<void, E> "];
 }
