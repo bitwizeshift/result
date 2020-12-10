@@ -1,35 +1,35 @@
-# Expected
+# Result
 
-[![Build Status](https://github.com/bitwizeshift/expected/workflows/build/badge.svg)](https://github.com/bitwizeshift/expected/actions)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e163a49b3b2e4f1e953c32b7cbbb2f28)](https://www.codacy.com/gh/bitwizeshift/expected/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bitwizeshift/expected&amp;utm_campaign=Badge_Grade)
-[![Github Issues](https://img.shields.io/github/issues/bitwizeshift/expected.svg)](http://github.com/bitwizeshift/expected/issues)
+[![Build Status](https://github.com/bitwizeshift/result/workflows/build/badge.svg)](https://github.com/bitwizeshift/result/actions)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e163a49b3b2e4f1e953c32b7cbbb2f28)](https://www.codacy.com/gh/bitwizeshift/result/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bitwizeshift/result&amp;utm_campaign=Badge_Grade)
+[![Github Issues](https://img.shields.io/github/issues/bitwizeshift/result.svg)](http://github.com/bitwizeshift/result/issues)
 <br>
-[![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/expected.svg?include_prereleases)](https://github.com/bitwizeshift/expected/releases)
-[![Bintray Releases](https://api.bintray.com/packages/bitwizeshift/Expected/Expected%3Aexpected/images/download.svg)](https://bintray.com/bitwizeshift/Expected/Expected%3Aexpected/_latestVersion)
+[![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/result.svg?include_prereleases)](https://github.com/bitwizeshift/result/releases)
+[![Bintray Releases](https://api.bintray.com/packages/bitwizeshift/Result/Result%3Aresult/images/download.svg)](https://bintray.com/bitwizeshift/Result/Result%3Aresult/_latestVersion)
 <br>
-[![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://gcc.godbolt.org/z/EoGb71)
+[![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://godbolt.org/z/nKfqbK)
 
-**Expected** is a modern, simple, and light-weight error-handling alternative to exceptions.
+**Result** is a modern, simple, and light-weight error-handling alternative to exceptions.
 
 ## Teaser
 
 ```cpp
 template <typename To, typename From>
-auto try_narrow(const From& from) noexcept -> expected<To,narrow_error>
+auto try_narrow(const From& from) noexcept -> cpp::result<To,narrow_error>
 {
   const auto to = static_cast<To>(from);
 
   if ((to < To{}) != (from < From{})) {
-    return make_unexpected(narrow_error::sign_change);
+    return cpp::fail(narrow_error::sign_change);
   }
   if (static_cast<From>(to) != from) {
-    return make_unexpected(narrow_error::loss_of_data);
+    return cpp::fail(narrow_error::loss_of_data);
   }
   return to;
 }
 ```
 
-<kbd>[Live Example](https://gcc.godbolt.org/z/jWKPcG)</kbd>
+<kbd>[Live Example](https://godbolt.org/z/nKfqbK)</kbd>
 
 ## Features
 
@@ -38,30 +38,30 @@ auto try_narrow(const From& from) noexcept -> expected<To,narrow_error>
 * [x] Single-header, **header-only** solution -- easily drops into any project
 * [x] Zero overhead abstractions -- don't pay for what you don't use.
 * [x] No dependencies
-* [x] Support for value-type, reference-type, and `void`-type values in `expected`
+* [x] Support for value-type, reference-type, and `void`-type values in `result`
 * [x] Monadic composition functions like `map`, `flat_map`, and `map_error` for
       easy functional use
-* [x] [Comprehensively unit tested](test/src/expected.test.cpp) for both static
+* [x] [Comprehensively unit tested](test/src/result.test.cpp) for both static
       behavior and runtime validation
-* [x] [Incurs minimal cost when optimized](https://gcc.godbolt.org/z/9M7Ksx), especially for trivial types
+* [x] [Incurs minimal cost when optimized](https://godbolt.org/z/M69T4v), especially for trivial types
 
-For more details and examples on what is available in **Expected**, please
+For more details and examples on what is available in **Result**, please
 check out the [tutorial](doc/tutorial.md) section.
 
 For details describing how this implementation deviates from the
-`std::expected` proposals, see [this page](doc/deviations-from-proposal.md).
+`std::result` proposals, see [this page](doc/deviations-from-proposal.md).
 
 ## Documentation
 
 * [Background](#background) \
-  A background on the problem **Expected** solves
+  A background on the problem **Result** solves
 * [Installation](doc/installing.md) \
   For a quick guide on how to install/use this in other projects
 * [Tutorial](doc/tutorial.md) \
-  A quick pocket-guide to using **Expected**
+  A quick pocket-guide to using **Result**
 * [Examples](doc/examples.md) \
   Some preset live-examples of this library in use
-* [API Reference](https://bitwizeshift.github.io/expected/api/latest/) \
+* [API Reference](https://bitwizeshift.github.io/result/api/latest/) \
   For doxygen-generated API information
 * [Attribution](doc/legal.md) \
   Information about how to attribute this project
@@ -80,7 +80,7 @@ Often it is more desirable to achieve `noexcept` functions where possible, since
 this allows for better optimizations in containers (e.g. optimal moves/swaps)
 and less cognitive load on consumers.
 
-Having an `expected<T, E>` type on your API not only semantically encodes that
+Having a `result<T, E>` type on your API not only semantically encodes that
 a function is _able to_ fail, it also indicates to the caller _how_ the function
 may fail, and what discrete, testable conditions may cause it to fail -- which
 is what this library intends to solve.
@@ -93,7 +93,7 @@ auto to_uint32(const std::string& x) -> std::uint32_t;
 
 // (2)
 enum class parse_error { overflow=1, underflow=2, bad_input=3};
-auto to_uint32(const std::string& x) noexcept -> expected<std::uint32_t,parse_error>;
+auto to_uint32(const std::string& x) noexcept -> result<std::uint32_t,parse_error>;
 ```
 
 In `(1)`, it is ambiguous _what_ (if anything) this function may throw on
@@ -113,7 +113,7 @@ the following installed:
 * [CMake](https://cmake.org): Used for configuring/building the project
 * [Catch2](https://github.com/catchorg/Catch2): the unit-test library
 
-Additionally, you will need to toggle the `EXPECTED_COMPILE_UNIT_TESTS` option
+Additionally, you will need to toggle the `RESULT_COMPILE_UNIT_TESTS` option
 during cmake configuration to ensure that unit tests configure and build.
 
 The easiest way to install Catch2 is using the [`conan`](https://conan.io/index.html)
@@ -128,7 +128,7 @@ mkdir build && cd build
 # Install Catch with conan (optional)
 conan install ..
 # Configure the project
-cmake .. -DEXPECTED_COMPILE_UNIT_TESTS=On
+cmake .. -DRESULT_COMPILE_UNIT_TESTS=On
 # Build everything
 cmake --build .
 # run the tests
@@ -137,7 +137,7 @@ cmake --build . --target test
 
 ## Compiler Compatibility
 
-**Expected** is compatible with any compiler capable of compiling valid
+**Result** is compatible with any compiler capable of compiling valid
 <kbd>C++11</kbd>. Specifically, this has been tested and is known to work
 with:
 
@@ -152,7 +152,7 @@ Latest patch level releases are assumed in the versions listed above.
 
 <img align="right" src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png">
 
-**Expected** is licensed under the
+**Result** is licensed under the
 [MIT License](http://opensource.org/licenses/MIT):
 
 > Copyright &copy; 2017 Matthew Rodusek
