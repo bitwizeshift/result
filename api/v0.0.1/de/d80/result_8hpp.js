@@ -4,6 +4,7 @@ var result_8hpp =
     [ "in_place_error_t", "d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html", "d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t" ],
     [ "failure", "dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html", "dc/dd0/classcpp_1_1bitwizeshift_1_1failure" ],
     [ "result", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html", "db/d9a/classcpp_1_1bitwizeshift_1_1result" ],
+    [ "bad_result_access", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access" ],
     [ "is_failure", "d5/d82/structcpp_1_1bitwizeshift_1_1is__failure.html", null ],
     [ "is_failure< failure< E > >", "d9/dd0/structcpp_1_1bitwizeshift_1_1is__failure_3_01failure_3_01_e_01_4_01_4.html", null ],
     [ "is_result", "de/dff/structcpp_1_1bitwizeshift_1_1is__result.html", null ],
@@ -114,7 +115,7 @@ var result_8hpp =
     [ "swap", "de/d80/result_8hpp.html#a7dea9f6219fc5657a20755dab0bbc05e", null ],
     [ "swap", "de/d80/result_8hpp.html#a471df1ef39a828217e23fff59a708e08", null ],
     [ "swap", "de/d80/result_8hpp.html#a14442323930004b1bbc013e2fc355257", null ],
-    [ "throw_bad_result_access", "de/d80/result_8hpp.html#a69361d7c472d38e3fe47244e39e7647e", null ],
+    [ "throw_bad_result_access", "de/d80/result_8hpp.html#a4679d16506de70c4a0d2e872677b8245", null ],
     [ "in_place", "de/d80/result_8hpp.html#a51fd60dfd5f7840ade673471c2f8238c", null ],
     [ "in_place_error", "de/d80/result_8hpp.html#a8bc6207a3af53f73febefcf2127e82f6", null ]
 ];
