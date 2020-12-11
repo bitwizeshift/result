@@ -258,13 +258,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a35676e4f60e0aab8f705caec8fe86620"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a35676e4f60e0aab8f705caec8fe86620">error</a> () &amp;&amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_move_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; E</td></tr>
 <tr class="memdesc:a35676e4f60e0aab8f705caec8fe86620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a35676e4f60e0aab8f705caec8fe86620">More...</a><br /></td></tr>
 <tr class="separator:a35676e4f60e0aab8f705caec8fe86620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff9d84e6e09ccfab440166b4ef1a7766"><td class="memTemplParams" colspan="2">template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_copy_constructible&lt;E&gt;::value              )&gt;::type&gt; </td></tr>
+<tr class="memitem:aff9d84e6e09ccfab440166b4ef1a7766"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aff9d84e6e09ccfab440166b4ef1a7766">expect</a> (String &amp;&amp;message) const &amp;-&gt; void</td></tr>
+<tr class="memdesc:aff9d84e6e09ccfab440166b4ef1a7766"><td class="mdescLeft">&#160;</td><td class="mdescRight">}  <a href="#aff9d84e6e09ccfab440166b4ef1a7766">More...</a><br /></td></tr>
+<tr class="separator:aff9d84e6e09ccfab440166b4ef1a7766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfc85857bc1cbd4098a3ec7587176abc"><td class="memTemplParams" colspan="2">template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_move_constructible&lt;E&gt;::value              )&gt;::type&gt; </td></tr>
+<tr class="memitem:abfc85857bc1cbd4098a3ec7587176abc"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#abfc85857bc1cbd4098a3ec7587176abc">expect</a> (String &amp;&amp;message) &amp;&amp;-&gt; void</td></tr>
+<tr class="memdesc:abfc85857bc1cbd4098a3ec7587176abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#abfc85857bc1cbd4098a3ec7587176abc">More...</a><br /></td></tr>
+<tr class="separator:abfc85857bc1cbd4098a3ec7587176abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a940d1ef3f46c158696db5f4f0c47440d"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
 <tr class="memitem:a940d1ef3f46c158696db5f4f0c47440d"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a940d1ef3f46c158696db5f4f0c47440d">value_or</a> (U &amp;&amp;default_value) const &amp;-&gt; typename std::remove_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a940d1ef3f46c158696db5f4f0c47440d"><td class="mdescLeft">&#160;</td><td class="mdescRight">}  <a href="#a940d1ef3f46c158696db5f4f0c47440d">More...</a><br /></td></tr>
+<tr class="memdesc:a940d1ef3f46c158696db5f4f0c47440d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value if <code>*this</code> has a value, otherwise returns <code>default_value</code>.  <a href="#a940d1ef3f46c158696db5f4f0c47440d">More...</a><br /></td></tr>
 <tr class="separator:a940d1ef3f46c158696db5f4f0c47440d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86ecfa9df078e95b21e7ceed021e12db"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
 <tr class="memitem:a86ecfa9df078e95b21e7ceed021e12db"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a86ecfa9df078e95b21e7ceed021e12db">value_or</a> (U &amp;&amp;default_value) &amp;&amp;-&gt; typename std::remove_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a86ecfa9df078e95b21e7ceed021e12db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a86ecfa9df078e95b21e7ceed021e12db">More...</a><br /></td></tr>
+<tr class="memdesc:a86ecfa9df078e95b21e7ceed021e12db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value if <code>*this</code> has a value, otherwise returns <code>default_value</code>.  <a href="#a86ecfa9df078e95b21e7ceed021e12db">More...</a><br /></td></tr>
 <tr class="separator:a86ecfa9df078e95b21e7ceed021e12db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a0b1f8f312619e37594054f94a283a48f"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
@@ -346,7 +355,7 @@ class cpp::bitwizeshift::result&lt; T, E &gt;</h3>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l00296">296</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l00302">302</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adbbeb16fe7e34ca0c98f1844e70af1cc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adbbeb16fe7e34ca0c98f1844e70af1cc">&#9670;&nbsp;</a></span>result() <span class="overload">[1/15]</span></h2>
@@ -1181,6 +1190,64 @@ template&lt;typename U &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the contained value or <code>default_error</code> </dd></dl>
+
+</div>
+</div>
+<a id="aff9d84e6e09ccfab440166b4ef1a7766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff9d84e6e09ccfab440166b4ef1a7766">&#9670;&nbsp;</a></span>expect() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename E&gt; </div>
+<div class="memtemplate">
+template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_copy_constructible&lt;E&gt;::value              )&gt;::type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::expect </td>
+          <td>(</td>
+          <td class="paramtype">String &amp;&amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td> const &amp; -&gt;  void</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>} </p>
+<p>Asserts an expectation that this result contains an error, throwing a <a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a> on failure</p>
+<p>If this function is invoked from an rvalue of <code>result</code>, then this will consume the underlying error first, if there is one.</p>
+<dl class="section note"><dt>Note</dt><dd>This function exists as a means to allow for results to be marked <code>used</code> without requiring directly inspecting the underlying value. This is, in effect, equivalent to <code>assert(res.has_value())</code>, however it uses exceptions to ensure the stack can be unwound, and exceptions invoked.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>the message to provide to this expectation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abfc85857bc1cbd4098a3ec7587176abc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfc85857bc1cbd4098a3ec7587176abc">&#9670;&nbsp;</a></span>expect() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename E&gt; </div>
+<div class="memtemplate">
+template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_move_constructible&lt;E&gt;::value              )&gt;::type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::expect </td>
+          <td>(</td>
+          <td class="paramtype">String &amp;&amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td> &amp;&amp; -&gt;  void</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the contained error, if one exists, or a default-constructed error value. </p>
+<dl class="section return"><dt>Returns</dt><dd>the error or a default-constructed error value </dd></dl>
 
 </div>
 </div>
@@ -2208,8 +2275,7 @@ template&lt;typename U &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>} </p>
-<p>Returns the contained value if <code>*this</code> has a value, otherwise returns <code>default_value</code>.</p>
+<p>Returns the contained value if <code>*this</code> has a value, otherwise returns <code>default_value</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">default_value</td><td>the value to use in case <code>*this</code> contains an error </td></tr>
@@ -2240,8 +2306,14 @@ template&lt;typename U &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the contained error, if one exists, or a default-constructed error value. </p>
-<dl class="section return"><dt>Returns</dt><dd>the error or a default-constructed error value </dd></dl>
+<p>Returns the contained value if <code>*this</code> has a value, otherwise returns <code>default_value</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">default_value</td><td>the value to use in case <code>*this</code> contains an error </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the contained value or <code>default_value</code> </dd></dl>
 
 </div>
 </div>

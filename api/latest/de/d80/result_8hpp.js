@@ -118,6 +118,7 @@ var result_8hpp =
     [ "swap", "de/d80/result_8hpp.html#a471df1ef39a828217e23fff59a708e08", null ],
     [ "swap", "de/d80/result_8hpp.html#a14442323930004b1bbc013e2fc355257", null ],
     [ "throw_bad_result_access", "de/d80/result_8hpp.html#a4679d16506de70c4a0d2e872677b8245", null ],
+    [ "throw_bad_result_access_message", "de/d80/result_8hpp.html#ac9241ec3e63679f2b7d61046db845efa", null ],
     [ "in_place", "de/d80/result_8hpp.html#a51fd60dfd5f7840ade673471c2f8238c", null ],
     [ "in_place_error", "de/d80/result_8hpp.html#a8bc6207a3af53f73febefcf2127e82f6", null ]
 ];

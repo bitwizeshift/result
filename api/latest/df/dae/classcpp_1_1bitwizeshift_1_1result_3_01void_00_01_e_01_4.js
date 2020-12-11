@@ -18,6 +18,8 @@ var classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4 =
     [ "error", "df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a79314e5e272a774ec81c7b40527db224", null ],
     [ "error_or", "df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a774cd0750a8cef7e9a7501b84faf3e60", null ],
     [ "error_or", "df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a5e364e965fccf92bcffaced4a45137cf", null ],
+    [ "expect", "df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#ae9e88822a07e968bb48541761f9d5e72", null ],
+    [ "expect", "df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#ac1c7c09cff4621cffbd1df6e0a042066", null ],
     [ "flat_map", "df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a25fe4bc910c9f886c3a108717dc9ccf1", null ],
     [ "flat_map", "df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a611d2d1227371505d986ac4434156861", null ],
     [ "flat_map_error", "df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a9d373f3919bef41d8bf318368c45a235", null ],

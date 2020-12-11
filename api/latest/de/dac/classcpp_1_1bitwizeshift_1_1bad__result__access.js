@@ -1,6 +1,8 @@
 var classcpp_1_1bitwizeshift_1_1bad__result__access =
 [
     [ "bad_result_access", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#a40d52ce00acf6dea9135e698249055aa", null ],
+    [ "bad_result_access", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#af9b67f29d2e1dd9e28c6757d66662c9e", null ],
+    [ "bad_result_access", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#a92eddd8d722ad5dbcc53e692e6417cf7", null ],
     [ "bad_result_access", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#a9a93db3207636a8449b812097d39091c", null ],
     [ "bad_result_access", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#a96356b811800144084b24f7fe2f6c4a4", null ],
     [ "error", "de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#aabe27d56e45ef94829946e236d37d7ec", null ],

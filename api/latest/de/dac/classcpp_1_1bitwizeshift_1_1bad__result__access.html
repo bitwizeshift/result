@@ -129,6 +129,15 @@ auto&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 auto&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">bad_result_access</a> &amp;&amp;other) -&gt; <a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">bad_result_access</a> &amp;=default</td></tr>
 <tr class="separator:a53bd277139bb6e77aec229d689c12378"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:af9b67f29d2e1dd9e28c6757d66662c9e"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:af9b67f29d2e1dd9e28c6757d66662c9e"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#af9b67f29d2e1dd9e28c6757d66662c9e">bad_result_access</a> (const char *what_arg, E2 &amp;&amp;<a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#aabe27d56e45ef94829946e236d37d7ec">error</a>)</td></tr>
+<tr class="memdesc:af9b67f29d2e1dd9e28c6757d66662c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs this exception using the underlying error type for the error and a message.  <a href="#af9b67f29d2e1dd9e28c6757d66662c9e">More...</a><br /></td></tr>
+<tr class="separator:af9b67f29d2e1dd9e28c6757d66662c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92eddd8d722ad5dbcc53e692e6417cf7"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a92eddd8d722ad5dbcc53e692e6417cf7"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#a92eddd8d722ad5dbcc53e692e6417cf7">bad_result_access</a> (const std::string &amp;what_arg, E2 &amp;&amp;<a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#aabe27d56e45ef94829946e236d37d7ec">error</a>)</td></tr>
+<tr class="memdesc:a92eddd8d722ad5dbcc53e692e6417cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs this exception using the underlying error type for the error and a message.  <a href="#a92eddd8d722ad5dbcc53e692e6417cf7">More...</a><br /></td></tr>
+<tr class="separator:a92eddd8d722ad5dbcc53e692e6417cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:aabe27d56e45ef94829946e236d37d7ec"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#aabe27d56e45ef94829946e236d37d7ec">error</a> () &amp;noexcept -&gt; E &amp;</td></tr>
 <tr class="memdesc:aabe27d56e45ef94829946e236d37d7ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the underlying error.  <a href="#aabe27d56e45ef94829946e236d37d7ec">More...</a><br /></td></tr>
 <tr class="separator:aabe27d56e45ef94829946e236d37d7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,10 +157,10 @@ class cpp::bitwizeshift::bad_result_access&lt; E &gt;</h3>
 
 <p>An exception thrown when <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e" title="Returns the contained value. ">result::value</a> is accessed without a contained value. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l00299">299</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l00305">305</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a40d52ce00acf6dea9135e698249055aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40d52ce00acf6dea9135e698249055aa">&#9670;&nbsp;</a></span>bad_result_access()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a40d52ce00acf6dea9135e698249055aa">&#9670;&nbsp;</a></span>bad_result_access() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,6 +190,88 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 <p>Constructs this exception using the underlying error type for the error type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">error</td><td>the underlying error </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af9b67f29d2e1dd9e28c6757d66662c9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9b67f29d2e1dd9e28c6757d66662c9e">&#9670;&nbsp;</a></span>bad_result_access() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename E &gt; </div>
+<div class="memtemplate">
+template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&gt;::value&gt;::type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">cpp::bitwizeshift::bad_result_access</a>&lt; E &gt;::<a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">bad_result_access</a> </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>what_arg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">E2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs this exception using the underlying error type for the error and a message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">what_arg</td><td>the message for the failure </td></tr>
+    <tr><td class="paramname">error</td><td>the underlying error </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a92eddd8d722ad5dbcc53e692e6417cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92eddd8d722ad5dbcc53e692e6417cf7">&#9670;&nbsp;</a></span>bad_result_access() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename E &gt; </div>
+<div class="memtemplate">
+template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&gt;::value&gt;::type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">cpp::bitwizeshift::bad_result_access</a>&lt; E &gt;::<a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">bad_result_access</a> </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>what_arg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">E2 &amp;&amp;&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs this exception using the underlying error type for the error and a message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">what_arg</td><td>the message for the failure </td></tr>
     <tr><td class="paramname">error</td><td>the underlying error </td></tr>
   </table>
   </dd>

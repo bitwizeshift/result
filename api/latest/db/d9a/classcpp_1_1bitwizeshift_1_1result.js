@@ -24,6 +24,8 @@ var classcpp_1_1bitwizeshift_1_1result =
     [ "error", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a35676e4f60e0aab8f705caec8fe86620", null ],
     [ "error_or", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a0b1f8f312619e37594054f94a283a48f", null ],
     [ "error_or", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab56c3d217a7fc14c8e33425192cd9aa0", null ],
+    [ "expect", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aff9d84e6e09ccfab440166b4ef1a7766", null ],
+    [ "expect", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html#abfc85857bc1cbd4098a3ec7587176abc", null ],
     [ "flat_map", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a516eda185e20c05b1290def23b80155c", null ],
     [ "flat_map", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a136350853506e48fe93e4e1f44c389fe", null ],
     [ "flat_map_error", "db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a820ce0afdea9a7bfa1be9d6fdb14d308", null ],

@@ -202,6 +202,15 @@ RESULT_NODISCARD constexpr&#160;</td><td class="memItemRight" valign="bottom"><a
 <tr class="memdesc:a79314e5e272a774ec81c7b40527db224"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a79314e5e272a774ec81c7b40527db224">More...</a><br /></td></tr>
 <tr class="separator:a79314e5e272a774ec81c7b40527db224"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ae9e88822a07e968bb48541761f9d5e72"><td class="memTemplParams" colspan="2">template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_copy_constructible&lt;E&gt;::value              )&gt;::type&gt; </td></tr>
+<tr class="memitem:ae9e88822a07e968bb48541761f9d5e72"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#ae9e88822a07e968bb48541761f9d5e72">expect</a> (String &amp;&amp;message) const &amp;-&gt; void</td></tr>
+<tr class="memdesc:ae9e88822a07e968bb48541761f9d5e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asserts an expectation that this result contains an error, throwing a <a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a> on failure.  <a href="#ae9e88822a07e968bb48541761f9d5e72">More...</a><br /></td></tr>
+<tr class="separator:ae9e88822a07e968bb48541761f9d5e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1c7c09cff4621cffbd1df6e0a042066"><td class="memTemplParams" colspan="2">template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_move_constructible&lt;E&gt;::value              )&gt;::type&gt; </td></tr>
+<tr class="memitem:ac1c7c09cff4621cffbd1df6e0a042066"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#ac1c7c09cff4621cffbd1df6e0a042066">expect</a> (String &amp;&amp;message) &amp;&amp;-&gt; void</td></tr>
+<tr class="memdesc:ac1c7c09cff4621cffbd1df6e0a042066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asserts an expectation that this result contains an error, throwing a <a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a> on failure.  <a href="#ac1c7c09cff4621cffbd1df6e0a042066">More...</a><br /></td></tr>
+<tr class="separator:ac1c7c09cff4621cffbd1df6e0a042066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a774cd0750a8cef7e9a7501b84faf3e60"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
 <tr class="memitem:a774cd0750a8cef7e9a7501b84faf3e60"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a774cd0750a8cef7e9a7501b84faf3e60">error_or</a> (U &amp;&amp;default_error) const &amp;-&gt; <a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a23a7901830789fd61de45c71cc562c08">error_type</a></td></tr>
 <tr class="memdesc:a774cd0750a8cef7e9a7501b84faf3e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error if <code>*this</code> has an error, otherwise returns <code>default_error</code>.  <a href="#a774cd0750a8cef7e9a7501b84faf3e60">More...</a><br /></td></tr>
@@ -266,7 +275,7 @@ class cpp::bitwizeshift::result&lt; void, E &gt;</h3>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l02244">2244</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l02297">2297</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abf64baa608429a76318abc128332c914"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf64baa608429a76318abc128332c914">&#9670;&nbsp;</a></span>result() <span class="overload">[1/8]</span></h2>
@@ -776,6 +785,70 @@ template&lt;typename U &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the contained value or <code>default_error</code> </dd></dl>
+
+</div>
+</div>
+<a id="ae9e88822a07e968bb48541761f9d5e72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9e88822a07e968bb48541761f9d5e72">&#9670;&nbsp;</a></span>expect() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename E &gt; </div>
+<div class="memtemplate">
+template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_copy_constructible&lt;E&gt;::value              )&gt;::type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; void, E &gt;::expect </td>
+          <td>(</td>
+          <td class="paramtype">String &amp;&amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td> const &amp; -&gt;  void</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Asserts an expectation that this result contains an error, throwing a <a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a> on failure. </p>
+<p>If this function is invoked from an rvalue of <code>result</code>, then this will consume the underlying error first, if there is one.</p>
+<dl class="section note"><dt>Note</dt><dd>This function exists as a means to allow for results to be marked <code>used</code> without requiring directly inspecting the underlying value. This is, in effect, equivalent to <code>assert(res.has_value())</code>, however it uses exceptions to ensure the stack can be unwound, and exceptions invoked.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>the message to provide to this expectation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac1c7c09cff4621cffbd1df6e0a042066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c7c09cff4621cffbd1df6e0a042066">&#9670;&nbsp;</a></span>expect() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename E &gt; </div>
+<div class="memtemplate">
+template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_move_constructible&lt;E&gt;::value              )&gt;::type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; void, E &gt;::expect </td>
+          <td>(</td>
+          <td class="paramtype">String &amp;&amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td> &amp;&amp; -&gt;  void</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Asserts an expectation that this result contains an error, throwing a <a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a> on failure. </p>
+<p>If this function is invoked from an rvalue of <code>result</code>, then this will consume the underlying error first, if there is one.</p>
+<dl class="section note"><dt>Note</dt><dd>This function exists as a means to allow for results to be marked <code>used</code> without requiring directly inspecting the underlying value. This is, in effect, equivalent to <code>assert(res.has_value())</code>, however it uses exceptions to ensure the stack can be unwound, and exceptions invoked.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>the message to provide to this expectation </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
