@@ -4598,6 +4598,8 @@ auto RESULT_NS_IMPL::result<T, E>::operator*()
   return static_cast<reference>(m_storage.storage.m_value);
 }
 
+//-----------------------------------------------------------------------------
+
 template <typename T, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
 RESULT_NS_IMPL::result<T,E>::operator bool()
@@ -4725,6 +4727,8 @@ auto RESULT_NS_IMPL::result<T,E>::error() &&
     : static_cast<E&&>(m_storage.storage.m_error);
 }
 
+//-----------------------------------------------------------------------------
+
 template <typename T, typename E>
 template <typename String, typename>
 inline RESULT_CPP14_CONSTEXPR
@@ -4812,6 +4816,8 @@ auto RESULT_NS_IMPL::result<T, E>::and_then(U&& value)
   });
 }
 
+//-----------------------------------------------------------------------------
+
 template <typename T, typename E>
 template <typename Fn>
 inline RESULT_INLINE_VISIBILITY constexpr
@@ -4872,6 +4878,8 @@ auto RESULT_NS_IMPL::result<T, E>::map(Fn&& fn)
     detail::forward<Fn>(fn)
   );
 }
+
+//-----------------------------------------------------------------------------
 
 template <typename T, typename E>
 template <typename Fn>
@@ -5061,8 +5069,8 @@ template <typename E>
 template <typename U, typename...Args, typename>
 inline RESULT_INLINE_VISIBILITY constexpr
 RESULT_NS_IMPL::result<void, E>::result(in_place_error_t,
-                                    std::initializer_list<U> ilist,
-                                    Args&&...args)
+                                        std::initializer_list<U> ilist,
+                                        Args&&...args)
   noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value)
   : m_storage(in_place_error, ilist, detail::forward<Args>(args)...)
 {
@@ -5212,6 +5220,7 @@ auto RESULT_NS_IMPL::result<void, E>::error()
   return has_value() ? E{} : static_cast<E&&>(m_storage.storage.m_error);
 }
 
+//-----------------------------------------------------------------------------
 
 template <typename E>
 template <typename String, typename>
@@ -5240,6 +5249,7 @@ auto RESULT_NS_IMPL::result<void,E>::expect(String&& message)
     );
   }
 }
+
 //-----------------------------------------------------------------------------
 // Monadic Functionalities
 //-----------------------------------------------------------------------------
@@ -5276,6 +5286,8 @@ auto RESULT_NS_IMPL::result<void, E>::and_then(U&& value)
     return detail::forward<U>(value);
   });
 }
+
+//-----------------------------------------------------------------------------
 
 template <typename E>
 template <typename Fn>
@@ -5337,6 +5349,8 @@ auto RESULT_NS_IMPL::result<void, E>::map(Fn&& fn)
     detail::forward<Fn>(fn)
   );
 }
+
+//-----------------------------------------------------------------------------
 
 template <typename E>
 template <typename Fn>
@@ -5483,7 +5497,7 @@ auto RESULT_NS_IMPL::result<void, E>::map_impl(std::false_type, Fn&& fn)
 template <typename T1, typename E1, typename T2, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator==(const result<T1,E1>& lhs,
-                                  const result<T2,E2>& rhs)
+                                const result<T2,E2>& rhs)
   noexcept -> bool
 {
   return (lhs.has_value() == rhs.has_value())
@@ -5498,7 +5512,7 @@ auto RESULT_NS_IMPL::operator==(const result<T1,E1>& lhs,
 template <typename T1, typename E1, typename T2, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator!=(const result<T1,E1>& lhs,
-                                  const result<T2,E2>& rhs)
+                                const result<T2,E2>& rhs)
   noexcept -> bool
 {
   return (lhs.has_value() == rhs.has_value())
@@ -5513,7 +5527,7 @@ auto RESULT_NS_IMPL::operator!=(const result<T1,E1>& lhs,
 template <typename T1, typename E1, typename T2, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator>=(const result<T1,E1>& lhs,
-                                  const result<T2,E2>& rhs)
+                                const result<T2,E2>& rhs)
   noexcept -> bool
 {
   return (lhs.has_value() == rhs.has_value())
@@ -5528,7 +5542,7 @@ auto RESULT_NS_IMPL::operator>=(const result<T1,E1>& lhs,
 template <typename T1, typename E1, typename T2, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator<=(const result<T1,E1>& lhs,
-                                  const result<T2,E2>& rhs)
+                                const result<T2,E2>& rhs)
   noexcept -> bool
 {
   return (lhs.has_value() == rhs.has_value())
@@ -5576,7 +5590,7 @@ auto RESULT_NS_IMPL::operator<(const result<T1,E1>& lhs,
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator==(const result<void,E1>& lhs,
-                                  const result<void,E2>& rhs)
+                                const result<void,E2>& rhs)
   noexcept -> bool
 {
   return lhs.has_value() == rhs.has_value()
@@ -5591,7 +5605,7 @@ auto RESULT_NS_IMPL::operator==(const result<void,E1>& lhs,
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator!=(const result<void,E1>& lhs,
-                                  const result<void,E2>& rhs)
+                                const result<void,E2>& rhs)
   noexcept -> bool
 {
   return lhs.has_value() == rhs.has_value()
@@ -5606,7 +5620,7 @@ auto RESULT_NS_IMPL::operator!=(const result<void,E1>& lhs,
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator>=(const result<void,E1>& lhs,
-                                  const result<void,E2>& rhs)
+                                const result<void,E2>& rhs)
   noexcept -> bool
 {
   return lhs.has_value() == rhs.has_value()
@@ -5621,7 +5635,7 @@ auto RESULT_NS_IMPL::operator>=(const result<void,E1>& lhs,
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator<=(const result<void,E1>& lhs,
-                                  const result<void,E2>& rhs)
+                                const result<void,E2>& rhs)
   noexcept -> bool
 {
   return lhs.has_value() == rhs.has_value()
@@ -5636,7 +5650,7 @@ auto RESULT_NS_IMPL::operator<=(const result<void,E1>& lhs,
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator>(const result<void,E1>& lhs,
-                                 const result<void,E2>& rhs)
+                               const result<void,E2>& rhs)
   noexcept -> bool
 {
   return lhs.has_value() == rhs.has_value()
@@ -5651,7 +5665,7 @@ auto RESULT_NS_IMPL::operator>(const result<void,E1>& lhs,
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
 auto RESULT_NS_IMPL::operator<(const result<void,E1>& lhs,
-                                 const result<void,E2>& rhs)
+                               const result<void,E2>& rhs)
   noexcept -> bool
 {
   return lhs.has_value() == rhs.has_value()
@@ -5766,8 +5780,7 @@ auto RESULT_NS_IMPL::operator>(const T& value, const result<U,E>& exp)
 
 template <typename T, typename E, typename U>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator==(const result<T,E>& exp,
-                                  const failure<U>& error)
+auto RESULT_NS_IMPL::operator==(const result<T,E>& exp, const failure<U>& error)
   noexcept -> bool
 {
   return exp.has_error() ? detail::extract_error(exp) == error.error() : false;
@@ -5775,8 +5788,7 @@ auto RESULT_NS_IMPL::operator==(const result<T,E>& exp,
 
 template <typename T, typename U, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator==(const failure<T>& error,
-                                  const result<E,U>& exp)
+auto RESULT_NS_IMPL::operator==(const failure<T>& error, const result<E,U>& exp)
   noexcept -> bool
 {
   return exp.has_error() ? error.error() == detail::extract_error(exp) : false;
@@ -5784,8 +5796,7 @@ auto RESULT_NS_IMPL::operator==(const failure<T>& error,
 
 template <typename T, typename E, typename U>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator!=(const result<T,E>& exp,
-                                  const failure<U>& error)
+auto RESULT_NS_IMPL::operator!=(const result<T,E>& exp, const failure<U>& error)
   noexcept -> bool
 {
   return exp.has_error() ? detail::extract_error(exp) != error.error() : true;
@@ -5793,8 +5804,7 @@ auto RESULT_NS_IMPL::operator!=(const result<T,E>& exp,
 
 template <typename T, typename U, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator!=(const failure<T>& error,
-                                  const result<E,U>& exp)
+auto RESULT_NS_IMPL::operator!=(const failure<T>& error, const result<E,U>& exp)
   noexcept -> bool
 {
   return exp.has_error() ? error.error() != detail::extract_error(exp) : true;
@@ -5802,8 +5812,7 @@ auto RESULT_NS_IMPL::operator!=(const failure<T>& error,
 
 template <typename T, typename E, typename U>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator<=(const result<T,E>& exp,
-                                  const failure<U>& error)
+auto RESULT_NS_IMPL::operator<=(const result<T,E>& exp, const failure<U>& error)
   noexcept -> bool
 {
   return exp.has_error() ? detail::extract_error(exp) <= error.error() : true;
@@ -5811,8 +5820,7 @@ auto RESULT_NS_IMPL::operator<=(const result<T,E>& exp,
 
 template <typename T, typename U, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator<=(const failure<T>& error,
-                                  const result<E,U>& exp)
+auto RESULT_NS_IMPL::operator<=(const failure<T>& error, const result<E,U>& exp)
   noexcept -> bool
 {
   return exp.has_error() ? error.error() <= detail::extract_error(exp) : false;
@@ -5820,8 +5828,7 @@ auto RESULT_NS_IMPL::operator<=(const failure<T>& error,
 
 template <typename T, typename E, typename U>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator>=(const result<T,E>& exp,
-                                  const failure<U>& error)
+auto RESULT_NS_IMPL::operator>=(const result<T,E>& exp, const failure<U>& error)
   noexcept -> bool
 {
   return exp.has_error() ? detail::extract_error(exp) >= error.error() : false;
@@ -5829,8 +5836,7 @@ auto RESULT_NS_IMPL::operator>=(const result<T,E>& exp,
 
 template <typename T, typename U, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator>=(const failure<T>& error,
-                                  const result<E,U>& exp)
+auto RESULT_NS_IMPL::operator>=(const failure<T>& error, const result<E,U>& exp)
   noexcept -> bool
 {
   return exp.has_error() ? error.error() >= detail::extract_error(exp) : true;
@@ -5838,8 +5844,7 @@ auto RESULT_NS_IMPL::operator>=(const failure<T>& error,
 
 template <typename T, typename E, typename U>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator<(const result<T,E>& exp,
-                                 const failure<U>& error)
+auto RESULT_NS_IMPL::operator<(const result<T,E>& exp, const failure<U>& error)
   noexcept -> bool
 {
   return exp.has_error() ? detail::extract_error(exp) < error.error() : true;
@@ -5847,8 +5852,7 @@ auto RESULT_NS_IMPL::operator<(const result<T,E>& exp,
 
 template <typename T, typename U, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator<(const failure<T>& error,
-                                 const result<E,U>& exp)
+auto RESULT_NS_IMPL::operator<(const failure<T>& error, const result<E,U>& exp)
   noexcept -> bool
 {
   return exp.has_error() ? error.error() < detail::extract_error(exp) : false;
@@ -5856,8 +5860,7 @@ auto RESULT_NS_IMPL::operator<(const failure<T>& error,
 
 template <typename T, typename E, typename U>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator>(const result<T,E>& exp,
-                                 const failure<U>& error)
+auto RESULT_NS_IMPL::operator>(const result<T,E>& exp, const failure<U>& error)
   noexcept -> bool
 {
   return exp.has_error() ? detail::extract_error(exp) > error.error() : false;
@@ -5865,8 +5868,7 @@ auto RESULT_NS_IMPL::operator>(const result<T,E>& exp,
 
 template <typename T, typename U, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator>(const failure<T>& error,
-                                 const result<E,U>& exp)
+auto RESULT_NS_IMPL::operator>(const failure<T>& error, const result<E,U>& exp)
   noexcept -> bool
 {
   return exp.has_error() ? error.error() > detail::extract_error(exp) : true;
