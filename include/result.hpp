@@ -1604,7 +1604,6 @@ inline namespace bitwizeshift {
     /// ```
     template <typename U=T,
               typename = typename std::enable_if<std::is_constructible<U>::value>::type>
-    RESULT_NODISCARD
     constexpr result()
       noexcept(std::is_nothrow_constructible<U>::value);
 
@@ -1637,7 +1636,6 @@ inline namespace bitwizeshift {
     /// ```
     ///
     /// \param other the result to copy
-    RESULT_NODISCARD
     constexpr result(const result& other) = default;
 
     /// \brief Move constructs a result
@@ -1671,7 +1669,6 @@ inline namespace bitwizeshift {
     /// ```
     ///
     /// \param other the result to move
-    RESULT_NODISCARD
     constexpr result(result&& other) = default;
 
     /// \{
@@ -1712,13 +1709,11 @@ inline namespace bitwizeshift {
     /// \param other the other type to convert
     template <typename T2, typename E2,
               typename std::enable_if<detail::result_is_implicit_copy_convertible<T,E,T2,E2>::value,int>::type = 0>
-    RESULT_NODISCARD
     result(const result<T2,E2>& other)
       noexcept(std::is_nothrow_constructible<T,const T2&>::value &&
                std::is_nothrow_constructible<E,const E2&>::value);
     template <typename T2, typename E2,
               typename std::enable_if<detail::result_is_explicit_copy_convertible<T,E,T2,E2>::value,int>::type = 0>
-    RESULT_NODISCARD
     explicit result(const result<T2,E2>& other)
       noexcept(std::is_nothrow_constructible<T,const T2&>::value &&
                std::is_nothrow_constructible<E,const E2&>::value);
@@ -1764,13 +1759,11 @@ inline namespace bitwizeshift {
     /// \param other the other type to convert
     template <typename T2, typename E2,
               typename std::enable_if<detail::result_is_implicit_move_convertible<T,E,T2,E2>::value,int>::type = 0>
-    RESULT_NODISCARD
     result(result<T2,E2>&& other)
       noexcept(std::is_nothrow_constructible<T,T2&&>::value &&
                std::is_nothrow_constructible<E,E2&&>::value);
     template <typename T2, typename E2,
               typename std::enable_if<detail::result_is_explicit_move_convertible<T,E,T2,E2>::value,int>::type = 0>
-    RESULT_NODISCARD
     explicit result(result<T2,E2>&& other)
       noexcept(std::is_nothrow_constructible<T,T2&&>::value &&
                std::is_nothrow_constructible<E,E2&&>::value);
@@ -1797,7 +1790,6 @@ inline namespace bitwizeshift {
     /// \param args the arguments to pass to T's constructor
     template <typename...Args,
               typename = typename std::enable_if<std::is_constructible<T,Args...>::value>::type>
-    RESULT_NODISCARD
     constexpr explicit result(in_place_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<T, Args...>::value);
 
@@ -1822,7 +1814,6 @@ inline namespace bitwizeshift {
     /// \param args  the arguments to pass to T's constructor
     template <typename U, typename...Args,
               typename = typename std::enable_if<std::is_constructible<T, std::initializer_list<U>&, Args...>::value>::type>
-    RESULT_NODISCARD
     constexpr explicit result(in_place_t,
                               std::initializer_list<U> ilist,
                               Args&&...args)
@@ -1849,7 +1840,6 @@ inline namespace bitwizeshift {
     /// \param args the arguments to pass to E's constructor
     template <typename...Args,
               typename = typename std::enable_if<std::is_constructible<E,Args...>::value>::type>
-    RESULT_NODISCARD
     constexpr explicit result(in_place_error_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
@@ -1874,7 +1864,6 @@ inline namespace bitwizeshift {
     /// \param args  the arguments to pass to Es constructor
     template <typename U, typename...Args,
               typename = typename std::enable_if<std::is_constructible<E, std::initializer_list<U>&, Args...>::value>::type>
-    RESULT_NODISCARD
     constexpr explicit result(in_place_error_t,
                               std::initializer_list<U> ilist,
                               Args&&...args)
@@ -1903,12 +1892,10 @@ inline namespace bitwizeshift {
     /// \param e the failure error
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,const E2&>::value>::type>
-    RESULT_NODISCARD
     constexpr /* implicit */ result(const failure<E2>& e)
       noexcept(std::is_nothrow_constructible<E,const E2&>::value);
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2&&>::value>::type>
-    RESULT_NODISCARD
     constexpr /* implicit */ result(failure<E2>&& e)
       noexcept(std::is_nothrow_constructible<E,E2&&>::value);
     /// \}
@@ -1946,12 +1933,10 @@ inline namespace bitwizeshift {
     /// \param value the value to copy
     template <typename U,
               typename std::enable_if<detail::result_is_explicit_value_convertible<T,U>::value,int>::type = 0>
-    RESULT_NODISCARD
     constexpr explicit result(U&& value)
       noexcept(std::is_nothrow_constructible<T,U>::value);
     template <typename U,
               typename std::enable_if<detail::result_is_implicit_value_convertible<T,U>::value,int>::type = 0>
-    RESULT_NODISCARD
     constexpr /* implicit */ result(U&& value)
       noexcept(std::is_nothrow_constructible<T,U>::value);
     /// \}
@@ -2712,7 +2697,6 @@ inline namespace bitwizeshift {
     /// ```cpp
     /// auto r = cpp::result<void,int>{};
     /// ```
-    RESULT_NODISCARD
     constexpr result() noexcept;
 
     /// \brief Copy constructs this result
@@ -2736,7 +2720,6 @@ inline namespace bitwizeshift {
     /// ```
     ///
     /// \param other the result to copy
-    RESULT_NODISCARD
     constexpr result(const result& other) = default;
 
     /// \brief Move constructs a result
@@ -2760,7 +2743,6 @@ inline namespace bitwizeshift {
     /// ```
     ///
     /// \param other the result to move
-    RESULT_NODISCARD
     constexpr result(result&& other) = default;
 
     /// \brief Converting copy constructor
@@ -2793,7 +2775,6 @@ inline namespace bitwizeshift {
     /// \param other the other type to convert
     template <typename U, typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
-    RESULT_NODISCARD
     explicit result(const result<U,E2>& other)
       noexcept(std::is_nothrow_constructible<E,const E2&>::value);
 
@@ -2829,7 +2810,6 @@ inline namespace bitwizeshift {
     /// \param other the other type to convert
     template <typename U, typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
-    RESULT_NODISCARD
     explicit result(result<U,E2>&& other)
       noexcept(std::is_nothrow_constructible<E,E2&&>::value);
 
@@ -2848,7 +2828,6 @@ inline namespace bitwizeshift {
     /// ```cpp
     /// auto r = cpp::result<void,std::string>{cpp::in_place};
     /// ```
-    RESULT_NODISCARD
     constexpr explicit result(in_place_t) noexcept;
 
     /// \brief Constructs a result object that contains an error
@@ -2870,7 +2849,6 @@ inline namespace bitwizeshift {
     /// \param args the arguments to pass to `E`'s constructor
     template <typename...Args,
               typename = typename std::enable_if<std::is_constructible<E,Args...>::value>::type>
-    RESULT_NODISCARD
     constexpr explicit result(in_place_error_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
@@ -2895,7 +2873,6 @@ inline namespace bitwizeshift {
     /// \param args  the arguments to pass to Es constructor
     template <typename U, typename...Args,
               typename = typename std::enable_if<std::is_constructible<E, std::initializer_list<U>&, Args...>::value>::type>
-    RESULT_NODISCARD
     constexpr explicit result(in_place_error_t,
                               std::initializer_list<U> ilist,
                               Args&&...args)
@@ -2924,12 +2901,10 @@ inline namespace bitwizeshift {
     /// \param e the failure error
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,const E2&>::value>::type>
-    RESULT_NODISCARD
     constexpr /* implicit */ result(const failure<E2>& e)
       noexcept(std::is_nothrow_constructible<E,const E2&>::value);
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2&&>::value>::type>
-    RESULT_NODISCARD
     constexpr /* implicit */ result(failure<E2>&& e)
       noexcept(std::is_nothrow_constructible<E,E2&&>::value);
     /// \}
