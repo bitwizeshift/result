@@ -118,29 +118,29 @@ template&lt;typename U &gt; </td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="memTemplParams" colspan="2">template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_constructible&lt;U&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#adbbeb16fe7e34ca0c98f1844e70af1cc">result</a> () noexcept(std::is_nothrow_constructible&lt; U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
-<tr class="memdesc:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default-constructs an result with the underlying value type active.  <a href="#adbbeb16fe7e34ca0c98f1844e70af1cc">More...</a><br /></td></tr>
+<tr class="memdesc:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default-constructs a result with the underlying value type active.  <a href="#adbbeb16fe7e34ca0c98f1844e70af1cc">More...</a><br /></td></tr>
 <tr class="separator:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c07363da1c90a6e06ecd9434ed56e06"><td class="memItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a5c07363da1c90a6e06ecd9434ed56e06">result</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;other)=default</td></tr>
 <tr class="memdesc:a5c07363da1c90a6e06ecd9434ed56e06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructs this result.  <a href="#a5c07363da1c90a6e06ecd9434ed56e06">More...</a><br /></td></tr>
 <tr class="separator:a5c07363da1c90a6e06ecd9434ed56e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8043684b87c6c36ddb3f56d9bac6ffaf"><td class="memItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a8043684b87c6c36ddb3f56d9bac6ffaf">result</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;&amp;other)=default</td></tr>
-<tr class="memdesc:a8043684b87c6c36ddb3f56d9bac6ffaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructs an result.  <a href="#a8043684b87c6c36ddb3f56d9bac6ffaf">More...</a><br /></td></tr>
+<tr class="memdesc:a8043684b87c6c36ddb3f56d9bac6ffaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructs a result.  <a href="#a8043684b87c6c36ddb3f56d9bac6ffaf">More...</a><br /></td></tr>
 <tr class="separator:a8043684b87c6c36ddb3f56d9bac6ffaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c464049873f2560b61adfa294587ec2"><td class="memTemplParams" colspan="2">template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T,Args...&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:a1c464049873f2560b61adfa294587ec2"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a1c464049873f2560b61adfa294587ec2">result</a> (<a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; T, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
-<tr class="memdesc:a1c464049873f2560b61adfa294587ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a1c464049873f2560b61adfa294587ec2">More...</a><br /></td></tr>
+<tr class="memdesc:a1c464049873f2560b61adfa294587ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a result object that contains a value.  <a href="#a1c464049873f2560b61adfa294587ec2">More...</a><br /></td></tr>
 <tr class="separator:a1c464049873f2560b61adfa294587ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac469c184db34a2929811b40782ab1b48"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:ac469c184db34a2929811b40782ab1b48"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac469c184db34a2929811b40782ab1b48">result</a> (<a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
-<tr class="memdesc:ac469c184db34a2929811b40782ab1b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#ac469c184db34a2929811b40782ab1b48">More...</a><br /></td></tr>
+<tr class="memdesc:ac469c184db34a2929811b40782ab1b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a result object that contains a value.  <a href="#ac469c184db34a2929811b40782ab1b48">More...</a><br /></td></tr>
 <tr class="separator:ac469c184db34a2929811b40782ab1b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="memTemplParams" colspan="2">template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,Args...&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab26e00e1c31db8a30b8fac3d1af98a52">result</a> (<a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html">in_place_error_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
-<tr class="memdesc:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains an error.  <a href="#ab26e00e1c31db8a30b8fac3d1af98a52">More...</a><br /></td></tr>
+<tr class="memdesc:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a result object that contains an error.  <a href="#ab26e00e1c31db8a30b8fac3d1af98a52">More...</a><br /></td></tr>
 <tr class="separator:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ea5f553721198cbe40fcfa885313d0b"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:a7ea5f553721198cbe40fcfa885313d0b"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a7ea5f553721198cbe40fcfa885313d0b">result</a> (<a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html">in_place_error_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
-<tr class="memdesc:a7ea5f553721198cbe40fcfa885313d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains an error.  <a href="#a7ea5f553721198cbe40fcfa885313d0b">More...</a><br /></td></tr>
+<tr class="memdesc:a7ea5f553721198cbe40fcfa885313d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a result object that contains an error.  <a href="#a7ea5f553721198cbe40fcfa885313d0b">More...</a><br /></td></tr>
 <tr class="separator:a7ea5f553721198cbe40fcfa885313d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5307dea65a0fd87bdcd48c70a6827b10"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a5307dea65a0fd87bdcd48c70a6827b10">operator=</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;other) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;=default</td></tr>
 <tr class="memdesc:a5307dea65a0fd87bdcd48c70a6827b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assigns the result stored in <code>other</code>.  <a href="#a5307dea65a0fd87bdcd48c70a6827b10">More...</a><br /></td></tr>
@@ -161,17 +161,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aedce2ad25c705ae82c5bc1ebe1edc0d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfect-forwarded assignment.  <a href="#aedce2ad25c705ae82c5bc1ebe1edc0d9">More...</a><br /></td></tr>
 <tr class="separator:aedce2ad25c705ae82c5bc1ebe1edc0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc91910d9e3ad9dcfccd26e8500a02db"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#afc91910d9e3ad9dcfccd26e8500a02db">operator bool</a> () const noexcept</td></tr>
-<tr class="memdesc:afc91910d9e3ad9dcfccd26e8500a02db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains a value.  <a href="#afc91910d9e3ad9dcfccd26e8500a02db">More...</a><br /></td></tr>
+<tr class="memdesc:afc91910d9e3ad9dcfccd26e8500a02db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contextually convertible to <code>true</code> if <code>*this</code> contains a value.  <a href="#afc91910d9e3ad9dcfccd26e8500a02db">More...</a><br /></td></tr>
 <tr class="separator:afc91910d9e3ad9dcfccd26e8500a02db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e6e79bb2df85cf71375a366cd03c17a"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4e6e79bb2df85cf71375a366cd03c17a">has_value</a> () const noexcept -&gt; bool</td></tr>
-<tr class="memdesc:a4e6e79bb2df85cf71375a366cd03c17a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains a value.  <a href="#a4e6e79bb2df85cf71375a366cd03c17a">More...</a><br /></td></tr>
+<tr class="memdesc:a4e6e79bb2df85cf71375a366cd03c17a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>true</code> if <code>*this</code> contains a value.  <a href="#a4e6e79bb2df85cf71375a366cd03c17a">More...</a><br /></td></tr>
 <tr class="separator:a4e6e79bb2df85cf71375a366cd03c17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13104666eb498cf58c91fcd22ac6ad89"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a13104666eb498cf58c91fcd22ac6ad89">has_error</a> () const noexcept -&gt; bool</td></tr>
-<tr class="memdesc:a13104666eb498cf58c91fcd22ac6ad89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains an error.  <a href="#a13104666eb498cf58c91fcd22ac6ad89">More...</a><br /></td></tr>
+<tr class="memdesc:a13104666eb498cf58c91fcd22ac6ad89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>true</code> if <code>*this</code> contains an error.  <a href="#a13104666eb498cf58c91fcd22ac6ad89">More...</a><br /></td></tr>
 <tr class="separator:a13104666eb498cf58c91fcd22ac6ad89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa741ce67edc24d27a5f58cc16e1e214d"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
 <tr class="memitem:aa741ce67edc24d27a5f58cc16e1e214d"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aa741ce67edc24d27a5f58cc16e1e214d">and_then</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) const -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; typename std::decay&lt; U &gt;::type, E &gt;</td></tr>
-<tr class="memdesc:aa741ce67edc24d27a5f58cc16e1e214d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an result containing <code>value</code> if this result contains a value, otherwise returns an result containing the current error.  <a href="#aa741ce67edc24d27a5f58cc16e1e214d">More...</a><br /></td></tr>
+<tr class="memdesc:aa741ce67edc24d27a5f58cc16e1e214d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a result containing <code>value</code> if this result contains a value, otherwise returns a result containing the current error.  <a href="#aa741ce67edc24d27a5f58cc16e1e214d">More...</a><br /></td></tr>
 <tr class="separator:aa741ce67edc24d27a5f58cc16e1e214d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:af75e0f8e4306c904d3bdede5a376264a"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_implicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
@@ -203,11 +203,11 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a845b456bd8b0539d2f0bebcb7004665e"><td class="memTemplParams" colspan="2">template&lt;typename U , typename std::enable_if&lt; detail::result_is_explicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </td></tr>
 <tr class="memitem:a845b456bd8b0539d2f0bebcb7004665e"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a845b456bd8b0539d2f0bebcb7004665e">result</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
-<tr class="memdesc:a845b456bd8b0539d2f0bebcb7004665e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a845b456bd8b0539d2f0bebcb7004665e">More...</a><br /></td></tr>
+<tr class="memdesc:a845b456bd8b0539d2f0bebcb7004665e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a result object that contains a value.  <a href="#a845b456bd8b0539d2f0bebcb7004665e">More...</a><br /></td></tr>
 <tr class="separator:a845b456bd8b0539d2f0bebcb7004665e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a845b456bd8b0539d2f0bebcb7004665e"><td class="memTemplParams" colspan="2">template&lt;typename U , typename std::enable_if&lt; detail::result_is_implicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </td></tr>
 <tr class="memitem:a845b456bd8b0539d2f0bebcb7004665e"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a845b456bd8b0539d2f0bebcb7004665e">result</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
-<tr class="memdesc:a845b456bd8b0539d2f0bebcb7004665e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a845b456bd8b0539d2f0bebcb7004665e">More...</a><br /></td></tr>
+<tr class="memdesc:a845b456bd8b0539d2f0bebcb7004665e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a result object that contains a value.  <a href="#a845b456bd8b0539d2f0bebcb7004665e">More...</a><br /></td></tr>
 <tr class="separator:a845b456bd8b0539d2f0bebcb7004665e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:aae159b2584abc4f61f055c60888dbee0"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_is_failure_assignable&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
@@ -220,36 +220,36 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae3b72a65bedcf9ddabfab257d4873764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a94ee155e428aae07e77869e5f8fe64fd"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a94ee155e428aae07e77869e5f8fe64fd">operator-&gt;</a> () noexcept -&gt; typename std::remove_reference&lt; T &gt;::type *</td></tr>
-<tr class="memdesc:a94ee155e428aae07e77869e5f8fe64fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a94ee155e428aae07e77869e5f8fe64fd">More...</a><br /></td></tr>
+<tr class="memdesc:a94ee155e428aae07e77869e5f8fe64fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a pointer to the contained value.  <a href="#a94ee155e428aae07e77869e5f8fe64fd">More...</a><br /></td></tr>
 <tr class="separator:a94ee155e428aae07e77869e5f8fe64fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeff84a441f2b92f5f555421f56eec30c"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aeff84a441f2b92f5f555421f56eec30c">operator-&gt;</a> () const noexcept -&gt; typename std::remove_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type *</td></tr>
-<tr class="memdesc:aeff84a441f2b92f5f555421f56eec30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#aeff84a441f2b92f5f555421f56eec30c">More...</a><br /></td></tr>
+<tr class="memdesc:aeff84a441f2b92f5f555421f56eec30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a pointer to the contained value.  <a href="#aeff84a441f2b92f5f555421f56eec30c">More...</a><br /></td></tr>
 <tr class="separator:aeff84a441f2b92f5f555421f56eec30c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a4c42b8a7ea621f5559a296cc131ce645"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4c42b8a7ea621f5559a296cc131ce645">operator*</a> () &amp;noexcept -&gt; typename std::add_lvalue_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a4c42b8a7ea621f5559a296cc131ce645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a4c42b8a7ea621f5559a296cc131ce645">More...</a><br /></td></tr>
+<tr class="memdesc:a4c42b8a7ea621f5559a296cc131ce645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a reference to the contained value.  <a href="#a4c42b8a7ea621f5559a296cc131ce645">More...</a><br /></td></tr>
 <tr class="separator:a4c42b8a7ea621f5559a296cc131ce645"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69f0b45ab457c1a90345cb908c5d6c56"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a69f0b45ab457c1a90345cb908c5d6c56">operator*</a> () &amp;&amp;noexcept -&gt; typename std::add_rvalue_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a69f0b45ab457c1a90345cb908c5d6c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a69f0b45ab457c1a90345cb908c5d6c56">More...</a><br /></td></tr>
+<tr class="memdesc:a69f0b45ab457c1a90345cb908c5d6c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a reference to the contained value.  <a href="#a69f0b45ab457c1a90345cb908c5d6c56">More...</a><br /></td></tr>
 <tr class="separator:a69f0b45ab457c1a90345cb908c5d6c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d9c1a1a43982dfaae4abda97c7f53a2"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a3d9c1a1a43982dfaae4abda97c7f53a2">operator*</a> () const &amp;noexcept -&gt; typename std::add_lvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
-<tr class="memdesc:a3d9c1a1a43982dfaae4abda97c7f53a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a3d9c1a1a43982dfaae4abda97c7f53a2">More...</a><br /></td></tr>
+<tr class="memdesc:a3d9c1a1a43982dfaae4abda97c7f53a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a reference to the contained value.  <a href="#a3d9c1a1a43982dfaae4abda97c7f53a2">More...</a><br /></td></tr>
 <tr class="separator:a3d9c1a1a43982dfaae4abda97c7f53a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4fb55a264f599d613776620cc2d793f"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab4fb55a264f599d613776620cc2d793f">operator*</a> () const &amp;&amp;noexcept -&gt; typename std::add_rvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
-<tr class="memdesc:ab4fb55a264f599d613776620cc2d793f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#ab4fb55a264f599d613776620cc2d793f">More...</a><br /></td></tr>
+<tr class="memdesc:ab4fb55a264f599d613776620cc2d793f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a reference to the contained value.  <a href="#ab4fb55a264f599d613776620cc2d793f">More...</a><br /></td></tr>
 <tr class="separator:ab4fb55a264f599d613776620cc2d793f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:ab3ba0d040afc7020329fcc840dcb855e"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> () &amp;-&gt; typename std::add_lvalue_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:ab3ba0d040afc7020329fcc840dcb855e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#ab3ba0d040afc7020329fcc840dcb855e">More...</a><br /></td></tr>
+<tr class="memdesc:ab3ba0d040afc7020329fcc840dcb855e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the contained value.  <a href="#ab3ba0d040afc7020329fcc840dcb855e">More...</a><br /></td></tr>
 <tr class="separator:ab3ba0d040afc7020329fcc840dcb855e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab18037be1f183edc5fda0a819f2a1ecd"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab18037be1f183edc5fda0a819f2a1ecd">value</a> () &amp;&amp;-&gt; typename std::add_rvalue_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:ab18037be1f183edc5fda0a819f2a1ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#ab18037be1f183edc5fda0a819f2a1ecd">More...</a><br /></td></tr>
+<tr class="memdesc:ab18037be1f183edc5fda0a819f2a1ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the contained value.  <a href="#ab18037be1f183edc5fda0a819f2a1ecd">More...</a><br /></td></tr>
 <tr class="separator:ab18037be1f183edc5fda0a819f2a1ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c301c005ed696c904f017e6c69fbae2"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4c301c005ed696c904f017e6c69fbae2">value</a> () const &amp;-&gt; typename std::add_lvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
-<tr class="memdesc:a4c301c005ed696c904f017e6c69fbae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a4c301c005ed696c904f017e6c69fbae2">More...</a><br /></td></tr>
+<tr class="memdesc:a4c301c005ed696c904f017e6c69fbae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the contained value.  <a href="#a4c301c005ed696c904f017e6c69fbae2">More...</a><br /></td></tr>
 <tr class="separator:a4c301c005ed696c904f017e6c69fbae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96ce9e22e0ff3041a45c1ad213d27e7b"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a96ce9e22e0ff3041a45c1ad213d27e7b">value</a> () const &amp;&amp;-&gt; typename std::add_rvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
-<tr class="memdesc:a96ce9e22e0ff3041a45c1ad213d27e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a96ce9e22e0ff3041a45c1ad213d27e7b">More...</a><br /></td></tr>
+<tr class="memdesc:a96ce9e22e0ff3041a45c1ad213d27e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the contained value.  <a href="#a96ce9e22e0ff3041a45c1ad213d27e7b">More...</a><br /></td></tr>
 <tr class="separator:a96ce9e22e0ff3041a45c1ad213d27e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:ac1a6da3db72049f2ef3e916e69a93735"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac1a6da3db72049f2ef3e916e69a93735">error</a> () const &amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_copy_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; E</td></tr>
@@ -335,7 +335,7 @@ class cpp::bitwizeshift::result&lt; T, E &gt;</h3>
 <p>The class template <code>result</code> manages result results from APIs, while encoding possible failure conditions. </p>
 <p>A common use-case for result is the return value of a function that may fail. As opposed to other approaches, such as <code>std::pair&lt;T,bool&gt;</code> or <code>std::optional</code>, <code>result</code> more accurately conveys the intent of the user along with the failure condition to the caller. This effectively produces an orthogonal error handling mechanism that allows for exception safety while also allowing discrete testability of the return type.</p>
 <p><code>result&lt;T,E&gt;</code> types may contain a <code>T</code> value, which signifies that an operation succeeded in producing the result value of type <code>T</code>. If an <code>result</code> does not contain a <code>T</code> value, it will always contain an <code>E</code> error condition instead.</p>
-<p>An <code>result&lt;T,E&gt;</code> can always be queried for a possible error case by calling the <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac1a6da3db72049f2ef3e916e69a93735" title="Returns the contained error, if one exists, or a default-constructed error value. ...">error()</a></code> function, even if it contains a value. In the case that an <code>result&lt;T,E&gt;</code> contains a value object, this will simply return an <code>E</code> object constructed through default aggregate construction, as if through the expression <code>E{}</code>, which is assumed to be a "valid" (no-error) state for an <code>E</code> type. For example:</p>
+<p>An <code>result&lt;T,E&gt;</code> can always be queried for a possible error case by calling the <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac1a6da3db72049f2ef3e916e69a93735" title="Returns the contained error, if one exists, or a default-constructed error value. ...">error()</a></code> function, even if it contains a value. In the case that a <code>result&lt;T,E&gt;</code> contains a value object, this will simply return an <code>E</code> object constructed through default aggregate construction, as if through the expression <code>E{}</code>, which is assumed to be a "valid" (no-error) state for an <code>E</code> type. For example:</p>
 <ul>
 <li><code>std::error_code{}</code> produces a default-construct error-code, which is the "no error" state,</li>
 <li>integral (or enum) error codes produce a <code>0</code> value (no error), thanks to zero-initialization,</li>
@@ -343,9 +343,9 @@ class cpp::bitwizeshift::result&lt; T, E &gt;</h3>
 <li><code>std::string{}</code> produces an empty string <code>""</code>,</li>
 <li>etc.</li>
 </ul>
-<p>When an <code>result&lt;T,E&gt;</code> contains either a value or error, the storage for that object is guaranteed to be allocated as part of the result object's footprint, i.e. no dynamic memory allocation ever takes place. Thus, an result object models an object, not a pointer, even though the <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4c42b8a7ea621f5559a296cc131ce645" title="Accesses the contained value. ">operator*()</a></code> and <code>operator-&gt;()</code> are defined.</p>
+<p>When a <code>result&lt;T,E&gt;</code> contains either a value or error, the storage for that object is guaranteed to be allocated as part of the result object's footprint, i.e. no dynamic memory allocation ever takes place. Thus, a result object models an object, not a pointer, even though the <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4c42b8a7ea621f5559a296cc131ce645" title="Retrieves a reference to the contained value. ">operator*()</a></code> and <code>operator-&gt;()</code> are defined.</p>
 <p>When an object of type <code>result&lt;T,E&gt;</code> is contextually converted to <code>bool</code>, the conversion returns <code>true</code> if the object contains a value and <code>false</code> if it contains an error.</p>
-<p><code>result</code> objects do not have a "valueless" state like <code>variant</code>s do. Once an <code>result</code> has been constructed with a value or error, the active underlying type can only be changed through assignment which may is only enabled if construction is guaranteed to be <em>non-throwing</em>. This ensures that a valueless state cannot occur naturally.</p>
+<p><code>result</code> objects do not have a "valueless" state like <code>variant</code>s do. Once a <code>result</code> has been constructed with a value or error, the active underlying type can only be changed through assignment which may is only enabled if construction is guaranteed to be <em>non-throwing</em>. This ensures that a valueless state cannot occur naturally.</p>
 <p>Example Use: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span> x) -&gt; result&lt;std::string&gt;</div><div class="line">{</div><div class="line">  <span class="keywordflow">try</span> {</div><div class="line">    <span class="keywordflow">return</span> std::stoi(x);</div><div class="line">  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp;) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="../../de/d80/result_8hpp.html#ae229fb3e62d7f65fe6b020e16c8c8a30">fail</a>(std::errc::invalid_argument);</div><div class="line">  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::std::out_of_range&amp;) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="../../de/d80/result_8hpp.html#ae229fb3e62d7f65fe6b020e16c8c8a30">fail</a>(std::errc::result_out_of_range);</div><div class="line">  }</div><div class="line">}</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>If using C++17 or above, <code>fail</code> can be replaced with <code>failure{...}</code> thanks to CTAD.</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -363,7 +363,7 @@ class cpp::bitwizeshift::result&lt; T, E &gt;</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_constructible&lt;U&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -384,9 +384,11 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_cons
 </table>
 </div><div class="memdoc">
 
-<p>Default-constructs an result with the underlying value type active. </p>
-<p>This constructor is only enabled if <code>T</code> is default-constructible </p>
-
+<p>Default-constructs a result with the underlying value type active. </p>
+<p>This constructor is only enabled if <code>T</code> is default-constructible</p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">assert(cpp::result&lt;std::string,int&gt;{} == std::string{});</div></div><!-- fragment --> 
 </div>
 </div>
 <a id="a5c07363da1c90a6e06ecd9434ed56e06"></a>
@@ -395,7 +397,7 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_cons
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -421,7 +423,9 @@ template&lt;typename T, typename E&gt; </div>
 <dl class="section note"><dt>Note</dt><dd>This constructor is defined as deleted if <code>std::is_copy_constructible&lt;T&gt;::value</code> or <code>std::is_copy_constructible&lt;E&gt;::value</code> is <code>false</code></dd>
 <dd>
 This constructor is defined as trivial if both <code>std::is_trivially_copy_constructible&lt;T&gt;::value</code> and <code>std::is_trivially_copy_constructible&lt;E&gt;::value</code> are <code>true</code></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> s = r;</div><div class="line"></div><div class="line">assert(r == s);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the result to copy </td></tr>
   </table>
@@ -436,7 +440,7 @@ This constructor is defined as trivial if both <code>std::is_trivially_copy_cons
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -456,13 +460,15 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Move constructs an result. </p>
+<p>Move constructs a result. </p>
 <p>If other contains a value, initializes the contained value as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>std::move(*other)</code> and does not make other empty: a moved-from result still contains a value, but the value itself is moved from.</p>
 <p>If other contains an error, move-constructs this result from that error.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor is defined as deleted if <code>std::is_move_constructible&lt;T&gt;::value</code> or <code>std::is_move_constructible&lt;E&gt;::value</code> is <code>false</code></dd>
 <dd>
 This constructor is defined as trivial if both <code>std::is_trivially_move_constructible&lt;T&gt;::value</code> and <code>std::is_trivially_move_constructible&lt;E&gt;::value</code> are <code>true</code></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::string,int&gt;{<span class="stringliteral">&quot;hello world&quot;</span>};</div><div class="line"><span class="keyword">auto</span> s = std::move(r);</div><div class="line"></div><div class="line">assert(s == <span class="stringliteral">&quot;hello world&quot;</span>);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the result to move </td></tr>
   </table>
@@ -477,7 +483,7 @@ This constructor is defined as trivial if both <code>std::is_trivially_move_cons
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_implicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -500,8 +506,8 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
 </div><div class="memdoc">
 
 <p>Converting copy constructor. </p>
-<p>If <code>other</code> contains a value, constructs an result object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> with the expression <code>*other</code>.</p>
-<p>If <code>other</code> contains an error, constructs an result object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code>.</p>
+<p>If <code>other</code> contains a value, constructs a result object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> with the expression <code>*other</code>.</p>
+<p>If <code>other</code> contains an error, constructs a result object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code>.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor does not participate in overload resolution unless the following conditions are met:<ul>
 <li><code>std::is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code></li>
 <li>T is not constructible or convertible from any expression of type (possibly const) <code>result&lt;T2,E2&gt;</code></li>
@@ -510,7 +516,9 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
 </dd>
 <dd>
 This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is <code>false</code></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> s = cpp::result&lt;long,long&gt;{r};</div><div class="line"></div><div class="line">assert(r == s);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the other type to convert </td></tr>
   </table>
@@ -525,7 +533,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_explicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -548,8 +556,8 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
 </div><div class="memdoc">
 
 <p>Converting copy constructor. </p>
-<p>If <code>other</code> contains a value, constructs an result object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> with the expression <code>*other</code>.</p>
-<p>If <code>other</code> contains an error, constructs an result object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code>.</p>
+<p>If <code>other</code> contains a value, constructs a result object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> with the expression <code>*other</code>.</p>
+<p>If <code>other</code> contains an error, constructs a result object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code>.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor does not participate in overload resolution unless the following conditions are met:<ul>
 <li><code>std::is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code></li>
 <li>T is not constructible or convertible from any expression of type (possibly const) <code>result&lt;T2,E2&gt;</code></li>
@@ -558,7 +566,9 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
 </dd>
 <dd>
 This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is <code>false</code></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> s = cpp::result&lt;long,long&gt;{r};</div><div class="line"></div><div class="line">assert(r == s);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the other type to convert </td></tr>
   </table>
@@ -573,7 +583,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_implicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -596,8 +606,8 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
 </div><div class="memdoc">
 
 <p>Converting move constructor. </p>
-<p>If <code>other</code> contains a value, constructs an result object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>std::move(*other)</code>.</p>
-<p>If <code>other</code> contains an error, constructs an result object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type E&amp;&amp;.</p>
+<p>If <code>other</code> contains a value, constructs a result object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>std::move(*other)</code>.</p>
+<p>If <code>other</code> contains an error, constructs a result object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type E&amp;&amp;.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor does not participate in overload resolution unless the following conditions are met:<ul>
 <li><code>std::is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code></li>
 <li>T is not constructible or convertible from any expression of type (possibly const) <code>result&lt;T2,E2&gt;</code></li>
@@ -606,7 +616,9 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
 </dd>
 <dd>
 This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is <code>false</code></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::unique_ptr&lt;Derived&gt;,<span class="keywordtype">int</span>&gt;{</div><div class="line">  std::make_unique&lt;Derived&gt;()</div><div class="line">};</div><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> s = cpp::result&lt;std::unique_ptr&lt;Base&gt;,<span class="keywordtype">long</span>&gt;{</div><div class="line">  std::move(r)</div><div class="line">};</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the other type to convert </td></tr>
   </table>
@@ -621,7 +633,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_explicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -644,8 +656,8 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
 </div><div class="memdoc">
 
 <p>Converting move constructor. </p>
-<p>If <code>other</code> contains a value, constructs an result object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>std::move(*other)</code>.</p>
-<p>If <code>other</code> contains an error, constructs an result object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type E&amp;&amp;.</p>
+<p>If <code>other</code> contains a value, constructs a result object that contains a value, initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression <code>std::move(*other)</code>.</p>
+<p>If <code>other</code> contains an error, constructs a result object that contains an error, initialized as if direct-initializing (but not direct-list-initializing) an object of type E&amp;&amp;.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor does not participate in overload resolution unless the following conditions are met:<ul>
 <li><code>std::is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code></li>
 <li>T is not constructible or convertible from any expression of type (possibly const) <code>result&lt;T2,E2&gt;</code></li>
@@ -654,7 +666,9 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
 </dd>
 <dd>
 This constructor is explicit if and only if <code>std::is_convertible_v&lt;const T2&amp;, T&gt;</code> or <code>std::is_convertible_v&lt;const E2&amp;, E&gt;</code> is <code>false</code></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::unique_ptr&lt;Derived&gt;,<span class="keywordtype">int</span>&gt;{</div><div class="line">  std::make_unique&lt;Derived&gt;()</div><div class="line">};</div><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> s = cpp::result&lt;std::unique_ptr&lt;Base&gt;,<span class="keywordtype">long</span>&gt;{</div><div class="line">  std::move(r)</div><div class="line">};</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>the other type to convert </td></tr>
   </table>
@@ -669,7 +683,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T,Args...&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -701,9 +715,11 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an result object that contains a value. </p>
-<p>the value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> from the arguments <code>std::forward&lt;Args&gt;(args)...</code></p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Constructs a result object that contains a value. </p>
+<p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> from the arguments <code>std::forward&lt;Args&gt;(args)...</code></p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::string,int&gt;{</div><div class="line">  cpp::in_place, <span class="stringliteral">&quot;Hello world&quot;</span></div><div class="line">};</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>the arguments to pass to T's constructor </td></tr>
   </table>
@@ -718,7 +734,7 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -756,9 +772,11 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an result object that contains a value. </p>
+<p>Constructs a result object that contains a value. </p>
 <p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>T</code> from the arguments <code>std::forward&lt;std::initializer_list&lt;U&gt;&gt;(ilist)</code>, <code>std::forward&lt;Args&gt;(args)...</code></p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::string,int&gt;{</div><div class="line">  cpp::in_place, {<span class="charliteral">&#39;H&#39;</span>,<span class="charliteral">&#39;e&#39;</span>,<span class="charliteral">&#39;l&#39;</span>,<span class="charliteral">&#39;l&#39;</span>,<span class="charliteral">&#39;o&#39;</span>}</div><div class="line">};</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ilist</td><td>An initializer list of entries to forward </td></tr>
     <tr><td class="paramname">args</td><td>the arguments to pass to T's constructor </td></tr>
@@ -774,7 +792,7 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,Args...&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -806,9 +824,11 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an result object that contains an error. </p>
+<p>Constructs a result object that contains an error. </p>
 <p>the value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code> from the arguments <code>std::forward&lt;Args&gt;(args)...</code></p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,std::string&gt;{</div><div class="line">  cpp::in_place_error, <span class="stringliteral">&quot;Hello world&quot;</span></div><div class="line">};</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>the arguments to pass to E's constructor </td></tr>
   </table>
@@ -823,7 +843,7 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -861,9 +881,11 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an result object that contains an error. </p>
+<p>Constructs a result object that contains an error. </p>
 <p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type <code>E</code> from the arguments <code>std::forward&lt;std::initializer_list&lt;U&gt;&gt;(ilist)</code>, <code>std::forward&lt;Args&gt;(args)...</code></p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,std::string&gt;{</div><div class="line">  cpp::in_place_error, {<span class="charliteral">&#39;H&#39;</span>,<span class="charliteral">&#39;e&#39;</span>,<span class="charliteral">&#39;l&#39;</span>,<span class="charliteral">&#39;l&#39;</span>,<span class="charliteral">&#39;o&#39;</span>}</div><div class="line">};</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ilist</td><td>An initializer list of entries to forward </td></tr>
     <tr><td class="paramname">args</td><td>the arguments to pass to Es constructor </td></tr>
@@ -879,7 +901,7 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -903,7 +925,9 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 
 <p>Constructs the underlying error of this result. </p>
 <dl class="section note"><dt>Note</dt><dd>This constructor only participates in overload resolution if <code>E</code> is constructible from <code>e</code> </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">cpp::result&lt;int,int&gt; r = cpp::fail(42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> get_error_result() -&gt; cpp::result&lt;int,std::string&gt; {</div><div class="line">  <span class="keywordflow">return</span> cpp::fail(<span class="stringliteral">&quot;hello world!&quot;</span>);</div><div class="line">}</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">e</td><td>the failure error </td></tr>
   </table>
@@ -918,7 +942,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -942,7 +966,9 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 
 <p>Constructs the underlying error of this result. </p>
 <dl class="section note"><dt>Note</dt><dd>This constructor only participates in overload resolution if <code>E</code> is constructible from <code>e</code> </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">cpp::result&lt;int,int&gt; r = cpp::fail(42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> get_error_result() -&gt; cpp::result&lt;int,std::string&gt; {</div><div class="line">  <span class="keywordflow">return</span> cpp::fail(<span class="stringliteral">&quot;hello world!&quot;</span>);</div><div class="line">}</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">e</td><td>the failure error </td></tr>
   </table>
@@ -957,7 +983,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename std::enable_if&lt; detail::result_is_explicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -979,14 +1005,16 @@ template&lt;typename U , typename std::enable_if&lt; detail::result_is_explicit_
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an result object that contains a value. </p>
+<p>Constructs a result object that contains a value. </p>
 <p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression value.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor is constexpr if the constructor of T selected by direct-initialization is constexpr</dd>
 <dd>
-This constructor does not participate in overload resolution unless <code>std::is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is true and <code>decay_t&lt;U&gt;</code> is neither <code><a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html" title="A structure for representing in-place construction. ">in_place_t</a></code>, <code><a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html" title="A structure for representing in-place construction of an error type. ">in_place_error_t</a></code>, nor an <code>result</code> type.</dd>
+This constructor does not participate in overload resolution unless <code>std::is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is true and <code>decay_t&lt;U&gt;</code> is neither <code><a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html" title="A structure for representing in-place construction. ">in_place_t</a></code>, <code><a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html" title="A structure for representing in-place construction of an error type. ">in_place_error_t</a></code>, nor a <code>result</code> type.</dd>
 <dd>
 This constructor is explicit if and only if <code>std::is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">cpp::result&lt;int,int&gt; r = 42;</div><div class="line"></div><div class="line"><span class="keyword">auto</span> get_value() -&gt; cpp::result&lt;std::string,int&gt; {</div><div class="line">  <span class="keywordflow">return</span> <span class="stringliteral">&quot;hello world!&quot;</span>; <span class="comment">// implicit conversion</span></div><div class="line">}</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>the value to copy </td></tr>
   </table>
@@ -1001,7 +1029,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;U&amp
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename std::enable_if&lt; detail::result_is_implicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </div>
 <table class="mlabels">
@@ -1023,14 +1051,16 @@ template&lt;typename U , typename std::enable_if&lt; detail::result_is_implicit_
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an result object that contains a value. </p>
+<p>Constructs a result object that contains a value. </p>
 <p>The value is initialized as if direct-initializing (but not direct-list-initializing) an object of type T with the expression value.</p>
 <dl class="section note"><dt>Note</dt><dd>This constructor is constexpr if the constructor of T selected by direct-initialization is constexpr</dd>
 <dd>
-This constructor does not participate in overload resolution unless <code>std::is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is true and <code>decay_t&lt;U&gt;</code> is neither <code><a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html" title="A structure for representing in-place construction. ">in_place_t</a></code>, <code><a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html" title="A structure for representing in-place construction of an error type. ">in_place_error_t</a></code>, nor an <code>result</code> type.</dd>
+This constructor does not participate in overload resolution unless <code>std::is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is true and <code>decay_t&lt;U&gt;</code> is neither <code><a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html" title="A structure for representing in-place construction. ">in_place_t</a></code>, <code><a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html" title="A structure for representing in-place construction of an error type. ">in_place_error_t</a></code>, nor a <code>result</code> type.</dd>
 <dd>
 This constructor is explicit if and only if <code>std::is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">cpp::result&lt;int,int&gt; r = 42;</div><div class="line"></div><div class="line"><span class="keyword">auto</span> get_value() -&gt; cpp::result&lt;std::string,int&gt; {</div><div class="line">  <span class="keywordflow">return</span> <span class="stringliteral">&quot;hello world!&quot;</span>; <span class="comment">// implicit conversion</span></div><div class="line">}</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>the value to copy </td></tr>
   </table>
@@ -1046,7 +1076,7 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;U&amp
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -1060,14 +1090,16 @@ template&lt;typename U &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Returns an result containing <code>value</code> if this result contains a value, otherwise returns an result containing the current error. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Returns a result containing <code>value</code> if this result contains a value, otherwise returns a result containing the current error. </p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.and_then(100) == 100);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.and_then(100) == cpp::fail(42));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>the value to return as an result </td></tr>
+    <tr><td class="paramname">value</td><td>the value to return as a result </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>an result of <code>value</code> if this contains a value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a result of <code>value</code> if this contains a value </dd></dl>
 
 </div>
 </div>
@@ -1077,7 +1109,7 @@ template&lt;typename U &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1097,7 +1129,18 @@ template&lt;typename T, typename E&gt; </div>
 </div><div class="memdoc">
 
 <p>Returns the contained error, if one exists, or a default-constructed error value. </p>
-<dl class="section return"><dt>Returns</dt><dd>the error or a default-constructed error value </dd></dl>
+<p>The <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac1a6da3db72049f2ef3e916e69a93735" title="Returns the contained error, if one exists, or a default-constructed error value. ...">error()</a></code> function will not throw any exceptions if <code>E</code> does not throw any exceptions for the copy or move construction.</p>
+<p>This is to limit the possible scope for exceptions, and to allow the error type to be treated as a "status"-like type, where the default-constructed case is considered the "good" state.</p>
+<p>If this function is invoked on an rvalue of a result, the error is returned via move-construction</p>
+<h3>Requires</h3>
+<ul>
+<li><code>std::is_default_constructible&lt;E&gt;::value</code> is <code>true</code></li>
+<li><code>std::is_copy_constructible&lt;E&gt;::value</code> or <code>std::is_move_constructible&lt;E&gt;::value</code> is <code>true</code></li>
+<li><code>E{}</code> represents the "good" (non-error) state</li>
+</ul>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,std::error_code&gt;{ 42 };</div><div class="line">assert(r.error() == std::error_code{});</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,std::error_code&gt;{</div><div class="line">  cpp::fail(std::io_errc::stream)</div><div class="line">};</div><div class="line"></div><div class="line">assert(r.error() == std::io_errc::stream);</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>the error or a default-constructed error value </dd></dl>
 
 </div>
 </div>
@@ -1107,7 +1150,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1127,7 +1170,18 @@ template&lt;typename T, typename E&gt; </div>
 </div><div class="memdoc">
 
 <p>Returns the contained error, if one exists, or a default-constructed error value. </p>
-<dl class="section return"><dt>Returns</dt><dd>the error or a default-constructed error value </dd></dl>
+<p>The <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac1a6da3db72049f2ef3e916e69a93735" title="Returns the contained error, if one exists, or a default-constructed error value. ...">error()</a></code> function will not throw any exceptions if <code>E</code> does not throw any exceptions for the copy or move construction.</p>
+<p>This is to limit the possible scope for exceptions, and to allow the error type to be treated as a "status"-like type, where the default-constructed case is considered the "good" state.</p>
+<p>If this function is invoked on an rvalue of a result, the error is returned via move-construction</p>
+<h3>Requires</h3>
+<ul>
+<li><code>std::is_default_constructible&lt;E&gt;::value</code> is <code>true</code></li>
+<li><code>std::is_copy_constructible&lt;E&gt;::value</code> or <code>std::is_move_constructible&lt;E&gt;::value</code> is <code>true</code></li>
+<li><code>E{}</code> represents the "good" (non-error) state</li>
+</ul>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,std::error_code&gt;{ 42 };</div><div class="line">assert(r.error() == std::error_code{});</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,std::error_code&gt;{</div><div class="line">  cpp::fail(std::io_errc::stream)</div><div class="line">};</div><div class="line"></div><div class="line">assert(r.error() == std::io_errc::stream);</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>the error or a default-constructed error value </dd></dl>
 
 </div>
 </div>
@@ -1137,7 +1191,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -1152,7 +1206,9 @@ template&lt;typename U &gt; </div>
 </div><div class="memdoc">
 
 <p>Returns the contained error if <code>*this</code> has an error, otherwise returns <code>default_error</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.error_or(0) == cpp::fail(0));</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.error_or(0) == cpp::fail(42));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">default_error</td><td>the error to use in case <code>*this</code> is empty </td></tr>
   </table>
@@ -1168,7 +1224,7 @@ template&lt;typename U &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -1183,7 +1239,9 @@ template&lt;typename U &gt; </div>
 </div><div class="memdoc">
 
 <p>Returns the contained error if <code>*this</code> has an error, otherwise returns <code>default_error</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.error_or(0) == cpp::fail(0));</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.error_or(0) == cpp::fail(42));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">default_error</td><td>the error to use in case <code>*this</code> is empty </td></tr>
   </table>
@@ -1199,7 +1257,7 @@ template&lt;typename U &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_copy_constructible&lt;E&gt;::value              )&gt;::type&gt; </div>
       <table class="memname">
@@ -1217,7 +1275,9 @@ template&lt;typename String , typename  = typename std::enable_if&lt;(          
 <p>Asserts an expectation that this result contains an error, throwing a <a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a> on failure</p>
 <p>If this function is invoked from an rvalue of <code>result</code>, then this will consume the underlying error first, if there is one.</p>
 <dl class="section note"><dt>Note</dt><dd>This function exists as a means to allow for results to be marked <code>used</code> without requiring directly inspecting the underlying value. This is, in effect, equivalent to <code>assert(res.has_value())</code>, however it uses exceptions to ensure the stack can be unwound, and exceptions invoked.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> start_service() -&gt; cpp::result&lt;void,int&gt;;</div><div class="line"></div><div class="line">start_service().expect(<span class="stringliteral">&quot;Service failed to start!&quot;</span>);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">message</td><td>the message to provide to this expectation </td></tr>
   </table>
@@ -1232,7 +1292,7 @@ template&lt;typename String , typename  = typename std::enable_if&lt;(          
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename String , typename  = typename std::enable_if&lt;(                std::is_convertible&lt;String,const std::string&amp;&gt;::value &amp;&amp;                std::is_move_constructible&lt;E&gt;::value              )&gt;::type&gt; </div>
       <table class="memname">
@@ -1247,7 +1307,18 @@ template&lt;typename String , typename  = typename std::enable_if&lt;(          
 </div><div class="memdoc">
 
 <p>Returns the contained error, if one exists, or a default-constructed error value. </p>
-<dl class="section return"><dt>Returns</dt><dd>the error or a default-constructed error value </dd></dl>
+<p>The <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac1a6da3db72049f2ef3e916e69a93735" title="Returns the contained error, if one exists, or a default-constructed error value. ...">error()</a></code> function will not throw any exceptions if <code>E</code> does not throw any exceptions for the copy or move construction.</p>
+<p>This is to limit the possible scope for exceptions, and to allow the error type to be treated as a "status"-like type, where the default-constructed case is considered the "good" state.</p>
+<p>If this function is invoked on an rvalue of a result, the error is returned via move-construction</p>
+<h3>Requires</h3>
+<ul>
+<li><code>std::is_default_constructible&lt;E&gt;::value</code> is <code>true</code></li>
+<li><code>std::is_copy_constructible&lt;E&gt;::value</code> or <code>std::is_move_constructible&lt;E&gt;::value</code> is <code>true</code></li>
+<li><code>E{}</code> represents the "good" (non-error) state</li>
+</ul>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,std::error_code&gt;{ 42 };</div><div class="line">assert(r.error() == std::error_code{});</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,std::error_code&gt;{</div><div class="line">  cpp::fail(std::io_errc::stream)</div><div class="line">};</div><div class="line"></div><div class="line">assert(r.error() == std::io_errc::stream);</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>the error or a default-constructed error value </dd></dl>
 
 </div>
 </div>
@@ -1257,7 +1328,7 @@ template&lt;typename String , typename  = typename std::enable_if&lt;(          
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1272,10 +1343,12 @@ template&lt;typename Fn &gt; </div>
 </div><div class="memdoc">
 
 <p>Invokes the function <code>fn</code> with the value of this result as the argument. </p>
-<p>If this result contains an error, an result of the error is returned</p>
-<p>The function being called must return an <code>result</code> type or the program is ill-formed</p>
+<p>If this result contains an error, a result of the error is returned</p>
+<p>The function being called must return a <code>result</code> type or the program is ill-formed</p>
 <p>If this is called on an rvalue of <code>result</code> which contains an error, the returned <code>result</code> is constructed from an rvalue of that error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span>) -&gt; cpp::result&lt;std::string,int&gt;;</div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.flat_map(to_string) == <span class="stringliteral">&quot;42&quot;</span>);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.flat_map(to_string) == cpp::fail(42));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
   </table>
@@ -1291,7 +1364,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1306,10 +1379,12 @@ template&lt;typename Fn &gt; </div>
 </div><div class="memdoc">
 
 <p>Invokes the function <code>fn</code> with the value of this result as the argument. </p>
-<p>If this result contains an error, an result of the error is returned</p>
-<p>The function being called must return an <code>result</code> type or the program is ill-formed</p>
+<p>If this result contains an error, a result of the error is returned</p>
+<p>The function being called must return a <code>result</code> type or the program is ill-formed</p>
 <p>If this is called on an rvalue of <code>result</code> which contains an error, the returned <code>result</code> is constructed from an rvalue of that error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span>) -&gt; cpp::result&lt;std::string,int&gt;;</div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.flat_map(to_string) == <span class="stringliteral">&quot;42&quot;</span>);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.flat_map(to_string) == cpp::fail(42));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
   </table>
@@ -1325,7 +1400,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1340,10 +1415,12 @@ template&lt;typename Fn &gt; </div>
 </div><div class="memdoc">
 
 <p>Invokes the function <code>fn</code> with the error of this result as the argument. </p>
-<p>If this result contains a value, an result of the value is returned</p>
-<p>The function being called must return an <code>result</code> type or the program is ill-formed</p>
+<p>If this result contains a value, a result of the value is returned</p>
+<p>The function being called must return a <code>result</code> type or the program is ill-formed</p>
 <p>If this is called on an rvalue of <code>result</code> which contains an error, the returned <code>result</code> is constructed from an rvalue of that error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span>) -&gt; cpp::result&lt;int,std::string&gt;;</div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.flat_map(to_string) == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.flat_map(to_string) == cpp::fail(<span class="stringliteral">&quot;42&quot;</span>));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
   </table>
@@ -1359,7 +1436,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1374,10 +1451,12 @@ template&lt;typename Fn &gt; </div>
 </div><div class="memdoc">
 
 <p>Invokes the function <code>fn</code> with the error of this result as the argument. </p>
-<p>If this result contains a value, an result of the value is returned</p>
-<p>The function being called must return an <code>result</code> type or the program is ill-formed</p>
+<p>If this result contains a value, a result of the value is returned</p>
+<p>The function being called must return a <code>result</code> type or the program is ill-formed</p>
 <p>If this is called on an rvalue of <code>result</code> which contains an error, the returned <code>result</code> is constructed from an rvalue of that error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span>) -&gt; cpp::result&lt;int,std::string&gt;;</div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.flat_map(to_string) == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.flat_map(to_string) == cpp::fail(<span class="stringliteral">&quot;42&quot;</span>));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
   </table>
@@ -1393,7 +1472,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1412,8 +1491,10 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Checks whether <code>*this</code> contains an error. </p>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains an error, <code>false</code> if <code>*this</code> contains a value </dd></dl>
+<p>Returns <code>true</code> if <code>*this</code> contains an error. </p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> get_result() -&gt; cpp::result&lt;int, int&gt;;</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = get_result();</div><div class="line"><span class="keywordflow">if</span> (r.has_error()) { ... }</div><div class="line"></div><div class="line">assert(!cpp::result&lt;int,int&gt;{42}.has_error());</div><div class="line"></div><div class="line">assert(cpp::result&lt;int,int&gt;{cpp::fail(42)}.has_error());</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains an error, <code>false</code> if <code>*this</code> contains a value </dd></dl>
 
 </div>
 </div>
@@ -1423,7 +1504,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1442,8 +1523,10 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Checks whether <code>*this</code> contains a value. </p>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> contains an error </dd></dl>
+<p>Returns <code>true</code> if <code>*this</code> contains a value. </p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> get_result() -&gt; cpp::result&lt;int, int&gt;;</div><div class="line"><span class="keyword">auto</span> r = get_result();</div><div class="line"><span class="keywordflow">if</span> (r.has_value()) { ... }</div><div class="line"></div><div class="line">assert(cpp::result&lt;int,int&gt;{42}.has_value());</div><div class="line"></div><div class="line">assert(!cpp::result&lt;int,int&gt;{cpp::fail(42)}.has_value());</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> contains an error </dd></dl>
 
 </div>
 </div>
@@ -1453,7 +1536,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1470,7 +1553,9 @@ template&lt;typename Fn &gt; </div>
 <p>Invokes the function <code>fn</code> with the value of this result as the argument. </p>
 <p>If this result is an error, the result of this function is that error. Otherwise this function wraps the result and returns it as an result.</p>
 <p>If this is called on an rvalue of <code>result</code> which contains an error, the returned <code>result</code> is constructed from an rvalue of that error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span>) -&gt; std::string;</div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.map(to_string) == <span class="stringliteral">&quot;42&quot;</span>);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.map(to_string) == cpp::fail(42));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
   </table>
@@ -1486,7 +1571,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1503,7 +1588,9 @@ template&lt;typename Fn &gt; </div>
 <p>Invokes the function <code>fn</code> with the value of this result as the argument. </p>
 <p>If this result is an error, the result of this function is that error. Otherwise this function wraps the result and returns it as an result.</p>
 <p>If this is called on an rvalue of <code>result</code> which contains an error, the returned <code>result</code> is constructed from an rvalue of that error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span>) -&gt; std::string;</div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.map(to_string) == <span class="stringliteral">&quot;42&quot;</span>);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.map(to_string) == cpp::fail(42));</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
   </table>
@@ -1519,7 +1606,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1534,9 +1621,11 @@ template&lt;typename Fn &gt; </div>
 </div><div class="memdoc">
 
 <p>Invokes the function <code>fn</code> with the error of this result as the argument. </p>
-<p>If this result contains a value, the result of this function is that value. Otherwise the function is called with that error and returns the result as an result.</p>
+<p>If this result contains a value, the result of this function is that value. Otherwise the function is called with that error and returns the result as a result.</p>
 <p>If this is called on an rvalue of <code>result</code> which contains a value, the returned <code>result</code> is constructed from an rvalue of that value.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span>) -&gt; std::string;</div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.map_error(to_string) == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.map_error(to_string) == cpp::fail(<span class="stringliteral">&quot;42&quot;</span>));</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::string,int&gt;{};</div><div class="line"><span class="keyword">auto</span> s = r.map(std::string::size); <span class="comment">// &#39;s&#39; contains &#39;result&lt;size_t,int&gt;&#39;</span></div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
   </table>
@@ -1552,7 +1641,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename Fn &gt; </div>
       <table class="memname">
@@ -1567,9 +1656,11 @@ template&lt;typename Fn &gt; </div>
 </div><div class="memdoc">
 
 <p>Invokes the function <code>fn</code> with the error of this result as the argument. </p>
-<p>If this result contains a value, the result of this function is that value. Otherwise the function is called with that error and returns the result as an result.</p>
+<p>If this result contains a value, the result of this function is that value. Otherwise the function is called with that error and returns the result as a result.</p>
 <p>If this is called on an rvalue of <code>result</code> which contains a value, the returned <code>result</code> is constructed from an rvalue of that value.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span>) -&gt; std::string;</div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.map_error(to_string) == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.map_error(to_string) == cpp::fail(<span class="stringliteral">&quot;42&quot;</span>));</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::string,int&gt;{};</div><div class="line"><span class="keyword">auto</span> s = r.map(std::string::size); <span class="comment">// &#39;s&#39; contains &#39;result&lt;size_t,int&gt;&#39;</span></div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fn</td><td>the function to invoke with this </td></tr>
   </table>
@@ -1585,7 +1676,7 @@ template&lt;typename Fn &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1604,8 +1695,11 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Checks whether <code>*this</code> contains a value. </p>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> does not contain a value </dd></dl>
+<p>Contextually convertible to <code>true</code> if <code>*this</code> contains a value. </p>
+<p>This function exists to allow for simple, terse checks for containing a value.</p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> get_result() -&gt; cpp::result&lt;int, int&gt;;</div><div class="line"><span class="keyword">auto</span> r = get_result();</div><div class="line"><span class="keywordflow">if</span> (r) { ... }</div><div class="line"></div><div class="line">assert(static_cast&lt;bool&gt;(cpp::result&lt;int,int&gt;{42}));</div><div class="line"></div><div class="line">assert(!static_cast&lt;bool&gt;(cpp::result&lt;int,int&gt;{cpp::fail(42)}));</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>*this</code> contains a value, <code>false</code> if <code>*this</code> does not contain a value </dd></dl>
 
 </div>
 </div>
@@ -1615,7 +1709,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1634,9 +1728,13 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Accesses the contained value. </p>
+<p>Retrieves a reference to the contained value. </p>
+<p>This operator exists to give <code>result</code> an <code>optional</code>-like API for cases where it's known that the <code>result</code> already contains a value.</p>
+<p>Care must be taken to ensure that this is only used in safe contexts where a <code>T</code> value is active.</p>
 <dl class="section note"><dt>Note</dt><dd>The behaviour is undefined if <code>*this</code> does not contain a value</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the contained value </dd></dl>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;Widget,int&gt;{</div><div class="line">  make_widget()</div><div class="line">};</div><div class="line"></div><div class="line">(*r).do_something();</div><div class="line"></div><div class="line">consume(*r);</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>a reference to the contained value </dd></dl>
 
 </div>
 </div>
@@ -1646,7 +1744,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1665,9 +1763,13 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Accesses the contained value. </p>
+<p>Retrieves a reference to the contained value. </p>
+<p>This operator exists to give <code>result</code> an <code>optional</code>-like API for cases where it's known that the <code>result</code> already contains a value.</p>
+<p>Care must be taken to ensure that this is only used in safe contexts where a <code>T</code> value is active.</p>
 <dl class="section note"><dt>Note</dt><dd>The behaviour is undefined if <code>*this</code> does not contain a value</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the contained value </dd></dl>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;Widget,int&gt;{</div><div class="line">  make_widget()</div><div class="line">};</div><div class="line"></div><div class="line">(*r).do_something();</div><div class="line"></div><div class="line">consume(*r);</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>a reference to the contained value </dd></dl>
 
 </div>
 </div>
@@ -1677,7 +1779,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1696,9 +1798,13 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Accesses the contained value. </p>
+<p>Retrieves a reference to the contained value. </p>
+<p>This operator exists to give <code>result</code> an <code>optional</code>-like API for cases where it's known that the <code>result</code> already contains a value.</p>
+<p>Care must be taken to ensure that this is only used in safe contexts where a <code>T</code> value is active.</p>
 <dl class="section note"><dt>Note</dt><dd>The behaviour is undefined if <code>*this</code> does not contain a value</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the contained value </dd></dl>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;Widget,int&gt;{</div><div class="line">  make_widget()</div><div class="line">};</div><div class="line"></div><div class="line">(*r).do_something();</div><div class="line"></div><div class="line">consume(*r);</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>a reference to the contained value </dd></dl>
 
 </div>
 </div>
@@ -1708,7 +1814,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1727,9 +1833,13 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Accesses the contained value. </p>
+<p>Retrieves a reference to the contained value. </p>
+<p>This operator exists to give <code>result</code> an <code>optional</code>-like API for cases where it's known that the <code>result</code> already contains a value.</p>
+<p>Care must be taken to ensure that this is only used in safe contexts where a <code>T</code> value is active.</p>
 <dl class="section note"><dt>Note</dt><dd>The behaviour is undefined if <code>*this</code> does not contain a value</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the contained value </dd></dl>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;Widget,int&gt;{</div><div class="line">  make_widget()</div><div class="line">};</div><div class="line"></div><div class="line">(*r).do_something();</div><div class="line"></div><div class="line">consume(*r);</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>a reference to the contained value </dd></dl>
 
 </div>
 </div>
@@ -1739,7 +1849,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1758,9 +1868,13 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Accesses the contained value. </p>
+<p>Retrieves a pointer to the contained value. </p>
+<p>This operator exists to give <code>result</code> an <code>optional</code>-like API for cases where it's known that the <code>result</code> already contains a value.</p>
+<p>Care must be taken to ensure that this is only used in safe contexts where a <code>T</code> value is active.</p>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;Widget,int&gt;{</div><div class="line">  make_widget()</div><div class="line">};</div><div class="line"></div><div class="line">r-&gt;do_something();</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
 </div>
 </div>
@@ -1770,7 +1884,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1789,9 +1903,13 @@ template&lt;typename T, typename E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Accesses the contained value. </p>
+<p>Retrieves a pointer to the contained value. </p>
+<p>This operator exists to give <code>result</code> an <code>optional</code>-like API for cases where it's known that the <code>result</code> already contains a value.</p>
+<p>Care must be taken to ensure that this is only used in safe contexts where a <code>T</code> value is active.</p>
 <dl class="section note"><dt>Note</dt><dd>The behavior is undefined if <code>*this</code> does not contain a value.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;Widget,int&gt;{</div><div class="line">  make_widget()</div><div class="line">};</div><div class="line"></div><div class="line">r-&gt;do_something();</div></div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>a pointer to the contained value </dd></dl>
 
 </div>
 </div>
@@ -1801,7 +1919,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1852,7 +1970,7 @@ This assignment operator is defined as trivial if the following conditions are a
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1903,7 +2021,7 @@ This assignment operator is defined as trivial if the following conditions are a
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;detail::result_is_copy_convert_assignable&lt;T,E,T2,E2&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -1950,7 +2068,7 @@ template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;detail::result_is_move_convert_assignable&lt;T,E,T2,E2&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -1997,7 +2115,7 @@ template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U , typename  = typename std::enable_if&lt;detail::result_is_value_assignable&lt;T,U&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -2022,8 +2140,8 @@ template&lt;typename U , typename  = typename std::enable_if&lt;detail::result_i
 <p>Perfect-forwarded assignment. </p>
 <p>Depending on whether <code>*this</code> contains a value before the call, the contained value is either direct-initialized from std::forward&lt;U&gt;(value) or assigned from std::forward&lt;U&gt;(value).</p>
 <dl class="section note"><dt>Note</dt><dd>The function does not participate in overload resolution unless<ul>
-<li><code>std::decay_t&lt;U&gt;</code> is not an result type,</li>
-<li><code>std::decay_t&lt;U&gt;</code> is not an failure type</li>
+<li><code>std::decay_t&lt;U&gt;</code> is not a result type,</li>
+<li><code>std::decay_t&lt;U&gt;</code> is not a failure type</li>
 <li><code>std::is_nothrow_constructible_v&lt;T, U&gt;</code> is <code>true</code></li>
 <li><code>std::is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code></li>
 <li>and at least one of the following is <code>true</code>:<ul>
@@ -2049,7 +2167,7 @@ template&lt;typename U , typename  = typename std::enable_if&lt;detail::result_i
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_is_failure_assignable&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -2099,7 +2217,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_is_failure_assignable&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
@@ -2149,7 +2267,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
@@ -2160,10 +2278,14 @@ template&lt;typename T, typename E&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the contained value. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
+<p>Returns a reference to the contained value. </p>
+<p>This function provides checked (throwing) access to the underlying value. The constness and refness of this result is propagated to the underlying reference.</p>
+<p>If this contains an error, an exception is thrown containing the underlying error. The error is consumed propagating the same constness and refness of this result.</p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">assert(cpp::result&lt;int,int&gt;{42}.value() == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::unique_ptr&lt;int&gt;,<span class="keywordtype">int</span>&gt;{</div><div class="line">  std::make_unique&lt;int&gt;(42)</div><div class="line">};</div><div class="line"><span class="keyword">auto</span> s = std::move(r).value();</div><div class="line"></div><div class="line"><span class="keywordflow">try</span> {</div><div class="line">  <span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{ cpp::fail(42) };</div><div class="line">  <span class="keyword">auto</span> v = r.value();</div><div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> cpp::bad_result_access&lt;int&gt;&amp; e) {</div><div class="line">  assert(e.error() == 42);</div><div class="line">}</div></div><!-- fragment --><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a></td><td>if <code>*this</code> does not contain a value.</td></tr>
+    <tr><td class="paramname">bad_result_access&lt;E&gt;</td><td>if <code>*this</code> does not contain a value.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2177,7 +2299,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
@@ -2188,10 +2310,14 @@ template&lt;typename T, typename E&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the contained value. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
+<p>Returns a reference to the contained value. </p>
+<p>This function provides checked (throwing) access to the underlying value. The constness and refness of this result is propagated to the underlying reference.</p>
+<p>If this contains an error, an exception is thrown containing the underlying error. The error is consumed propagating the same constness and refness of this result.</p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">assert(cpp::result&lt;int,int&gt;{42}.value() == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::unique_ptr&lt;int&gt;,<span class="keywordtype">int</span>&gt;{</div><div class="line">  std::make_unique&lt;int&gt;(42)</div><div class="line">};</div><div class="line"><span class="keyword">auto</span> s = std::move(r).value();</div><div class="line"></div><div class="line"><span class="keywordflow">try</span> {</div><div class="line">  <span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{ cpp::fail(42) };</div><div class="line">  <span class="keyword">auto</span> v = r.value();</div><div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> cpp::bad_result_access&lt;int&gt;&amp; e) {</div><div class="line">  assert(e.error() == 42);</div><div class="line">}</div></div><!-- fragment --><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a></td><td>if <code>*this</code> does not contain a value.</td></tr>
+    <tr><td class="paramname">bad_result_access&lt;E&gt;</td><td>if <code>*this</code> does not contain a value.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2205,7 +2331,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
@@ -2216,10 +2342,14 @@ template&lt;typename T, typename E&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the contained value. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
+<p>Returns a reference to the contained value. </p>
+<p>This function provides checked (throwing) access to the underlying value. The constness and refness of this result is propagated to the underlying reference.</p>
+<p>If this contains an error, an exception is thrown containing the underlying error. The error is consumed propagating the same constness and refness of this result.</p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">assert(cpp::result&lt;int,int&gt;{42}.value() == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::unique_ptr&lt;int&gt;,<span class="keywordtype">int</span>&gt;{</div><div class="line">  std::make_unique&lt;int&gt;(42)</div><div class="line">};</div><div class="line"><span class="keyword">auto</span> s = std::move(r).value();</div><div class="line"></div><div class="line"><span class="keywordflow">try</span> {</div><div class="line">  <span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{ cpp::fail(42) };</div><div class="line">  <span class="keyword">auto</span> v = r.value();</div><div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> cpp::bad_result_access&lt;int&gt;&amp; e) {</div><div class="line">  assert(e.error() == 42);</div><div class="line">}</div></div><!-- fragment --><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a></td><td>if <code>*this</code> does not contain a value.</td></tr>
+    <tr><td class="paramname">bad_result_access&lt;E&gt;</td><td>if <code>*this</code> does not contain a value.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2233,7 +2363,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
@@ -2244,10 +2374,14 @@ template&lt;typename T, typename E&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the contained value. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
+<p>Returns a reference to the contained value. </p>
+<p>This function provides checked (throwing) access to the underlying value. The constness and refness of this result is propagated to the underlying reference.</p>
+<p>If this contains an error, an exception is thrown containing the underlying error. The error is consumed propagating the same constness and refness of this result.</p>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line">assert(cpp::result&lt;int,int&gt;{42}.value() == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;std::unique_ptr&lt;int&gt;,<span class="keywordtype">int</span>&gt;{</div><div class="line">  std::make_unique&lt;int&gt;(42)</div><div class="line">};</div><div class="line"><span class="keyword">auto</span> s = std::move(r).value();</div><div class="line"></div><div class="line"><span class="keywordflow">try</span> {</div><div class="line">  <span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{ cpp::fail(42) };</div><div class="line">  <span class="keyword">auto</span> v = r.value();</div><div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> cpp::bad_result_access&lt;int&gt;&amp; e) {</div><div class="line">  assert(e.error() == 42);</div><div class="line">}</div></div><!-- fragment --><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html" title="An exception thrown when result::value is accessed without a contained value. ">bad_result_access</a></td><td>if <code>*this</code> does not contain a value.</td></tr>
+    <tr><td class="paramname">bad_result_access&lt;E&gt;</td><td>if <code>*this</code> does not contain a value.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2261,7 +2395,7 @@ template&lt;typename T, typename E&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -2276,7 +2410,9 @@ template&lt;typename U &gt; </div>
 </div><div class="memdoc">
 
 <p>Returns the contained value if <code>*this</code> has a value, otherwise returns <code>default_value</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.value_or(0) == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.value_or(0) == 0);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">default_value</td><td>the value to use in case <code>*this</code> contains an error </td></tr>
   </table>
@@ -2292,7 +2428,7 @@ template&lt;typename U &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, typename E&gt; </div>
+template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename U &gt; </div>
       <table class="memname">
@@ -2307,7 +2443,9 @@ template&lt;typename U &gt; </div>
 </div><div class="memdoc">
 
 <p>Returns the contained value if <code>*this</code> has a value, otherwise returns <code>default_value</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<h3>Examples</h3>
+<p>Basic Usage:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{42};</div><div class="line">assert(r.value_or(0) == 42);</div><div class="line"></div><div class="line"><span class="keyword">auto</span> r = cpp::result&lt;int,int&gt;{cpp::fail(42)};</div><div class="line">assert(r.value_or(0) == 0);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">default_value</td><td>the value to use in case <code>*this</code> contains an error </td></tr>
   </table>
