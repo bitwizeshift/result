@@ -477,10 +477,10 @@ inline namespace bitwizeshift {
     //-------------------------------------------------------------------------
   public:
 
-    /// \brief Constructs an failure via default construction
+    /// \brief Constructs a failure via default construction
     failure() = default;
 
-    /// \brief Constructs an failure by delegating construction to the
+    /// \brief Constructs a failure by delegating construction to the
     ///        underlying constructor
     ///
     /// \param args the arguments to forward to E's constructor
@@ -489,7 +489,7 @@ inline namespace bitwizeshift {
     constexpr failure(in_place_t, Args&&...args)
       noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
-    /// \brief Constructs an failure by delegating construction to the
+    /// \brief Constructs a failure by delegating construction to the
     ///        underlying constructor
     ///
     /// \param ilist the initializer list
@@ -500,9 +500,9 @@ inline namespace bitwizeshift {
       noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value);
 
     /// \{
-    /// \brief Constructs an failure from the given error
+    /// \brief Constructs a failure from the given error
     ///
-    /// \param error the error to create an failure from
+    /// \param error the error to create a failure from
     template <typename E2,
               typename std::enable_if<detail::failure_is_explicit_value_convertible<E,E2>::value,int>::type = 0>
     constexpr failure(E2&& error)
@@ -661,7 +661,7 @@ inline namespace bitwizeshift {
   // Utilities
   //---------------------------------------------------------------------------
 
-  /// \brief Deduces and constructs an failure type from \p e
+  /// \brief Deduces and constructs a failure type from \p e
   ///
   /// \param e the failure value
   /// \return a constructed failure value
@@ -671,7 +671,7 @@ inline namespace bitwizeshift {
     noexcept(std::is_nothrow_constructible<typename std::decay<E>::type,E>::value)
     -> failure<typename std::decay<E>::type>;
 
-  /// \brief Deduces an failure reference from a reverence_wrapper
+  /// \brief Deduces a failure reference from a reverence_wrapper
   ///
   /// \param e the failure value
   /// \return a constructed failure reference
@@ -680,7 +680,7 @@ inline namespace bitwizeshift {
   constexpr auto fail(std::reference_wrapper<E> e)
     noexcept -> failure<E&>;
 
-  /// \brief Constructs an failure type from a series of arguments
+  /// \brief Constructs a failure type from a series of arguments
   ///
   /// \tparam E the failure type
   /// \param args the arguments to forward to E's constructor
@@ -966,7 +966,7 @@ inline namespace bitwizeshift {
       template <typename Expected>
       auto construct_error_from_result(Expected&& other) -> void;
 
-      /// \brief Constructs the underlying type from an result object
+      /// \brief Constructs the underlying type from a result object
       ///
       /// \note This is an implementation detail only meant to be used during
       ///       construction
@@ -1463,7 +1463,7 @@ inline namespace bitwizeshift {
   ///
   /// An `result<T,E>` can always be queried for a possible error case by
   /// calling the `error()` function, even if it contains a value.
-  /// In the case that an `result<T,E>` contains a value object, this will
+  /// In the case that a `result<T,E>` contains a value object, this will
   /// simply return an `E` object constructed through default aggregate
   /// construction, as if through the expression `E{}`, which is assumed to be
   /// a "valid" (no-error) state for an `E` type.
@@ -1477,10 +1477,10 @@ inline namespace bitwizeshift {
   /// * `std::string{}` produces an empty string `""`,
   /// * etc.
   ///
-  /// When an `result<T,E>` contains either a value or error, the storage for
+  /// When a `result<T,E>` contains either a value or error, the storage for
   /// that object is guaranteed to be allocated as part of the result
   /// object's footprint, i.e. no dynamic memory allocation ever takes place.
-  /// Thus, an result object models an object, not a pointer, even though the
+  /// Thus, a result object models an object, not a pointer, even though the
   /// `operator*()` and `operator->()` are defined.
   ///
   /// When an object of type `result<T,E>` is contextually converted to
@@ -1488,7 +1488,7 @@ inline namespace bitwizeshift {
   /// `false` if it contains an error.
   ///
   /// `result` objects do not have a "valueless" state like `variant`s do.
-  /// Once an `result` has been constructed with a value or error, the
+  /// Once a `result` has been constructed with a value or error, the
   /// active underlying type can only be changed through assignment which may
   /// is only enabled if construction is guaranteed to be *non-throwing*. This
   /// ensures that a valueless state cannot occur naturally.
@@ -1590,10 +1590,18 @@ inline namespace bitwizeshift {
     //-------------------------------------------------------------------------
   public:
 
-    /// \brief Default-constructs an result with the underlying value type
+    /// \brief Default-constructs a result with the underlying value type
     ///        active
     ///
     /// This constructor is only enabled if `T` is default-constructible
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// assert(cpp::result<std::string,int>{} == std::string{});
+    /// ```
     template <typename U=T,
               typename = typename std::enable_if<std::is_constructible<U>::value>::type>
     RESULT_NODISCARD
@@ -1617,11 +1625,22 @@ inline namespace bitwizeshift {
     ///       `std::is_trivially_copy_constructible<T>::value` and
     ///       `std::is_trivially_copy_constructible<E>::value` are `true`
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// const auto r = cpp::result<int,int>{42};
+    /// const auto s = r;
+    ///
+    /// assert(r == s);
+    /// ```
+    ///
     /// \param other the result to copy
     RESULT_NODISCARD
     constexpr result(const result& other) = default;
 
-    /// \brief Move constructs an result
+    /// \brief Move constructs a result
     ///
     /// If other contains a value, initializes the contained value as if
     /// direct-initializing (but not direct-list-initializing) an object
@@ -1640,6 +1659,17 @@ inline namespace bitwizeshift {
     ///       `std::is_trivially_move_constructible<T>::value` and
     ///       `std::is_trivially_move_constructible<E>::value` are `true`
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<std::string,int>{"hello world"};
+    /// auto s = std::move(r);
+    ///
+    /// assert(s == "hello world");
+    /// ```
+    ///
     /// \param other the result to move
     RESULT_NODISCARD
     constexpr result(result&& other) = default;
@@ -1647,12 +1677,12 @@ inline namespace bitwizeshift {
     /// \{
     /// \brief Converting copy constructor
     ///
-    /// If \p other contains a value, constructs an result object
+    /// If \p other contains a value, constructs a result object
     /// that contains a value, initialized as if direct-initializing
     /// (but not direct-list-initializing) an object of type `T` with the
     /// expression `*other`.
     ///
-    /// If \p other contains an error, constructs an result object that
+    /// If \p other contains an error, constructs a result object that
     /// contains an error, initialized as if direct-initializing
     /// (but not direct-list-initializing) an object of type `E`.
     ///
@@ -1667,6 +1697,17 @@ inline namespace bitwizeshift {
     /// \note This constructor is explicit if and only if
     ///       `std::is_convertible_v<const T2&, T>` or
     ///       `std::is_convertible_v<const E2&, E>` is `false`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// const auto r = cpp::result<int,int>{42};
+    /// const auto s = cpp::result<long,long>{r};
+    ///
+    /// assert(r == s);
+    /// ```
     ///
     /// \param other the other type to convert
     template <typename T2, typename E2,
@@ -1686,12 +1727,12 @@ inline namespace bitwizeshift {
     /// \{
     /// \brief Converting move constructor
     ///
-    /// If \p other contains a value, constructs an result object
+    /// If \p other contains a value, constructs a result object
     /// that contains a value, initialized as if direct-initializing
     /// (but not direct-list-initializing) an object of type T with the
     /// expression `std::move(*other)`.
     ///
-    /// If \p other contains an error, constructs an result object that
+    /// If \p other contains an error, constructs a result object that
     /// contains an error, initialized as if direct-initializing
     /// (but not direct-list-initializing) an object of type E&&.
     ///
@@ -1706,6 +1747,19 @@ inline namespace bitwizeshift {
     /// \note This constructor is explicit if and only if
     ///       `std::is_convertible_v<const T2&, T>` or
     ///       `std::is_convertible_v<const E2&, E>` is `false`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<std::unique_ptr<Derived>,int>{
+    ///   std::make_unique<Derived>()
+    /// };
+    /// const auto s = cpp::result<std::unique_ptr<Base>,long>{
+    ///   std::move(r)
+    /// };
+    /// ```
     ///
     /// \param other the other type to convert
     template <typename T2, typename E2,
@@ -1724,11 +1778,21 @@ inline namespace bitwizeshift {
 
     //-------------------------------------------------------------------------
 
-    /// \brief Constructs an result object that contains a value
+    /// \brief Constructs a result object that contains a value
     ///
-    /// the value is initialized as if direct-initializing (but not
+    /// The value is initialized as if direct-initializing (but not
     /// direct-list-initializing) an object of type `T` from the arguments
     /// `std::forward<Args>(args)...`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<std::string,int>{
+    ///   cpp::in_place, "Hello world"
+    /// };
+    /// ```
     ///
     /// \param args the arguments to pass to T's constructor
     template <typename...Args,
@@ -1737,12 +1801,22 @@ inline namespace bitwizeshift {
     constexpr explicit result(in_place_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<T, Args...>::value);
 
-    /// \brief Constructs an result object that contains a value
+    /// \brief Constructs a result object that contains a value
     ///
     /// The value is initialized as if direct-initializing (but not
     /// direct-list-initializing) an object of type `T` from the arguments
     /// `std::forward<std::initializer_list<U>>(ilist)`,
     /// `std::forward<Args>(args)...`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<std::string,int>{
+    ///   cpp::in_place, {'H','e','l','l','o'}
+    /// };
+    /// ```
     ///
     /// \param ilist An initializer list of entries to forward
     /// \param args  the arguments to pass to T's constructor
@@ -1756,11 +1830,21 @@ inline namespace bitwizeshift {
 
     //-------------------------------------------------------------------------
 
-    /// \brief Constructs an result object that contains an error
+    /// \brief Constructs a result object that contains an error
     ///
     /// the value is initialized as if direct-initializing (but not
     /// direct-list-initializing) an object of type `E` from the arguments
     /// `std::forward<Args>(args)...`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<int,std::string>{
+    ///   cpp::in_place_error, "Hello world"
+    /// };
+    /// ```
     ///
     /// \param args the arguments to pass to E's constructor
     template <typename...Args,
@@ -1769,12 +1853,22 @@ inline namespace bitwizeshift {
     constexpr explicit result(in_place_error_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
-    /// \brief Constructs an result object that contains an error
+    /// \brief Constructs a result object that contains an error
     ///
     /// The value is initialized as if direct-initializing (but not
     /// direct-list-initializing) an object of type `E` from the arguments
     /// `std::forward<std::initializer_list<U>>(ilist)`,
     /// `std::forward<Args>(args)...`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<int,std::string>{
+    ///   cpp::in_place_error, {'H','e','l','l','o'}
+    /// };
+    /// ```
     ///
     /// \param ilist An initializer list of entries to forward
     /// \param args  the arguments to pass to Es constructor
@@ -1794,6 +1888,18 @@ inline namespace bitwizeshift {
     /// \note This constructor only participates in overload resolution if
     ///       `E` is constructible from \p e
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// cpp::result<int,int> r = cpp::fail(42);
+    ///
+    /// auto get_error_result() -> cpp::result<int,std::string> {
+    ///   return cpp::fail("hello world!");
+    /// }
+    /// ```
+    ///
     /// \param e the failure error
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,const E2&>::value>::type>
@@ -1808,7 +1914,7 @@ inline namespace bitwizeshift {
     /// \}
 
     /// \{
-    /// \brief Constructs an result object that contains a value
+    /// \brief Constructs a result object that contains a value
     ///
     /// The value is initialized as if direct-initializing (but not
     /// direct-list-initializing) an object of type T with the expression
@@ -1820,10 +1926,22 @@ inline namespace bitwizeshift {
     /// \note This constructor does not participate in overload
     ///       resolution unless `std::is_constructible_v<T, U&&>` is true
     ///       and `decay_t<U>` is neither `in_place_t`, `in_place_error_t`,
-    ///       nor an `result` type.
+    ///       nor a `result` type.
     ///
     /// \note This constructor is explicit if and only if
     ///       `std::is_convertible_v<U&&, T>` is `false`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// cpp::result<int,int> r = 42;
+    ///
+    /// auto get_value() -> cpp::result<std::string,int> {
+    ///   return "hello world!"; // implicit conversion
+    /// }
+    /// ```
     ///
     /// \param value the value to copy
     template <typename U,
@@ -1952,8 +2070,8 @@ inline namespace bitwizeshift {
     /// or assigned from std::forward<U>(value).
     ///
     /// \note The function does not participate in overload resolution unless
-    ///       - `std::decay_t<U>` is not an result type,
-    ///       - `std::decay_t<U>` is not an failure type
+    ///       - `std::decay_t<U>` is not a result type,
+    ///       - `std::decay_t<U>` is not a failure type
     ///       - `std::is_nothrow_constructible_v<T, U>` is `true`
     ///       - `std::is_assignable_v<T&, U>` is `true`
     ///       - and at least one of the following is `true`:
@@ -1999,9 +2117,27 @@ inline namespace bitwizeshift {
   public:
 
     /// \{
-    /// \brief Accesses the contained value
+    /// \brief Retrieves a pointer to the contained value
+    ///
+    /// This operator exists to give `result` an `optional`-like API for cases
+    /// where it's known that the `result` already contains a value.
+    ///
+    /// Care must be taken to ensure that this is only used in safe contexts
+    /// where a `T` value is active.
     ///
     /// \note The behavior is undefined if `*this` does not contain a value.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<Widget,int>{
+    ///   make_widget()
+    /// };
+    ///
+    /// r->do_something();
+    /// ```
     ///
     /// \return a pointer to the contained value
     RESULT_WARN_UNUSED
@@ -2013,9 +2149,29 @@ inline namespace bitwizeshift {
     /// \}
 
     /// \{
-    /// \brief Accesses the contained value
+    /// \brief Retrieves a reference to the contained value
+    ///
+    /// This operator exists to give `result` an `optional`-like API for cases
+    /// where it's known that the `result` already contains a value.
+    ///
+    /// Care must be taken to ensure that this is only used in safe contexts
+    /// where a `T` value is active.
     ///
     /// \note The behaviour is undefined if `*this` does not contain a value
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<Widget,int>{
+    ///   make_widget()
+    /// };
+    ///
+    /// (*r).do_something();
+    ///
+    /// consume(*r);
+    /// ```
     ///
     /// \return a reference to the contained value
     RESULT_WARN_UNUSED
@@ -2034,21 +2190,67 @@ inline namespace bitwizeshift {
 
     //-------------------------------------------------------------------------
 
-    /// \brief Checks whether `*this` contains a value
+    /// \brief Contextually convertible to `true` if `*this` contains a value
+    ///
+    /// This function exists to allow for simple, terse checks for containing
+    /// a value.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto get_result() -> cpp::result<int, int>;
+    /// auto r = get_result();
+    /// if (r) { ... }
+    ///
+    /// assert(static_cast<bool>(cpp::result<int,int>{42}));
+    ///
+    /// assert(!static_cast<bool>(cpp::result<int,int>{cpp::fail(42)}));
+    /// ```
     ///
     /// \return `true` if `*this` contains a value, `false` if `*this`
     ///         does not contain a value
     RESULT_WARN_UNUSED
     constexpr explicit operator bool() const noexcept;
 
-    /// \brief Checks whether `*this` contains a value
+    /// \brief Returns `true` if `*this` contains a value
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto get_result() -> cpp::result<int, int>;
+    /// auto r = get_result();
+    /// if (r.has_value()) { ... }
+    ///
+    /// assert(cpp::result<int,int>{42}.has_value());
+    ///
+    /// assert(!cpp::result<int,int>{cpp::fail(42)}.has_value());
+    /// ```
     ///
     /// \return `true` if `*this` contains a value, `false` if `*this`
     ///         contains an error
     RESULT_WARN_UNUSED
     constexpr auto has_value() const noexcept -> bool;
 
-    /// \brief Checks whether `*this` contains an error
+    /// \brief Returns `true` if `*this` contains an error
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto get_result() -> cpp::result<int, int>;
+    ///
+    /// auto r = get_result();
+    /// if (r.has_error()) { ... }
+    ///
+    /// assert(!cpp::result<int,int>{42}.has_error());
+    ///
+    /// assert(cpp::result<int,int>{cpp::fail(42)}.has_error());
+    /// ```
     ///
     /// \return `true` if `*this` contains an error, `false` if `*this`
     ///          contains a value
@@ -2058,9 +2260,37 @@ inline namespace bitwizeshift {
     //-------------------------------------------------------------------------
 
     /// \{
-    /// \brief Returns the contained value.
+    /// \brief Returns a reference to the contained value
     ///
-    /// \throws bad_result_access if `*this` does not contain a value.
+    /// This function provides checked (throwing) access to the underlying
+    /// value. The constness and refness of this result is propagated to the
+    /// underlying reference.
+    ///
+    /// If this contains an error, an exception is thrown containing the
+    /// underlying error. The error is consumed propagating the same constness
+    /// and refness of this result.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// assert(cpp::result<int,int>{42}.value() == 42);
+    ///
+    /// auto r = cpp::result<std::unique_ptr<int>,int>{
+    ///   std::make_unique<int>(42)
+    /// };
+    /// auto s = std::move(r).value();
+    ///
+    /// try {
+    ///   auto r = cpp::result<int,int>{ cpp::fail(42) };
+    ///   auto v = r.value();
+    /// } catch (const cpp::bad_result_access<int>& e) {
+    ///   assert(e.error() == 42);
+    /// }
+    /// ```
+    ///
+    /// \throws bad_result_access<E> if `*this` does not contain a value.
     ///
     /// \return the value of `*this`
     RESULT_WARN_UNUSED
@@ -2080,6 +2310,38 @@ inline namespace bitwizeshift {
     /// \{
     /// \brief Returns the contained error, if one exists, or a
     ///        default-constructed error value
+    ///
+    /// The `error()` function will not throw any exceptions if `E` does not
+    /// throw any exceptions for the copy or move construction.
+    ///
+    /// This is to limit the possible scope for exceptions, and to allow the
+    /// error type to be treated as a "status"-like type, where the
+    /// default-constructed case is considered the "good" state.
+    ///
+    /// If this function is invoked on an rvalue of a result, the error is
+    /// returned via move-construction
+    ///
+    /// ### Requires
+    ///
+    /// * `std::is_default_constructible<E>::value` is `true`
+    /// * `std::is_copy_constructible<E>::value` or
+    ///   `std::is_move_constructible<E>::value` is `true`
+    /// * `E{}` represents the "good" (non-error) state
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<int,std::error_code>{ 42 };
+    /// assert(r.error() == std::error_code{});
+    ///
+    /// auto r = cpp::result<int,std::error_code>{
+    ///   cpp::fail(std::io_errc::stream)
+    /// };
+    ///
+    /// assert(r.error() == std::io_errc::stream);
+    /// ```
     ///
     /// \return the error or a default-constructed error value
     RESULT_WARN_UNUSED
@@ -2105,6 +2367,16 @@ inline namespace bitwizeshift {
     ///       however it uses exceptions to ensure the stack can be unwound, and
     ///       exceptions invoked.
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto start_service() -> cpp::result<void,int>;
+    ///
+    /// start_service().expect("Service failed to start!");
+    /// ```
+    ///
     /// \param message the message to provide to this expectation
     template <typename String,
               typename = typename std::enable_if<(
@@ -2129,6 +2401,18 @@ inline namespace bitwizeshift {
     /// \brief Returns the contained value if `*this` has a value,
     ///        otherwise returns \p default_value.
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<int,int>{42};
+    /// assert(r.value_or(0) == 42);
+    ///
+    /// auto r = cpp::result<int,int>{cpp::fail(42)};
+    /// assert(r.value_or(0) == 0);
+    /// ```
+    ///
     /// \param default_value the value to use in case `*this` contains an error
     /// \return the contained value or \p default_value
     template <typename U>
@@ -2145,6 +2429,18 @@ inline namespace bitwizeshift {
     /// \brief Returns the contained error if `*this` has an error,
     ///        otherwise returns \p default_error.
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<int,int>{42};
+    /// assert(r.error_or(0) == cpp::fail(0));
+    ///
+    /// auto r = cpp::result<int,int>{cpp::fail(42)};
+    /// assert(r.error_or(0) == cpp::fail(42));
+    /// ```
+    ///
     /// \param default_error the error to use in case `*this` is empty
     /// \return the contained value or \p default_error
     template <typename U>
@@ -2157,12 +2453,24 @@ inline namespace bitwizeshift {
 
     //-------------------------------------------------------------------------
 
-    /// \brief Returns an result containing \p value if this result contains
-    ///        a value, otherwise returns an result containing the current
+    /// \brief Returns a result containing \p value if this result contains
+    ///        a value, otherwise returns a result containing the current
     ///        error.
     ///
-    /// \param value the value to return as an result
-    /// \return an result of \p value if this contains a value
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<int,int>{42};
+    /// assert(r.and_then(100) == 100);
+    ///
+    /// auto r = cpp::result<int,int>{cpp::fail(42)};
+    /// assert(r.and_then(100) == cpp::fail(42));
+    /// ```
+    ///
+    /// \param value the value to return as a result
+    /// \return a result of \p value if this contains a value
     template <typename U>
     RESULT_WARN_UNUSED
     constexpr auto and_then(U&& value) const -> result<typename std::decay<U>::type,E>;
@@ -2171,13 +2479,26 @@ inline namespace bitwizeshift {
     /// \brief Invokes the function \p fn with the value of this result as
     ///        the argument
     ///
-    /// If this result contains an error, an result of the error is returned
+    /// If this result contains an error, a result of the error is returned
     ///
-    /// The function being called must return an `result` type or the program
+    /// The function being called must return a `result` type or the program
     /// is ill-formed
     ///
     /// If this is called on an rvalue of `result` which contains an error,
     /// the returned `result` is constructed from an rvalue of that error.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto to_string(int) -> cpp::result<std::string,int>;
+    /// auto r = cpp::result<int,int>{42};
+    /// assert(r.flat_map(to_string) == "42");
+    ///
+    /// auto r = cpp::result<int,int>{cpp::fail(42)};
+    /// assert(r.flat_map(to_string) == cpp::fail(42));
+    /// ```
     ///
     /// \param fn the function to invoke with this
     /// \return The result of the function being called
@@ -2200,6 +2521,19 @@ inline namespace bitwizeshift {
     /// If this is called on an rvalue of `result` which contains an error,
     /// the returned `result` is constructed from an rvalue of that error.
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto to_string(int) -> std::string;
+    /// auto r = cpp::result<int,int>{42};
+    /// assert(r.map(to_string) == "42");
+    ///
+    /// auto r = cpp::result<int,int>{cpp::fail(42)};
+    /// assert(r.map(to_string) == cpp::fail(42));
+    /// ```
+    ///
     /// \param fn the function to invoke with this
     /// \return The result result of the function invoked
     template <typename Fn>
@@ -2216,10 +2550,26 @@ inline namespace bitwizeshift {
     ///
     /// If this result contains a value, the result of this function is that
     /// value. Otherwise the function is called with that error and returns the
-    /// result as an result.
+    /// result as a result.
     ///
     /// If this is called on an rvalue of `result` which contains a value,
     /// the returned `result` is constructed from an rvalue of that value.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto to_string(int) -> std::string;
+    /// auto r = cpp::result<int,int>{42};
+    /// assert(r.map_error(to_string) == 42);
+    ///
+    /// auto r = cpp::result<int,int>{cpp::fail(42)};
+    /// assert(r.map_error(to_string) == cpp::fail("42"));
+    ///
+    /// auto r = cpp::result<std::string,int>{};
+    /// auto s = r.map(std::string::size); // 's' contains 'result<size_t,int>'
+    /// ```
     ///
     /// \param fn the function to invoke with this
     /// \return The result result of the function invoked
@@ -2237,13 +2587,26 @@ inline namespace bitwizeshift {
     /// \brief Invokes the function \p fn with the error of this result as
     ///        the argument
     ///
-    /// If this result contains a value, an result of the value is returned
+    /// If this result contains a value, a result of the value is returned
     ///
-    /// The function being called must return an `result` type or the program
+    /// The function being called must return a `result` type or the program
     /// is ill-formed
     ///
     /// If this is called on an rvalue of `result` which contains an error,
     /// the returned `result` is constructed from an rvalue of that error.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto to_string(int) -> cpp::result<int,std::string>;
+    /// auto r = cpp::result<int,int>{42};
+    /// assert(r.flat_map(to_string) == 42);
+    ///
+    /// auto r = cpp::result<int,int>{cpp::fail(42)};
+    /// assert(r.flat_map(to_string) == cpp::fail("42"));
+    /// ```
     ///
     /// \param fn the function to invoke with this
     /// \return The result of the function being called
@@ -2340,7 +2703,15 @@ inline namespace bitwizeshift {
     //-------------------------------------------------------------------------
   public:
 
-    /// \brief Constructs an `result` object with
+    /// \brief Constructs a `result` object that does not contain
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<void,int>{};
+    /// ```
     RESULT_NODISCARD
     constexpr result() noexcept;
 
@@ -2355,11 +2726,20 @@ inline namespace bitwizeshift {
     /// \note This constructor is defined as trivial if both
     ///       `std::is_trivially_copy_constructible<E>::value` are `true`
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// const auto r = cpp::result<void,int>{};
+    /// const auto s = r;
+    /// ```
+    ///
     /// \param other the result to copy
     RESULT_NODISCARD
     constexpr result(const result& other) = default;
 
-    /// \brief Move constructs an result
+    /// \brief Move constructs a result
     ///
     /// If other contains an error, move-constructs this result from that
     /// error.
@@ -2370,16 +2750,25 @@ inline namespace bitwizeshift {
     /// \note This constructor is defined as trivial if both
     ///       `std::is_trivially_move_constructible<E>::value` are `true`
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<void,std::string>{};
+    /// auto s = std::move(r);
+    /// ```
+    ///
     /// \param other the result to move
     RESULT_NODISCARD
     constexpr result(result&& other) = default;
 
     /// \brief Converting copy constructor
     ///
-    /// If \p other contains a value, constructs an result object that is not
+    /// If \p other contains a value, constructs a result object that is not
     /// in an error state -- ignoring the value.
     ///
-    /// If \p other contains an error, constructs an result object that
+    /// If \p other contains an error, constructs a result object that
     /// contains an error, initialized as if direct-initializing
     /// (but not direct-list-initializing) an object of type `E`.
     ///
@@ -2392,6 +2781,15 @@ inline namespace bitwizeshift {
     /// \note This constructor is explicit if and only if
     ///       `std::is_convertible_v<const E2&, E>` is `false`
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// const auto r = cpp::result<int,int>{42};
+    /// const auto s = cpp::result<void,int>{r};
+    /// ```
+    ///
     /// \param other the other type to convert
     template <typename U, typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
@@ -2401,7 +2799,7 @@ inline namespace bitwizeshift {
 
     /// \brief Converting move constructor
     ///
-    /// If \p other contains an error, constructs an result object that
+    /// If \p other contains an error, constructs a result object that
     /// contains an error, initialized as if direct-initializing
     /// (but not direct-list-initializing) an object of type E&&.
     ///
@@ -2417,6 +2815,17 @@ inline namespace bitwizeshift {
     ///       `std::is_convertible_v<const T2&, T>` or
     ///       `std::is_convertible_v<const E2&, E>` is `false`
     ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<int,std::string>{42};
+    /// auto s = cpp::result<void,std::string>{
+    ///   std::move(r)
+    /// };
+    /// ```
+    ///
     /// \param other the other type to convert
     template <typename U, typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
@@ -2426,11 +2835,21 @@ inline namespace bitwizeshift {
 
     //-------------------------------------------------------------------------
 
-    /// \brief Constructs an result object that contains an error
+    /// \brief Constructs a result object that contains an error
     ///
     /// the value is initialized as if direct-initializing (but not
     /// direct-list-initializing) an object of type `E` from the arguments
     /// `std::forward<Args>(args)...`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<void,std::string>{
+    ///   cpp::in_place_error, "Hello world"
+    /// };
+    /// ```
     ///
     /// \param args the arguments to pass to `E`'s constructor
     template <typename...Args,
@@ -2439,12 +2858,22 @@ inline namespace bitwizeshift {
     constexpr explicit result(in_place_error_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
-    /// \brief Constructs an result object that contains an error
+    /// \brief Constructs a result object that contains an error
     ///
     /// The value is initialized as if direct-initializing (but not
     /// direct-list-initializing) an object of type `E` from the arguments
     /// `std::forward<std::initializer_list<U>>(ilist)`,
     /// `std::forward<Args>(args)...`
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<void,std::string>{
+    ///   cpp::in_place_error, {'H','e','l','l','o'}
+    /// };
+    /// ```
     ///
     /// \param ilist An initializer list of entries to forward
     /// \param args  the arguments to pass to Es constructor
@@ -2463,6 +2892,18 @@ inline namespace bitwizeshift {
     ///
     /// \note This constructor only participates in overload resolution if
     ///       `E` is constructible from \p e
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// cpp::result<void,int> r = cpp::fail(42);
+    ///
+    /// auto get_error_result() -> cpp::result<void,std::string> {
+    ///   return cpp::fail("hello world!");
+    /// }
+    /// ```
     ///
     /// \param e the failure error
     template <typename E2,
@@ -2585,42 +3026,78 @@ inline namespace bitwizeshift {
     //-------------------------------------------------------------------------
   public:
 
-    /// \brief Checks whether `*this` contains a value
+
+    /// \brief Contextually convertible to `true` if `*this` does not contain
+    ///        an error
+    ///
+    /// This function exists to allow for simple, terse checks for containing
+    /// a value.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto get_result() -> cpp::result<void, int>;
+    /// auto r = get_result();
+    /// if (r) { ... }
+    ///
+    /// assert(static_cast<bool>(cpp::result<void,int>{}));
+    ///
+    /// assert(!static_cast<bool>(cpp::result<void,int>{cpp::fail(42)}));
+    /// ```
     ///
     /// \return `true` if `*this` contains a value, `false` if `*this`
     ///         does not contain a value
     RESULT_WARN_UNUSED
     constexpr explicit operator bool() const noexcept;
 
-    /// \brief Checks whether `*this` contains a value
-    ///
-    /// \return `true` if `*this` contains a value, `false` if `*this`
-    ///         contains an error
+    /// \copydoc result<T,E>::has_value
     RESULT_WARN_UNUSED
     constexpr auto has_value() const noexcept -> bool;
 
-    /// \brief Checks whether `*this` contains an error
-    ///
-    /// \return `true` if `*this` contains an error, `false` if `*this`
-    ///          contains a value
+    /// \copydoc result<T,E>::has_error
     RESULT_WARN_UNUSED
     constexpr auto has_error() const noexcept -> bool;
 
     //-------------------------------------------------------------------------
 
     /// \{
-    /// \brief Throws an exception if contains an error
+    /// \brief Throws an exception if `(*this)` is in an error state
     ///
-    /// \throws bad_result_access if `*this` contains an error.
+    /// This function exists for symmetry with `cpp::result<T,E>` objects where
+    /// `T` contains a value.
+    ///
+    /// If this contains an error, an exception is thrown containing the
+    /// underlying error. The error is consumed propagating the same constness
+    /// and refness of this result.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// cpp::result<void,int>{}.value(); // no exception
+    ///
+    /// auto r = cpp::result<void,std::unique_ptr<int>>{
+    ///   cpp::fail(std::make_unique<int>(42))
+    /// };
+    /// std::move(r).value(); // throws bad_result_access<std::unique_ptr<int>>
+    ///
+    /// try {
+    ///   auto r = cpp::result<void,int>{ cpp::fail(42) }.value();
+    /// } catch (const cpp::bad_result_access<int>& e) {
+    ///   assert(e.error() == 42);
+    /// }
+    /// ```
+    ///
+    /// \throws bad_result_access<E> if `*this` does not contain a value.
     RESULT_CPP14_CONSTEXPR auto value() && -> void;
     RESULT_CPP14_CONSTEXPR auto value() const & -> void;
     /// \}
 
     /// \{
-    /// \brief Returns the contained error, if one exists, or a
-    ///        default-constructed error value
-    ///
-    /// \return the error or a default-constructed error value
+    /// \copydoc result<T,E>::error
     RESULT_WARN_UNUSED
     constexpr auto error() const &
       noexcept(std::is_nothrow_constructible<E>::value &&
@@ -2632,19 +3109,7 @@ inline namespace bitwizeshift {
     /// \}
 
     /// \{
-    /// \brief Asserts an expectation that this result contains an error,
-    ///        throwing a bad_result_access on failure
-    ///
-    /// If this function is invoked from an rvalue of `result`, then this will
-    /// consume the underlying error first, if there is one.
-    ///
-    /// \note This function exists as a means to allow for results to be marked
-    ///       `used` without requiring directly inspecting the underlying value.
-    ///       This is, in effect, equivalent to `assert(res.has_value())`,
-    ///       however it uses exceptions to ensure the stack can be unwound, and
-    ///       exceptions invoked.
-    ///
-    /// \param message the message to provide to this expectation
+    /// \copydoc result<T,E>::expect
     template <typename String,
               typename = typename std::enable_if<(
                 std::is_convertible<String,const std::string&>::value &&
@@ -2665,11 +3130,7 @@ inline namespace bitwizeshift {
   public:
 
     /// \{
-    /// \brief Returns the contained error if `*this` has an error,
-    ///        otherwise returns \p default_error.
-    ///
-    /// \param default_error the error to use in case `*this` is empty
-    /// \return the contained value or \p default_error
+    /// \copydoc result<T,E>::error_or
     template <typename U>
     RESULT_WARN_UNUSED
     constexpr auto error_or(U&& default_error) const & -> error_type;
@@ -2680,27 +3141,34 @@ inline namespace bitwizeshift {
 
     //-------------------------------------------------------------------------
 
-    /// \brief Returns an result containing \p value if this result contains
-    ///        a value, otherwise returns an result containing the current
-    ///        error.
-    ///
-    /// \param value the value to return as an result
-    /// \return an result of \p value if this contains a value
+    /// \copydoc result<T,E>::and_then
     template <typename U>
     RESULT_WARN_UNUSED
     constexpr auto and_then(U&& value) const -> result<typename std::decay<U>::type,E>;
 
     /// \{
-    /// \brief Invokes the function \p fn with the value of this result as
-    ///        the argument
+    /// \brief Invokes the function \p fn if `(*this)` contains no value
     ///
-    /// If this result contains an error, an result of the error is returned
+    /// If this result contains an error, a result of the error is returned
     ///
-    /// The function being called must return an `result` type or the program
+    /// The function being called must return a `result` type or the program
     /// is ill-formed
     ///
     /// If this is called on an rvalue of `result` which contains an error,
     /// the returned `result` is constructed from an rvalue of that error.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto generate_int() -> cpp::result<int,int> { return 42; }
+    /// auto r = cpp::result<void,int>{};
+    /// assert(r.flat_map(generate_int) == 42);
+    ///
+    /// auto r = cpp::result<void,int>{cpp::fail(42)};
+    /// assert(r.flat_map(generate_int) == cpp::fail(42));
+    /// ```
     ///
     /// \param fn the function to invoke with this
     /// \return The result of the function being called
@@ -2713,8 +3181,7 @@ inline namespace bitwizeshift {
     /// \}
 
     /// \{
-    /// \brief Invokes the function \p fn with the value of this result as
-    ///        the argument
+    /// \brief Invokes the function \p fn if `(*this)` contains no value
     ///
     /// If this result is an error, the result of this function is that
     /// error. Otherwise this function wraps the result and returns it as an
@@ -2722,6 +3189,19 @@ inline namespace bitwizeshift {
     ///
     /// If this is called on an rvalue of `result` which contains an error,
     /// the returned `result` is constructed from an rvalue of that error.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto generate_int() -> int { return 42; }
+    /// auto r = cpp::result<void,int>{};
+    /// assert(r.map(generate_int) == 42);
+    ///
+    /// auto r = cpp::result<void,int>{cpp::fail(42)};
+    /// assert(r.map(generate_int) == cpp::fail(42));
+    /// ```
     ///
     /// \param fn the function to invoke with this
     /// \return The result result of the function invoked
@@ -2734,15 +3214,7 @@ inline namespace bitwizeshift {
     /// \}
 
     /// \{
-    /// \brief Invokes the function \p fn with the error of this result as
-    ///        the argument
-    ///
-    /// If this result contains a value, the result of this function is that
-    /// value. Otherwise the function is called with that error and returns the
-    /// result as an result.
-    ///
-    /// \param fn the function to invoke with this
-    /// \return The result result of the function invoked
+    /// \copydoc result<T,E>::map_error
     template <typename Fn>
     constexpr auto map_error(Fn&& fn) const & -> result<void, detail::invoke_result_t<Fn,const E&>>;
     template <typename Fn>
@@ -2752,19 +3224,7 @@ inline namespace bitwizeshift {
 
 
     /// \{
-    /// \brief Invokes the function \p fn with the error of this result as
-    ///        the argument
-    ///
-    /// If this result contains a value, an result of the value is returned
-    ///
-    /// The function being called must return an `result` type or the program
-    /// is ill-formed
-    ///
-    /// If this is called on an rvalue of `result` which contains an error,
-    /// the returned `result` is constructed from an rvalue of that error.
-    ///
-    /// \param fn the function to invoke with this
-    /// \return The result of the function being called
+    /// \copydoc result<T,E>::flat_map_error
     template <typename Fn>
     RESULT_WARN_UNUSED
     constexpr auto flat_map_error(Fn&& fn) const & -> detail::invoke_result_t<Fn, const E&>;
@@ -4361,7 +4821,7 @@ auto RESULT_NS_IMPL::result<T, E>::flat_map(Fn&& fn)
 
   static_assert(
     is_result<result_type>::value,
-    "flat_map must return an result type or the program is ill-formed"
+    "flat_map must return a result type or the program is ill-formed"
   );
 
   return has_value()
@@ -4379,7 +4839,7 @@ auto RESULT_NS_IMPL::result<T, E>::flat_map(Fn&& fn)
 
   static_assert(
     is_result<result_type>::value,
-    "flat_map must return an result type or the program is ill-formed"
+    "flat_map must return a result type or the program is ill-formed"
   );
 
   return has_value()
@@ -4452,7 +4912,7 @@ auto RESULT_NS_IMPL::result<T, E>::flat_map_error(Fn&& fn)
 
   static_assert(
     is_result<result_type>::value,
-    "flat_map_error must return an result type or the program is ill-formed"
+    "flat_map_error must return a result type or the program is ill-formed"
   );
 
   return has_value()
@@ -4470,7 +4930,7 @@ auto RESULT_NS_IMPL::result<T, E>::flat_map_error(Fn&& fn)
 
   static_assert(
     is_result<result_type>::value,
-    "flat_map_error must return an result type or the program is ill-formed"
+    "flat_map_error must return a result type or the program is ill-formed"
   );
 
   return has_value()
@@ -4826,7 +5286,7 @@ auto RESULT_NS_IMPL::result<void, E>::flat_map(Fn&& fn)
 
   static_assert(
     is_result<result_type>::value,
-    "flat_map must return an result type or the program is ill-formed"
+    "flat_map must return a result type or the program is ill-formed"
   );
 
   return has_value()
@@ -4844,7 +5304,7 @@ auto RESULT_NS_IMPL::result<void, E>::flat_map(Fn&& fn)
 
   static_assert(
     is_result<result_type>::value,
-    "flat_map must return an result type or the program is ill-formed"
+    "flat_map must return a result type or the program is ill-formed"
   );
 
   return has_value()
@@ -4917,7 +5377,7 @@ auto RESULT_NS_IMPL::result<void, E>::flat_map_error(Fn&& fn)
 
   static_assert(
     is_result<result_type>::value,
-    "flat_map_error must return an result type or the program is ill-formed"
+    "flat_map_error must return a result type or the program is ill-formed"
   );
   static_assert(
     std::is_default_constructible<typename result_type::value_type>::value,
@@ -4940,7 +5400,7 @@ auto RESULT_NS_IMPL::result<void, E>::flat_map_error(Fn&& fn)
 
   static_assert(
     is_result<result_type>::value,
-    "flat_map_error must return an result type or the program is ill-formed"
+    "flat_map_error must return a result type or the program is ill-formed"
   );
   static_assert(
     std::is_default_constructible<typename result_type::value_type>::value,
