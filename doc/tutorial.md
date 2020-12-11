@@ -16,6 +16,7 @@ and the latter represents a possible error type.
     3. [Returning `void`](#returning-void)
     4. [Using Assignment](#using-assignment)
     5. [Checking for error state](#checking-for-error-state)
+    6. [assuming no error](#assuming-no-error)
 2. [Advanced](#advanced)
     1. [Monadic-functions](#monadic-functions)
     2. [Type-erasure with `result<void,e>`](#type-erasure-with-resultvoide)
@@ -284,6 +285,28 @@ auto exp = try_to_uint8("255");
 
 if (exp == 255) {
   /* exp contains a value equality-comparable to 255 */
+}
+```
+
+### Assuming no error
+
+Sometimes you may be calling a fallible function and not care to handle the
+failure case. However, thanks to `result` being marked `[[nodiscard]]`, you
+must still consume the result otherwise you will be hit with a warning (or
+error with `-Werror`/`/Wx`). Thankfully, there exists an easy way out:
+`result::expect`.
+
+If you want to make an assumption that a result contains a proper value, you
+may call `expect` with a desired message. On failure, an exception will be
+thrown that contains the specified message along with the underlying error, and
+on success the code will proceed as planned. This ensures that the code is not
+left in an error-state, and consumes the `result`.
+
+```cpp
+auto start_service() -> cpp::result<void,service_error>;
+
+auto test() -> void {
+  start_service().expect("Service failed to start!");
 }
 ```
 

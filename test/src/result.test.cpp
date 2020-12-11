@@ -2367,6 +2367,41 @@ TEST_CASE("result<T,E>::error() &&", "[observers]") {
     }
   }
 }
+
+TEST_CASE("result<T,E>::expect(String&&) const &", "[observers]") {
+  SECTION("result contains value") {
+    const auto sut = result<int,int>{42};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(sut.expect("test"));
+    }
+  }
+  SECTION("result contains error") {
+    SECTION("throws exception") {
+      const auto sut = result<int,int>{fail(42)};
+
+      REQUIRE_THROWS_AS(sut.expect("test"), bad_result_access<int>);
+    }
+  }
+}
+
+TEST_CASE("result<T,E>::expect(String&&) &&", "[observers]") {
+  SECTION("result contains value") {
+    auto sut = result<int,move_only<std::string>>{42};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(std::move(sut).expect("test"));
+    }
+  }
+  SECTION("result contains error") {
+    SECTION("throws exception") {
+      auto sut = result<int,move_only<std::string>>{fail("hello world")};
+
+      REQUIRE_THROWS_AS(std::move(sut).expect("test"), bad_result_access<move_only<std::string>>);
+    }
+  }
+}
+
 //-----------------------------------------------------------------------------
 // Monadic Functionalities
 //-----------------------------------------------------------------------------
@@ -4077,6 +4112,40 @@ TEST_CASE("result<void,E>::error() &&", "[observers]") {
       const auto output = std::move(sut).error();
 
       REQUIRE(output == value);
+    }
+  }
+}
+
+TEST_CASE("result<void,E>::expect(String&&) const &", "[observers]") {
+  SECTION("result contains value") {
+    const auto sut = result<void,int>{};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(sut.expect("test"));
+    }
+  }
+  SECTION("result contains error") {
+    SECTION("throws exception") {
+      const auto sut = result<void,int>{fail(42)};
+
+      REQUIRE_THROWS_AS(sut.expect("test"), bad_result_access<int>);
+    }
+  }
+}
+
+TEST_CASE("result<void,E>::expect(String&&) &&", "[observers]") {
+  SECTION("result contains value") {
+    auto sut = result<void,move_only<std::string>>{};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(std::move(sut).expect("test"));
+    }
+  }
+  SECTION("result contains error") {
+    SECTION("throws exception") {
+      auto sut = result<void,move_only<std::string>>{fail("hello world")};
+
+      REQUIRE_THROWS_AS(std::move(sut).expect("test"), bad_result_access<move_only<std::string>>);
     }
   }
 }
