@@ -116,32 +116,32 @@ template&lt;typename U &gt; </td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a294cc61375e0b4d0a0865f5477cff931"><td class="memTemplParams" colspan="2">template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_constructible&lt;U&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a294cc61375e0b4d0a0865f5477cff931"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a294cc61375e0b4d0a0865f5477cff931">result</a> () noexcept(std::is_nothrow_constructible&lt; U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a294cc61375e0b4d0a0865f5477cff931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default-constructs an result with the underlying value type active.  <a href="#a294cc61375e0b4d0a0865f5477cff931">More...</a><br /></td></tr>
-<tr class="separator:a294cc61375e0b4d0a0865f5477cff931"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6808ac32ce9de8acc667a3f9185ed14a"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a6808ac32ce9de8acc667a3f9185ed14a">result</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;other)=default</td></tr>
-<tr class="memdesc:a6808ac32ce9de8acc667a3f9185ed14a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructs this result.  <a href="#a6808ac32ce9de8acc667a3f9185ed14a">More...</a><br /></td></tr>
-<tr class="separator:a6808ac32ce9de8acc667a3f9185ed14a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a839b1bf77f5a92ff56c119d558bc98c7"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a839b1bf77f5a92ff56c119d558bc98c7">result</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;&amp;other)=default</td></tr>
-<tr class="memdesc:a839b1bf77f5a92ff56c119d558bc98c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructs an result.  <a href="#a839b1bf77f5a92ff56c119d558bc98c7">More...</a><br /></td></tr>
-<tr class="separator:a839b1bf77f5a92ff56c119d558bc98c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e9c452ba7ab0130f0f4776aec66f49a"><td class="memTemplParams" colspan="2">template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T,Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a3e9c452ba7ab0130f0f4776aec66f49a"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a3e9c452ba7ab0130f0f4776aec66f49a">result</a> (<a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; T, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a3e9c452ba7ab0130f0f4776aec66f49a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a3e9c452ba7ab0130f0f4776aec66f49a">More...</a><br /></td></tr>
-<tr class="separator:a3e9c452ba7ab0130f0f4776aec66f49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae126a3af750a64eec9ebe7b2325afe2"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:aae126a3af750a64eec9ebe7b2325afe2"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aae126a3af750a64eec9ebe7b2325afe2">result</a> (<a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:aae126a3af750a64eec9ebe7b2325afe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#aae126a3af750a64eec9ebe7b2325afe2">More...</a><br /></td></tr>
-<tr class="separator:aae126a3af750a64eec9ebe7b2325afe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a691fbdb19ae0c4fb858aa8425c51d5de"><td class="memTemplParams" colspan="2">template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a691fbdb19ae0c4fb858aa8425c51d5de"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a691fbdb19ae0c4fb858aa8425c51d5de">result</a> (<a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html">in_place_error_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a691fbdb19ae0c4fb858aa8425c51d5de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains an error.  <a href="#a691fbdb19ae0c4fb858aa8425c51d5de">More...</a><br /></td></tr>
-<tr class="separator:a691fbdb19ae0c4fb858aa8425c51d5de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59c7df8b675c1f7177b22a74da477f62"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a59c7df8b675c1f7177b22a74da477f62"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a59c7df8b675c1f7177b22a74da477f62">result</a> (<a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html">in_place_error_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a59c7df8b675c1f7177b22a74da477f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains an error.  <a href="#a59c7df8b675c1f7177b22a74da477f62">More...</a><br /></td></tr>
-<tr class="separator:a59c7df8b675c1f7177b22a74da477f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="memTemplParams" colspan="2">template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_constructible&lt;U&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#adbbeb16fe7e34ca0c98f1844e70af1cc">result</a> () noexcept(std::is_nothrow_constructible&lt; U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default-constructs an result with the underlying value type active.  <a href="#adbbeb16fe7e34ca0c98f1844e70af1cc">More...</a><br /></td></tr>
+<tr class="separator:adbbeb16fe7e34ca0c98f1844e70af1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c07363da1c90a6e06ecd9434ed56e06"><td class="memItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a5c07363da1c90a6e06ecd9434ed56e06">result</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;other)=default</td></tr>
+<tr class="memdesc:a5c07363da1c90a6e06ecd9434ed56e06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructs this result.  <a href="#a5c07363da1c90a6e06ecd9434ed56e06">More...</a><br /></td></tr>
+<tr class="separator:a5c07363da1c90a6e06ecd9434ed56e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8043684b87c6c36ddb3f56d9bac6ffaf"><td class="memItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a8043684b87c6c36ddb3f56d9bac6ffaf">result</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;&amp;other)=default</td></tr>
+<tr class="memdesc:a8043684b87c6c36ddb3f56d9bac6ffaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructs an result.  <a href="#a8043684b87c6c36ddb3f56d9bac6ffaf">More...</a><br /></td></tr>
+<tr class="separator:a8043684b87c6c36ddb3f56d9bac6ffaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c464049873f2560b61adfa294587ec2"><td class="memTemplParams" colspan="2">template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T,Args...&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a1c464049873f2560b61adfa294587ec2"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a1c464049873f2560b61adfa294587ec2">result</a> (<a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; T, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:a1c464049873f2560b61adfa294587ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a1c464049873f2560b61adfa294587ec2">More...</a><br /></td></tr>
+<tr class="separator:a1c464049873f2560b61adfa294587ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac469c184db34a2929811b40782ab1b48"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;T, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ac469c184db34a2929811b40782ab1b48"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac469c184db34a2929811b40782ab1b48">result</a> (<a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; T, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:ac469c184db34a2929811b40782ab1b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#ac469c184db34a2929811b40782ab1b48">More...</a><br /></td></tr>
+<tr class="separator:ac469c184db34a2929811b40782ab1b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="memTemplParams" colspan="2">template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,Args...&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab26e00e1c31db8a30b8fac3d1af98a52">result</a> (<a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html">in_place_error_t</a>, Args &amp;&amp;... args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains an error.  <a href="#ab26e00e1c31db8a30b8fac3d1af98a52">More...</a><br /></td></tr>
+<tr class="separator:ab26e00e1c31db8a30b8fac3d1af98a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ea5f553721198cbe40fcfa885313d0b"><td class="memTemplParams" colspan="2">template&lt;typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E, std::initializer_list&lt;U&gt;&amp;, Args...&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a7ea5f553721198cbe40fcfa885313d0b"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a7ea5f553721198cbe40fcfa885313d0b">result</a> (<a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html">in_place_error_t</a>, std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:a7ea5f553721198cbe40fcfa885313d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains an error.  <a href="#a7ea5f553721198cbe40fcfa885313d0b">More...</a><br /></td></tr>
+<tr class="separator:a7ea5f553721198cbe40fcfa885313d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5307dea65a0fd87bdcd48c70a6827b10"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a5307dea65a0fd87bdcd48c70a6827b10">operator=</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;other) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;=default</td></tr>
 <tr class="memdesc:a5307dea65a0fd87bdcd48c70a6827b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assigns the result stored in <code>other</code>.  <a href="#a5307dea65a0fd87bdcd48c70a6827b10">More...</a><br /></td></tr>
 <tr class="separator:a5307dea65a0fd87bdcd48c70a6827b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,168 +149,168 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7001dcd67ce0f053e77e70100fdc82e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assigns the result stored in <code>other</code>.  <a href="#a7001dcd67ce0f053e77e70100fdc82e0">More...</a><br /></td></tr>
 <tr class="separator:a7001dcd67ce0f053e77e70100fdc82e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa0909f15e9e8b97cfdf89bc4e880176"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;detail::result_is_copy_convert_assignable&lt;T,E,T2,E2&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:afa0909f15e9e8b97cfdf89bc4e880176"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#afa0909f15e9e8b97cfdf89bc4e880176">operator=</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; T, const T2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
+<tr class="memitem:afa0909f15e9e8b97cfdf89bc4e880176"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#afa0909f15e9e8b97cfdf89bc4e880176">operator=</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; T, const T2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
 <tr class="memdesc:afa0909f15e9e8b97cfdf89bc4e880176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy-converts the state of <code>other</code>.  <a href="#afa0909f15e9e8b97cfdf89bc4e880176">More...</a><br /></td></tr>
 <tr class="separator:afa0909f15e9e8b97cfdf89bc4e880176"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7964841611e21dcdaa0c6ad324b65be"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;detail::result_is_move_convert_assignable&lt;T,E,T2,E2&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:aa7964841611e21dcdaa0c6ad324b65be"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aa7964841611e21dcdaa0c6ad324b65be">operator=</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
+<tr class="memitem:aa7964841611e21dcdaa0c6ad324b65be"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aa7964841611e21dcdaa0c6ad324b65be">operator=</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
 <tr class="memdesc:aa7964841611e21dcdaa0c6ad324b65be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move-converts the state of <code>other</code>.  <a href="#aa7964841611e21dcdaa0c6ad324b65be">More...</a><br /></td></tr>
 <tr class="separator:aa7964841611e21dcdaa0c6ad324b65be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedce2ad25c705ae82c5bc1ebe1edc0d9"><td class="memTemplParams" colspan="2">template&lt;typename U , typename  = typename std::enable_if&lt;detail::result_is_value_assignable&lt;T,U&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:aedce2ad25c705ae82c5bc1ebe1edc0d9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aedce2ad25c705ae82c5bc1ebe1edc0d9">operator=</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) noexcept(std::is_nothrow_assignable&lt; T, U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
+<tr class="memitem:aedce2ad25c705ae82c5bc1ebe1edc0d9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aedce2ad25c705ae82c5bc1ebe1edc0d9">operator=</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) noexcept(std::is_nothrow_assignable&lt; T, U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
 <tr class="memdesc:aedce2ad25c705ae82c5bc1ebe1edc0d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfect-forwarded assignment.  <a href="#aedce2ad25c705ae82c5bc1ebe1edc0d9">More...</a><br /></td></tr>
 <tr class="separator:aedce2ad25c705ae82c5bc1ebe1edc0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acda405f686109c4b531f5103b2568742"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#acda405f686109c4b531f5103b2568742">operator bool</a> () const noexcept</td></tr>
-<tr class="memdesc:acda405f686109c4b531f5103b2568742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains a value.  <a href="#acda405f686109c4b531f5103b2568742">More...</a><br /></td></tr>
-<tr class="separator:acda405f686109c4b531f5103b2568742"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79f30ed79bcf8cf9ac9ecd50b8e9350a"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a79f30ed79bcf8cf9ac9ecd50b8e9350a">has_value</a> () const noexcept -&gt; bool</td></tr>
-<tr class="memdesc:a79f30ed79bcf8cf9ac9ecd50b8e9350a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains a value.  <a href="#a79f30ed79bcf8cf9ac9ecd50b8e9350a">More...</a><br /></td></tr>
-<tr class="separator:a79f30ed79bcf8cf9ac9ecd50b8e9350a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7eef3852c1040fafef81e5dcc80cf09e"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a7eef3852c1040fafef81e5dcc80cf09e">has_error</a> () const noexcept -&gt; bool</td></tr>
-<tr class="memdesc:a7eef3852c1040fafef81e5dcc80cf09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains an error.  <a href="#a7eef3852c1040fafef81e5dcc80cf09e">More...</a><br /></td></tr>
-<tr class="separator:a7eef3852c1040fafef81e5dcc80cf09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add08dfcd937a7fccd5e83ccf699e9279"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
-<tr class="memitem:add08dfcd937a7fccd5e83ccf699e9279"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#add08dfcd937a7fccd5e83ccf699e9279">and_then</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) const -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; typename std::decay&lt; U &gt;::type, E &gt;</td></tr>
-<tr class="memdesc:add08dfcd937a7fccd5e83ccf699e9279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an result containing <code>value</code> if this result contains a value, otherwise returns an result containing the current error.  <a href="#add08dfcd937a7fccd5e83ccf699e9279">More...</a><br /></td></tr>
-<tr class="separator:add08dfcd937a7fccd5e83ccf699e9279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc91910d9e3ad9dcfccd26e8500a02db"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#afc91910d9e3ad9dcfccd26e8500a02db">operator bool</a> () const noexcept</td></tr>
+<tr class="memdesc:afc91910d9e3ad9dcfccd26e8500a02db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains a value.  <a href="#afc91910d9e3ad9dcfccd26e8500a02db">More...</a><br /></td></tr>
+<tr class="separator:afc91910d9e3ad9dcfccd26e8500a02db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e6e79bb2df85cf71375a366cd03c17a"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4e6e79bb2df85cf71375a366cd03c17a">has_value</a> () const noexcept -&gt; bool</td></tr>
+<tr class="memdesc:a4e6e79bb2df85cf71375a366cd03c17a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains a value.  <a href="#a4e6e79bb2df85cf71375a366cd03c17a">More...</a><br /></td></tr>
+<tr class="separator:a4e6e79bb2df85cf71375a366cd03c17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13104666eb498cf58c91fcd22ac6ad89"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a13104666eb498cf58c91fcd22ac6ad89">has_error</a> () const noexcept -&gt; bool</td></tr>
+<tr class="memdesc:a13104666eb498cf58c91fcd22ac6ad89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>*this</code> contains an error.  <a href="#a13104666eb498cf58c91fcd22ac6ad89">More...</a><br /></td></tr>
+<tr class="separator:a13104666eb498cf58c91fcd22ac6ad89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa741ce67edc24d27a5f58cc16e1e214d"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:aa741ce67edc24d27a5f58cc16e1e214d"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aa741ce67edc24d27a5f58cc16e1e214d">and_then</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) const -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; typename std::decay&lt; U &gt;::type, E &gt;</td></tr>
+<tr class="memdesc:aa741ce67edc24d27a5f58cc16e1e214d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an result containing <code>value</code> if this result contains a value, otherwise returns an result containing the current error.  <a href="#aa741ce67edc24d27a5f58cc16e1e214d">More...</a><br /></td></tr>
+<tr class="separator:aa741ce67edc24d27a5f58cc16e1e214d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a376f846df51982f34e3ec3f952c39f80"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_implicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a376f846df51982f34e3ec3f952c39f80"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a376f846df51982f34e3ec3f952c39f80">result</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a376f846df51982f34e3ec3f952c39f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting copy constructor.  <a href="#a376f846df51982f34e3ec3f952c39f80">More...</a><br /></td></tr>
-<tr class="separator:a376f846df51982f34e3ec3f952c39f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a376f846df51982f34e3ec3f952c39f80"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_explicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a376f846df51982f34e3ec3f952c39f80"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a376f846df51982f34e3ec3f952c39f80">result</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a376f846df51982f34e3ec3f952c39f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting copy constructor.  <a href="#a376f846df51982f34e3ec3f952c39f80">More...</a><br /></td></tr>
-<tr class="separator:a376f846df51982f34e3ec3f952c39f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af75e0f8e4306c904d3bdede5a376264a"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_implicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:af75e0f8e4306c904d3bdede5a376264a"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#af75e0f8e4306c904d3bdede5a376264a">result</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:af75e0f8e4306c904d3bdede5a376264a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting copy constructor.  <a href="#af75e0f8e4306c904d3bdede5a376264a">More...</a><br /></td></tr>
+<tr class="separator:af75e0f8e4306c904d3bdede5a376264a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af75e0f8e4306c904d3bdede5a376264a"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_explicit_copy_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:af75e0f8e4306c904d3bdede5a376264a"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#af75e0f8e4306c904d3bdede5a376264a">result</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_constructible&lt; T, const T2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:af75e0f8e4306c904d3bdede5a376264a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting copy constructor.  <a href="#af75e0f8e4306c904d3bdede5a376264a">More...</a><br /></td></tr>
+<tr class="separator:af75e0f8e4306c904d3bdede5a376264a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a1077f5f78da88859f109ff2b2756a0e1"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_implicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a1077f5f78da88859f109ff2b2756a0e1"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a1077f5f78da88859f109ff2b2756a0e1">result</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a1077f5f78da88859f109ff2b2756a0e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting move constructor.  <a href="#a1077f5f78da88859f109ff2b2756a0e1">More...</a><br /></td></tr>
-<tr class="separator:a1077f5f78da88859f109ff2b2756a0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1077f5f78da88859f109ff2b2756a0e1"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_explicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a1077f5f78da88859f109ff2b2756a0e1"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a1077f5f78da88859f109ff2b2756a0e1">result</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a1077f5f78da88859f109ff2b2756a0e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting move constructor.  <a href="#a1077f5f78da88859f109ff2b2756a0e1">More...</a><br /></td></tr>
-<tr class="separator:a1077f5f78da88859f109ff2b2756a0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47086ebdfbbd9becfaabe21889662beb"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_implicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:a47086ebdfbbd9becfaabe21889662beb"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a47086ebdfbbd9becfaabe21889662beb">result</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:a47086ebdfbbd9becfaabe21889662beb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting move constructor.  <a href="#a47086ebdfbbd9becfaabe21889662beb">More...</a><br /></td></tr>
+<tr class="separator:a47086ebdfbbd9becfaabe21889662beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47086ebdfbbd9becfaabe21889662beb"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::result_is_explicit_move_convertible&lt; T, E, T2, E2 &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:a47086ebdfbbd9becfaabe21889662beb"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a47086ebdfbbd9becfaabe21889662beb">result</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_constructible&lt; T, T2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:a47086ebdfbbd9becfaabe21889662beb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converting move constructor.  <a href="#a47086ebdfbbd9becfaabe21889662beb">More...</a><br /></td></tr>
+<tr class="separator:a47086ebdfbbd9becfaabe21889662beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:aeb12608ba169d73dcac5204aefe5adb3"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:aeb12608ba169d73dcac5204aefe5adb3"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aeb12608ba169d73dcac5204aefe5adb3">result</a> (const <a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;e) noexcept(std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:aeb12608ba169d73dcac5204aefe5adb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the underlying error of this result.  <a href="#aeb12608ba169d73dcac5204aefe5adb3">More...</a><br /></td></tr>
-<tr class="separator:aeb12608ba169d73dcac5204aefe5adb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3361d2b8a668de4335fada30b1c3d9b3"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a3361d2b8a668de4335fada30b1c3d9b3"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a3361d2b8a668de4335fada30b1c3d9b3">result</a> (<a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;&amp;e) noexcept(std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a3361d2b8a668de4335fada30b1c3d9b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the underlying error of this result.  <a href="#a3361d2b8a668de4335fada30b1c3d9b3">More...</a><br /></td></tr>
-<tr class="separator:a3361d2b8a668de4335fada30b1c3d9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff2928f9799c401cd73f75c3559c266e"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:aff2928f9799c401cd73f75c3559c266e"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aff2928f9799c401cd73f75c3559c266e">result</a> (const <a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;e) noexcept(std::is_nothrow_constructible&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:aff2928f9799c401cd73f75c3559c266e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the underlying error of this result.  <a href="#aff2928f9799c401cd73f75c3559c266e">More...</a><br /></td></tr>
+<tr class="separator:aff2928f9799c401cd73f75c3559c266e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f7228f23abecfdfc48d7f43b1590656"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constructible&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a3f7228f23abecfdfc48d7f43b1590656"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a3f7228f23abecfdfc48d7f43b1590656">result</a> (<a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;&amp;e) noexcept(std::is_nothrow_constructible&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:a3f7228f23abecfdfc48d7f43b1590656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the underlying error of this result.  <a href="#a3f7228f23abecfdfc48d7f43b1590656">More...</a><br /></td></tr>
+<tr class="separator:a3f7228f23abecfdfc48d7f43b1590656"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a32a98dddc040fe525855b443115167e8"><td class="memTemplParams" colspan="2">template&lt;typename U , typename std::enable_if&lt; detail::result_is_explicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a32a98dddc040fe525855b443115167e8"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a32a98dddc040fe525855b443115167e8">result</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a32a98dddc040fe525855b443115167e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a32a98dddc040fe525855b443115167e8">More...</a><br /></td></tr>
-<tr class="separator:a32a98dddc040fe525855b443115167e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32a98dddc040fe525855b443115167e8"><td class="memTemplParams" colspan="2">template&lt;typename U , typename std::enable_if&lt; detail::result_is_implicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </td></tr>
-<tr class="memitem:a32a98dddc040fe525855b443115167e8"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a32a98dddc040fe525855b443115167e8">result</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>)</td></tr>
-<tr class="memdesc:a32a98dddc040fe525855b443115167e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a32a98dddc040fe525855b443115167e8">More...</a><br /></td></tr>
-<tr class="separator:a32a98dddc040fe525855b443115167e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a845b456bd8b0539d2f0bebcb7004665e"><td class="memTemplParams" colspan="2">template&lt;typename U , typename std::enable_if&lt; detail::result_is_explicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:a845b456bd8b0539d2f0bebcb7004665e"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a845b456bd8b0539d2f0bebcb7004665e">result</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:a845b456bd8b0539d2f0bebcb7004665e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a845b456bd8b0539d2f0bebcb7004665e">More...</a><br /></td></tr>
+<tr class="separator:a845b456bd8b0539d2f0bebcb7004665e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a845b456bd8b0539d2f0bebcb7004665e"><td class="memTemplParams" colspan="2">template&lt;typename U , typename std::enable_if&lt; detail::result_is_implicit_value_convertible&lt; T, U &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:a845b456bd8b0539d2f0bebcb7004665e"><td class="memTemplItemLeft" align="right" valign="top">RESULT_NODISCARD constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a845b456bd8b0539d2f0bebcb7004665e">result</a> (U &amp;&amp;<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) noexcept(std::is_nothrow_constructible&lt; T, U &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>)</td></tr>
+<tr class="memdesc:a845b456bd8b0539d2f0bebcb7004665e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an result object that contains a value.  <a href="#a845b456bd8b0539d2f0bebcb7004665e">More...</a><br /></td></tr>
+<tr class="separator:a845b456bd8b0539d2f0bebcb7004665e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:aae159b2584abc4f61f055c60888dbee0"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_is_failure_assignable&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:aae159b2584abc4f61f055c60888dbee0"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aae159b2584abc4f61f055c60888dbee0">operator=</a> (const <a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
+<tr class="memitem:aae159b2584abc4f61f055c60888dbee0"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aae159b2584abc4f61f055c60888dbee0">operator=</a> (const <a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
 <tr class="memdesc:aae159b2584abc4f61f055c60888dbee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfect-forwarded assignment.  <a href="#aae159b2584abc4f61f055c60888dbee0">More...</a><br /></td></tr>
 <tr class="separator:aae159b2584abc4f61f055c60888dbee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3b72a65bedcf9ddabfab257d4873764"><td class="memTemplParams" colspan="2">template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_is_failure_assignable&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:ae3b72a65bedcf9ddabfab257d4873764"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ae3b72a65bedcf9ddabfab257d4873764">operator=</a> (<a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
+<tr class="memitem:ae3b72a65bedcf9ddabfab257d4873764"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ae3b72a65bedcf9ddabfab257d4873764">operator=</a> (<a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
 <tr class="memdesc:ae3b72a65bedcf9ddabfab257d4873764"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfect-forwarded assignment.  <a href="#ae3b72a65bedcf9ddabfab257d4873764">More...</a><br /></td></tr>
 <tr class="separator:ae3b72a65bedcf9ddabfab257d4873764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a9908e855f6073bc448e001ebca51ba18"><td class="memItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a9908e855f6073bc448e001ebca51ba18">operator-&gt;</a> () noexcept -&gt; typename std::remove_reference&lt; T &gt;::type *</td></tr>
-<tr class="memdesc:a9908e855f6073bc448e001ebca51ba18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a9908e855f6073bc448e001ebca51ba18">More...</a><br /></td></tr>
-<tr class="separator:a9908e855f6073bc448e001ebca51ba18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd4501a78af0f9a2b18f9c05534f26e7"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#abd4501a78af0f9a2b18f9c05534f26e7">operator-&gt;</a> () const noexcept -&gt; typename std::remove_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type *</td></tr>
-<tr class="memdesc:abd4501a78af0f9a2b18f9c05534f26e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#abd4501a78af0f9a2b18f9c05534f26e7">More...</a><br /></td></tr>
-<tr class="separator:abd4501a78af0f9a2b18f9c05534f26e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94ee155e428aae07e77869e5f8fe64fd"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a94ee155e428aae07e77869e5f8fe64fd">operator-&gt;</a> () noexcept -&gt; typename std::remove_reference&lt; T &gt;::type *</td></tr>
+<tr class="memdesc:a94ee155e428aae07e77869e5f8fe64fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a94ee155e428aae07e77869e5f8fe64fd">More...</a><br /></td></tr>
+<tr class="separator:a94ee155e428aae07e77869e5f8fe64fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeff84a441f2b92f5f555421f56eec30c"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aeff84a441f2b92f5f555421f56eec30c">operator-&gt;</a> () const noexcept -&gt; typename std::remove_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type *</td></tr>
+<tr class="memdesc:aeff84a441f2b92f5f555421f56eec30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#aeff84a441f2b92f5f555421f56eec30c">More...</a><br /></td></tr>
+<tr class="separator:aeff84a441f2b92f5f555421f56eec30c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:ae4d3d6bffeac27094e5c5557a4f4b006"><td class="memItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ae4d3d6bffeac27094e5c5557a4f4b006">operator*</a> () &amp;noexcept -&gt; typename std::add_lvalue_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:ae4d3d6bffeac27094e5c5557a4f4b006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#ae4d3d6bffeac27094e5c5557a4f4b006">More...</a><br /></td></tr>
-<tr class="separator:ae4d3d6bffeac27094e5c5557a4f4b006"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e761b0857cfb91a39f8fda8303600d0"><td class="memItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a5e761b0857cfb91a39f8fda8303600d0">operator*</a> () &amp;&amp;noexcept -&gt; typename std::add_rvalue_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a5e761b0857cfb91a39f8fda8303600d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a5e761b0857cfb91a39f8fda8303600d0">More...</a><br /></td></tr>
-<tr class="separator:a5e761b0857cfb91a39f8fda8303600d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae12d54806dbdc15b4d4c4d3b3332564e"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ae12d54806dbdc15b4d4c4d3b3332564e">operator*</a> () const &amp;noexcept -&gt; typename std::add_lvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
-<tr class="memdesc:ae12d54806dbdc15b4d4c4d3b3332564e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#ae12d54806dbdc15b4d4c4d3b3332564e">More...</a><br /></td></tr>
-<tr class="separator:ae12d54806dbdc15b4d4c4d3b3332564e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16ba7a9fc834db8cdb32e3122c98168e"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a16ba7a9fc834db8cdb32e3122c98168e">operator*</a> () const &amp;&amp;noexcept -&gt; typename std::add_rvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
-<tr class="memdesc:a16ba7a9fc834db8cdb32e3122c98168e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a16ba7a9fc834db8cdb32e3122c98168e">More...</a><br /></td></tr>
-<tr class="separator:a16ba7a9fc834db8cdb32e3122c98168e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c42b8a7ea621f5559a296cc131ce645"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4c42b8a7ea621f5559a296cc131ce645">operator*</a> () &amp;noexcept -&gt; typename std::add_lvalue_reference&lt; T &gt;::type</td></tr>
+<tr class="memdesc:a4c42b8a7ea621f5559a296cc131ce645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a4c42b8a7ea621f5559a296cc131ce645">More...</a><br /></td></tr>
+<tr class="separator:a4c42b8a7ea621f5559a296cc131ce645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69f0b45ab457c1a90345cb908c5d6c56"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a69f0b45ab457c1a90345cb908c5d6c56">operator*</a> () &amp;&amp;noexcept -&gt; typename std::add_rvalue_reference&lt; T &gt;::type</td></tr>
+<tr class="memdesc:a69f0b45ab457c1a90345cb908c5d6c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a69f0b45ab457c1a90345cb908c5d6c56">More...</a><br /></td></tr>
+<tr class="separator:a69f0b45ab457c1a90345cb908c5d6c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d9c1a1a43982dfaae4abda97c7f53a2"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a3d9c1a1a43982dfaae4abda97c7f53a2">operator*</a> () const &amp;noexcept -&gt; typename std::add_lvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
+<tr class="memdesc:a3d9c1a1a43982dfaae4abda97c7f53a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#a3d9c1a1a43982dfaae4abda97c7f53a2">More...</a><br /></td></tr>
+<tr class="separator:a3d9c1a1a43982dfaae4abda97c7f53a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4fb55a264f599d613776620cc2d793f"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab4fb55a264f599d613776620cc2d793f">operator*</a> () const &amp;&amp;noexcept -&gt; typename std::add_rvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
+<tr class="memdesc:ab4fb55a264f599d613776620cc2d793f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the contained value.  <a href="#ab4fb55a264f599d613776620cc2d793f">More...</a><br /></td></tr>
+<tr class="separator:ab4fb55a264f599d613776620cc2d793f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a09c4adf83dccbd85f85023eaadd93131"><td class="memItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> () &amp;-&gt; typename std::add_lvalue_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a09c4adf83dccbd85f85023eaadd93131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a09c4adf83dccbd85f85023eaadd93131">More...</a><br /></td></tr>
-<tr class="separator:a09c4adf83dccbd85f85023eaadd93131"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ae66c7f04926ab5e5f7ad8fa411acf7"><td class="memItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a6ae66c7f04926ab5e5f7ad8fa411acf7">value</a> () &amp;&amp;-&gt; typename std::add_rvalue_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a6ae66c7f04926ab5e5f7ad8fa411acf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a6ae66c7f04926ab5e5f7ad8fa411acf7">More...</a><br /></td></tr>
-<tr class="separator:a6ae66c7f04926ab5e5f7ad8fa411acf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeefbda36edec6cf428b8bcb6045ea300"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aeefbda36edec6cf428b8bcb6045ea300">value</a> () const &amp;-&gt; typename std::add_lvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
-<tr class="memdesc:aeefbda36edec6cf428b8bcb6045ea300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#aeefbda36edec6cf428b8bcb6045ea300">More...</a><br /></td></tr>
-<tr class="separator:aeefbda36edec6cf428b8bcb6045ea300"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a970c87c3b07799bc73341abffc9e0943"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a970c87c3b07799bc73341abffc9e0943">value</a> () const &amp;&amp;-&gt; typename std::add_rvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
-<tr class="memdesc:a970c87c3b07799bc73341abffc9e0943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a970c87c3b07799bc73341abffc9e0943">More...</a><br /></td></tr>
-<tr class="separator:a970c87c3b07799bc73341abffc9e0943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3ba0d040afc7020329fcc840dcb855e"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> () &amp;-&gt; typename std::add_lvalue_reference&lt; T &gt;::type</td></tr>
+<tr class="memdesc:ab3ba0d040afc7020329fcc840dcb855e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#ab3ba0d040afc7020329fcc840dcb855e">More...</a><br /></td></tr>
+<tr class="separator:ab3ba0d040afc7020329fcc840dcb855e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab18037be1f183edc5fda0a819f2a1ecd"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab18037be1f183edc5fda0a819f2a1ecd">value</a> () &amp;&amp;-&gt; typename std::add_rvalue_reference&lt; T &gt;::type</td></tr>
+<tr class="memdesc:ab18037be1f183edc5fda0a819f2a1ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#ab18037be1f183edc5fda0a819f2a1ecd">More...</a><br /></td></tr>
+<tr class="separator:ab18037be1f183edc5fda0a819f2a1ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c301c005ed696c904f017e6c69fbae2"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4c301c005ed696c904f017e6c69fbae2">value</a> () const &amp;-&gt; typename std::add_lvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
+<tr class="memdesc:a4c301c005ed696c904f017e6c69fbae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a4c301c005ed696c904f017e6c69fbae2">More...</a><br /></td></tr>
+<tr class="separator:a4c301c005ed696c904f017e6c69fbae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96ce9e22e0ff3041a45c1ad213d27e7b"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a96ce9e22e0ff3041a45c1ad213d27e7b">value</a> () const &amp;&amp;-&gt; typename std::add_rvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td></tr>
+<tr class="memdesc:a96ce9e22e0ff3041a45c1ad213d27e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained value.  <a href="#a96ce9e22e0ff3041a45c1ad213d27e7b">More...</a><br /></td></tr>
+<tr class="separator:a96ce9e22e0ff3041a45c1ad213d27e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:aee2decdd8c91bb782c76936dac82d4ec"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aee2decdd8c91bb782c76936dac82d4ec">error</a> () const &amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> &amp;&amp;std::is_nothrow_copy_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) -&gt; E</td></tr>
-<tr class="memdesc:aee2decdd8c91bb782c76936dac82d4ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#aee2decdd8c91bb782c76936dac82d4ec">More...</a><br /></td></tr>
-<tr class="separator:aee2decdd8c91bb782c76936dac82d4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b6761e6fcb3491aaf184e9807aef4fc"><td class="memItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a1b6761e6fcb3491aaf184e9807aef4fc">error</a> () &amp;&amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a> &amp;&amp;std::is_nothrow_move_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131">value</a>) -&gt; E</td></tr>
-<tr class="memdesc:a1b6761e6fcb3491aaf184e9807aef4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a1b6761e6fcb3491aaf184e9807aef4fc">More...</a><br /></td></tr>
-<tr class="separator:a1b6761e6fcb3491aaf184e9807aef4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54ed96521b164a8e28a531dea54e93c0"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
-<tr class="memitem:a54ed96521b164a8e28a531dea54e93c0"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a54ed96521b164a8e28a531dea54e93c0">value_or</a> (U &amp;&amp;default_value) const &amp;-&gt; typename std::remove_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a54ed96521b164a8e28a531dea54e93c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">}  <a href="#a54ed96521b164a8e28a531dea54e93c0">More...</a><br /></td></tr>
-<tr class="separator:a54ed96521b164a8e28a531dea54e93c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78a9a3f8d66f7d17e3ab177b160838d4"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
-<tr class="memitem:a78a9a3f8d66f7d17e3ab177b160838d4"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a78a9a3f8d66f7d17e3ab177b160838d4">value_or</a> (U &amp;&amp;default_value) &amp;&amp;-&gt; typename std::remove_reference&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a78a9a3f8d66f7d17e3ab177b160838d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a78a9a3f8d66f7d17e3ab177b160838d4">More...</a><br /></td></tr>
-<tr class="separator:a78a9a3f8d66f7d17e3ab177b160838d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a6da3db72049f2ef3e916e69a93735"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac1a6da3db72049f2ef3e916e69a93735">error</a> () const &amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_copy_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; E</td></tr>
+<tr class="memdesc:ac1a6da3db72049f2ef3e916e69a93735"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#ac1a6da3db72049f2ef3e916e69a93735">More...</a><br /></td></tr>
+<tr class="separator:ac1a6da3db72049f2ef3e916e69a93735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35676e4f60e0aab8f705caec8fe86620"><td class="memItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a35676e4f60e0aab8f705caec8fe86620">error</a> () &amp;&amp;noexcept(std::is_nothrow_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a> &amp;&amp;std::is_nothrow_move_constructible&lt; E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e">value</a>) -&gt; E</td></tr>
+<tr class="memdesc:a35676e4f60e0aab8f705caec8fe86620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a35676e4f60e0aab8f705caec8fe86620">More...</a><br /></td></tr>
+<tr class="separator:a35676e4f60e0aab8f705caec8fe86620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940d1ef3f46c158696db5f4f0c47440d"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a940d1ef3f46c158696db5f4f0c47440d"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a940d1ef3f46c158696db5f4f0c47440d">value_or</a> (U &amp;&amp;default_value) const &amp;-&gt; typename std::remove_reference&lt; T &gt;::type</td></tr>
+<tr class="memdesc:a940d1ef3f46c158696db5f4f0c47440d"><td class="mdescLeft">&#160;</td><td class="mdescRight">}  <a href="#a940d1ef3f46c158696db5f4f0c47440d">More...</a><br /></td></tr>
+<tr class="separator:a940d1ef3f46c158696db5f4f0c47440d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86ecfa9df078e95b21e7ceed021e12db"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a86ecfa9df078e95b21e7ceed021e12db"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a86ecfa9df078e95b21e7ceed021e12db">value_or</a> (U &amp;&amp;default_value) &amp;&amp;-&gt; typename std::remove_reference&lt; T &gt;::type</td></tr>
+<tr class="memdesc:a86ecfa9df078e95b21e7ceed021e12db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error, if one exists, or a default-constructed error value.  <a href="#a86ecfa9df078e95b21e7ceed021e12db">More...</a><br /></td></tr>
+<tr class="separator:a86ecfa9df078e95b21e7ceed021e12db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a3162ced153157cdd099b99fc72ea0147"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
-<tr class="memitem:a3162ced153157cdd099b99fc72ea0147"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a3162ced153157cdd099b99fc72ea0147">error_or</a> (U &amp;&amp;default_error) const &amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#acf649f8e04fe1e24ffa827d2dbd1bbc1">error_type</a></td></tr>
-<tr class="memdesc:a3162ced153157cdd099b99fc72ea0147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error if <code>*this</code> has an error, otherwise returns <code>default_error</code>.  <a href="#a3162ced153157cdd099b99fc72ea0147">More...</a><br /></td></tr>
-<tr class="separator:a3162ced153157cdd099b99fc72ea0147"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1776eaa3c7b5b4b2859f14b80a6ed232"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
-<tr class="memitem:a1776eaa3c7b5b4b2859f14b80a6ed232"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a1776eaa3c7b5b4b2859f14b80a6ed232">error_or</a> (U &amp;&amp;default_error) &amp;&amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#acf649f8e04fe1e24ffa827d2dbd1bbc1">error_type</a></td></tr>
-<tr class="memdesc:a1776eaa3c7b5b4b2859f14b80a6ed232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error if <code>*this</code> has an error, otherwise returns <code>default_error</code>.  <a href="#a1776eaa3c7b5b4b2859f14b80a6ed232">More...</a><br /></td></tr>
-<tr class="separator:a1776eaa3c7b5b4b2859f14b80a6ed232"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b1f8f312619e37594054f94a283a48f"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a0b1f8f312619e37594054f94a283a48f"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a0b1f8f312619e37594054f94a283a48f">error_or</a> (U &amp;&amp;default_error) const &amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#acf649f8e04fe1e24ffa827d2dbd1bbc1">error_type</a></td></tr>
+<tr class="memdesc:a0b1f8f312619e37594054f94a283a48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error if <code>*this</code> has an error, otherwise returns <code>default_error</code>.  <a href="#a0b1f8f312619e37594054f94a283a48f">More...</a><br /></td></tr>
+<tr class="separator:a0b1f8f312619e37594054f94a283a48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab56c3d217a7fc14c8e33425192cd9aa0"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:ab56c3d217a7fc14c8e33425192cd9aa0"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab56c3d217a7fc14c8e33425192cd9aa0">error_or</a> (U &amp;&amp;default_error) &amp;&amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#acf649f8e04fe1e24ffa827d2dbd1bbc1">error_type</a></td></tr>
+<tr class="memdesc:ab56c3d217a7fc14c8e33425192cd9aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the contained error if <code>*this</code> has an error, otherwise returns <code>default_error</code>.  <a href="#ab56c3d217a7fc14c8e33425192cd9aa0">More...</a><br /></td></tr>
+<tr class="separator:ab56c3d217a7fc14c8e33425192cd9aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a09b04c3c34cc8838e5591fd20baab399"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a09b04c3c34cc8838e5591fd20baab399"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09b04c3c34cc8838e5591fd20baab399">flat_map</a> (Fn &amp;&amp;fn) const &amp;-&gt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;</td></tr>
-<tr class="memdesc:a09b04c3c34cc8838e5591fd20baab399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this result as the argument.  <a href="#a09b04c3c34cc8838e5591fd20baab399">More...</a><br /></td></tr>
-<tr class="separator:a09b04c3c34cc8838e5591fd20baab399"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82d9a1fec1adc104280cbf7a422c2f2b"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a82d9a1fec1adc104280cbf7a422c2f2b"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a82d9a1fec1adc104280cbf7a422c2f2b">flat_map</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;</td></tr>
-<tr class="memdesc:a82d9a1fec1adc104280cbf7a422c2f2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this result as the argument.  <a href="#a82d9a1fec1adc104280cbf7a422c2f2b">More...</a><br /></td></tr>
-<tr class="separator:a82d9a1fec1adc104280cbf7a422c2f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a516eda185e20c05b1290def23b80155c"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a516eda185e20c05b1290def23b80155c"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a516eda185e20c05b1290def23b80155c">flat_map</a> (Fn &amp;&amp;fn) const &amp;-&gt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;</td></tr>
+<tr class="memdesc:a516eda185e20c05b1290def23b80155c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this result as the argument.  <a href="#a516eda185e20c05b1290def23b80155c">More...</a><br /></td></tr>
+<tr class="separator:a516eda185e20c05b1290def23b80155c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a136350853506e48fe93e4e1f44c389fe"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a136350853506e48fe93e4e1f44c389fe"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a136350853506e48fe93e4e1f44c389fe">flat_map</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;</td></tr>
+<tr class="memdesc:a136350853506e48fe93e4e1f44c389fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this result as the argument.  <a href="#a136350853506e48fe93e4e1f44c389fe">More...</a><br /></td></tr>
+<tr class="separator:a136350853506e48fe93e4e1f44c389fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:ac5408bec36641d45519026297e040c00"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:ac5408bec36641d45519026297e040c00"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac5408bec36641d45519026297e040c00">map</a> (Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;, E &gt;</td></tr>
-<tr class="memdesc:ac5408bec36641d45519026297e040c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this result as the argument.  <a href="#ac5408bec36641d45519026297e040c00">More...</a><br /></td></tr>
-<tr class="separator:ac5408bec36641d45519026297e040c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e8edc6b7102165f58cef616640bfe35"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a0e8edc6b7102165f58cef616640bfe35"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a0e8edc6b7102165f58cef616640bfe35">map</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;, E &gt;</td></tr>
-<tr class="memdesc:a0e8edc6b7102165f58cef616640bfe35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this result as the argument.  <a href="#a0e8edc6b7102165f58cef616640bfe35">More...</a><br /></td></tr>
-<tr class="separator:a0e8edc6b7102165f58cef616640bfe35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4021b0883f546564e3474f7ead6d682b"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a4021b0883f546564e3474f7ead6d682b"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4021b0883f546564e3474f7ead6d682b">map</a> (Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; detail::invoke_result_t&lt; Fn, const T &amp;&gt;, E &gt;</td></tr>
+<tr class="memdesc:a4021b0883f546564e3474f7ead6d682b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this result as the argument.  <a href="#a4021b0883f546564e3474f7ead6d682b">More...</a><br /></td></tr>
+<tr class="separator:a4021b0883f546564e3474f7ead6d682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab92526f21d8f2e9b991bd212d3b63965"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:ab92526f21d8f2e9b991bd212d3b63965"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab92526f21d8f2e9b991bd212d3b63965">map</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; detail::invoke_result_t&lt; Fn, T &amp;&amp;&gt;, E &gt;</td></tr>
+<tr class="memdesc:ab92526f21d8f2e9b991bd212d3b63965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the value of this result as the argument.  <a href="#ab92526f21d8f2e9b991bd212d3b63965">More...</a><br /></td></tr>
+<tr class="separator:ab92526f21d8f2e9b991bd212d3b63965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a6219348bf0006ded08121027605677c1"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a6219348bf0006ded08121027605677c1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a6219348bf0006ded08121027605677c1">map_error</a> (Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T, detail::invoke_result_t&lt; Fn, const E &amp;&gt;&gt;</td></tr>
-<tr class="memdesc:a6219348bf0006ded08121027605677c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this result as the argument.  <a href="#a6219348bf0006ded08121027605677c1">More...</a><br /></td></tr>
-<tr class="separator:a6219348bf0006ded08121027605677c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cb08b1d61f7f68dddd10b1ae6314471"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a0cb08b1d61f7f68dddd10b1ae6314471"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a0cb08b1d61f7f68dddd10b1ae6314471">map_error</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T, detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;&gt;</td></tr>
-<tr class="memdesc:a0cb08b1d61f7f68dddd10b1ae6314471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this result as the argument.  <a href="#a0cb08b1d61f7f68dddd10b1ae6314471">More...</a><br /></td></tr>
-<tr class="separator:a0cb08b1d61f7f68dddd10b1ae6314471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab91bca764d3ef5fb26a83a2da683dc4e"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:ab91bca764d3ef5fb26a83a2da683dc4e"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab91bca764d3ef5fb26a83a2da683dc4e">map_error</a> (Fn &amp;&amp;fn) const &amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T, detail::invoke_result_t&lt; Fn, const E &amp;&gt;&gt;</td></tr>
+<tr class="memdesc:ab91bca764d3ef5fb26a83a2da683dc4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this result as the argument.  <a href="#ab91bca764d3ef5fb26a83a2da683dc4e">More...</a><br /></td></tr>
+<tr class="separator:ab91bca764d3ef5fb26a83a2da683dc4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70f80dcc9dcd3527a7c2aa72e09885b9"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a70f80dcc9dcd3527a7c2aa72e09885b9"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a70f80dcc9dcd3527a7c2aa72e09885b9">map_error</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T, detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;&gt;</td></tr>
+<tr class="memdesc:a70f80dcc9dcd3527a7c2aa72e09885b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this result as the argument.  <a href="#a70f80dcc9dcd3527a7c2aa72e09885b9">More...</a><br /></td></tr>
+<tr class="separator:a70f80dcc9dcd3527a7c2aa72e09885b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a31eed75c8740edf56cd6ba3caae8f638"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a31eed75c8740edf56cd6ba3caae8f638"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a31eed75c8740edf56cd6ba3caae8f638">flat_map_error</a> (Fn &amp;&amp;fn) const &amp;-&gt; detail::invoke_result_t&lt; Fn, const E &amp;&gt;</td></tr>
-<tr class="memdesc:a31eed75c8740edf56cd6ba3caae8f638"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this result as the argument.  <a href="#a31eed75c8740edf56cd6ba3caae8f638">More...</a><br /></td></tr>
-<tr class="separator:a31eed75c8740edf56cd6ba3caae8f638"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b1d4678009a235c12b70ea24c0dea86"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
-<tr class="memitem:a6b1d4678009a235c12b70ea24c0dea86"><td class="memTemplItemLeft" align="right" valign="top">RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a6b1d4678009a235c12b70ea24c0dea86">flat_map_error</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;</td></tr>
-<tr class="memdesc:a6b1d4678009a235c12b70ea24c0dea86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this result as the argument.  <a href="#a6b1d4678009a235c12b70ea24c0dea86">More...</a><br /></td></tr>
-<tr class="separator:a6b1d4678009a235c12b70ea24c0dea86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a820ce0afdea9a7bfa1be9d6fdb14d308"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a820ce0afdea9a7bfa1be9d6fdb14d308"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a820ce0afdea9a7bfa1be9d6fdb14d308">flat_map_error</a> (Fn &amp;&amp;fn) const &amp;-&gt; detail::invoke_result_t&lt; Fn, const E &amp;&gt;</td></tr>
+<tr class="memdesc:a820ce0afdea9a7bfa1be9d6fdb14d308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this result as the argument.  <a href="#a820ce0afdea9a7bfa1be9d6fdb14d308">More...</a><br /></td></tr>
+<tr class="separator:a820ce0afdea9a7bfa1be9d6fdb14d308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90d7bbcddb8d25a04905852eb6e3bade"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a90d7bbcddb8d25a04905852eb6e3bade"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a90d7bbcddb8d25a04905852eb6e3bade">flat_map_error</a> (Fn &amp;&amp;fn) &amp;&amp;-&gt; detail::invoke_result_t&lt; Fn, E &amp;&amp;&gt;</td></tr>
+<tr class="memdesc:a90d7bbcddb8d25a04905852eb6e3bade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the function <code>fn</code> with the error of this result as the argument.  <a href="#a90d7bbcddb8d25a04905852eb6e3bade">More...</a><br /></td></tr>
+<tr class="separator:a90d7bbcddb8d25a04905852eb6e3bade"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -326,7 +326,7 @@ class cpp::bitwizeshift::result&lt; T, E &gt;</h3>
 <p>The class template <code>result</code> manages result results from APIs, while encoding possible failure conditions. </p>
 <p>A common use-case for result is the return value of a function that may fail. As opposed to other approaches, such as <code>std::pair&lt;T,bool&gt;</code> or <code>std::optional</code>, <code>result</code> more accurately conveys the intent of the user along with the failure condition to the caller. This effectively produces an orthogonal error handling mechanism that allows for exception safety while also allowing discrete testability of the return type.</p>
 <p><code>result&lt;T,E&gt;</code> types may contain a <code>T</code> value, which signifies that an operation succeeded in producing the result value of type <code>T</code>. If an <code>result</code> does not contain a <code>T</code> value, it will always contain an <code>E</code> error condition instead.</p>
-<p>An <code>result&lt;T,E&gt;</code> can always be queried for a possible error case by calling the <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#aee2decdd8c91bb782c76936dac82d4ec" title="Returns the contained error, if one exists, or a default-constructed error value. ...">error()</a></code> function, even if it contains a value. In the case that an <code>result&lt;T,E&gt;</code> contains a value object, this will simply return an <code>E</code> object constructed through default aggregate construction, as if through the expression <code>E{}</code>, which is assumed to be a "valid" (no-error) state for an <code>E</code> type. For example:</p>
+<p>An <code>result&lt;T,E&gt;</code> can always be queried for a possible error case by calling the <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ac1a6da3db72049f2ef3e916e69a93735" title="Returns the contained error, if one exists, or a default-constructed error value. ...">error()</a></code> function, even if it contains a value. In the case that an <code>result&lt;T,E&gt;</code> contains a value object, this will simply return an <code>E</code> object constructed through default aggregate construction, as if through the expression <code>E{}</code>, which is assumed to be a "valid" (no-error) state for an <code>E</code> type. For example:</p>
 <ul>
 <li><code>std::error_code{}</code> produces a default-construct error-code, which is the "no error" state,</li>
 <li>integral (or enum) error codes produce a <code>0</code> value (no error), thanks to zero-initialization,</li>
@@ -334,10 +334,10 @@ class cpp::bitwizeshift::result&lt; T, E &gt;</h3>
 <li><code>std::string{}</code> produces an empty string <code>""</code>,</li>
 <li>etc.</li>
 </ul>
-<p>When an <code>result&lt;T,E&gt;</code> contains either a value or error, the storage for that object is guaranteed to be allocated as part of the result object's footprint, i.e. no dynamic memory allocation ever takes place. Thus, an result object models an object, not a pointer, even though the <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ae4d3d6bffeac27094e5c5557a4f4b006" title="Accesses the contained value. ">operator*()</a></code> and <code>operator-&gt;()</code> are defined.</p>
+<p>When an <code>result&lt;T,E&gt;</code> contains either a value or error, the storage for that object is guaranteed to be allocated as part of the result object's footprint, i.e. no dynamic memory allocation ever takes place. Thus, an result object models an object, not a pointer, even though the <code><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a4c42b8a7ea621f5559a296cc131ce645" title="Accesses the contained value. ">operator*()</a></code> and <code>operator-&gt;()</code> are defined.</p>
 <p>When an object of type <code>result&lt;T,E&gt;</code> is contextually converted to <code>bool</code>, the conversion returns <code>true</code> if the object contains a value and <code>false</code> if it contains an error.</p>
 <p><code>result</code> objects do not have a "valueless" state like <code>variant</code>s do. Once an <code>result</code> has been constructed with a value or error, the active underlying type can only be changed through assignment which may is only enabled if construction is guaranteed to be <em>non-throwing</em>. This ensures that a valueless state cannot occur naturally.</p>
-<p>Example Use: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span> x) -&gt; result&lt;std::string&gt;</div><div class="line">{</div><div class="line">  <span class="keywordflow">try</span> {</div><div class="line">    <span class="keywordflow">return</span> std::stoi(x);</div><div class="line">  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp;) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="../../de/d80/result_8hpp.html#a38983cec7c1a46d8b77c9600768f29e7">fail</a>(std::errc::invalid_argument);</div><div class="line">  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::std::out_of_range&amp;) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="../../de/d80/result_8hpp.html#a38983cec7c1a46d8b77c9600768f29e7">fail</a>(std::errc::result_out_of_range);</div><div class="line">  }</div><div class="line">}</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>If using C++17 or above, <code>fail</code> can be replaced with <code>failure{...}</code> thanks to CTAD.</dd></dl>
+<p>Example Use: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> to_string(<span class="keywordtype">int</span> x) -&gt; result&lt;std::string&gt;</div><div class="line">{</div><div class="line">  <span class="keywordflow">try</span> {</div><div class="line">    <span class="keywordflow">return</span> std::stoi(x);</div><div class="line">  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp;) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="../../de/d80/result_8hpp.html#ae229fb3e62d7f65fe6b020e16c8c8a30">fail</a>(std::errc::invalid_argument);</div><div class="line">  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::std::out_of_range&amp;) {</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="../../de/d80/result_8hpp.html#ae229fb3e62d7f65fe6b020e16c8c8a30">fail</a>(std::errc::result_out_of_range);</div><div class="line">  }</div><div class="line">}</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>If using C++17 or above, <code>fail</code> can be replaced with <code>failure{...}</code> thanks to CTAD.</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>the underlying value type </td></tr>
@@ -346,10 +346,10 @@ class cpp::bitwizeshift::result&lt; T, E &gt;</h3>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l00280">280</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l00296">296</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a294cc61375e0b4d0a0865f5477cff931"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a294cc61375e0b4d0a0865f5477cff931">&#9670;&nbsp;</a></span>result() <span class="overload">[1/15]</span></h2>
+<a id="adbbeb16fe7e34ca0c98f1844e70af1cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbbeb16fe7e34ca0c98f1844e70af1cc">&#9670;&nbsp;</a></span>result() <span class="overload">[1/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -362,7 +362,7 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_cons
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -380,8 +380,8 @@ template&lt;typename U  = T, typename  = typename std::enable_if&lt;std::is_cons
 
 </div>
 </div>
-<a id="a6808ac32ce9de8acc667a3f9185ed14a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6808ac32ce9de8acc667a3f9185ed14a">&#9670;&nbsp;</a></span>result() <span class="overload">[2/15]</span></h2>
+<a id="a5c07363da1c90a6e06ecd9434ed56e06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c07363da1c90a6e06ecd9434ed56e06">&#9670;&nbsp;</a></span>result() <span class="overload">[2/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -392,7 +392,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T, E &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -421,8 +421,8 @@ This constructor is defined as trivial if both <code>std::is_trivially_copy_cons
 
 </div>
 </div>
-<a id="a839b1bf77f5a92ff56c119d558bc98c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a839b1bf77f5a92ff56c119d558bc98c7">&#9670;&nbsp;</a></span>result() <span class="overload">[3/15]</span></h2>
+<a id="a8043684b87c6c36ddb3f56d9bac6ffaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8043684b87c6c36ddb3f56d9bac6ffaf">&#9670;&nbsp;</a></span>result() <span class="overload">[3/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -433,7 +433,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T, E &gt; &amp;&amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -462,8 +462,8 @@ This constructor is defined as trivial if both <code>std::is_trivially_move_cons
 
 </div>
 </div>
-<a id="a376f846df51982f34e3ec3f952c39f80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a376f846df51982f34e3ec3f952c39f80">&#9670;&nbsp;</a></span>result() <span class="overload">[4/15]</span></h2>
+<a id="af75e0f8e4306c904d3bdede5a376264a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af75e0f8e4306c904d3bdede5a376264a">&#9670;&nbsp;</a></span>result() <span class="overload">[4/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -476,7 +476,7 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -510,8 +510,8 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 
 </div>
 </div>
-<a id="a376f846df51982f34e3ec3f952c39f80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a376f846df51982f34e3ec3f952c39f80">&#9670;&nbsp;</a></span>result() <span class="overload">[5/15]</span></h2>
+<a id="af75e0f8e4306c904d3bdede5a376264a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af75e0f8e4306c904d3bdede5a376264a">&#9670;&nbsp;</a></span>result() <span class="overload">[5/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -524,7 +524,7 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -558,8 +558,8 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 
 </div>
 </div>
-<a id="a1077f5f78da88859f109ff2b2756a0e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1077f5f78da88859f109ff2b2756a0e1">&#9670;&nbsp;</a></span>result() <span class="overload">[6/15]</span></h2>
+<a id="a47086ebdfbbd9becfaabe21889662beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47086ebdfbbd9becfaabe21889662beb">&#9670;&nbsp;</a></span>result() <span class="overload">[6/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -572,7 +572,7 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -606,8 +606,8 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 
 </div>
 </div>
-<a id="a1077f5f78da88859f109ff2b2756a0e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1077f5f78da88859f109ff2b2756a0e1">&#9670;&nbsp;</a></span>result() <span class="overload">[7/15]</span></h2>
+<a id="a47086ebdfbbd9becfaabe21889662beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47086ebdfbbd9becfaabe21889662beb">&#9670;&nbsp;</a></span>result() <span class="overload">[7/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -620,7 +620,7 @@ template&lt;typename T2 , typename E2 , typename std::enable_if&lt; detail::resu
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -654,8 +654,8 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;const
 
 </div>
 </div>
-<a id="a3e9c452ba7ab0130f0f4776aec66f49a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e9c452ba7ab0130f0f4776aec66f49a">&#9670;&nbsp;</a></span>result() <span class="overload">[8/15]</span></h2>
+<a id="a1c464049873f2560b61adfa294587ec2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c464049873f2560b61adfa294587ec2">&#9670;&nbsp;</a></span>result() <span class="overload">[8/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -668,7 +668,7 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>&#160;</td>
           <td class="paramname">, </td>
@@ -703,8 +703,8 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 
 </div>
 </div>
-<a id="aae126a3af750a64eec9ebe7b2325afe2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae126a3af750a64eec9ebe7b2325afe2">&#9670;&nbsp;</a></span>result() <span class="overload">[9/15]</span></h2>
+<a id="ac469c184db34a2929811b40782ab1b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac469c184db34a2929811b40782ab1b48">&#9670;&nbsp;</a></span>result() <span class="overload">[9/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -717,7 +717,7 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d0/d99/structcpp_1_1bitwizeshift_1_1in__place__t.html">in_place_t</a>&#160;</td>
           <td class="paramname">, </td>
@@ -759,8 +759,8 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 
 </div>
 </div>
-<a id="a691fbdb19ae0c4fb858aa8425c51d5de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a691fbdb19ae0c4fb858aa8425c51d5de">&#9670;&nbsp;</a></span>result() <span class="overload">[10/15]</span></h2>
+<a id="ab26e00e1c31db8a30b8fac3d1af98a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab26e00e1c31db8a30b8fac3d1af98a52">&#9670;&nbsp;</a></span>result() <span class="overload">[10/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -773,7 +773,7 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html">in_place_error_t</a>&#160;</td>
           <td class="paramname">, </td>
@@ -808,8 +808,8 @@ template&lt;typename... Args, typename  = typename std::enable_if&lt;std::is_con
 
 </div>
 </div>
-<a id="a59c7df8b675c1f7177b22a74da477f62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59c7df8b675c1f7177b22a74da477f62">&#9670;&nbsp;</a></span>result() <span class="overload">[11/15]</span></h2>
+<a id="a7ea5f553721198cbe40fcfa885313d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ea5f553721198cbe40fcfa885313d0b">&#9670;&nbsp;</a></span>result() <span class="overload">[11/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -822,7 +822,7 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d1/d00/structcpp_1_1bitwizeshift_1_1in__place__error__t.html">in_place_error_t</a>&#160;</td>
           <td class="paramname">, </td>
@@ -864,8 +864,8 @@ template&lt;typename U , typename... Args, typename  = typename std::enable_if&l
 
 </div>
 </div>
-<a id="aeb12608ba169d73dcac5204aefe5adb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb12608ba169d73dcac5204aefe5adb3">&#9670;&nbsp;</a></span>result() <span class="overload">[12/15]</span></h2>
+<a id="aff2928f9799c401cd73f75c3559c266e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff2928f9799c401cd73f75c3559c266e">&#9670;&nbsp;</a></span>result() <span class="overload">[12/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -878,7 +878,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>e</em></td><td>)</td>
@@ -903,8 +903,8 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 
 </div>
 </div>
-<a id="a3361d2b8a668de4335fada30b1c3d9b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3361d2b8a668de4335fada30b1c3d9b3">&#9670;&nbsp;</a></span>result() <span class="overload">[13/15]</span></h2>
+<a id="a3f7228f23abecfdfc48d7f43b1590656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f7228f23abecfdfc48d7f43b1590656">&#9670;&nbsp;</a></span>result() <span class="overload">[13/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -917,7 +917,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E2 &gt; &amp;&amp;&#160;</td>
           <td class="paramname"><em>e</em></td><td>)</td>
@@ -942,8 +942,8 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;std::is_constru
 
 </div>
 </div>
-<a id="a32a98dddc040fe525855b443115167e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32a98dddc040fe525855b443115167e8">&#9670;&nbsp;</a></span>result() <span class="overload">[14/15]</span></h2>
+<a id="a845b456bd8b0539d2f0bebcb7004665e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a845b456bd8b0539d2f0bebcb7004665e">&#9670;&nbsp;</a></span>result() <span class="overload">[14/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -956,7 +956,7 @@ template&lt;typename U , typename std::enable_if&lt; detail::result_is_explicit_
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
@@ -986,8 +986,8 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;U&amp
 
 </div>
 </div>
-<a id="a32a98dddc040fe525855b443115167e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32a98dddc040fe525855b443115167e8">&#9670;&nbsp;</a></span>result() <span class="overload">[15/15]</span></h2>
+<a id="a845b456bd8b0539d2f0bebcb7004665e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a845b456bd8b0539d2f0bebcb7004665e">&#9670;&nbsp;</a></span>result() <span class="overload">[15/15]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1000,7 +1000,7 @@ template&lt;typename U , typename std::enable_if&lt; detail::result_is_implicit_
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
+          <td class="memname">RESULT_NODISCARD constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> </td>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
@@ -1031,8 +1031,8 @@ This constructor is explicit if and only if <code>std::is_convertible_v&lt;U&amp
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="add08dfcd937a7fccd5e83ccf699e9279"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add08dfcd937a7fccd5e83ccf699e9279">&#9670;&nbsp;</a></span>and_then()</h2>
+<a id="aa741ce67edc24d27a5f58cc16e1e214d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa741ce67edc24d27a5f58cc16e1e214d">&#9670;&nbsp;</a></span>and_then()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1042,7 +1042,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename U &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::and_then </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::and_then </td>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
@@ -1062,8 +1062,8 @@ template&lt;typename U &gt; </div>
 
 </div>
 </div>
-<a id="aee2decdd8c91bb782c76936dac82d4ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee2decdd8c91bb782c76936dac82d4ec">&#9670;&nbsp;</a></span>error() <span class="overload">[1/2]</span></h2>
+<a id="ac1a6da3db72049f2ef3e916e69a93735"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1a6da3db72049f2ef3e916e69a93735">&#9670;&nbsp;</a></span>error() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1074,7 +1074,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::error </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::error </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const &amp;&amp; -&gt;  E</td>
@@ -1092,8 +1092,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a1b6761e6fcb3491aaf184e9807aef4fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b6761e6fcb3491aaf184e9807aef4fc">&#9670;&nbsp;</a></span>error() <span class="overload">[2/2]</span></h2>
+<a id="a35676e4f60e0aab8f705caec8fe86620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35676e4f60e0aab8f705caec8fe86620">&#9670;&nbsp;</a></span>error() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1104,7 +1104,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::error </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::error </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const &amp;&amp; -&gt;  E</td>
@@ -1122,8 +1122,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a3162ced153157cdd099b99fc72ea0147"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3162ced153157cdd099b99fc72ea0147">&#9670;&nbsp;</a></span>error_or() <span class="overload">[1/2]</span></h2>
+<a id="a0b1f8f312619e37594054f94a283a48f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b1f8f312619e37594054f94a283a48f">&#9670;&nbsp;</a></span>error_or() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1133,7 +1133,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename U &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::error_or </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::error_or </td>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>default_error</em></td><td>)</td>
@@ -1153,8 +1153,8 @@ template&lt;typename U &gt; </div>
 
 </div>
 </div>
-<a id="a1776eaa3c7b5b4b2859f14b80a6ed232"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1776eaa3c7b5b4b2859f14b80a6ed232">&#9670;&nbsp;</a></span>error_or() <span class="overload">[2/2]</span></h2>
+<a id="ab56c3d217a7fc14c8e33425192cd9aa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab56c3d217a7fc14c8e33425192cd9aa0">&#9670;&nbsp;</a></span>error_or() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1164,7 +1164,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename U &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::error_or </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::error_or </td>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>default_error</em></td><td>)</td>
@@ -1184,8 +1184,8 @@ template&lt;typename U &gt; </div>
 
 </div>
 </div>
-<a id="a09b04c3c34cc8838e5591fd20baab399"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09b04c3c34cc8838e5591fd20baab399">&#9670;&nbsp;</a></span>flat_map() <span class="overload">[1/2]</span></h2>
+<a id="a516eda185e20c05b1290def23b80155c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a516eda185e20c05b1290def23b80155c">&#9670;&nbsp;</a></span>flat_map() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1195,7 +1195,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename Fn &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::flat_map </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::flat_map </td>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
@@ -1218,8 +1218,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a82d9a1fec1adc104280cbf7a422c2f2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82d9a1fec1adc104280cbf7a422c2f2b">&#9670;&nbsp;</a></span>flat_map() <span class="overload">[2/2]</span></h2>
+<a id="a136350853506e48fe93e4e1f44c389fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a136350853506e48fe93e4e1f44c389fe">&#9670;&nbsp;</a></span>flat_map() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1229,7 +1229,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename Fn &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::flat_map </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::flat_map </td>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
@@ -1252,8 +1252,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a31eed75c8740edf56cd6ba3caae8f638"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31eed75c8740edf56cd6ba3caae8f638">&#9670;&nbsp;</a></span>flat_map_error() <span class="overload">[1/2]</span></h2>
+<a id="a820ce0afdea9a7bfa1be9d6fdb14d308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a820ce0afdea9a7bfa1be9d6fdb14d308">&#9670;&nbsp;</a></span>flat_map_error() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1263,7 +1263,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename Fn &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::flat_map_error </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::flat_map_error </td>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
@@ -1286,8 +1286,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a6b1d4678009a235c12b70ea24c0dea86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b1d4678009a235c12b70ea24c0dea86">&#9670;&nbsp;</a></span>flat_map_error() <span class="overload">[2/2]</span></h2>
+<a id="a90d7bbcddb8d25a04905852eb6e3bade"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90d7bbcddb8d25a04905852eb6e3bade">&#9670;&nbsp;</a></span>flat_map_error() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1297,7 +1297,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename Fn &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::flat_map_error </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::flat_map_error </td>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
@@ -1320,8 +1320,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a7eef3852c1040fafef81e5dcc80cf09e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7eef3852c1040fafef81e5dcc80cf09e">&#9670;&nbsp;</a></span>has_error()</h2>
+<a id="a13104666eb498cf58c91fcd22ac6ad89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13104666eb498cf58c91fcd22ac6ad89">&#9670;&nbsp;</a></span>has_error()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1332,7 +1332,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::has_error </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::has_error </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const -&gt;  bool</td>
@@ -1350,8 +1350,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a79f30ed79bcf8cf9ac9ecd50b8e9350a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79f30ed79bcf8cf9ac9ecd50b8e9350a">&#9670;&nbsp;</a></span>has_value()</h2>
+<a id="a4e6e79bb2df85cf71375a366cd03c17a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e6e79bb2df85cf71375a366cd03c17a">&#9670;&nbsp;</a></span>has_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1362,7 +1362,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::has_value </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::has_value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const -&gt;  bool</td>
@@ -1380,8 +1380,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="ac5408bec36641d45519026297e040c00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5408bec36641d45519026297e040c00">&#9670;&nbsp;</a></span>map() <span class="overload">[1/2]</span></h2>
+<a id="a4021b0883f546564e3474f7ead6d682b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4021b0883f546564e3474f7ead6d682b">&#9670;&nbsp;</a></span>map() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1391,7 +1391,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename Fn &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::map </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::map </td>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
@@ -1413,8 +1413,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a0e8edc6b7102165f58cef616640bfe35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e8edc6b7102165f58cef616640bfe35">&#9670;&nbsp;</a></span>map() <span class="overload">[2/2]</span></h2>
+<a id="ab92526f21d8f2e9b991bd212d3b63965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab92526f21d8f2e9b991bd212d3b63965">&#9670;&nbsp;</a></span>map() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1424,7 +1424,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename Fn &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::map </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::map </td>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
@@ -1446,8 +1446,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a6219348bf0006ded08121027605677c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6219348bf0006ded08121027605677c1">&#9670;&nbsp;</a></span>map_error() <span class="overload">[1/2]</span></h2>
+<a id="ab91bca764d3ef5fb26a83a2da683dc4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab91bca764d3ef5fb26a83a2da683dc4e">&#9670;&nbsp;</a></span>map_error() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1457,7 +1457,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename Fn &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::map_error </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::map_error </td>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
@@ -1479,8 +1479,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="a0cb08b1d61f7f68dddd10b1ae6314471"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0cb08b1d61f7f68dddd10b1ae6314471">&#9670;&nbsp;</a></span>map_error() <span class="overload">[2/2]</span></h2>
+<a id="a70f80dcc9dcd3527a7c2aa72e09885b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70f80dcc9dcd3527a7c2aa72e09885b9">&#9670;&nbsp;</a></span>map_error() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1490,7 +1490,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename Fn &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::map_error </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::map_error </td>
           <td>(</td>
           <td class="paramtype">Fn &amp;&amp;&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
@@ -1512,8 +1512,8 @@ template&lt;typename Fn &gt; </div>
 
 </div>
 </div>
-<a id="acda405f686109c4b531f5103b2568742"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acda405f686109c4b531f5103b2568742">&#9670;&nbsp;</a></span>operator bool()</h2>
+<a id="afc91910d9e3ad9dcfccd26e8500a02db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc91910d9e3ad9dcfccd26e8500a02db">&#9670;&nbsp;</a></span>operator bool()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1524,7 +1524,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator bool </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator bool </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1542,8 +1542,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="ae4d3d6bffeac27094e5c5557a4f4b006"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4d3d6bffeac27094e5c5557a4f4b006">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/4]</span></h2>
+<a id="a4c42b8a7ea621f5559a296cc131ce645"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c42b8a7ea621f5559a296cc131ce645">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1554,7 +1554,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator* </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> &amp; -&gt;  typename std::add_lvalue_reference&lt; T &gt;::type</td>
@@ -1573,8 +1573,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a5e761b0857cfb91a39f8fda8303600d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e761b0857cfb91a39f8fda8303600d0">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/4]</span></h2>
+<a id="a69f0b45ab457c1a90345cb908c5d6c56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69f0b45ab457c1a90345cb908c5d6c56">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1585,7 +1585,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator* </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> &amp;&amp; -&gt;  typename std::add_rvalue_reference&lt; T &gt;::type</td>
@@ -1604,8 +1604,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="ae12d54806dbdc15b4d4c4d3b3332564e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae12d54806dbdc15b4d4c4d3b3332564e">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/4]</span></h2>
+<a id="a3d9c1a1a43982dfaae4abda97c7f53a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d9c1a1a43982dfaae4abda97c7f53a2">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1616,7 +1616,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator* </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const &amp; -&gt;  typename std::add_lvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td>
@@ -1635,8 +1635,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a16ba7a9fc834db8cdb32e3122c98168e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16ba7a9fc834db8cdb32e3122c98168e">&#9670;&nbsp;</a></span>operator*() <span class="overload">[4/4]</span></h2>
+<a id="ab4fb55a264f599d613776620cc2d793f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4fb55a264f599d613776620cc2d793f">&#9670;&nbsp;</a></span>operator*() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1647,7 +1647,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator* </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const &amp;&amp; -&gt;  typename std::add_rvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td>
@@ -1666,8 +1666,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a9908e855f6073bc448e001ebca51ba18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9908e855f6073bc448e001ebca51ba18">&#9670;&nbsp;</a></span>operator->() <span class="overload">[1/2]</span></h2>
+<a id="a94ee155e428aae07e77869e5f8fe64fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94ee155e428aae07e77869e5f8fe64fd">&#9670;&nbsp;</a></span>operator->() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1678,7 +1678,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator-&gt; </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator-&gt; </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> -&gt;  typename std::remove_reference&lt; T &gt;::type *</td>
@@ -1697,8 +1697,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="abd4501a78af0f9a2b18f9c05534f26e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd4501a78af0f9a2b18f9c05534f26e7">&#9670;&nbsp;</a></span>operator->() <span class="overload">[2/2]</span></h2>
+<a id="aeff84a441f2b92f5f555421f56eec30c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeff84a441f2b92f5f555421f56eec30c">&#9670;&nbsp;</a></span>operator->() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1709,7 +1709,7 @@ template&lt;typename T, typename E&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator-&gt; </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::operator-&gt; </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const -&gt;  typename std::remove_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type *</td>
@@ -2076,8 +2076,8 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_
 
 </div>
 </div>
-<a id="a09c4adf83dccbd85f85023eaadd93131"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09c4adf83dccbd85f85023eaadd93131">&#9670;&nbsp;</a></span>value() <span class="overload">[1/4]</span></h2>
+<a id="ab3ba0d040afc7020329fcc840dcb855e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3ba0d040afc7020329fcc840dcb855e">&#9670;&nbsp;</a></span>value() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2085,7 +2085,7 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_
 template&lt;typename T, typename E&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> &amp; -&gt;  typename std::add_lvalue_reference&lt; T &gt;::type</td>
@@ -2104,8 +2104,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a6ae66c7f04926ab5e5f7ad8fa411acf7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ae66c7f04926ab5e5f7ad8fa411acf7">&#9670;&nbsp;</a></span>value() <span class="overload">[2/4]</span></h2>
+<a id="ab18037be1f183edc5fda0a819f2a1ecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab18037be1f183edc5fda0a819f2a1ecd">&#9670;&nbsp;</a></span>value() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2113,7 +2113,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename T, typename E&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> &amp;&amp; -&gt;  typename std::add_rvalue_reference&lt; T &gt;::type</td>
@@ -2132,8 +2132,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="aeefbda36edec6cf428b8bcb6045ea300"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeefbda36edec6cf428b8bcb6045ea300">&#9670;&nbsp;</a></span>value() <span class="overload">[3/4]</span></h2>
+<a id="a4c301c005ed696c904f017e6c69fbae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c301c005ed696c904f017e6c69fbae2">&#9670;&nbsp;</a></span>value() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2141,7 +2141,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename T, typename E&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const &amp; -&gt;  typename std::add_lvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td>
@@ -2160,8 +2160,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a970c87c3b07799bc73341abffc9e0943"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a970c87c3b07799bc73341abffc9e0943">&#9670;&nbsp;</a></span>value() <span class="overload">[4/4]</span></h2>
+<a id="a96ce9e22e0ff3041a45c1ad213d27e7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96ce9e22e0ff3041a45c1ad213d27e7b">&#9670;&nbsp;</a></span>value() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2169,7 +2169,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename T, typename E&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const &amp;&amp; -&gt;  typename std::add_rvalue_reference&lt; typename std::add_const&lt; T &gt;::type &gt;::type</td>
@@ -2188,8 +2188,8 @@ template&lt;typename T, typename E&gt; </div>
 
 </div>
 </div>
-<a id="a54ed96521b164a8e28a531dea54e93c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54ed96521b164a8e28a531dea54e93c0">&#9670;&nbsp;</a></span>value_or() <span class="overload">[1/2]</span></h2>
+<a id="a940d1ef3f46c158696db5f4f0c47440d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940d1ef3f46c158696db5f4f0c47440d">&#9670;&nbsp;</a></span>value_or() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2199,7 +2199,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename U &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value_or </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value_or </td>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>default_value</em></td><td>)</td>
@@ -2220,8 +2220,8 @@ template&lt;typename U &gt; </div>
 
 </div>
 </div>
-<a id="a78a9a3f8d66f7d17e3ab177b160838d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78a9a3f8d66f7d17e3ab177b160838d4">&#9670;&nbsp;</a></span>value_or() <span class="overload">[2/2]</span></h2>
+<a id="a86ecfa9df078e95b21e7ceed021e12db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86ecfa9df078e95b21e7ceed021e12db">&#9670;&nbsp;</a></span>value_or() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2231,7 +2231,7 @@ template&lt;typename T, typename E&gt; </div>
 template&lt;typename U &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value_or </td>
+          <td class="memname">RESULT_WARN_UNUSED RESULT_CPP14_CONSTEXPR auto <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">cpp::bitwizeshift::result</a>&lt; T, E &gt;::value_or </td>
           <td>(</td>
           <td class="paramtype">U &amp;&amp;&#160;</td>
           <td class="paramname"><em>default_value</em></td><td>)</td>

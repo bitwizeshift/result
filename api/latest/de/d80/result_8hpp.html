@@ -127,7 +127,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class template <code>result</code> manages result results from APIs, while encoding possible failure conditions.  <a href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">cpp::bitwizeshift::bad_result_access&lt; E &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An exception thrown when <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131" title="Returns the contained value. ">result::value</a> is accessed without a contained value.  <a href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An exception thrown when <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e" title="Returns the contained value. ">result::value</a> is accessed without a contained value.  <a href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d82/structcpp_1_1bitwizeshift_1_1is__failure.html">cpp::bitwizeshift::is_failure&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,7 +138,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc8/structcpp_1_1bitwizeshift_1_1is__result_3_01result_3_01_t_00_01_e_01_4_01_4.html">cpp::bitwizeshift::is_result&lt; result&lt; T, E &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html">cpp::bitwizeshift::bad_result_access&lt; E &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An exception thrown when <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#a09c4adf83dccbd85f85023eaadd93131" title="Returns the contained value. ">result::value</a> is accessed without a contained value.  <a href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An exception thrown when <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html#ab3ba0d040afc7020329fcc840dcb855e" title="Returns the contained value. ">result::value</a> is accessed without a contained value.  <a href="../../de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">cpp::bitwizeshift::failure&lt; E &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A semantic type used for distinguishing failure values in an API that returns result types.  <a href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html#details">More...</a><br /></td></tr>
@@ -165,6 +165,12 @@ Macros</h2></td></tr>
 <tr class="memitem:ad5a7035748795ebb22bfeea9607b1052"><td class="memItemLeft" align="right" valign="top"><a id="ad5a7035748795ebb22bfeea9607b1052"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>RESULT_INLINE_VISIBILITY</b></td></tr>
 <tr class="separator:ad5a7035748795ebb22bfeea9607b1052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6efaca23e880e9556e2ebc23634444bb"><td class="memItemLeft" align="right" valign="top"><a id="a6efaca23e880e9556e2ebc23634444bb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RESULT_WARN_UNUSED</b></td></tr>
+<tr class="separator:a6efaca23e880e9556e2ebc23634444bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf78f366b1d81b3399d83374d09b35a6"><td class="memItemLeft" align="right" valign="top"><a id="adf78f366b1d81b3399d83374d09b35a6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RESULT_NODISCARD</b></td></tr>
+<tr class="separator:adf78f366b1d81b3399d83374d09b35a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a7214d72d7c293b496bf677d60d7ddc"><td class="memItemLeft" align="right" valign="top"><a id="a2a7214d72d7c293b496bf677d60d7ddc"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>RESULT_NAMESPACE_INTERNAL</b>&#160;&#160;&#160;cpp</td></tr>
 <tr class="separator:a2a7214d72d7c293b496bf677d60d7ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -361,18 +367,18 @@ template&lt;typename E1 , typename E2 &gt; </td></tr>
 template&lt;typename E1 , typename E2 &gt; </td></tr>
 <tr class="memitem:a2548b667d4b6ab7d2072259e5a000e2c"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::operator&gt;=</b> (const failure&lt; E1 &gt; &amp;lhs, const failure&lt; E2 &gt; &amp;rhs) noexcept -&gt; bool</td></tr>
 <tr class="separator:a2548b667d4b6ab7d2072259e5a000e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38983cec7c1a46d8b77c9600768f29e7"><td class="memTemplParams" colspan="2">template&lt;typename E &gt; </td></tr>
-<tr class="memitem:a38983cec7c1a46d8b77c9600768f29e7"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#a38983cec7c1a46d8b77c9600768f29e7">cpp::bitwizeshift::fail</a> (E &amp;&amp;e) noexcept(std::is_nothrow_constructible&lt; typename std::decay&lt; E &gt;::type, E &gt;::value) -&gt; failure&lt; typename std::decay&lt; E &gt;::type &gt;</td></tr>
-<tr class="memdesc:a38983cec7c1a46d8b77c9600768f29e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deduces and constructs an failure type from <code>e</code>.  <a href="../../de/d80/result_8hpp.html#a38983cec7c1a46d8b77c9600768f29e7">More...</a><br /></td></tr>
-<tr class="separator:a38983cec7c1a46d8b77c9600768f29e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c4ed6d03a31b1a9901eff21e98855ce"><td class="memTemplParams" colspan="2">template&lt;typename E &gt; </td></tr>
-<tr class="memitem:a6c4ed6d03a31b1a9901eff21e98855ce"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#a6c4ed6d03a31b1a9901eff21e98855ce">cpp::bitwizeshift::fail</a> (std::reference_wrapper&lt; E &gt; e) noexcept -&gt; failure&lt; E &amp;&gt;</td></tr>
-<tr class="memdesc:a6c4ed6d03a31b1a9901eff21e98855ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deduces an failure reference from a reverence_wrapper.  <a href="../../de/d80/result_8hpp.html#a6c4ed6d03a31b1a9901eff21e98855ce">More...</a><br /></td></tr>
-<tr class="separator:a6c4ed6d03a31b1a9901eff21e98855ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a88f1308a35dd3c28da627330274726"><td class="memTemplParams" colspan="2">template&lt;typename E , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,Args...&gt;::value&gt;::type&gt; </td></tr>
-<tr class="memitem:a4a88f1308a35dd3c28da627330274726"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#a4a88f1308a35dd3c28da627330274726">cpp::bitwizeshift::fail</a> (Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::value) -&gt; failure&lt; E &gt;</td></tr>
-<tr class="memdesc:a4a88f1308a35dd3c28da627330274726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an failure type from a series of arguments.  <a href="../../de/d80/result_8hpp.html#a4a88f1308a35dd3c28da627330274726">More...</a><br /></td></tr>
-<tr class="separator:a4a88f1308a35dd3c28da627330274726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae229fb3e62d7f65fe6b020e16c8c8a30"><td class="memTemplParams" colspan="2">template&lt;typename E &gt; </td></tr>
+<tr class="memitem:ae229fb3e62d7f65fe6b020e16c8c8a30"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#ae229fb3e62d7f65fe6b020e16c8c8a30">cpp::bitwizeshift::fail</a> (E &amp;&amp;e) noexcept(std::is_nothrow_constructible&lt; typename std::decay&lt; E &gt;::type, E &gt;::value) -&gt; failure&lt; typename std::decay&lt; E &gt;::type &gt;</td></tr>
+<tr class="memdesc:ae229fb3e62d7f65fe6b020e16c8c8a30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deduces and constructs an failure type from <code>e</code>.  <a href="../../de/d80/result_8hpp.html#ae229fb3e62d7f65fe6b020e16c8c8a30">More...</a><br /></td></tr>
+<tr class="separator:ae229fb3e62d7f65fe6b020e16c8c8a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a420f08e680cac5329ed7685e9c3406"><td class="memTemplParams" colspan="2">template&lt;typename E &gt; </td></tr>
+<tr class="memitem:a8a420f08e680cac5329ed7685e9c3406"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#a8a420f08e680cac5329ed7685e9c3406">cpp::bitwizeshift::fail</a> (std::reference_wrapper&lt; E &gt; e) noexcept -&gt; failure&lt; E &amp;&gt;</td></tr>
+<tr class="memdesc:a8a420f08e680cac5329ed7685e9c3406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deduces an failure reference from a reverence_wrapper.  <a href="../../de/d80/result_8hpp.html#a8a420f08e680cac5329ed7685e9c3406">More...</a><br /></td></tr>
+<tr class="separator:a8a420f08e680cac5329ed7685e9c3406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8fbd84761c223a2d38dbd99221264ec"><td class="memTemplParams" colspan="2">template&lt;typename E , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,Args...&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ab8fbd84761c223a2d38dbd99221264ec"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#ab8fbd84761c223a2d38dbd99221264ec">cpp::bitwizeshift::fail</a> (Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::value) -&gt; failure&lt; E &gt;</td></tr>
+<tr class="memdesc:ab8fbd84761c223a2d38dbd99221264ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an failure type from a series of arguments.  <a href="../../de/d80/result_8hpp.html#ab8fbd84761c223a2d38dbd99221264ec">More...</a><br /></td></tr>
+<tr class="separator:ab8fbd84761c223a2d38dbd99221264ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dea9f6219fc5657a20755dab0bbc05e"><td class="memTemplParams" colspan="2">template&lt;typename E &gt; </td></tr>
 <tr class="memitem:a7dea9f6219fc5657a20755dab0bbc05e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#a7dea9f6219fc5657a20755dab0bbc05e">cpp::bitwizeshift::swap</a> (failure&lt; E &gt; &amp;lhs, failure&lt; E &gt; &amp;rhs) noexcept -&gt; void</td></tr>
 <tr class="memdesc:a7dea9f6219fc5657a20755dab0bbc05e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps the contents of two failure values.  <a href="../../de/d80/result_8hpp.html#a7dea9f6219fc5657a20755dab0bbc05e">More...</a><br /></td></tr>
@@ -571,8 +577,8 @@ RESULT_CPP17_INLINE constexpr auto&#160;</td><td class="memItemRight" valign="bo
 
 <p class="definition">Definition in file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="file_a38983cec7c1a46d8b77c9600768f29e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a38983cec7c1a46d8b77c9600768f29e7">&#9670;&nbsp;</a></span>fail() <span class="overload">[1/3]</span></h2>
+<a id="file_ae229fb3e62d7f65fe6b020e16c8c8a30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ae229fb3e62d7f65fe6b020e16c8c8a30">&#9670;&nbsp;</a></span>fail() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -583,7 +589,7 @@ template&lt;typename E &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto cpp::bitwizeshift::fail </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto cpp::bitwizeshift::fail </td>
           <td>(</td>
           <td class="paramtype">E &amp;&amp;&#160;</td>
           <td class="paramname"><em>e</em></td><td>)</td>
@@ -608,8 +614,8 @@ template&lt;typename E &gt; </div>
 
 </div>
 </div>
-<a id="file_a6c4ed6d03a31b1a9901eff21e98855ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a6c4ed6d03a31b1a9901eff21e98855ce">&#9670;&nbsp;</a></span>fail() <span class="overload">[2/3]</span></h2>
+<a id="file_a8a420f08e680cac5329ed7685e9c3406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a8a420f08e680cac5329ed7685e9c3406">&#9670;&nbsp;</a></span>fail() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -620,7 +626,7 @@ template&lt;typename E &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto cpp::bitwizeshift::fail </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto cpp::bitwizeshift::fail </td>
           <td>(</td>
           <td class="paramtype">std::reference_wrapper&lt; E &gt;&#160;</td>
           <td class="paramname"><em>e</em></td><td>)</td>
@@ -645,8 +651,8 @@ template&lt;typename E &gt; </div>
 
 </div>
 </div>
-<a id="file_a4a88f1308a35dd3c28da627330274726"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a4a88f1308a35dd3c28da627330274726">&#9670;&nbsp;</a></span>fail() <span class="overload">[3/3]</span></h2>
+<a id="file_ab8fbd84761c223a2d38dbd99221264ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ab8fbd84761c223a2d38dbd99221264ec">&#9670;&nbsp;</a></span>fail() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -657,7 +663,7 @@ template&lt;typename E , typename... Args, typename  = typename std::enable_if&l
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto cpp::bitwizeshift::fail </td>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto cpp::bitwizeshift::fail </td>
           <td>(</td>
           <td class="paramtype">Args &amp;&amp;...&#160;</td>
           <td class="paramname"><em>args</em></td><td>)</td>
