@@ -33,7 +33,6 @@
 #define RESULT_RESULT_HPP
 
 #include <cstddef>      // std::size_t
-#include <stdexcept>    // std::logic_error
 #include <type_traits>  // std::enable_if, std::is_constructible, etc
 #include <new>          // placement-new
 #include <memory>       // std::address_of
@@ -41,6 +40,12 @@
 #include <utility>      // std::in_place_t, std::forward
 #include <initializer_list> // std::initializer_list
 #include <string>       // std::string (for exception message)
+
+#if defined(RESULT_EXCEPTIONS_DISABLED)
+# include <cstdio> // std::fprintf, stderr
+#else
+# include <stdexcept> // std::logic_error
+#endif
 
 #if __cplusplus >= 201402L
 # define RESULT_CPP14_CONSTEXPR constexpr
@@ -3788,11 +3793,14 @@ auto RESULT_NS_IMPL::detail::extract_error(const result<T,E>& exp) noexcept -> c
 }
 
 template <typename E>
-[[noreturn]]
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::throw_bad_result_access(E&& error) -> void
 {
 #if defined(RESULT_DISABLE_EXCEPTIONS)
+  std::fprintf(
+    stderr,
+    "error attempting to access value from result containing error\n"
+  );
   std::abort();
 #else
   using exception_type = bad_result_access<
@@ -3815,6 +3823,10 @@ auto RESULT_NS_IMPL::detail::throw_bad_result_access_message(
 ) -> void
 {
 #if defined(RESULT_DISABLE_EXCEPTIONS)
+  const auto message_string = std::string{
+    detail::forward<String>(message)
+  };
+  std::fprintf(stderr, "%s\n", message_string.c_str());
   std::abort();
 #else
   using exception_type = bad_result_access<
