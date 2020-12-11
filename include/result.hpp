@@ -701,7 +701,7 @@ inline namespace bitwizeshift {
 #if __cplusplus >= 201703L
     noexcept(std::is_nothrow_swappable<E>::value) -> void;
 #else
-    noexcept -> void;
+    noexcept(std::is_nothrow_move_constructible<E>::value) -> void;
 #endif
 
   namespace detail {
@@ -3802,9 +3802,10 @@ template <typename E>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::swap(failure<E>& lhs, failure<E>& rhs)
 #if __cplusplus >= 201703L
-    noexcept(std::is_nothrow_swappable<E>::value) -> void
+  noexcept(std::is_nothrow_swappable<E>::value) -> void
 #else
-    noexcept -> void
+  noexcept(std::is_nothrow_move_constructible<E>::value)
+   -> void
 #endif
 {
   using std::swap;
