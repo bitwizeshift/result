@@ -63,6 +63,22 @@
 # define RESULT_INLINE_VISIBILITY
 #endif
 
+// [[clang::warn_unused_result]] is more full-featured than gcc's variant, since
+// it supports being applied to class objects.
+#if __cplusplus >= 201703L
+# define RESULT_NODISCARD [[nodiscard]]
+# define RESULT_WARN_UNUSED [[nodiscard]]
+#elif defined(__clang__) && ((__clang_major__ > 3) || ((__clang_major__ == 3) && (__clang_minor__ >= 9)))
+# define RESULT_NODISCARD [[clang::warn_unused_result]]
+# define RESULT_WARN_UNUSED [[clang::warn_unused_result]]
+#elif defined(__GNUC__)
+# define RESULT_NODISCARD
+# define RESULT_WARN_UNUSED [[gnu::warn_unused_result]]
+#else
+# define RESULT_WARN_UNUSED
+# define RESULT_NODISCARD
+#endif
+
 #if defined(RESULT_NAMESPACE)
 # define RESULT_NAMESPACE_INTERNAL RESULT_NAMESPACE
 #else
@@ -629,6 +645,7 @@ inline namespace bitwizeshift {
   /// \param e the failure value
   /// \return a constructed failure value
   template <typename E>
+  RESULT_WARN_UNUSED
   constexpr auto fail(E&& e)
     noexcept(std::is_nothrow_constructible<typename std::decay<E>::type,E>::value)
     -> failure<typename std::decay<E>::type>;
@@ -638,6 +655,7 @@ inline namespace bitwizeshift {
   /// \param e the failure value
   /// \return a constructed failure reference
   template <typename E>
+  RESULT_WARN_UNUSED
   constexpr auto fail(std::reference_wrapper<E> e)
     noexcept -> failure<E&>;
 
@@ -648,6 +666,7 @@ inline namespace bitwizeshift {
   /// \return a constructed failure type
   template <typename E, typename...Args,
             typename = typename std::enable_if<std::is_constructible<E,Args...>::value>::type>
+  RESULT_WARN_UNUSED
   constexpr auto fail(Args&&...args)
     noexcept(std::is_nothrow_constructible<E, Args...>::value)
     -> failure<E>;
@@ -1470,7 +1489,7 @@ inline namespace bitwizeshift {
   /// \tparam E the underlying error type
   ///////////////////////////////////////////////////////////////////////////
   template <typename T, typename E>
-  class result
+  class RESULT_NODISCARD result
   {
     // Type requirements
 
@@ -1552,6 +1571,7 @@ inline namespace bitwizeshift {
     /// This constructor is only enabled if `T` is default-constructible
     template <typename U=T,
               typename = typename std::enable_if<std::is_constructible<U>::value>::type>
+    RESULT_NODISCARD
     constexpr result()
       noexcept(std::is_nothrow_constructible<U>::value);
 
@@ -1573,6 +1593,7 @@ inline namespace bitwizeshift {
     ///       `std::is_trivially_copy_constructible<E>::value` are `true`
     ///
     /// \param other the result to copy
+    RESULT_NODISCARD
     constexpr result(const result& other) = default;
 
     /// \brief Move constructs an result
@@ -1595,6 +1616,7 @@ inline namespace bitwizeshift {
     ///       `std::is_trivially_move_constructible<E>::value` are `true`
     ///
     /// \param other the result to move
+    RESULT_NODISCARD
     constexpr result(result&& other) = default;
 
     /// \{
@@ -1624,11 +1646,13 @@ inline namespace bitwizeshift {
     /// \param other the other type to convert
     template <typename T2, typename E2,
               typename std::enable_if<detail::result_is_implicit_copy_convertible<T,E,T2,E2>::value,int>::type = 0>
+    RESULT_NODISCARD
     result(const result<T2,E2>& other)
       noexcept(std::is_nothrow_constructible<T,const T2&>::value &&
                std::is_nothrow_constructible<E,const E2&>::value);
     template <typename T2, typename E2,
               typename std::enable_if<detail::result_is_explicit_copy_convertible<T,E,T2,E2>::value,int>::type = 0>
+    RESULT_NODISCARD
     explicit result(const result<T2,E2>& other)
       noexcept(std::is_nothrow_constructible<T,const T2&>::value &&
                std::is_nothrow_constructible<E,const E2&>::value);
@@ -1661,11 +1685,13 @@ inline namespace bitwizeshift {
     /// \param other the other type to convert
     template <typename T2, typename E2,
               typename std::enable_if<detail::result_is_implicit_move_convertible<T,E,T2,E2>::value,int>::type = 0>
+    RESULT_NODISCARD
     result(result<T2,E2>&& other)
       noexcept(std::is_nothrow_constructible<T,T2&&>::value &&
                std::is_nothrow_constructible<E,E2&&>::value);
     template <typename T2, typename E2,
               typename std::enable_if<detail::result_is_explicit_move_convertible<T,E,T2,E2>::value,int>::type = 0>
+    RESULT_NODISCARD
     explicit result(result<T2,E2>&& other)
       noexcept(std::is_nothrow_constructible<T,T2&&>::value &&
                std::is_nothrow_constructible<E,E2&&>::value);
@@ -1682,6 +1708,7 @@ inline namespace bitwizeshift {
     /// \param args the arguments to pass to T's constructor
     template <typename...Args,
               typename = typename std::enable_if<std::is_constructible<T,Args...>::value>::type>
+    RESULT_NODISCARD
     constexpr explicit result(in_place_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<T, Args...>::value);
 
@@ -1696,9 +1723,10 @@ inline namespace bitwizeshift {
     /// \param args  the arguments to pass to T's constructor
     template <typename U, typename...Args,
               typename = typename std::enable_if<std::is_constructible<T, std::initializer_list<U>&, Args...>::value>::type>
+    RESULT_NODISCARD
     constexpr explicit result(in_place_t,
-                                std::initializer_list<U> ilist,
-                                Args&&...args)
+                              std::initializer_list<U> ilist,
+                              Args&&...args)
       noexcept(std::is_nothrow_constructible<T, std::initializer_list<U>, Args...>::value);
 
     //-------------------------------------------------------------------------
@@ -1712,6 +1740,7 @@ inline namespace bitwizeshift {
     /// \param args the arguments to pass to E's constructor
     template <typename...Args,
               typename = typename std::enable_if<std::is_constructible<E,Args...>::value>::type>
+    RESULT_NODISCARD
     constexpr explicit result(in_place_error_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
@@ -1726,9 +1755,10 @@ inline namespace bitwizeshift {
     /// \param args  the arguments to pass to Es constructor
     template <typename U, typename...Args,
               typename = typename std::enable_if<std::is_constructible<E, std::initializer_list<U>&, Args...>::value>::type>
+    RESULT_NODISCARD
     constexpr explicit result(in_place_error_t,
-                                std::initializer_list<U> ilist,
-                                Args&&...args)
+                              std::initializer_list<U> ilist,
+                              Args&&...args)
       noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value);
 
     //-------------------------------------------------------------------------
@@ -1742,10 +1772,12 @@ inline namespace bitwizeshift {
     /// \param e the failure error
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,const E2&>::value>::type>
+    RESULT_NODISCARD
     constexpr /* implicit */ result(const failure<E2>& e)
       noexcept(std::is_nothrow_constructible<E,const E2&>::value);
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2&&>::value>::type>
+    RESULT_NODISCARD
     constexpr /* implicit */ result(failure<E2>&& e)
       noexcept(std::is_nothrow_constructible<E,E2&&>::value);
     /// \}
@@ -1771,10 +1803,12 @@ inline namespace bitwizeshift {
     /// \param value the value to copy
     template <typename U,
               typename std::enable_if<detail::result_is_explicit_value_convertible<T,U>::value,int>::type = 0>
+    RESULT_NODISCARD
     constexpr explicit result(U&& value)
       noexcept(std::is_nothrow_constructible<T,U>::value);
     template <typename U,
               typename std::enable_if<detail::result_is_implicit_value_convertible<T,U>::value,int>::type = 0>
+    RESULT_NODISCARD
     constexpr /* implicit */ result(U&& value)
       noexcept(std::is_nothrow_constructible<T,U>::value);
     /// \}
@@ -1945,8 +1979,10 @@ inline namespace bitwizeshift {
     /// \note The behavior is undefined if `*this` does not contain a value.
     ///
     /// \return a pointer to the contained value
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto operator->()
       noexcept -> typename std::remove_reference<T>::type*;
+    RESULT_WARN_UNUSED
     constexpr auto operator->()
       const noexcept -> typename std::remove_reference<typename std::add_const<T>::type>::type*;
     /// \}
@@ -1957,12 +1993,16 @@ inline namespace bitwizeshift {
     /// \note The behaviour is undefined if `*this` does not contain a value
     ///
     /// \return a reference to the contained value
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto operator*()
       & noexcept -> typename std::add_lvalue_reference<T>::type;
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto operator*()
       && noexcept -> typename std::add_rvalue_reference<T>::type;
+    RESULT_WARN_UNUSED
     constexpr auto operator*()
       const& noexcept -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type;
+    RESULT_WARN_UNUSED
     constexpr auto operator*()
       const&& noexcept -> typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
     /// \}
@@ -1973,18 +2013,21 @@ inline namespace bitwizeshift {
     ///
     /// \return `true` if `*this` contains a value, `false` if `*this`
     ///         does not contain a value
+    RESULT_WARN_UNUSED
     constexpr explicit operator bool() const noexcept;
 
     /// \brief Checks whether `*this` contains a value
     ///
     /// \return `true` if `*this` contains a value, `false` if `*this`
     ///         contains an error
+    RESULT_WARN_UNUSED
     constexpr auto has_value() const noexcept -> bool;
 
     /// \brief Checks whether `*this` contains an error
     ///
     /// \return `true` if `*this` contains an error, `false` if `*this`
     ///          contains a value
+    RESULT_WARN_UNUSED
     constexpr auto has_error() const noexcept -> bool;
 
     //-------------------------------------------------------------------------
@@ -1995,12 +2038,16 @@ inline namespace bitwizeshift {
     /// \throws bad_result_access if `*this` does not contain a value.
     ///
     /// \return the value of `*this`
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto value()
       & -> typename std::add_lvalue_reference<T>::type;
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto value()
       && -> typename std::add_rvalue_reference<T>::type;
+    RESULT_WARN_UNUSED
     constexpr auto value()
       const & -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type;
+    RESULT_WARN_UNUSED
     constexpr auto value()
       const && -> typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
     /// \}
@@ -2010,9 +2057,11 @@ inline namespace bitwizeshift {
     ///        default-constructed error value
     ///
     /// \return the error or a default-constructed error value
+    RESULT_WARN_UNUSED
     constexpr auto error() const &
       noexcept(std::is_nothrow_constructible<E>::value &&
                std::is_nothrow_copy_constructible<E>::value) -> E;
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto error() &&
       noexcept(std::is_nothrow_constructible<E>::value &&
                std::is_nothrow_move_constructible<E>::value) -> E;
@@ -2030,9 +2079,11 @@ inline namespace bitwizeshift {
     /// \param default_value the value to use in case `*this` contains an error
     /// \return the contained value or \p default_value
     template <typename U>
+    RESULT_WARN_UNUSED
     constexpr auto value_or(U&& default_value)
       const & -> typename std::remove_reference<T>::type;
     template <typename U>
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto value_or(U&& default_value)
       && -> typename std::remove_reference<T>::type;
     /// \}
@@ -2044,8 +2095,10 @@ inline namespace bitwizeshift {
     /// \param default_error the error to use in case `*this` is empty
     /// \return the contained value or \p default_error
     template <typename U>
+    RESULT_WARN_UNUSED
     constexpr auto error_or(U&& default_error) const & -> error_type;
     template <typename U>
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto error_or(U&& default_error) && -> error_type;
     /// \}
 
@@ -2058,6 +2111,7 @@ inline namespace bitwizeshift {
     /// \param value the value to return as an result
     /// \return an result of \p value if this contains a value
     template <typename U>
+    RESULT_WARN_UNUSED
     constexpr auto and_then(U&& value) const -> result<typename std::decay<U>::type,E>;
 
     /// \{
@@ -2075,8 +2129,10 @@ inline namespace bitwizeshift {
     /// \param fn the function to invoke with this
     /// \return The result of the function being called
     template <typename Fn>
+    RESULT_WARN_UNUSED
     constexpr auto flat_map(Fn&& fn) const & -> detail::invoke_result_t<Fn, const T&>;
     template <typename Fn>
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto flat_map(Fn&& fn) && -> detail::invoke_result_t<Fn, T&&>;
     /// \}
 
@@ -2094,8 +2150,10 @@ inline namespace bitwizeshift {
     /// \param fn the function to invoke with this
     /// \return The result result of the function invoked
     template <typename Fn>
+    RESULT_WARN_UNUSED
     constexpr auto map(Fn&& fn) const & -> result<detail::invoke_result_t<Fn,const T&>,E>;
     template <typename Fn>
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto map(Fn&& fn) && -> result<detail::invoke_result_t<Fn,T&&>,E>;
     /// \}
 
@@ -2113,10 +2171,13 @@ inline namespace bitwizeshift {
     /// \param fn the function to invoke with this
     /// \return The result result of the function invoked
     template <typename Fn>
-    constexpr auto map_error(Fn&& fn) const & -> result<T, detail::invoke_result_t<Fn,const E&>>;
+    RESULT_WARN_UNUSED
+    constexpr auto map_error(Fn&& fn)
+      const & -> result<T, detail::invoke_result_t<Fn,const E&>>;
     template <typename Fn>
-    RESULT_CPP14_CONSTEXPR
-    auto map_error(Fn&& fn) && -> result<T, detail::invoke_result_t<Fn,E&&>>;
+    RESULT_WARN_UNUSED
+    RESULT_CPP14_CONSTEXPR auto map_error(Fn&& fn)
+      && -> result<T, detail::invoke_result_t<Fn,E&&>>;
     /// \}
 
     /// \{
@@ -2134,9 +2195,13 @@ inline namespace bitwizeshift {
     /// \param fn the function to invoke with this
     /// \return The result of the function being called
     template <typename Fn>
-    constexpr auto flat_map_error(Fn&& fn) const & -> detail::invoke_result_t<Fn, const E&>;
+    RESULT_WARN_UNUSED
+    constexpr auto flat_map_error(Fn&& fn)
+      const & -> detail::invoke_result_t<Fn, const E&>;
     template <typename Fn>
-    RESULT_CPP14_CONSTEXPR auto flat_map_error(Fn&& fn) && -> detail::invoke_result_t<Fn, E&&>;
+    RESULT_WARN_UNUSED
+    RESULT_CPP14_CONSTEXPR auto flat_map_error(Fn&& fn)
+      && -> detail::invoke_result_t<Fn, E&&>;
     /// \}
 
     //-------------------------------------------------------------------------
@@ -2176,7 +2241,7 @@ inline namespace bitwizeshift {
   /// \tparam E the underlying error type
   /////////////////////////////////////////////////////////////////////////////
   template <typename E>
-  class result<void,E>
+  class RESULT_NODISCARD result<void,E>
   {
     // Type requirements
 
@@ -2223,6 +2288,7 @@ inline namespace bitwizeshift {
   public:
 
     /// \brief Constructs an `result` object with
+    RESULT_NODISCARD
     constexpr result() noexcept;
 
     /// \brief Copy constructs this result
@@ -2237,6 +2303,7 @@ inline namespace bitwizeshift {
     ///       `std::is_trivially_copy_constructible<E>::value` are `true`
     ///
     /// \param other the result to copy
+    RESULT_NODISCARD
     constexpr result(const result& other) = default;
 
     /// \brief Move constructs an result
@@ -2251,6 +2318,7 @@ inline namespace bitwizeshift {
     ///       `std::is_trivially_move_constructible<E>::value` are `true`
     ///
     /// \param other the result to move
+    RESULT_NODISCARD
     constexpr result(result&& other) = default;
 
     /// \brief Converting copy constructor
@@ -2274,6 +2342,7 @@ inline namespace bitwizeshift {
     /// \param other the other type to convert
     template <typename U, typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
+    RESULT_NODISCARD
     explicit result(const result<U,E2>& other)
       noexcept(std::is_nothrow_constructible<E,const E2&>::value);
 
@@ -2298,6 +2367,7 @@ inline namespace bitwizeshift {
     /// \param other the other type to convert
     template <typename U, typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
+    RESULT_NODISCARD
     explicit result(result<U,E2>&& other)
       noexcept(std::is_nothrow_constructible<E,E2&&>::value);
 
@@ -2312,6 +2382,7 @@ inline namespace bitwizeshift {
     /// \param args the arguments to pass to `E`'s constructor
     template <typename...Args,
               typename = typename std::enable_if<std::is_constructible<E,Args...>::value>::type>
+    RESULT_NODISCARD
     constexpr explicit result(in_place_error_t, Args&&... args)
       noexcept(std::is_nothrow_constructible<E, Args...>::value);
 
@@ -2326,9 +2397,10 @@ inline namespace bitwizeshift {
     /// \param args  the arguments to pass to Es constructor
     template <typename U, typename...Args,
               typename = typename std::enable_if<std::is_constructible<E, std::initializer_list<U>&, Args...>::value>::type>
+    RESULT_NODISCARD
     constexpr explicit result(in_place_error_t,
-                                std::initializer_list<U> ilist,
-                                Args&&...args)
+                              std::initializer_list<U> ilist,
+                              Args&&...args)
       noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value);
 
     //-------------------------------------------------------------------------
@@ -2342,10 +2414,12 @@ inline namespace bitwizeshift {
     /// \param e the failure error
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,const E2&>::value>::type>
+    RESULT_NODISCARD
     constexpr /* implicit */ result(const failure<E2>& e)
       noexcept(std::is_nothrow_constructible<E,const E2&>::value);
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2&&>::value>::type>
+    RESULT_NODISCARD
     constexpr /* implicit */ result(failure<E2>&& e)
       noexcept(std::is_nothrow_constructible<E,E2&&>::value);
     /// \}
@@ -2462,18 +2536,21 @@ inline namespace bitwizeshift {
     ///
     /// \return `true` if `*this` contains a value, `false` if `*this`
     ///         does not contain a value
+    RESULT_WARN_UNUSED
     constexpr explicit operator bool() const noexcept;
 
     /// \brief Checks whether `*this` contains a value
     ///
     /// \return `true` if `*this` contains a value, `false` if `*this`
     ///         contains an error
+    RESULT_WARN_UNUSED
     constexpr auto has_value() const noexcept -> bool;
 
     /// \brief Checks whether `*this` contains an error
     ///
     /// \return `true` if `*this` contains an error, `false` if `*this`
     ///          contains a value
+    RESULT_WARN_UNUSED
     constexpr auto has_error() const noexcept -> bool;
 
     //-------------------------------------------------------------------------
@@ -2491,9 +2568,11 @@ inline namespace bitwizeshift {
     ///        default-constructed error value
     ///
     /// \return the error or a default-constructed error value
+    RESULT_WARN_UNUSED
     constexpr auto error() const &
       noexcept(std::is_nothrow_constructible<E>::value &&
                std::is_nothrow_copy_constructible<E>::value) -> E;
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto error() &&
       noexcept(std::is_nothrow_constructible<E>::value &&
                std::is_nothrow_copy_constructible<E>::value) -> E;
@@ -2511,8 +2590,10 @@ inline namespace bitwizeshift {
     /// \param default_error the error to use in case `*this` is empty
     /// \return the contained value or \p default_error
     template <typename U>
+    RESULT_WARN_UNUSED
     constexpr auto error_or(U&& default_error) const & -> error_type;
     template <typename U>
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto error_or(U&& default_error) && -> error_type;
     /// \}
 
@@ -2525,6 +2606,7 @@ inline namespace bitwizeshift {
     /// \param value the value to return as an result
     /// \return an result of \p value if this contains a value
     template <typename U>
+    RESULT_WARN_UNUSED
     constexpr auto and_then(U&& value) const -> result<typename std::decay<U>::type,E>;
 
     /// \{
@@ -2542,8 +2624,10 @@ inline namespace bitwizeshift {
     /// \param fn the function to invoke with this
     /// \return The result of the function being called
     template <typename Fn>
+    RESULT_WARN_UNUSED
     constexpr auto flat_map(Fn&& fn) const & -> detail::invoke_result_t<Fn>;
     template <typename Fn>
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto flat_map(Fn&& fn) && -> detail::invoke_result_t<Fn>;
     /// \}
 
@@ -2561,8 +2645,10 @@ inline namespace bitwizeshift {
     /// \param fn the function to invoke with this
     /// \return The result result of the function invoked
     template <typename Fn>
+    RESULT_WARN_UNUSED
     constexpr auto map(Fn&& fn) const & -> result<detail::invoke_result_t<Fn>,E>;
     template <typename Fn>
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto map(Fn&& fn) && -> result<detail::invoke_result_t<Fn>,E>;
     /// \}
 
@@ -2599,8 +2685,10 @@ inline namespace bitwizeshift {
     /// \param fn the function to invoke with this
     /// \return The result of the function being called
     template <typename Fn>
+    RESULT_WARN_UNUSED
     constexpr auto flat_map_error(Fn&& fn) const & -> detail::invoke_result_t<Fn, const E&>;
     template <typename Fn>
+    RESULT_WARN_UNUSED
     RESULT_CPP14_CONSTEXPR auto flat_map_error(Fn&& fn) && -> detail::invoke_result_t<Fn, E&&>;
     /// \}
 
@@ -3940,6 +4028,17 @@ auto RESULT_NS_IMPL::result<T,E>::has_error()
 
 //-----------------------------------------------------------------------------
 
+// The `has_value()` expression below is incorrectly identified as an unused
+// value, which results in the `-Wunused-value` warning. This is suppressed
+// to prevent false-positives
+#if defined(__clang__)
+# pragma clang diagnostic push
+# pragma clang diagnostic ignored "-Wunused-value"
+#elif defined(__GNUC__)
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wunused-value"
+#endif // defined(__GNUC__)
+
 template <typename T, typename E>
 inline RESULT_INLINE_VISIBILITY RESULT_CPP14_CONSTEXPR
 auto RESULT_NS_IMPL::result<T,E>::value()
@@ -3987,6 +4086,12 @@ auto RESULT_NS_IMPL::result<T,E>::value()
     (static_cast<reference>(m_storage.storage.m_value))
   );
 }
+
+#if defined(__clang__)
+# pragma clang diagnostic pop
+#elif defined(__GNUC__)
+# pragma GCC diagnostic pop
+#endif // defined(__GNUC__)
 
 template <typename T, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
@@ -5187,5 +5292,7 @@ auto RESULT_NS_IMPL::swap(result<void,E>& lhs, result<void,E>& rhs)
 #undef RESULT_CPP14_CONSTEXPR
 #undef RESULT_CPP17_INLINE
 #undef RESULT_INLINE_VISIBILITY
+#undef RESULT_NODISCARD
+#undef RESULT_WARN_UNUSED
 
 #endif /* RESULT_RESULT_HPP */

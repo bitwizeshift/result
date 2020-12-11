@@ -171,6 +171,9 @@ struct derived : public base
   int value;
 };
 
+template <typename T>
+auto suppress_unused(const T&) -> void{}
+
 } // namespace <anonymous>
 
 //=============================================================================
@@ -2238,7 +2241,7 @@ TEST_CASE("result<T,E>::value() &", "[observers]") {
   SECTION("result contains a value") {
     auto sut = result<int,std::error_code>{42};
     SECTION("Does not throw exception") {
-      REQUIRE_NOTHROW(sut.value());
+      REQUIRE_NOTHROW(suppress_unused(sut.value()));
     }
     SECTION("Returns mutable lvalue reference to internal storage") {
       STATIC_REQUIRE(std::is_same<decltype(sut.value()),int&>::value);
@@ -2250,7 +2253,7 @@ TEST_CASE("result<T,E>::value() &", "[observers]") {
         fail(42)
       };
 
-      REQUIRE_THROWS_AS(sut.value(), bad_result_access<int>);
+      REQUIRE_THROWS_AS(suppress_unused(sut.value()), bad_result_access<int>);
     }
   }
 }
@@ -2259,7 +2262,7 @@ TEST_CASE("result<T,E>::value() const &", "[observers]") {
   SECTION("result contains a value") {
     const auto sut = result<int,std::error_code>{42};
     SECTION("Does not throw exception") {
-      REQUIRE_NOTHROW(sut.value());
+      REQUIRE_NOTHROW(suppress_unused(sut.value()));
     }
     SECTION("Returns const lvalue reference to internal storage") {
       STATIC_REQUIRE(std::is_same<decltype(sut.value()),const int&>::value);
@@ -2271,7 +2274,7 @@ TEST_CASE("result<T,E>::value() const &", "[observers]") {
         fail(42)
       };
 
-      REQUIRE_THROWS_AS(sut.value(), bad_result_access<int>);
+      REQUIRE_THROWS_AS(suppress_unused(sut.value()), bad_result_access<int>);
     }
   }
 }
@@ -2280,7 +2283,7 @@ TEST_CASE("result<T,E>::value() &&", "[observers]") {
   SECTION("result contains a value") {
     auto sut = result<int,std::error_code>{42};
     SECTION("Does not throw exception") {
-      REQUIRE_NOTHROW(std::move(sut).value());
+      REQUIRE_NOTHROW(suppress_unused(std::move(sut).value()));
     }
     SECTION("Returns mutable rvalue reference to internal storage") {
       STATIC_REQUIRE(std::is_same<decltype(std::move(sut).value()),int&&>::value);
@@ -2292,7 +2295,7 @@ TEST_CASE("result<T,E>::value() &&", "[observers]") {
         fail("hello world")
       };
 
-      REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access<move_only<std::string>>);
+      REQUIRE_THROWS_AS(suppress_unused(std::move(sut).value()), bad_result_access<move_only<std::string>>);
     }
   }
 }
@@ -2301,7 +2304,7 @@ TEST_CASE("result<T,E>::value() const &&", "[observers]") {
   SECTION("result contains a value") {
     const auto sut = result<int,std::error_code>{42};
     SECTION("Does not throw exception") {
-      REQUIRE_NOTHROW(std::move(sut).value());
+      REQUIRE_NOTHROW(suppress_unused(std::move(sut).value()));
     }
     SECTION("Returns const rvalue reference to internal storage") {
       STATIC_REQUIRE(std::is_same<decltype(std::move(sut).value()),const int&&>::value);
@@ -2313,7 +2316,7 @@ TEST_CASE("result<T,E>::value() const &&", "[observers]") {
         fail(42)
       };
 
-      REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access<int>);
+      REQUIRE_THROWS_AS(suppress_unused(std::move(sut).value()), bad_result_access<int>);
     }
   }
 }
@@ -3174,7 +3177,7 @@ TEST_CASE("result<T&,E>::value() &", "[observers]") {
     auto sut = result<int&,int>{value};
 
     SECTION("Does not throw exception") {
-      REQUIRE_NOTHROW(sut.value());
+      REQUIRE_NOTHROW(suppress_unused(sut.value()));
     }
     SECTION("Returns mutable lvalue reference to internal storage") {
       STATIC_REQUIRE(std::is_same<decltype(sut.value()),int&>::value);
@@ -3192,7 +3195,7 @@ TEST_CASE("result<T&,E>::value() const &", "[observers]") {
     const auto sut = result<int&,int>{value};
 
     SECTION("Does not throw exception") {
-      REQUIRE_NOTHROW(sut.value());
+      REQUIRE_NOTHROW(suppress_unused(sut.value()));
     }
     SECTION("Returns mutable lvalue that does not propagate constness") {
       STATIC_REQUIRE(std::is_same<decltype(sut.value()),int&>::value);
@@ -3210,7 +3213,7 @@ TEST_CASE("result<T&,E>::value() &&", "[observers]") {
     auto sut = result<int&,int>{value};
 
     SECTION("Does not throw exception") {
-      REQUIRE_NOTHROW(std::move(sut).value());
+      REQUIRE_NOTHROW(suppress_unused(std::move(sut).value()));
     }
     SECTION("Returns mutable lvalue") {
       STATIC_REQUIRE(std::is_same<decltype(std::move(sut).value()),int&>::value);
@@ -3228,7 +3231,7 @@ TEST_CASE("result<T&,E>::value() const &&", "[observers]") {
     const auto sut = result<int&,int>{value};
 
     SECTION("Does not throw exception") {
-      REQUIRE_NOTHROW(std::move(sut).value());
+      REQUIRE_NOTHROW(suppress_unused(std::move(sut).value()));
     }
     SECTION("Returns mutable lvalue that does not propagate constness") {
       STATIC_REQUIRE(std::is_same<decltype(std::move(sut).value()),int&>::value);
@@ -6036,7 +6039,7 @@ TEST_CASE("std::hash<result<T,E>>::operator()", "[utility]") {
       const auto sut = result<int,int>{42};
 
       const auto output = std::hash<result<int,int>>{}(sut);
-      static_cast<void>(output);
+      suppress_unused(output);
 
       SUCCEED();
     }
@@ -6046,7 +6049,7 @@ TEST_CASE("std::hash<result<T,E>>::operator()", "[utility]") {
       const auto sut = result<int,int>{fail(42)};
 
       const auto output = std::hash<result<int,int>>{}(sut);
-      static_cast<void>(output);
+      suppress_unused(output);
 
       SUCCEED();
     }
@@ -6079,7 +6082,7 @@ TEST_CASE("std::hash<result<void,E>>::operator()", "[utility]") {
       const auto sut = result<void,int>{fail(42)};
 
       const auto output = std::hash<result<void,int>>{}(sut);
-      static_cast<void>(output);
+      suppress_unused(output);
 
       SUCCEED();
     }
