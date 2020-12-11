@@ -3540,6 +3540,16 @@ TEST_CASE("result<void,E>::result(result<U,E2>&&)", "[ctor]") {
   }
 }
 
+TEST_CASE("result<void,E>::result(in_place_t)", "[ctor]") {
+  using sut_type = result<void,int>;
+
+  const sut_type sut(in_place);
+
+  SECTION("Contains a value") {
+    REQUIRE(sut.has_value());
+  }
+}
+
 TEST_CASE("result<void,E>::result(in_place_error_t, Args&&...)", "[ctor]") {
   using sut_type = result<void,std::string>;
 
