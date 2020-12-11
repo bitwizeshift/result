@@ -2703,7 +2703,7 @@ inline namespace bitwizeshift {
     //-------------------------------------------------------------------------
   public:
 
-    /// \brief Constructs a `result` object that does not contain
+    /// \brief Constructs a `result` object in a value state
     ///
     /// ### Examples
     ///
@@ -2834,6 +2834,22 @@ inline namespace bitwizeshift {
       noexcept(std::is_nothrow_constructible<E,E2&&>::value);
 
     //-------------------------------------------------------------------------
+
+    /// \brief Constructs a result object in a value state
+    ///
+    /// This constructor exists primarily for symmetry with the `result<T,E>`
+    /// constructor. Unlike the `T` overload, no variadic arguments may be
+    /// supplied.
+    ///
+    /// ### Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```cpp
+    /// auto r = cpp::result<void,std::string>{cpp::in_place};
+    /// ```
+    RESULT_NODISCARD
+    constexpr explicit result(in_place_t) noexcept;
 
     /// \brief Constructs a result object that contains an error
     ///
@@ -5054,6 +5070,15 @@ RESULT_NS_IMPL::result<void, E>::result(result<U,E2>&& other)
 
 
 //-----------------------------------------------------------------------------
+
+template <typename E>
+inline RESULT_INLINE_VISIBILITY constexpr
+RESULT_NS_IMPL::result<void, E>::result(in_place_t)
+  noexcept
+  : m_storage(in_place)
+{
+
+}
 
 template <typename E>
 template <typename...Args, typename>
