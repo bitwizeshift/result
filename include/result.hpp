@@ -40,6 +40,7 @@
 #include <functional>   // std::reference_wrapper, std::invoke
 #include <utility>      // std::in_place_t, std::forward
 #include <initializer_list> // std::initializer_list
+#include <string>       // std::string (for exception message)
 
 #if __cplusplus >= 201402L
 # define RESULT_CPP14_CONSTEXPR constexpr
@@ -354,6 +355,21 @@ inline namespace bitwizeshift {
     template <typename E2,
               typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
     explicit bad_result_access(E2&& error);
+
+    /// \{
+    /// \brief Constructs this exception using the underlying error type for
+    ///        the error and a message
+    ///
+    /// \param what_arg the message for the failure
+    /// \param error the underlying error
+    template <typename E2,
+              typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
+    bad_result_access(const char* what_arg, E2&& error);
+    template <typename E2,
+              typename = typename std::enable_if<std::is_constructible<E,E2>::value>::type>
+    bad_result_access(const std::string& what_arg, E2&& error);
+    /// \}
+
     bad_result_access(const bad_result_access& other) = default;
     bad_result_access(bad_result_access&& other) = default;
 
@@ -1418,6 +1434,10 @@ inline namespace bitwizeshift {
     [[noreturn]]
     auto throw_bad_result_access(E&& error) -> void;
 
+    template <typename String, typename E>
+    [[noreturn]]
+    auto throw_bad_result_access_message(String&& message, E&& error) -> void;
+
   } // namespace detail
 
   /////////////////////////////////////////////////////////////////////////////
@@ -2067,6 +2087,34 @@ inline namespace bitwizeshift {
                std::is_nothrow_move_constructible<E>::value) -> E;
     /// }
 
+    /// \{
+    /// \brief Asserts an expectation that this result contains an error,
+    ///        throwing a bad_result_access on failure
+    ///
+    /// If this function is invoked from an rvalue of `result`, then this will
+    /// consume the underlying error first, if there is one.
+    ///
+    /// \note This function exists as a means to allow for results to be marked
+    ///       `used` without requiring directly inspecting the underlying value.
+    ///       This is, in effect, equivalent to `assert(res.has_value())`,
+    ///       however it uses exceptions to ensure the stack can be unwound, and
+    ///       exceptions invoked.
+    ///
+    /// \param message the message to provide to this expectation
+    template <typename String,
+              typename = typename std::enable_if<(
+                std::is_convertible<String,const std::string&>::value &&
+                std::is_copy_constructible<E>::value
+              )>::type>
+    RESULT_CPP14_CONSTEXPR auto expect(String&& message) const & -> void;
+    template <typename String,
+              typename = typename std::enable_if<(
+                std::is_convertible<String,const std::string&>::value &&
+                std::is_move_constructible<E>::value
+              )>::type>
+    RESULT_CPP14_CONSTEXPR auto expect(String&& message) && -> void;
+    /// \}
+
     //-------------------------------------------------------------------------
     // Monadic Functionalities
     //-------------------------------------------------------------------------
@@ -2578,6 +2626,34 @@ inline namespace bitwizeshift {
                std::is_nothrow_copy_constructible<E>::value) -> E;
     /// \}
 
+    /// \{
+    /// \brief Asserts an expectation that this result contains an error,
+    ///        throwing a bad_result_access on failure
+    ///
+    /// If this function is invoked from an rvalue of `result`, then this will
+    /// consume the underlying error first, if there is one.
+    ///
+    /// \note This function exists as a means to allow for results to be marked
+    ///       `used` without requiring directly inspecting the underlying value.
+    ///       This is, in effect, equivalent to `assert(res.has_value())`,
+    ///       however it uses exceptions to ensure the stack can be unwound, and
+    ///       exceptions invoked.
+    ///
+    /// \param message the message to provide to this expectation
+    template <typename String,
+              typename = typename std::enable_if<(
+                std::is_convertible<String,const std::string&>::value &&
+                std::is_copy_constructible<E>::value
+              )>::type>
+    RESULT_CPP14_CONSTEXPR auto expect(String&& message) const & -> void;
+    template <typename String,
+              typename = typename std::enable_if<(
+                std::is_convertible<String,const std::string&>::value &&
+                std::is_move_constructible<E>::value
+              )>::type>
+    RESULT_CPP14_CONSTEXPR auto expect(String&& message) && -> void;
+    /// \}
+
     //-------------------------------------------------------------------------
     // Monadic Functionalities
     //-------------------------------------------------------------------------
@@ -2937,6 +3013,30 @@ template <typename E2, typename>
 inline RESULT_INLINE_VISIBILITY
 RESULT_NS_IMPL::bad_result_access<E>::bad_result_access(E2&& error)
   : logic_error{"error attempting to access value from result containing error"},
+    m_error(detail::forward<E2>(error))
+{
+
+}
+
+template <typename E>
+template <typename E2, typename>
+inline RESULT_INLINE_VISIBILITY
+RESULT_NS_IMPL::bad_result_access<E>::bad_result_access(
+  const char* what_arg,
+  E2&& error
+) : logic_error{what_arg},
+    m_error(detail::forward<E2>(error))
+{
+
+}
+
+template <typename E>
+template <typename E2, typename>
+inline RESULT_INLINE_VISIBILITY
+RESULT_NS_IMPL::bad_result_access<E>::bad_result_access(
+  const std::string& what_arg,
+  E2&& error
+) : logic_error{what_arg},
     m_error(detail::forward<E2>(error))
 {
 
@@ -3707,6 +3807,29 @@ auto RESULT_NS_IMPL::detail::throw_bad_result_access(E&& error) -> void
 #endif
 }
 
+template <typename String, typename E>
+inline RESULT_INLINE_VISIBILITY
+auto RESULT_NS_IMPL::detail::throw_bad_result_access_message(
+  String&& message,
+  E&& error
+) -> void
+{
+#if defined(RESULT_DISABLE_EXCEPTIONS)
+  std::abort();
+#else
+  using exception_type = bad_result_access<
+    typename std::remove_const<
+      typename std::remove_reference<E>::type
+    >::type
+  >;
+
+  throw exception_type{
+    detail::forward<String>(message),
+    detail::forward<E>(error)
+  };
+#endif
+}
+
 //=============================================================================
 // class : result<T,E>
 //=============================================================================
@@ -4127,6 +4250,34 @@ auto RESULT_NS_IMPL::result<T,E>::error() &&
   return m_storage.storage.m_has_value
     ? E()
     : static_cast<E&&>(m_storage.storage.m_error);
+}
+
+template <typename T, typename E>
+template <typename String, typename>
+inline RESULT_CPP14_CONSTEXPR
+auto RESULT_NS_IMPL::result<T,E>::expect(String&& message)
+  const & -> void
+{
+  if (has_error()) {
+    detail::throw_bad_result_access_message(
+      detail::forward<String>(message),
+      m_storage.storage.m_error
+    );
+  }
+}
+
+template <typename T, typename E>
+template <typename String, typename>
+inline RESULT_CPP14_CONSTEXPR
+auto RESULT_NS_IMPL::result<T,E>::expect(String&& message)
+  && -> void
+{
+  if (has_error()) {
+    detail::throw_bad_result_access_message(
+      detail::forward<String>(message),
+      static_cast<E&&>(m_storage.storage.m_error)
+    );
+  }
 }
 
 //-----------------------------------------------------------------------------
@@ -4588,6 +4739,34 @@ auto RESULT_NS_IMPL::result<void, E>::error()
   return has_value() ? E{} : static_cast<E&&>(m_storage.storage.m_error);
 }
 
+
+template <typename E>
+template <typename String, typename>
+inline RESULT_CPP14_CONSTEXPR
+auto RESULT_NS_IMPL::result<void,E>::expect(String&& message)
+  const & -> void
+{
+  if (has_error()) {
+    detail::throw_bad_result_access_message(
+      detail::forward<String>(message),
+      m_storage.storage.m_error
+    );
+  }
+}
+
+template <typename E>
+template <typename String, typename>
+inline RESULT_CPP14_CONSTEXPR
+auto RESULT_NS_IMPL::result<void,E>::expect(String&& message)
+  && -> void
+{
+  if (has_error()) {
+    detail::throw_bad_result_access_message(
+      detail::forward<String>(message),
+      static_cast<E&&>(m_storage.storage.m_error)
+    );
+  }
+}
 //-----------------------------------------------------------------------------
 // Monadic Functionalities
 //-----------------------------------------------------------------------------
