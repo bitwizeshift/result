@@ -380,10 +380,10 @@ template&lt;typename E1 , typename E2 &gt; </td></tr>
 <tr class="memitem:ab8fbd84761c223a2d38dbd99221264ec"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#ab8fbd84761c223a2d38dbd99221264ec">cpp::bitwizeshift::fail</a> (Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::value) -&gt; failure&lt; E &gt;</td></tr>
 <tr class="memdesc:ab8fbd84761c223a2d38dbd99221264ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a failure type from a series of arguments.  <a href="../../de/d80/result_8hpp.html#ab8fbd84761c223a2d38dbd99221264ec">More...</a><br /></td></tr>
 <tr class="separator:ab8fbd84761c223a2d38dbd99221264ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dea9f6219fc5657a20755dab0bbc05e"><td class="memTemplParams" colspan="2">template&lt;typename E &gt; </td></tr>
-<tr class="memitem:a7dea9f6219fc5657a20755dab0bbc05e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#a7dea9f6219fc5657a20755dab0bbc05e">cpp::bitwizeshift::swap</a> (failure&lt; E &gt; &amp;lhs, failure&lt; E &gt; &amp;rhs) noexcept -&gt; void</td></tr>
-<tr class="memdesc:a7dea9f6219fc5657a20755dab0bbc05e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps the contents of two failure values.  <a href="../../de/d80/result_8hpp.html#a7dea9f6219fc5657a20755dab0bbc05e">More...</a><br /></td></tr>
-<tr class="separator:a7dea9f6219fc5657a20755dab0bbc05e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af77bd267991039468c280748e8f3ae5f"><td class="memTemplParams" colspan="2">template&lt;typename E &gt; </td></tr>
+<tr class="memitem:af77bd267991039468c280748e8f3ae5f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#af77bd267991039468c280748e8f3ae5f">cpp::bitwizeshift::swap</a> (failure&lt; E &gt; &amp;lhs, failure&lt; E &gt; &amp;rhs) noexcept(std::is_nothrow_move_constructible&lt; E &gt;::value) -&gt; void</td></tr>
+<tr class="memdesc:af77bd267991039468c280748e8f3ae5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps the contents of two failure values.  <a href="../../de/d80/result_8hpp.html#af77bd267991039468c280748e8f3ae5f">More...</a><br /></td></tr>
+<tr class="separator:af77bd267991039468c280748e8f3ae5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44c02b4342f51b592d413fe13cee86aa"><td class="memItemLeft" align="right" valign="top"><a id="a44c02b4342f51b592d413fe13cee86aa"></a>
 constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::operator==</b> (unit, unit) noexcept -&gt; bool</td></tr>
 <tr class="separator:a44c02b4342f51b592d413fe13cee86aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -699,8 +699,8 @@ template&lt;typename E , typename... Args, typename  = typename std::enable_if&l
 
 </div>
 </div>
-<a id="file_a7dea9f6219fc5657a20755dab0bbc05e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a7dea9f6219fc5657a20755dab0bbc05e">&#9670;&nbsp;</a></span>swap() <span class="overload">[1/3]</span></h2>
+<a id="file_af77bd267991039468c280748e8f3ae5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_af77bd267991039468c280748e8f3ae5f">&#9670;&nbsp;</a></span>swap() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -725,7 +725,7 @@ template&lt;typename E &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt;  void</td>
+          <td></td><td> const -&gt;  void</td>
         </tr>
       </table>
   </td>
