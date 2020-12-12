@@ -120,6 +120,29 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>As a simple example, compare these two identical functions:</p>
 <div class="fragment"><div class="line"><span class="comment">// (1)</span></div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) -&gt; std::uint32_t;</div><div class="line"></div><div class="line"><span class="comment">// (2)</span></div><div class="line"><span class="keyword">enum class</span> parse_error { overflow=1, underflow=2, bad_input=3};</div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) noexcept -&gt; result&lt;std::uint32_t,parse_error&gt;;</div></div><!-- fragment --><p>In <code>(1)</code>, it is ambiguous <em>what</em> (if anything) this function may throw on failure, or how this error case may be accounted for.</p>
 <p>In <code>(2)</code>, on the other hand, it is explicit that <code>to_uint32</code> <em>cannot</em> throw &ndash; so there is no need for a <code>catch</code> handler. It's also clear that it may fail for whatever reasons are in <code>parse_error</code>, which discretely enumerates any possible case for failure.</p>
+<h2>Optional Features</h2>
+<p>Although not required or enabled by default, <b>Result</b> supports two optional features that may be controlled through preprocessor symbols:</p>
+<ol type="1">
+<li>Using a custom namespace, and</li>
+<li>Disabling all exceptions</li>
+</ol>
+<h3>Using a Custom Namespace</h3>
+<p>The <code>namespace</code> that <code>result</code> is defined in is configurable. By default, it is defined in <code>namespace cpp</code>; however this can be toggled by defining the preprocessor symbol <code>RESULT_NAMESPACE</code> to be the name of the desired namespace.</p>
+<p>This could be done either through a <code>#define</code> preprocessor directive:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define RESULT_NAMESPACE example</span></div><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="de/d80/result_8hpp.html">result.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">auto</span> test() -&gt; example::result&lt;int,int&gt;;</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/a4GccT">Try Online</a></code></p>
+<p>Or it could also be defined using the compile-time definition with <code>-D</code>, such as:</p>
+<p><code>g++ -std=c++11 -DRESULT_NAMESPACE=example test.cpp</code></p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="de/d80/result_8hpp.html">result.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">auto</span> test() -&gt; example::result&lt;int,int&gt;;</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/5xTsdj">Try Online</a></code></p>
+<h3>Disabling Exceptions</h3>
+<p>Since <code>result</code> serves to act as an orthogonal/alternative error-handling mechanism to exceptions, it may be desirable to not have <em>any</em> exceptions at all. IF the compiler has been configured to disable exception entirely, simply having a path that even encounters a <code>throw</code> &ndash; even if never reached in practice may trigger compile errors.</p>
+<p>To account for this possibility, <b>Result</b> may have exceptions removed by defining the preprocessor symbol <code>RESULT_DISABLE_EXCEPTIONS</code>.</p>
+<p>Note that if this is done, contract-violations will now behave differently:</p>
+<ul>
+<li>Contract violations will call <code>std::abort</code>, causing immediate termination (and often, core-dumps for diagnostic purposes)</li>
+<li>Contract violations will print directly to <code>stderr</code> to allow context for the termination</li>
+<li>Since exceptions are disabled, there is no way to perform a proper stack unwinding &ndash; so destructors will <em>not be run</em>. There is simply no way to allow for proper RAII cleanup without exceptions in this case.</li>
+</ul>
+<p><code><a href="https://godbolt.org/z/bjbqaG">Try Online</a></code></p>
 <h2>Building the Unit Tests</h2>
 <p>Building the unit tests are not necessary to use this project. However, if you are interested in running these yourself, you will require the following installed:</p>
 <ul>
