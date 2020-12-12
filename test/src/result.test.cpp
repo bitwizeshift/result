@@ -2406,6 +2406,56 @@ TEST_CASE("result<T,E>::expect(String&&) &&", "[observers]") {
 // Monadic Functionalities
 //-----------------------------------------------------------------------------
 
+TEST_CASE("result<T,E>::value_or(U&&) const &", "[monadic]") {
+  SECTION("result contains a value") {
+    SECTION("Returns result's value") {
+      const auto input = 0;
+      auto sut = result<int, std::error_code>{42};
+
+      const auto output = sut.value_or(input);
+
+      REQUIRE(output == *sut);
+    }
+  }
+  SECTION("result contains an error") {
+    SECTION("Returns the input") {
+      const auto input = 42;
+      auto sut = result<int, std::error_code>{
+        fail(std::io_errc::stream)
+      };
+
+      const auto output = sut.value_or(input);
+
+      REQUIRE(output == input);
+    }
+  }
+}
+
+TEST_CASE("result<T,E>::value_or(U&&) &&", "[monadic]") {
+  SECTION("result contains a value") {
+    SECTION("Returns the input") {
+      auto input = "Hello world";
+      auto sut = result<move_only<std::string>, int>{input};
+
+      const auto output = std::move(sut).value_or("other");
+
+      REQUIRE(output == input);
+    }
+  }
+  SECTION("result contains an error") {
+    SECTION("Returns the error") {
+      auto input = "Hello world";
+      auto sut = result<move_only<std::string>, int>{
+        fail(42)
+      };
+
+      const auto output = std::move(sut).value_or(input);
+
+      REQUIRE(output == input);
+    }
+  }
+}
+
 TEST_CASE("result<T,E>::error_or(U&&) const &", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Returns the input") {
