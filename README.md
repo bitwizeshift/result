@@ -104,6 +104,68 @@ so there is no need for a `catch` handler. It's also clear that it may fail for
 whatever reasons are in `parse_error`, which discretely enumerates any possible
 case for failure.
 
+## Optional Features
+
+Although not required or enabled by default, **Result** supports two optional
+features that may be controlled through preprocessor symbols:
+
+1. Using a custom namespace, and
+2. Disabling all exceptions
+
+### Using a Custom Namespace
+
+The `namespace` that `result` is defined in is configurable. By default,
+it is defined in `namespace cpp`; however this can be toggled by defining
+the preprocessor symbol `RESULT_NAMESPACE` to be the name of the desired
+namespace.
+
+This could be done either through a `#define` preprocessor directive:
+
+```cpp
+#define RESULT_NAMESPACE example
+#include <result.hpp>
+
+auto test() -> example::result<int,int>;
+```
+
+<kbd>[Try Online](https://godbolt.org/z/a4GccT)</kbd>
+
+Or it could also be defined using the compile-time definition with `-D`, such
+as:
+
+`g++ -std=c++11 -DRESULT_NAMESPACE=example test.cpp`
+
+```cpp
+#include <result.hpp>
+
+auto test() -> example::result<int,int>;
+```
+
+<kbd>[Try Online](https://godbolt.org/z/5xTsdj)</kbd>
+
+### Disabling Exceptions
+
+Since `result` serves to act as an orthogonal/alternative error-handling
+mechanism to exceptions, it may be desirable to not have _any_ exceptions at
+all. IF the compiler has been configured to disable exception entirely, simply
+having a path that even encounters a `throw` -- even if never reached in
+practice may trigger compile errors.
+
+To account for this possibility, **Result** may have exceptions removed by
+defining the preprocessor symbol `RESULT_DISABLE_EXCEPTIONS`.
+
+Note that if this is done, contract-violations will now behave differently:
+
+* Contract violations will call `std::abort`, causing immediate termination
+  (and often, core-dumps for diagnostic purposes)
+* Contract violations will print directly to `stderr` to allow context for the
+  termination
+* Since exceptions are disabled, there is no way to perform a proper stack
+  unwinding -- so destructors will _not be run_. There is simply no way to
+  allow for proper RAII cleanup without exceptions in this case.
+
+<kbd>[Try Online](https://godbolt.org/z/bjbqaG)</kbd>
+
 ## Building the Unit Tests
 
 Building the unit tests are not necessary to use this project. However, if
