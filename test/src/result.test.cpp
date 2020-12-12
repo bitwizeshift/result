@@ -2420,7 +2420,7 @@ TEST_CASE("result<T,E>::error_or(U&&) const &", "[monadic]") {
   SECTION("result contains an error") {
     SECTION("Returns the error") {
       const auto input = std::error_code{std::io_errc::stream};
-      auto sut = result<void, std::error_code>{
+      auto sut = result<int, std::error_code>{
         fail(input)
       };
 
