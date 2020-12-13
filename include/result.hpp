@@ -60,9 +60,9 @@
 #endif
 
 #if defined(__clang__) && defined(_MSC_VER)
-# define RESULT_INLINE_VISIBILITY __attribute__((visibility("hidden"), no_instrument_function))
+# define RESULT_INLINE_VISIBILITY __attribute__((visibility("hidden")))
 #elif defined(__clang__) || defined(__GNUC__)
-# define RESULT_INLINE_VISIBILITY __attribute__((visibility("hidden"), always_inline, no_instrument_function))
+# define RESULT_INLINE_VISIBILITY __attribute__((visibility("hidden"), always_inline))
 #elif defined(_MSC_VER)
 # define RESULT_INLINE_VISIBILITY __forceinline
 #else
