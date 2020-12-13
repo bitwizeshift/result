@@ -1,6 +1,8 @@
 # Result
 
-[![Build Status](https://github.com/bitwizeshift/result/workflows/build/badge.svg)](https://github.com/bitwizeshift/result/actions)
+[![Ubuntu Build Status](https://github.com/bitwizeshift/result/workflows/Ubuntu/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions)
+[![macOS Build Status](https://github.com/bitwizeshift/result/workflows/macOS/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions)
+[![Windows Build Status](https://github.com/bitwizeshift/result/workflows/Windows/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e163a49b3b2e4f1e953c32b7cbbb2f28)](https://www.codacy.com/gh/bitwizeshift/result/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bitwizeshift/result&amp;utm_campaign=Badge_Grade)
 [![Coverage Status](https://coveralls.io/repos/github/bitwizeshift/result/badge.svg?branch=master)](https://coveralls.io/github/bitwizeshift/result?branch=master)
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/result.svg)](http://github.com/bitwizeshift/result/issues)
