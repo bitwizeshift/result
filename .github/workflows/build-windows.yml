@@ -1,0 +1,93 @@
+name: Windows
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Windows ${{matrix.compiler.name}} ${{matrix.compiler.version}} ${{matrix.build_type}}
+    runs-on: windows-latest
+
+    env:
+      build-directory: build
+
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler:
+          # Xcode Versions
+          - { name: "gcc", version: "latest", cc: gcc, cxx: g++ }
+          - { name: "clang", version: "latest", cc: clang, cxx: clang++ }
+          - { name: "clang-cl", version: "latest", cc: clang-cl, cxx: clang-cl }
+          # - { name: "cl", version: "14.0", cc: cl, cxx: cl }
+          # - { name: "cl", version: "14.16", cc: cl, cxx: cl }
+          - { name: "cl", version: "latest", cc: cl, cxx: cl }
+
+        build_type: [Debug, Release]
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Prepare Environment
+        run: |
+          curl -fsSL -o LLVM10.exe https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/LLVM-10.0.0-win64.exe ; 7z x LLVM10.exe -y -o"C:/Program Files/LLVM"
+
+          python -m pip install --upgrade pip
+          pip install conan
+          cmake -E make_directory ${{env.build-directory}}
+
+      - name: Configure (gcc)
+        working-directory: ${{env.build-directory}}
+        shell: powershell
+        if: ${{matrix.compiler.name == 'gcc'}}
+        env:
+          CC: gcc
+          CXX: g++
+        run: |
+          conan install ..
+          cmake .. -DCMAKE_BUILD_TYPE=${{matrix.build_type}} -DRESULT_COMPILE_UNIT_TESTS=On -G"MinGW Makefiles"
+
+      - name: Configure (clang)
+        working-directory: ${{env.build-directory}}
+        shell: powershell
+        if: ${{matrix.compiler.name == 'clang'}}
+        run: |
+          conan install ..
+          cmake .. -DCMAKE_BUILD_TYPE=${{matrix.build_type}} -DRESULT_COMPILE_UNIT_TESTS=On -G"MinGW Makefiles" -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang++.exe"
+
+      - name: Configure (clang-cl)
+        working-directory: ${{env.build-directory}}
+        shell: powershell
+        if: ${{matrix.compiler.name == 'clang-cl'}}
+        run: |
+          conan install ..
+          cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G "Visual Studio 16 2019" -A x64 -T ClangCL
+
+      - name: Configure (MSVC)
+        working-directory: ${{env.build-directory}}
+        shell: powershell
+        if: ${{matrix.compiler.name == 'cl'}}
+        run: |
+          $visual_studio_path = & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere" -latest -property installationPath
+          if ("${{matrix.compiler.version}}" -ne "latest") {
+            & "$visual_studio_path\Common7\Tools\vsdevcmd.bat" -arch=x64 -host_arch=x64 -vcvars_ver="${{matrix.compiler.version}}"
+          }
+          conan install ..
+          cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G "Visual Studio 16 2019"
+
+      - name: Build
+        working-directory: ${{env.build-directory}}
+        shell: powershell
+        run: |
+          cmake --build . --config ${{matrix.build_type}}
+
+      - name: Test
+        working-directory: ${{env.build-directory}}
+        shell: powershell
+        run: |
+          ctest --output-on-failure
