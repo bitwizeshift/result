@@ -1,0 +1,36 @@
+name: "Code Coverage"
+
+on: [push, pull_request]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install conan cpp-coveralls
+
+    - name: Build Project
+      run: |
+        mkdir cmake-build-profile
+        cd cmake-build-profile
+        conan install ..
+        cmake .. -DCMAKE_BUILD_TYPE=Debug -DRESULT_COMPILE_UNIT_TESTS=On -DCMAKE_CXX_FLAGS="--coverage"
+        cmake --build .
+        cmake --build . --target test
+
+    - name: Generate Coverage
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      run: |
+        coveralls --build-root cmake-build-profile --include include --gcov-options '\-lp' -E ".*CMakeFiles.*" -e test
