@@ -92,6 +92,13 @@
 #endif
 #define RESULT_NS_IMPL RESULT_NAMESPACE_INTERNAL::bitwizeshift
 
+// clang's `-Wdocumentation-unknown-command` flag is bugged and does not
+// understand `\copydoc` tags, despite this being a valid doxygen tag.
+#if defined(__clang__)
+# pragma clang diagnostic push
+# pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
+#endif
+
 namespace RESULT_NAMESPACE_INTERNAL {
 inline namespace bitwizeshift {
 
@@ -5937,6 +5944,10 @@ auto RESULT_NS_IMPL::swap(result<void,E>& lhs, result<void,E>& rhs)
     rhs = static_cast<result<void,E>&&>(temp);
   }
 }
+
+#if defined(__clang__)
+# pragma clang diagnostic pop
+#endif
 
 #undef RESULT_NAMESPACE_INTERNAL
 #undef RESULT_NS_IMPL
