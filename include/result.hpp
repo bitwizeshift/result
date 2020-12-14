@@ -699,6 +699,19 @@ inline namespace bitwizeshift {
     noexcept(std::is_nothrow_constructible<E, Args...>::value)
     -> failure<E>;
 
+  /// \brief Constructs a failure type from an initializer list and series of
+  ///        arguments
+  ///
+  /// \tparam E the failure type
+  /// \param args the arguments to forward to E's constructor
+  /// \return a constructed failure type
+  template <typename E, typename U, typename...Args,
+            typename = typename std::enable_if<std::is_constructible<E,std::initializer_list<U>,Args...>::value>::type>
+  RESULT_WARN_UNUSED
+  constexpr auto fail(std::initializer_list<U> ilist, Args&&...args)
+    noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value)
+    -> failure<E>;
+
   /// \brief Swaps the contents of two failure values
   ///
   /// \param lhs the left failure
@@ -3705,8 +3718,7 @@ auto RESULT_NS_IMPL::failure<E>::error()
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator==(const failure<E1>& lhs,
-                                  const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator==(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() == rhs.error();
@@ -3714,8 +3726,7 @@ auto RESULT_NS_IMPL::operator==(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator!=(const failure<E1>& lhs,
-                                  const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator!=(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() != rhs.error();
@@ -3723,8 +3734,7 @@ auto RESULT_NS_IMPL::operator!=(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator<(const failure<E1>& lhs,
-                                 const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator<(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() < rhs.error();
@@ -3732,8 +3742,7 @@ auto RESULT_NS_IMPL::operator<(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator>(const failure<E1>& lhs,
-                                 const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator>(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() > rhs.error();
@@ -3741,8 +3750,7 @@ auto RESULT_NS_IMPL::operator>(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator<=(const failure<E1>& lhs,
-                                  const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator<=(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() <= rhs.error();
@@ -3750,8 +3758,7 @@ auto RESULT_NS_IMPL::operator<=(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator>=(const failure<E1>& lhs,
-                                  const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator>=(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() >= rhs.error();
@@ -3792,6 +3799,16 @@ auto RESULT_NS_IMPL::fail(Args&&...args)
 {
   return failure<E>(in_place, detail::forward<Args>(args)...);
 }
+
+template <typename E, typename U, typename...Args, typename>
+inline RESULT_INLINE_VISIBILITY constexpr
+auto RESULT_NS_IMPL::fail(std::initializer_list<U> ilist, Args&&...args)
+  noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value)
+  -> failure<E>
+{
+  return failure<E>(in_place, ilist, detail::forward<Args>(args)...);
+}
+
 
 template <typename E>
 inline RESULT_INLINE_VISIBILITY
