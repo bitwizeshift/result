@@ -150,6 +150,11 @@ struct report_destructor
 {
   report_destructor() : output{nullptr}{}
   report_destructor(bool* b) : output{b}{}
+  report_destructor(const report_destructor&) = default;
+  report_destructor(report_destructor&&) = default;
+
+  auto operator=(const report_destructor&) -> report_destructor& = default;
+  auto operator=(report_destructor&&) -> report_destructor& = default;
 
   ~report_destructor() {
     *output = true;
@@ -165,7 +170,7 @@ struct base
 
 struct derived : public base
 {
-  derived(int value) : value{value}{}
+  derived(int v) : value{v}{}
 
   auto get_value() const noexcept -> int override { return value; }
   int value;
@@ -2135,8 +2140,7 @@ TEST_CASE("result<T,E>::operator*() &", "[observers]") {
   SECTION("Returns reference to internal structure") {
     auto& x = sut.operator*();
 
-    (void) x;
-    SUCCEED();
+    SUCCEED("Value is " << x);
   }
 }
 
@@ -2149,8 +2153,7 @@ TEST_CASE("result<T,E>::operator*() const &", "[observers]") {
   SECTION("Returns reference to internal structure") {
     auto& x = sut.operator*();
 
-    (void) x;
-    SUCCEED();
+    SUCCEED("Value is " << x);
   }
 }
 
@@ -2163,8 +2166,7 @@ TEST_CASE("result<T,E>::operator*() &&", "[observers]") {
   SECTION("Returns reference to internal structure") {
     auto&& x = std::move(sut).operator*();
 
-    (void) x;
-    SUCCEED();
+    SUCCEED("Value is " << x);
   }
 }
 
@@ -2177,8 +2179,7 @@ TEST_CASE("result<T,E>::operator*() const &&", "[observers]") {
   SECTION("Returns reference to internal structure") {
     auto&& x = std::move(sut).operator*();
 
-    (void) x;
-    SUCCEED();
+    SUCCEED("Value is " << x);
   }
 }
 
@@ -4116,9 +4117,7 @@ TEST_CASE("result<void,E>::value()", "[observers]") {
     SECTION("Does nothing") {
       auto sut = result<void, int>{};
 
-      sut.value();
-
-      SUCCEED();
+      REQUIRE_NOTHROW(sut.value());
     }
   }
   SECTION("result contains an error") {
@@ -6168,9 +6167,8 @@ TEST_CASE("std::hash<result<T,E>>::operator()", "[utility]") {
       const auto sut = result<int,int>{42};
 
       const auto output = std::hash<result<int,int>>{}(sut);
-      suppress_unused(output);
 
-      SUCCEED();
+      SUCCEED("Hash is " << output);
     }
   }
   SECTION("Error is active") {
@@ -6178,9 +6176,8 @@ TEST_CASE("std::hash<result<T,E>>::operator()", "[utility]") {
       const auto sut = result<int,int>{fail(42)};
 
       const auto output = std::hash<result<int,int>>{}(sut);
-      suppress_unused(output);
 
-      SUCCEED();
+      SUCCEED("Hash is " << output);
     }
   }
 
@@ -6211,9 +6208,8 @@ TEST_CASE("std::hash<result<void,E>>::operator()", "[utility]") {
       const auto sut = result<void,int>{fail(42)};
 
       const auto output = std::hash<result<void,int>>{}(sut);
-      suppress_unused(output);
 
-      SUCCEED();
+      SUCCEED("Hash is " << output);
     }
   }
 }
