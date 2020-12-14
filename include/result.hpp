@@ -3809,7 +3809,6 @@ auto RESULT_NS_IMPL::fail(std::initializer_list<U> ilist, Args&&...args)
   return failure<E>(in_place, ilist, detail::forward<Args>(args)...);
 }
 
-
 template <typename E>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::swap(failure<E>& lhs, failure<E>& rhs)
@@ -3822,7 +3821,7 @@ auto RESULT_NS_IMPL::swap(failure<E>& lhs, failure<E>& rhs)
 {
   using std::swap;
 
-  swap(lhs, rhs);
+  swap(lhs.error(), rhs.error());
 }
 
 //=============================================================================
