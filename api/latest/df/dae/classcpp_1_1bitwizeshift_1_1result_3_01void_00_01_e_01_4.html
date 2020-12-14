@@ -277,7 +277,7 @@ class cpp::bitwizeshift::result&lt; void, E &gt;</h3>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l02645">2645</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l02649">2649</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7440f2c97a823f07a4f95aa2f04f8c1f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7440f2c97a823f07a4f95aa2f04f8c1f">&#9670;&nbsp;</a></span>result() <span class="overload">[1/10]</span></h2>
@@ -1564,15 +1564,15 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_
 </div><div class="memdoc">
 
 <p>Perfect-forwarded assignment. </p>
-<p>Depending on whether <code>*this</code> contains a value before the call, the contained value is either direct-initialized from std::forward&lt;U&gt;(value) or assigned from std::forward&lt;U&gt;(value).</p>
+<p>Depending on whether <code>*this</code> contains an error before the call, the contained error is either direct-initialized via forwarding the error, or assigned from forwarding the error</p>
 <dl class="section note"><dt>Note</dt><dd>The function does not participate in overload resolution unless<ul>
-<li><code>std::is_nothrow_constructible_v&lt;E, E2&gt;</code> is <code>true</code></li>
-<li><code>std::is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code></li>
+<li><code>std::is_nothrow_constructible_v&lt;E, E2&gt;</code> is <code>true</code>, and</li>
+<li><code>std::is_assignable_v&lt;E&amp;, E2&gt;</code> is <code>true</code></li>
 </ul>
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>to assign to the contained value </td></tr>
+    <tr><td class="paramname">other</td><td>the failure value to assign to this </td></tr>
   </table>
   </dd>
 </dl>
@@ -1609,15 +1609,15 @@ template&lt;typename E2 , typename  = typename std::enable_if&lt;detail::result_
 </div><div class="memdoc">
 
 <p>Perfect-forwarded assignment. </p>
-<p>Depending on whether <code>*this</code> contains a value before the call, the contained value is either direct-initialized from std::forward&lt;U&gt;(value) or assigned from std::forward&lt;U&gt;(value).</p>
+<p>Depending on whether <code>*this</code> contains an error before the call, the contained error is either direct-initialized via forwarding the error, or assigned from forwarding the error</p>
 <dl class="section note"><dt>Note</dt><dd>The function does not participate in overload resolution unless<ul>
-<li><code>std::is_nothrow_constructible_v&lt;E, E2&gt;</code> is <code>true</code></li>
-<li><code>std::is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code></li>
+<li><code>std::is_nothrow_constructible_v&lt;E, E2&gt;</code> is <code>true</code>, and</li>
+<li><code>std::is_assignable_v&lt;E&amp;, E2&gt;</code> is <code>true</code></li>
 </ul>
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>to assign to the contained value </td></tr>
+    <tr><td class="paramname">other</td><td>the failure value to assign to this </td></tr>
   </table>
   </dd>
 </dl>
