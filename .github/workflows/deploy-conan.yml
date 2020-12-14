@@ -7,26 +7,23 @@ on:
 jobs:
   deploy:
     name: Deployment Agent
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
 
-      - name: Install
+      - name: Install Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y g++-9
-          echo "CC=gcc-9" >> $GITHUB_ENV
-          echo "CXX=g++-9" >> $GITHUB_ENV
           python -m pip install --upgrade pip
           pip install conan
           conan --version
 
-      - name: Prepare
+      - name: Prepare Conan Environment
         run: |
           conan remote add bintray ${{ secrets.BINTRAY_REMOTE_URL }}
           conan user -p ${{ secrets.BINTRAY_API_KEY }} -r bintray ${{ secrets.BINTRAY_USERNAME }}

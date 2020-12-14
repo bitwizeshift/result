@@ -60,9 +60,9 @@
 #endif
 
 #if defined(__clang__) && defined(_MSC_VER)
-# define RESULT_INLINE_VISIBILITY __attribute__((visibility("hidden"), no_instrument_function))
+# define RESULT_INLINE_VISIBILITY __attribute__((visibility("hidden")))
 #elif defined(__clang__) || defined(__GNUC__)
-# define RESULT_INLINE_VISIBILITY __attribute__((visibility("hidden"), always_inline, no_instrument_function))
+# define RESULT_INLINE_VISIBILITY __attribute__((visibility("hidden"), always_inline))
 #elif defined(_MSC_VER)
 # define RESULT_INLINE_VISIBILITY __forceinline
 #else
@@ -91,6 +91,13 @@
 # define RESULT_NAMESPACE_INTERNAL cpp
 #endif
 #define RESULT_NS_IMPL RESULT_NAMESPACE_INTERNAL::bitwizeshift
+
+// clang's `-Wdocumentation-unknown-command` flag is bugged and does not
+// understand `\copydoc` tags, despite this being a valid doxygen tag.
+#if defined(__clang__)
+# pragma clang diagnostic push
+# pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
+#endif
 
 namespace RESULT_NAMESPACE_INTERNAL {
 inline namespace bitwizeshift {
@@ -738,7 +745,7 @@ inline namespace bitwizeshift {
     ///
     /// \tparam T the value type result to be returned
     /// \tparam E the error type returned on failure
-    /// \tparam IsTrivial
+    /// \tparam IsTrivial Whether or not both T and E are trivial
     ///////////////////////////////////////////////////////////////////////////
     template <typename T, typename E,
               bool IsTrivial = std::is_trivially_destructible<T>::value &&
@@ -2073,18 +2080,15 @@ inline namespace bitwizeshift {
     /// \{
     /// \brief Perfect-forwarded assignment
     ///
-    /// Depending on whether `*this` contains a value before the call, the
-    /// contained value is either direct-initialized from
-    /// `std::forward<U>(value)` or assigned from `std::forward<U>(value)`.
+    /// Depending on whether `*this` contains an error before the call, the
+    /// contained error is either direct-initialized via forwarding the error,
+    /// or assigned from forwarding the error
     ///
     /// \note The function does not participate in overload resolution unless
-    ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`
-    ///       - `std::is_assignable_v<T&, U>` is `true`
-    ///       - and at least one of the following is true:
-    ///           - `T` is not a scalar type;
-    ///           - `decay_t<U>` is not `T`.
+    ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`, and
+    ///       - `std::is_assignable_v<E&, E2>` is `true`
     ///
-    /// \param value to assign to the contained value
+    /// \param other the failure value to assign to this
     /// \return reference to `(*this)`
     template <typename E2,
               typename = typename std::enable_if<detail::result_is_failure_assignable<E,const E2&>::value>::type>
@@ -2992,15 +2996,15 @@ inline namespace bitwizeshift {
     /// \{
     /// \brief Perfect-forwarded assignment
     ///
-    /// Depending on whether `*this` contains a value before the call, the
-    /// contained value is either direct-initialized from std::forward<U>(value)
-    /// or assigned from std::forward<U>(value).
+    /// Depending on whether `*this` contains an error before the call, the
+    /// contained error is either direct-initialized via forwarding the error,
+    /// or assigned from forwarding the error
     ///
     /// \note The function does not participate in overload resolution unless
-    ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`
-    ///       - `std::is_assignable_v<T&, U>` is `true`
+    ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`, and
+    ///       - `std::is_assignable_v<E&, E2>` is `true`
     ///
-    /// \param value to assign to the contained value
+    /// \param other the failure value to assign to this
     /// \return reference to `(*this)`
     template <typename E2,
               typename = typename std::enable_if<detail::result_is_failure_assignable<E,const E2&>::value>::type>
@@ -5940,6 +5944,10 @@ auto RESULT_NS_IMPL::swap(result<void,E>& lhs, result<void,E>& rhs)
     rhs = static_cast<result<void,E>&&>(temp);
   }
 }
+
+#if defined(__clang__)
+# pragma clang diagnostic pop
+#endif
 
 #undef RESULT_NAMESPACE_INTERNAL
 #undef RESULT_NS_IMPL

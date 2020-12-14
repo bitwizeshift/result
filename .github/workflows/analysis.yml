@@ -1,0 +1,44 @@
+name: "Code Scanning"
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Adjust for Pull Request
+      run: git checkout HEAD^2
+      if: ${{ github.event_name == 'pull_request' }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install conan
+        conan --version
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+
+    - name: Build Project
+      run: |
+        mkdir cmake-build-debug
+        cd cmake-build-debug
+        conan install ..
+        cmake .. -DCMAKE_BUILD_TYPE=Debug -DRESULT_COMPILE_UNIT_TESTS=On
+        cmake --build .
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1

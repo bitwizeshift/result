@@ -1,7 +1,10 @@
 # Result
 
-[![Build Status](https://github.com/bitwizeshift/result/workflows/build/badge.svg)](https://github.com/bitwizeshift/result/actions)
+[![Ubuntu Build Status](https://github.com/bitwizeshift/result/workflows/Ubuntu/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions)
+[![macOS Build Status](https://github.com/bitwizeshift/result/workflows/macOS/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions)
+[![Windows Build Status](https://github.com/bitwizeshift/result/workflows/Windows/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e163a49b3b2e4f1e953c32b7cbbb2f28)](https://www.codacy.com/gh/bitwizeshift/result/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bitwizeshift/result&amp;utm_campaign=Badge_Grade)
+[![Coverage Status](https://coveralls.io/repos/github/bitwizeshift/result/badge.svg?branch=master)](https://coveralls.io/github/bitwizeshift/result?branch=master)
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/result.svg)](http://github.com/bitwizeshift/result/issues)
 <br>
 [![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/result.svg?include_prereleases)](https://github.com/bitwizeshift/result/releases)
@@ -41,7 +44,7 @@ auto try_narrow(const From& from) noexcept -> cpp::result<To,narrow_error>
 * [x] Support for value-type, reference-type, and `void`-type values in `result`
 * [x] Monadic composition functions like `map`, `flat_map`, and `map_error` for
       easy functional use
-* [x] [Comprehensively unit tested](test/src/result.test.cpp) for both static
+* [x] [Comprehensively unit tested](https://coveralls.io/github/bitwizeshift/result?branch=master) for both static
       behavior and runtime validation
 * [x] [Incurs minimal cost when optimized](https://godbolt.org/z/M69T4v), especially for trivial types
 

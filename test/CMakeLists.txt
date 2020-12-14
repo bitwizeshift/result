@@ -23,6 +23,16 @@ set_target_properties(${UNITTEST_TARGET_NAME} PROPERTIES
   CXX_EXTENSIONS OFF
 )
 
+if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND
+    "${CMAKE_CXX_SIMULATE_ID}" STREQUAL "MSVC")
+  target_compile_options(${PROJECT_NAME}.test PRIVATE
+    -Wno-sign-conversion
+    -Wno-shorten-64-to-32
+    -Wno-unneeded-member-function
+    -Wno-unused-member-function
+  )
+endif ()
+
 ##############################################################################
 # CTest
 ##############################################################################

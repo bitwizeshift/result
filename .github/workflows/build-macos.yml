@@ -1,0 +1,107 @@
+name: macOS
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Xcode ${{matrix.compiler.version}} ${{matrix.build_type}}
+    runs-on: macos-latest
+
+    env:
+      build-directory: build
+
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler:
+          # Xcode Versions
+          - { name: "xcode", version: "10.3" }
+          - { name: "xcode", version: "11.2" }
+          - { name: "xcode", version: "11.3" }
+          - { name: "xcode", version: "12.3" }
+
+        build_type: [Debug, Release]
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Prepare Environment
+        run: |
+          ls -ls /Applications/
+          sudo xcode-select -switch /Applications/Xcode_${{ matrix.compiler.version }}.app
+
+          python -m pip install --upgrade pip
+          pip install conan
+          cmake -E make_directory ${{env.build-directory}}
+
+      - name: Configure
+        working-directory: ${{env.build-directory}}
+        env:
+          CC: clang
+          CXX: clang++
+        run: |
+          conan install ..
+          cmake .. -DCMAKE_BUILD_TYPE=${{matrix.build_type}} -DRESULT_COMPILE_UNIT_TESTS=On
+
+      - name: Build
+        working-directory: ${{env.build-directory}}
+        run: |
+          cmake --build .
+
+      - name: Test
+        working-directory: ${{env.build-directory}}
+        run: |
+          ctest --output-on-failure
+
+  sanitize:
+    name: Xcode ${{matrix.compiler.version}} '${{matrix.sanitizer}}' sanitizer
+    runs-on: macos-latest
+
+    needs: test
+
+    env:
+      build-directory: build
+
+    strategy:
+      matrix:
+        sanitizer: [address, undefined]
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Prepare Environment
+        run: |
+          python -m pip install --upgrade pip
+          pip install conan
+          cmake -E make_directory ${{env.build-directory}}
+
+      - name: Configure
+        working-directory: ${{env.build-directory}}
+        env:
+          CC: clang
+          CXX: clang++
+        run: |
+          conan install ..
+          cmake .. -DCMAKE_BUILD_TYPE=Debug -DRESULT_COMPILE_UNIT_TESTS=On -DCMAKE_CXX_FLAGS="-fsanitize=${{matrix.sanitizer}}"
+
+      - name: Build
+        working-directory: ${{env.build-directory}}
+        run: |
+          cmake --build .
+
+      - name: Test (Sanitize)
+        working-directory: ${{env.build-directory}}
+        run: |
+          ctest --output-on-failure

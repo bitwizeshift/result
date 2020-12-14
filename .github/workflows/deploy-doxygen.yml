@@ -1,22 +1,26 @@
-name: Deploy Doxygen (Publish)
+name: Deploy Doxygen
 
 on:
+  push:
+    branches:
+      - master
   release:
     types: [published]
 
 jobs:
   ci:
     name: Deployment Agent
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
 
-      - name: Install
+      - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y doxygen
@@ -25,15 +29,19 @@ jobs:
           conan --version
           doxygen --version
 
-      - name: Generate
+      - name: Generate Documentation
         run: |
           mkdir -p "$(pwd)/build/doc"
           doxygen "$(pwd)/.codedocs"
 
-      - name: Prepare gh-pages
+      - name: Prepare Pages
         run: |
-          version="v$(conan inspect . --attribute version | sed 's@version: @@g')"
-          echo "API_DOC_PATH=$(pwd)/dist/api/${version}" >> $GITHUB_ENV
+          if [ ${{ github.event_name }} == "release" ]; then
+            version="v$(conan inspect . --attribute version | sed 's@version: @@g')"
+            echo "API_DOC_PATH=$(pwd)/dist/api/${version}" >> $GITHUB_ENV
+          else
+            echo "API_DOC_PATH=$(pwd)/dist/api/latest" >> $GITHUB_ENV
+          fi
 
           # Clone a git repo for doxygen
           git config --global user.email "action@github.com"
@@ -41,7 +49,7 @@ jobs:
           git clone --single-branch -b gh-pages "https://github.com/${GITHUB_REPOSITORY}" "dist"
           git config --global push.default simple
 
-      - name: Update gh-pages
+      - name: Update Pages
         run: |
           # Add a .nojekyll file
           touch "dist/.nojekyll"
@@ -63,7 +71,7 @@ jobs:
           fi
           cd ..
 
-      - name: Publish
+      - name: Publish Pages
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

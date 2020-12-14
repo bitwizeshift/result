@@ -35,7 +35,7 @@ namespace {
 
 struct not_nothrow_default_constructible
 {
-  not_nothrow_default_constructible() noexcept(false){};
+  not_nothrow_default_constructible() noexcept(false){}
 };
 
 struct not_trivial_default_constructible
