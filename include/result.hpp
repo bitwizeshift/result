@@ -423,13 +423,13 @@ inline namespace bitwizeshift {
     template <typename E, typename E2>
     using failure_is_explicit_value_convertible = std::integral_constant<bool,(
       failure_is_value_convertible<E, E2>::value &&
-      !std::is_convertible<E2&&, E>::value
+      !std::is_convertible<E2, E>::value
     )>;
 
     template <typename E, typename E2>
     using failure_is_implicit_value_convertible = std::integral_constant<bool,(
       failure_is_value_convertible<E, E2>::value &&
-      std::is_convertible<E2&&, E>::value
+      std::is_convertible<E2, E>::value
     )>;
 
     template <typename E, typename E2>
@@ -511,11 +511,11 @@ inline namespace bitwizeshift {
     ///
     /// \param error the error to create a failure from
     template <typename E2,
-              typename std::enable_if<detail::failure_is_explicit_value_convertible<E,E2>::value,int>::type = 0>
+              typename std::enable_if<detail::failure_is_implicit_value_convertible<E,E2>::value,int>::type = 0>
     constexpr failure(E2&& error)
       noexcept(std::is_nothrow_constructible<E,E2>::value);
     template <typename E2,
-              typename std::enable_if<detail::failure_is_implicit_value_convertible<E,E2>::value,int>::type = 0>
+              typename std::enable_if<detail::failure_is_explicit_value_convertible<E,E2>::value,int>::type = 0>
     constexpr explicit failure(E2&& error)
       noexcept(std::is_nothrow_constructible<E,E2>::value);
     /// \}
