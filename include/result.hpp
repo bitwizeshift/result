@@ -738,7 +738,7 @@ inline namespace bitwizeshift {
     ///
     /// \tparam T the value type result to be returned
     /// \tparam E the error type returned on failure
-    /// \tparam IsTrivial
+    /// \tparam IsTrivial Whether or not both T and E are trivial
     ///////////////////////////////////////////////////////////////////////////
     template <typename T, typename E,
               bool IsTrivial = std::is_trivially_destructible<T>::value &&
@@ -2073,18 +2073,15 @@ inline namespace bitwizeshift {
     /// \{
     /// \brief Perfect-forwarded assignment
     ///
-    /// Depending on whether `*this` contains a value before the call, the
-    /// contained value is either direct-initialized from
-    /// `std::forward<U>(value)` or assigned from `std::forward<U>(value)`.
+    /// Depending on whether `*this` contains an error before the call, the
+    /// contained error is either direct-initialized via forwarding the error,
+    /// or assigned from forwarding the error
     ///
     /// \note The function does not participate in overload resolution unless
-    ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`
-    ///       - `std::is_assignable_v<T&, U>` is `true`
-    ///       - and at least one of the following is true:
-    ///           - `T` is not a scalar type;
-    ///           - `decay_t<U>` is not `T`.
+    ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`, and
+    ///       - `std::is_assignable_v<E&, E2>` is `true`
     ///
-    /// \param value to assign to the contained value
+    /// \param other the failure value to assign to this
     /// \return reference to `(*this)`
     template <typename E2,
               typename = typename std::enable_if<detail::result_is_failure_assignable<E,const E2&>::value>::type>
@@ -2992,15 +2989,15 @@ inline namespace bitwizeshift {
     /// \{
     /// \brief Perfect-forwarded assignment
     ///
-    /// Depending on whether `*this` contains a value before the call, the
-    /// contained value is either direct-initialized from std::forward<U>(value)
-    /// or assigned from std::forward<U>(value).
+    /// Depending on whether `*this` contains an error before the call, the
+    /// contained error is either direct-initialized via forwarding the error,
+    /// or assigned from forwarding the error
     ///
     /// \note The function does not participate in overload resolution unless
-    ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`
-    ///       - `std::is_assignable_v<T&, U>` is `true`
+    ///       - `std::is_nothrow_constructible_v<E, E2>` is `true`, and
+    ///       - `std::is_assignable_v<E&, E2>` is `true`
     ///
-    /// \param value to assign to the contained value
+    /// \param other the failure value to assign to this
     /// \return reference to `(*this)`
     template <typename E2,
               typename = typename std::enable_if<detail::result_is_failure_assignable<E,const E2&>::value>::type>
