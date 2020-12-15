@@ -33,4 +33,8 @@ jobs:
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       run: |
+        # cpp-coveralls only looks for TRAVIS_JOB_ID, and Coveralls uses the job ID
+        # to identify when the source file needs to be reloade to show coverage data.
+        # So export TRAVIS_JOB_ID here so that it may be distinguished on the server
+        export TRAVIS_JOB_ID=${GITHUB_RUN_NUMBER}
         coveralls --build-root cmake-build-profile --include include --gcov-options '\-lp' -E ".*CMakeFiles.*" -e test

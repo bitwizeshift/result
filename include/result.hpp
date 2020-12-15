@@ -423,20 +423,20 @@ inline namespace bitwizeshift {
     template <typename E, typename E2>
     using failure_is_explicit_value_convertible = std::integral_constant<bool,(
       failure_is_value_convertible<E, E2>::value &&
-      !std::is_convertible<E2&&, E>::value
+      !std::is_convertible<E2, E>::value
     )>;
 
     template <typename E, typename E2>
     using failure_is_implicit_value_convertible = std::integral_constant<bool,(
       failure_is_value_convertible<E, E2>::value &&
-      std::is_convertible<E2&&, E>::value
+      std::is_convertible<E2, E>::value
     )>;
 
     template <typename E, typename E2>
     using failure_is_value_assignable = std::integral_constant<bool,(
       !is_result<typename std::decay<E2>::type>::value &&
       !is_failure<typename std::decay<E2>::type>::value &&
-      std::is_assignable<wrapped_result_type<E>,E2>::value
+      std::is_assignable<wrapped_result_type<E>&,E2>::value
     )>;
 
   } // namespace detail
@@ -511,11 +511,11 @@ inline namespace bitwizeshift {
     ///
     /// \param error the error to create a failure from
     template <typename E2,
-              typename std::enable_if<detail::failure_is_explicit_value_convertible<E,E2>::value,int>::type = 0>
+              typename std::enable_if<detail::failure_is_implicit_value_convertible<E,E2>::value,int>::type = 0>
     constexpr failure(E2&& error)
       noexcept(std::is_nothrow_constructible<E,E2>::value);
     template <typename E2,
-              typename std::enable_if<detail::failure_is_implicit_value_convertible<E,E2>::value,int>::type = 0>
+              typename std::enable_if<detail::failure_is_explicit_value_convertible<E,E2>::value,int>::type = 0>
     constexpr explicit failure(E2&& error)
       noexcept(std::is_nothrow_constructible<E,E2>::value);
     /// \}
@@ -578,7 +578,7 @@ inline namespace bitwizeshift {
     /// \param other the other failure to copy-convert
     /// \return reference to `(*this)`
     template <typename E2,
-              typename = typename std::enable_if<std::is_assignable<E,const E2&>::value>::type>
+              typename = typename std::enable_if<std::is_assignable<E&,const E2&>::value>::type>
     RESULT_CPP14_CONSTEXPR
     auto operator=(const failure<E2>& other)
       noexcept(std::is_nothrow_assignable<E,const E2&>::value) -> failure&;
@@ -588,7 +588,7 @@ inline namespace bitwizeshift {
     /// \param other the other failure to move-convert
     /// \return reference to `(*this)`
     template <typename E2,
-              typename = typename std::enable_if<std::is_assignable<E,E2&&>::value>::type>
+              typename = typename std::enable_if<std::is_assignable<E&,E2&&>::value>::type>
     RESULT_CPP14_CONSTEXPR
     auto operator=(failure<E2>&& other)
       noexcept(std::is_nothrow_assignable<E,E2&&>::value) -> failure&;
@@ -697,6 +697,19 @@ inline namespace bitwizeshift {
   RESULT_WARN_UNUSED
   constexpr auto fail(Args&&...args)
     noexcept(std::is_nothrow_constructible<E, Args...>::value)
+    -> failure<E>;
+
+  /// \brief Constructs a failure type from an initializer list and series of
+  ///        arguments
+  ///
+  /// \tparam E the failure type
+  /// \param args the arguments to forward to E's constructor
+  /// \return a constructed failure type
+  template <typename E, typename U, typename...Args,
+            typename = typename std::enable_if<std::is_constructible<E,std::initializer_list<U>,Args...>::value>::type>
+  RESULT_WARN_UNUSED
+  constexpr auto fail(std::initializer_list<U> ilist, Args&&...args)
+    noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value)
     -> failure<E>;
 
   /// \brief Swaps the contents of two failure values
@@ -970,8 +983,8 @@ inline namespace bitwizeshift {
       /// \pre there is no contained value or error at the time of construction
       ///
       /// \param other the other result to construct
-      template <typename Expected>
-      auto construct_error_from_result(Expected&& other) -> void;
+      template <typename Result>
+      auto construct_error_from_result(Result&& other) -> void;
 
       /// \brief Constructs the underlying type from a result object
       ///
@@ -981,8 +994,8 @@ inline namespace bitwizeshift {
       /// \pre there is no contained value or error at the time of construction
       ///
       /// \param other the other result to construct
-      template <typename Expected>
-      auto construct_from_result(Expected&& other) -> void;
+      template <typename Result>
+      auto construct_from_result(Result&& other) -> void;
 
       //-----------------------------------------------------------------------
 
@@ -994,11 +1007,11 @@ inline namespace bitwizeshift {
       auto assign_error(Error&& error)
         noexcept(std::is_nothrow_assignable<E, Error>::value) -> void;
 
-      template <typename Expected>
-      auto assign_error_from_result(Expected&& other) -> void;
+      template <typename Result>
+      auto assign_error_from_result(Result&& other) -> void;
 
-      template <typename Expected>
-      auto assign_from_result(Expected&& other) -> void;
+      template <typename Result>
+      auto assign_from_result(Result&& other) -> void;
 
       //-----------------------------------------------------------------------
 
@@ -1010,11 +1023,11 @@ inline namespace bitwizeshift {
       auto construct_value_from_result_impl(std::false_type, Value&& value)
         noexcept(std::is_nothrow_constructible<T,Value>::value) -> void;
 
-      template <typename Expected>
-      auto assign_value_from_result_impl(std::true_type, Expected&& other) -> void;
+      template <typename Result>
+      auto assign_value_from_result_impl(std::true_type, Result&& other) -> void;
 
-      template <typename Expected>
-      auto assign_value_from_result_impl(std::false_type, Expected&& other) -> void;
+      template <typename Result>
+      auto assign_value_from_result_impl(std::false_type, Result&& other) -> void;
 
       //-----------------------------------------------------------------------
       // Public Members
@@ -1414,7 +1427,7 @@ inline namespace bitwizeshift {
       !is_result<typename std::decay<U>::type>::value &&
       !is_failure<typename std::decay<U>::type>::value &&
       std::is_nothrow_constructible<T,U>::value &&
-      std::is_assignable<wrapped_result_type<T>,U>::value &&
+      std::is_assignable<wrapped_result_type<T>&,U>::value &&
       (
         !std::is_same<typename std::decay<U>::type,typename std::decay<T>::type>::value ||
         !std::is_scalar<T>::value
@@ -1424,7 +1437,7 @@ inline namespace bitwizeshift {
     template <typename E, typename E2>
     using result_is_failure_assignable = std::integral_constant<bool,(
       std::is_nothrow_constructible<E,E2>::value &&
-      std::is_assignable<E,E2>::value
+      std::is_assignable<E&,E2>::value
     )>;
 
     // Friending 'extract_error" below was causing some compilers to incorrectly
@@ -2966,7 +2979,7 @@ inline namespace bitwizeshift {
     /// \return reference to `(*this)`
     template <typename T2, typename E2,
               typename = typename std::enable_if<std::is_nothrow_constructible<E,const E2&>::value &&
-                                                 std::is_assignable<E,const E2&>::value>::type>
+                                                 std::is_assignable<E&,const E2&>::value>::type>
     auto operator=(const result<T2,E2>& other)
       noexcept(std::is_nothrow_assignable<E, const E2&>::value) -> result&;
 
@@ -2989,7 +3002,7 @@ inline namespace bitwizeshift {
     /// \return reference to `(*this)`
     template <typename T2, typename E2,
               typename = typename std::enable_if<std::is_nothrow_constructible<E,E2&&>::value &&
-                                                 std::is_assignable<E,E2&&>::value>::type>
+                                                 std::is_assignable<E&,E2&&>::value>::type>
     auto operator=(result<T2,E2>&& other)
       noexcept(std::is_nothrow_assignable<E, E2&&>::value) -> result&;
 
@@ -3705,8 +3718,7 @@ auto RESULT_NS_IMPL::failure<E>::error()
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator==(const failure<E1>& lhs,
-                                  const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator==(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() == rhs.error();
@@ -3714,8 +3726,7 @@ auto RESULT_NS_IMPL::operator==(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator!=(const failure<E1>& lhs,
-                                  const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator!=(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() != rhs.error();
@@ -3723,8 +3734,7 @@ auto RESULT_NS_IMPL::operator!=(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator<(const failure<E1>& lhs,
-                                 const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator<(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() < rhs.error();
@@ -3732,8 +3742,7 @@ auto RESULT_NS_IMPL::operator<(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator>(const failure<E1>& lhs,
-                                 const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator>(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() > rhs.error();
@@ -3741,8 +3750,7 @@ auto RESULT_NS_IMPL::operator>(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator<=(const failure<E1>& lhs,
-                                  const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator<=(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() <= rhs.error();
@@ -3750,8 +3758,7 @@ auto RESULT_NS_IMPL::operator<=(const failure<E1>& lhs,
 
 template <typename E1, typename E2>
 inline RESULT_INLINE_VISIBILITY constexpr
-auto RESULT_NS_IMPL::operator>=(const failure<E1>& lhs,
-                                  const failure<E2>& rhs)
+auto RESULT_NS_IMPL::operator>=(const failure<E1>& lhs, const failure<E2>& rhs)
   noexcept -> bool
 {
   return lhs.error() >= rhs.error();
@@ -3793,6 +3800,15 @@ auto RESULT_NS_IMPL::fail(Args&&...args)
   return failure<E>(in_place, detail::forward<Args>(args)...);
 }
 
+template <typename E, typename U, typename...Args, typename>
+inline RESULT_INLINE_VISIBILITY constexpr
+auto RESULT_NS_IMPL::fail(std::initializer_list<U> ilist, Args&&...args)
+  noexcept(std::is_nothrow_constructible<E, std::initializer_list<U>, Args...>::value)
+  -> failure<E>
+{
+  return failure<E>(in_place, ilist, detail::forward<Args>(args)...);
+}
+
 template <typename E>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::swap(failure<E>& lhs, failure<E>& rhs)
@@ -3805,7 +3821,7 @@ auto RESULT_NS_IMPL::swap(failure<E>& lhs, failure<E>& rhs)
 {
   using std::swap;
 
-  swap(lhs, rhs);
+  swap(lhs.error(), rhs.error());
 }
 
 //=============================================================================
@@ -3998,34 +4014,34 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::construct_error(Args&&.
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::construct_error_from_result(
-  Expected&& other
+  Result&& other
 ) -> void
 {
   if (other.storage.m_has_value) {
     construct_value();
   } else {
-    construct_error(detail::forward<Expected>(other).storage.m_error);
+    construct_error(detail::forward<Result>(other).storage.m_error);
   }
 }
 
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::construct_from_result(
-  Expected&& other
+  Result&& other
 ) -> void
 {
   if (other.storage.m_has_value) {
     construct_value_from_result_impl(
       std::is_lvalue_reference<T>{},
-      detail::forward<Expected>(other).storage.m_value
+      detail::forward<Result>(other).storage.m_value
     );
   } else {
-    construct_error(detail::forward<Expected>(other).storage.m_error);
+    construct_error(detail::forward<Result>(other).storage.m_error);
   }
 }
 
@@ -4060,10 +4076,10 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_error(Error&& er
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T, E>::assign_error_from_result(
-  Expected&& other
+  Result&& other
 ) -> void
 {
   if (other.storage.m_has_value != storage.m_has_value) {
@@ -4071,29 +4087,29 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T, E>::assign_error_from_resu
     if (other.storage.m_has_value) {
       construct_value();
     } else {
-      construct_error(detail::forward<Expected>(other).storage.m_error);
+      construct_error(detail::forward<Result>(other).storage.m_error);
     }
   } else if (!other.storage.m_has_value) {
-    storage.m_error = detail::forward<Expected>(other).storage.m_error;
+    storage.m_error = detail::forward<Result>(other).storage.m_error;
   }
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
-auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_from_result(Expected&& other)
+auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_from_result(Result&& other)
   -> void
 {
   if (other.storage.m_has_value != storage.m_has_value) {
     storage.destroy();
-    construct_from_result(detail::forward<Expected>(other));
+    construct_from_result(detail::forward<Result>(other));
   } else if (storage.m_has_value) {
     assign_value_from_result_impl(
       std::is_lvalue_reference<T>{},
-      detail::forward<Expected>(other)
+      detail::forward<Result>(other)
     );
   } else {
-    storage.m_error = detail::forward<Expected>(other).storage.m_error;
+    storage.m_error = detail::forward<Result>(other).storage.m_error;
   }
 }
 
@@ -4128,11 +4144,11 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::construct_value_from_re
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_value_from_result_impl(
   std::true_type,
-  Expected&& other
+  Result&& other
 ) -> void
 {
   // T is a reference; unwrap it
@@ -4140,14 +4156,14 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_value_from_resul
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_value_from_result_impl(
   std::false_type,
-  Expected&& other
+  Result&& other
 ) -> void
 {
-  storage.m_value = detail::forward<Expected>(other).storage.m_value;
+  storage.m_value = detail::forward<Result>(other).storage.m_value;
 }
 
 
@@ -4700,7 +4716,7 @@ auto RESULT_NS_IMPL::result<T,E>::error() const &
   );
 
   return m_storage.storage.m_has_value
-    ? E()
+    ? E{}
     : m_storage.storage.m_error;
 }
 
@@ -4718,7 +4734,7 @@ auto RESULT_NS_IMPL::result<T,E>::error() &&
   );
 
   return m_storage.storage.m_has_value
-    ? E()
+    ? E{}
     : static_cast<E&&>(m_storage.storage.m_error);
 }
 

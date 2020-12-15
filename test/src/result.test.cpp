@@ -59,7 +59,11 @@ struct move_only : public T
 
   move_only() = default;
 
-  move_only(T&& other) : T(std::move(other)){}
+  move_only(T&& other)
+    noexcept(std::is_nothrow_move_constructible<T>::value)
+    : T(std::move(other))
+  {
+  }
   move_only(move_only&&) = default;
   move_only(const move_only&) = delete;
 
@@ -191,7 +195,7 @@ auto suppress_unused(const T&) -> void{}
 
 TEST_CASE("result<T,E>::result()", "[ctor]") {
   SECTION("T is default-constructible") {
-    SECTION("Expected is default-constructible") {
+    SECTION("Result is default-constructible") {
       using sut_type = result<int,int>;
 
       STATIC_REQUIRE(std::is_default_constructible<sut_type>::value);
@@ -212,7 +216,7 @@ TEST_CASE("result<T,E>::result()", "[ctor]") {
   }
 
   SECTION("T is not default-constructible") {
-    SECTION("Expected is not default-constructible") {
+    SECTION("Result is not default-constructible") {
       using sut_type = result<not_default_constructible,int>;
 
       STATIC_REQUIRE_FALSE(std::is_default_constructible<sut_type>::value);
@@ -227,7 +231,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
   SECTION("T and E are both trivially copy-constructible") {
     using sut_type = result<int,int>;
 
-    SECTION("Expected is trivially copy-constructible") {
+    SECTION("Result is trivially copy-constructible") {
       STATIC_REQUIRE(std::is_trivially_copy_constructible<sut_type>::value);
     }
 
@@ -263,11 +267,11 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
   SECTION("T is copy-constructible, but not trivial") {
     using sut_type = result<std::string,int>;
 
-    SECTION("Expected is not trivially copy-constructible") {
+    SECTION("Result is not trivially copy-constructible") {
       STATIC_REQUIRE_FALSE(std::is_trivially_copy_constructible<sut_type>::value);
     }
 
-    SECTION("Expected is copy-constructible") {
+    SECTION("Result is copy-constructible") {
       STATIC_REQUIRE(std::is_copy_constructible<sut_type>::value);
     }
 
@@ -303,11 +307,11 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
   SECTION("E is copy-constructible, but not trivial") {
     using sut_type = result<int,std::string>;
 
-    SECTION("Expected is not trivially copy-constructible") {
+    SECTION("Result is not trivially copy-constructible") {
       STATIC_REQUIRE_FALSE(std::is_trivially_copy_constructible<sut_type>::value);
     }
 
-    SECTION("Expected is copy-constructible") {
+    SECTION("Result is copy-constructible") {
       STATIC_REQUIRE(std::is_copy_constructible<sut_type>::value);
     }
 
@@ -343,11 +347,11 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
   SECTION("T and E are both copy-constructible, but not trivial") {
     using sut_type = result<std::string,std::string>;
 
-    SECTION("Expected is not trivially copy-constructible") {
+    SECTION("Result is not trivially copy-constructible") {
       STATIC_REQUIRE_FALSE(std::is_trivially_copy_constructible<sut_type>::value);
     }
 
-    SECTION("Expected is copy-constructible") {
+    SECTION("Result is copy-constructible") {
       STATIC_REQUIRE(std::is_copy_constructible<sut_type>::value);
     }
 
@@ -385,7 +389,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
   SECTION("T is not copy-constructible") {
     using sut_type = result<not_copy_or_moveable,int>;
 
-    SECTION("Expected is not copy-constructible") {
+    SECTION("Result is not copy-constructible") {
       STATIC_REQUIRE_FALSE(std::is_copy_constructible<sut_type>::value);
     }
   }
@@ -393,7 +397,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
   SECTION("E is not copy-constructible") {
     using sut_type = result<int,not_copy_or_moveable>;
 
-    SECTION("Expected is not copy-constructible") {
+    SECTION("Result is not copy-constructible") {
       STATIC_REQUIRE_FALSE(std::is_copy_constructible<sut_type>::value);
     }
   }
@@ -401,7 +405,7 @@ TEST_CASE("result<T,E>::result(const result&)", "[ctor]") {
   SECTION("T and E are not copy-constructible") {
     using sut_type = result<not_copy_or_moveable,not_copy_or_moveable>;
 
-    SECTION("Expected is not copy-constructible") {
+    SECTION("Result is not copy-constructible") {
       STATIC_REQUIRE_FALSE(std::is_copy_constructible<sut_type>::value);
     }
   }
@@ -414,7 +418,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
   SECTION("T and E are both trivially move-constructible") {
     using sut_type = result<int,int>;
 
-    SECTION("Expected is trivially move-constructible") {
+    SECTION("Result is trivially move-constructible") {
       STATIC_REQUIRE(std::is_trivially_move_constructible<sut_type>::value);
     }
 
@@ -450,11 +454,11 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
   SECTION("T is move-constructible, but not trivial") {
     using sut_type = result<move_only<std::string>,int>;
 
-    SECTION("Expected is not trivially move-constructible") {
+    SECTION("Result is not trivially move-constructible") {
       STATIC_REQUIRE_FALSE(std::is_trivially_move_constructible<sut_type>::value);
     }
 
-    SECTION("Expected is move-constructible") {
+    SECTION("Result is move-constructible") {
       STATIC_REQUIRE(std::is_move_constructible<sut_type>::value);
     }
 
@@ -490,11 +494,11 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
   SECTION("E is move-constructible, but not trivial") {
     using sut_type = result<int,move_only<std::string>>;
 
-    SECTION("Expected is not trivially move-constructible") {
+    SECTION("Result is not trivially move-constructible") {
       STATIC_REQUIRE_FALSE(std::is_trivially_move_constructible<sut_type>::value);
     }
 
-    SECTION("Expected is move-constructible") {
+    SECTION("Result is move-constructible") {
       STATIC_REQUIRE(std::is_move_constructible<sut_type>::value);
     }
 
@@ -530,11 +534,11 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
   SECTION("T and E are both move-constructible, but not trivial") {
     using sut_type = result<move_only<std::string>,move_only<std::string>>;
 
-    SECTION("Expected is not trivially move-constructible") {
+    SECTION("Result is not trivially move-constructible") {
       STATIC_REQUIRE_FALSE(std::is_trivially_move_constructible<sut_type>::value);
     }
 
-    SECTION("Expected is move-constructible") {
+    SECTION("Result is move-constructible") {
       STATIC_REQUIRE(std::is_move_constructible<sut_type>::value);
     }
 
@@ -572,7 +576,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
   SECTION("T is not move-constructible") {
     using sut_type = result<not_copy_or_moveable,int>;
 
-    SECTION("Expected is not move-constructible") {
+    SECTION("Result is not move-constructible") {
       STATIC_REQUIRE_FALSE(std::is_move_constructible<sut_type>::value);
     }
   }
@@ -580,7 +584,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
   SECTION("E is not move-constructible") {
     using sut_type = result<int,not_copy_or_moveable>;
 
-    SECTION("Expected is not move-constructible") {
+    SECTION("Result is not move-constructible") {
       STATIC_REQUIRE_FALSE(std::is_move_constructible<sut_type>::value);
     }
   }
@@ -588,7 +592,7 @@ TEST_CASE("result<T,E>::result(result&&)", "[ctor]") {
   SECTION("T and E are not move-constructible") {
     using sut_type = result<not_copy_or_moveable,not_copy_or_moveable>;
 
-    SECTION("Expected is not move-constructible") {
+    SECTION("Result is not move-constructible") {
       STATIC_REQUIRE_FALSE(std::is_move_constructible<sut_type>::value);
     }
   }
@@ -601,11 +605,11 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&)", "[ctor]") {
     using copy_type = result<const char*, const char*>;
     using sut_type = result<std::string,std::string>;
 
-    SECTION("Expected is constructible") {
+    SECTION("Result is constructible") {
       STATIC_REQUIRE(std::is_constructible<sut_type,const copy_type&>::value);
     }
 
-    SECTION("Expected is implicit constructible") {
+    SECTION("Result is implicit constructible") {
       STATIC_REQUIRE(std::is_convertible<const copy_type&,sut_type>::value);
     }
 
@@ -644,7 +648,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&)", "[ctor]") {
     using copy_type = result<std::string,int>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, const copy_type&>::value);
     }
   }
@@ -653,7 +657,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&)", "[ctor]") {
     using copy_type = result<int,std::string>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, const copy_type&>::value);
     }
   }
@@ -662,7 +666,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&)", "[ctor]") {
     using copy_type = result<std::string,std::string>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, const copy_type&>::value);
     }
   }
@@ -677,11 +681,11 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
       using copy_type = result<std::string, const char*>;
       using sut_type = result<explicit_type<std::string>,std::string>;
 
-      SECTION("Expected is constructible") {
+      SECTION("Result is constructible") {
         STATIC_REQUIRE(std::is_constructible<sut_type,const copy_type&>::value);
       }
 
-      SECTION("Expected is not implicit constructible") {
+      SECTION("Result is not implicit constructible") {
         STATIC_REQUIRE_FALSE(std::is_convertible<const copy_type&,sut_type>::value);
       }
 
@@ -718,11 +722,11 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
       using copy_type = result<const char*,std::string>;
       using sut_type = result<std::string,explicit_type<std::string>>;
 
-      SECTION("Expected is constructible") {
+      SECTION("Result is constructible") {
         STATIC_REQUIRE(std::is_constructible<sut_type,const copy_type&>::value);
       }
 
-      SECTION("Expected is not implicit constructible") {
+      SECTION("Result is not implicit constructible") {
         STATIC_REQUIRE_FALSE(std::is_convertible<const copy_type&,sut_type>::value);
       }
 
@@ -758,11 +762,11 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
       using copy_type = result<std::string, std::string>;
       using sut_type = result<explicit_type<std::string>,explicit_type<std::string>>;
 
-      SECTION("Expected is constructible") {
+      SECTION("Result is constructible") {
         STATIC_REQUIRE(std::is_constructible<sut_type,const copy_type&>::value);
       }
 
-      SECTION("Expected is not implicit constructible") {
+      SECTION("Result is not implicit constructible") {
         STATIC_REQUIRE_FALSE(std::is_convertible<const copy_type&,sut_type>::value);
       }
 
@@ -802,7 +806,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
     using copy_type = result<std::string,int>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, const copy_type&>::value);
     }
   }
@@ -811,7 +815,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
     using copy_type = result<int,std::string>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, const copy_type&>::value);
     }
   }
@@ -820,7 +824,7 @@ TEST_CASE("result<T,E>::result(const result<T2,E2>&) (explicit)", "[ctor]") {
     using copy_type = result<std::string,std::string>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, const copy_type&>::value);
     }
   }
@@ -834,11 +838,11 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&)", "[ctor]") {
     using copy_type = result<std::string,std::string>;
     using sut_type = result<move_only<std::string>,move_only<std::string>>;
 
-    SECTION("Expected is constructible") {
+    SECTION("Result is constructible") {
       STATIC_REQUIRE(std::is_constructible<sut_type,copy_type&&>::value);
     }
 
-    SECTION("Expected is implicit constructible") {
+    SECTION("Result is implicit constructible") {
       STATIC_REQUIRE(std::is_convertible<copy_type&&,sut_type>::value);
     }
 
@@ -877,7 +881,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&)", "[ctor]") {
     using copy_type = result<std::string,int>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, copy_type&&>::value);
     }
   }
@@ -886,7 +890,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&)", "[ctor]") {
     using copy_type = result<int,std::string>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, copy_type&&>::value);
     }
   }
@@ -895,7 +899,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&)", "[ctor]") {
     using copy_type = result<std::string,std::string>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, copy_type&&>::value);
     }
   }
@@ -910,11 +914,11 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
       using copy_type = result<std::string, const char*>;
       using sut_type = result<explicit_type<move_only<std::string>>,std::string>;
 
-      SECTION("Expected is constructible") {
+      SECTION("Result is constructible") {
         STATIC_REQUIRE(std::is_constructible<sut_type,copy_type&&>::value);
       }
 
-      SECTION("Expected is not implicit constructible") {
+      SECTION("Result is not implicit constructible") {
         STATIC_REQUIRE_FALSE(std::is_convertible<copy_type&&,sut_type>::value);
       }
 
@@ -951,11 +955,11 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
       using copy_type = result<const char*,std::string>;
       using sut_type = result<std::string,explicit_type<move_only<std::string>>>;
 
-      SECTION("Expected is constructible") {
+      SECTION("Result is constructible") {
         STATIC_REQUIRE(std::is_constructible<sut_type,copy_type&&>::value);
       }
 
-      SECTION("Expected is not implicit constructible") {
+      SECTION("Result is not implicit constructible") {
         STATIC_REQUIRE_FALSE(std::is_convertible<copy_type&&,sut_type>::value);
       }
 
@@ -994,11 +998,11 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
         explicit_type<move_only<std::string>>
       >;
 
-      SECTION("Expected is constructible") {
+      SECTION("Result is constructible") {
         STATIC_REQUIRE(std::is_constructible<sut_type,copy_type&&>::value);
       }
 
-      SECTION("Expected is not implicit constructible") {
+      SECTION("Result is not implicit constructible") {
         STATIC_REQUIRE_FALSE(std::is_convertible<copy_type&&,sut_type>::value);
       }
 
@@ -1038,7 +1042,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
     using copy_type = result<std::string,int>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, copy_type&&>::value);
     }
   }
@@ -1047,7 +1051,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
     using copy_type = result<int,std::string>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, copy_type&&>::value);
     }
   }
@@ -1056,7 +1060,7 @@ TEST_CASE("result<T,E>::result(result<T2,E2>&&) (explicit)", "[ctor]") {
     using copy_type = result<std::string,std::string>;
     using sut_type = result<int,int>;
 
-    SECTION("Expected is not constructible") {
+    SECTION("Result is not constructible") {
       STATIC_REQUIRE_FALSE(std::is_constructible<sut_type, copy_type&&>::value);
     }
   }
@@ -1279,21 +1283,21 @@ TEST_CASE("result<T,E>::~result()", "[dtor]") {
 
 TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
   SECTION("T is not nothrow copy constructible") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using sut_type = result<std::string,int>;
 
       STATIC_REQUIRE_FALSE(std::is_copy_assignable<sut_type>::value);
     }
   }
   SECTION("E is not nothrow copy constructible") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using sut_type = result<int,std::string>;
 
       STATIC_REQUIRE_FALSE(std::is_copy_assignable<sut_type>::value);
     }
   }
   SECTION("T and E are not nothrow copy constructible") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using sut_type = result<std::string,std::string>;
 
       STATIC_REQUIRE_FALSE(std::is_copy_assignable<sut_type>::value);
@@ -1301,21 +1305,21 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
   }
 
   SECTION("T is not copy-assignable") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using sut_type = result<not_copy_or_moveable,int>;
 
       STATIC_REQUIRE_FALSE(std::is_copy_assignable<sut_type>::value);
     }
   }
   SECTION("E is not copy-assignable") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using sut_type = result<int,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_copy_assignable<sut_type>::value);
     }
   }
   SECTION("T and E are not copy-assignable") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using sut_type = result<not_copy_or_moveable,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_copy_assignable<sut_type>::value);
@@ -1323,7 +1327,7 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
   }
 
   SECTION("T and E are nothrow copy-constructible") {
-    SECTION("Expected is copy-assignable") {
+    SECTION("Result is copy-assignable") {
       using sut_type = result<int,std::error_code>;
 
       STATIC_REQUIRE(std::is_copy_assignable<sut_type>::value);
@@ -1337,7 +1341,7 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
         sut_type sut{};
 
         sut = copy;
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_copy_assignable<sut_type>::value);
         }
         SECTION("active element is value") {
@@ -1356,7 +1360,7 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
         sut_type sut{&is_invoked};
 
         sut = copy;
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_copy_assignable<sut_type>::value);
         }
         SECTION("Calls 'T's destructor first") {
@@ -1381,7 +1385,7 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
 
         sut = copy;
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_copy_assignable<sut_type>::value);
         }
         SECTION("Calls 'T's destructor first") {
@@ -1402,7 +1406,7 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
         sut_type sut{fail(0)};
 
         sut = copy;
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_copy_assignable<sut_type>::value);
         }
         SECTION("active element is error") {
@@ -1418,10 +1422,10 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
   SECTION("T and E are trivial copy-constructible and copy-assignable") {
     using sut_type = result<int, int>;
 
-    SECTION("Expected is copy-assignable") {
+    SECTION("Result is copy-assignable") {
       STATIC_REQUIRE(std::is_copy_assignable<sut_type>::value);
     }
-    SECTION("Expected is trivial copy-assignable") {
+    SECTION("Result is trivial copy-assignable") {
       STATIC_REQUIRE(std::is_trivially_copy_assignable<sut_type>::value);
     }
   }
@@ -1429,21 +1433,21 @@ TEST_CASE("result<T,E>::operator=(const result&)", "[assign]") {
 
 TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
   SECTION("T is not nothrow move constructible") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using sut_type = result<throwing<std::string>,int>;
 
       STATIC_REQUIRE_FALSE(std::is_move_assignable<sut_type>::value);
     }
   }
   SECTION("E is not nothrow move constructible") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using sut_type = result<int,throwing<std::string>>;
 
       STATIC_REQUIRE_FALSE(std::is_move_assignable<sut_type>::value);
     }
   }
   SECTION("T and E are not nothrow move constructible") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using sut_type = result<throwing<std::string>,throwing<std::string>>;
 
       STATIC_REQUIRE_FALSE(std::is_move_assignable<sut_type>::value);
@@ -1451,21 +1455,21 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
   }
 
   SECTION("T is not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using sut_type = result<not_copy_or_moveable,int>;
 
       STATIC_REQUIRE_FALSE(std::is_move_assignable<sut_type>::value);
     }
   }
   SECTION("E is not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using sut_type = result<int,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_move_assignable<sut_type>::value);
     }
   }
   SECTION("T and E are not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using sut_type = result<not_copy_or_moveable,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_move_assignable<sut_type>::value);
@@ -1473,7 +1477,7 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
   }
 
   SECTION("T and E are nothrow copy-constructible") {
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       using sut_type = result<int,std::error_code>;
 
       STATIC_REQUIRE(std::is_move_assignable<sut_type>::value);
@@ -1487,7 +1491,7 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
         sut_type sut{};
 
         sut = std::move(original);
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_move_assignable<sut_type>::value);
         }
         SECTION("active element is value") {
@@ -1506,7 +1510,7 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
         sut_type sut{&is_invoked};
 
         sut = std::move(original);
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_move_assignable<sut_type>::value);
         }
         SECTION("Calls 'T's destructor first") {
@@ -1531,7 +1535,7 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
 
         sut = std::move(original);
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_move_assignable<sut_type>::value);
         }
         SECTION("Calls 'T's destructor first") {
@@ -1552,7 +1556,7 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
         sut_type sut{fail("goodbye world")};
 
         sut = std::move(copy);
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_move_assignable<sut_type>::value);
         }
         SECTION("active element is error") {
@@ -1568,10 +1572,10 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
   SECTION("T and E are trivial copy-constructible and copy-assignable") {
     using sut_type = result<int, int>;
 
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       STATIC_REQUIRE(std::is_move_assignable<sut_type>::value);
     }
-    SECTION("Expected is trivial move-assignable") {
+    SECTION("Result is trivial move-assignable") {
       STATIC_REQUIRE(std::is_trivially_move_assignable<sut_type>::value);
     }
   }
@@ -1579,7 +1583,7 @@ TEST_CASE("result<T,E>::operator=(result&&)", "[assign]") {
 
 TEST_CASE("result<T,E>::operator=(const result<T2,E2>&)", "[assign]") {
 SECTION("T is not nothrow constructible from T2") {
-    SECTION("Expected is not assignable") {
+    SECTION("Result is not assignable") {
       using copy_type = result<std::string, long>;
       using sut_type = result<throwing<std::string>,int>;
 
@@ -1587,7 +1591,7 @@ SECTION("T is not nothrow constructible from T2") {
     }
   }
   SECTION("E is not nothrow constructible from E2") {
-    SECTION("Expected is not assignable") {
+    SECTION("Result is not assignable") {
       using copy_type = result<int,std::string>;
       using sut_type = result<int,throwing<std::string>>;
 
@@ -1595,7 +1599,7 @@ SECTION("T is not nothrow constructible from T2") {
     }
   }
   SECTION("T and E are not nothrow move constructible") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<std::string,std::string>;
       using sut_type = result<throwing<std::string>,throwing<std::string>>;
 
@@ -1604,7 +1608,7 @@ SECTION("T is not nothrow constructible from T2") {
   }
 
   SECTION("T is not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<not_copy_or_moveable,long>;
       using sut_type = result<not_copy_or_moveable,int>;
 
@@ -1612,7 +1616,7 @@ SECTION("T is not nothrow constructible from T2") {
     }
   }
   SECTION("E is not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<long,not_copy_or_moveable>;
       using sut_type = result<int,not_copy_or_moveable>;
 
@@ -1620,7 +1624,7 @@ SECTION("T is not nothrow constructible from T2") {
     }
   }
   SECTION("T and E are not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<not_copy_or_moveable,not_copy_or_moveable>;
       using sut_type = result<not_copy_or_moveable,not_copy_or_moveable>;
 
@@ -1629,7 +1633,7 @@ SECTION("T is not nothrow constructible from T2") {
   }
 
   SECTION("T and E are nothrow copy-constructible") {
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       using copy_type = result<long,std::io_errc>;
       using sut_type = result<int,move_only<std::error_code>>;
 
@@ -1646,7 +1650,7 @@ SECTION("T is not nothrow constructible from T2") {
 
         sut = original;
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
         }
         SECTION("active element is value") {
@@ -1667,7 +1671,7 @@ SECTION("T is not nothrow constructible from T2") {
 
         sut = original;
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
         }
         SECTION("Calls 'T's destructor first") {
@@ -1693,7 +1697,7 @@ SECTION("T is not nothrow constructible from T2") {
 
         sut = original;
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
         }
         SECTION("Calls 'T's destructor first") {
@@ -1716,7 +1720,7 @@ SECTION("T is not nothrow constructible from T2") {
 
         sut = copy;
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
         }
         SECTION("active element is error") {
@@ -1732,7 +1736,7 @@ SECTION("T is not nothrow constructible from T2") {
 
 TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
   SECTION("T is not nothrow constructible from T2") {
-    SECTION("Expected is not assignable") {
+    SECTION("Result is not assignable") {
       using copy_type = result<std::string, long>;
       using sut_type = result<throwing<std::string>,int>;
 
@@ -1740,7 +1744,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
     }
   }
   SECTION("E is not nothrow constructible from E2") {
-    SECTION("Expected is not assignable") {
+    SECTION("Result is not assignable") {
       using copy_type = result<int,std::string>;
       using sut_type = result<int,throwing<std::string>>;
 
@@ -1748,7 +1752,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
     }
   }
   SECTION("T and E are not nothrow move constructible") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<std::string,std::string>;
       using sut_type = result<throwing<std::string>,throwing<std::string>>;
 
@@ -1757,7 +1761,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
   }
 
   SECTION("T is not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<not_copy_or_moveable,long>;
       using sut_type = result<not_copy_or_moveable,int>;
 
@@ -1765,7 +1769,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
     }
   }
   SECTION("E is not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<long,not_copy_or_moveable>;
       using sut_type = result<int,not_copy_or_moveable>;
 
@@ -1773,7 +1777,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
     }
   }
   SECTION("T and E are not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<not_copy_or_moveable,not_copy_or_moveable>;
       using sut_type = result<not_copy_or_moveable,not_copy_or_moveable>;
 
@@ -1782,7 +1786,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
   }
 
   SECTION("T and E are nothrow copy-constructible") {
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       using copy_type = result<long,std::io_errc>;
       using sut_type = result<int,move_only<std::error_code>>;
 
@@ -1798,7 +1802,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
         sut_type sut{};
 
         sut = std::move(original);
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
         }
         SECTION("active element is value") {
@@ -1819,7 +1823,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
 
         sut = std::move(original);
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
         }
         SECTION("Calls 'T's destructor first") {
@@ -1845,7 +1849,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
 
         sut = std::move(original);
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
         }
         SECTION("Calls 'T's destructor first") {
@@ -1868,7 +1872,7 @@ TEST_CASE("result<T,E>::operator=(result<T2,E2>&&)", "[assign]") {
 
         sut = std::move(copy);
 
-        SECTION("Expected can be assigned") {
+        SECTION("Result can be assigned") {
           STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
         }
         SECTION("active element is error") {
@@ -1908,7 +1912,7 @@ TEST_CASE("result<T,E>::operator=(U&&)", "[assign]") {
 
     sut = value;
 
-    SECTION("Expected can be assigned") {
+    SECTION("Result can be assigned") {
       STATIC_REQUIRE(std::is_assignable<sut_type,decltype(value)>::value);
     }
     SECTION("active element is value") {
@@ -1926,7 +1930,7 @@ TEST_CASE("result<T,E>::operator=(U&&)", "[assign]") {
     sut_type sut{in_place_error, &is_invoked};
 
     sut = value;
-    SECTION("Expected can be assigned") {
+    SECTION("Result can be assigned") {
       STATIC_REQUIRE(std::is_assignable<sut_type,decltype(value)>::value);
     }
     SECTION("Calls 'T's destructor first") {
@@ -1943,7 +1947,7 @@ TEST_CASE("result<T,E>::operator=(U&&)", "[assign]") {
 
 TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
   SECTION("E cant be constructed or assigned from E2") {
-    SECTION("Expected cannot be assigned from E2") {
+    SECTION("Result cannot be assigned from E2") {
       using copy_type = failure<not_copy_or_moveable>;
       using sut_type  = result<int,not_copy_or_moveable>;
 
@@ -1951,7 +1955,7 @@ TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
     }
   }
   SECTION("E is not nothrow constructible from E2") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<int,throwing<std::string>>;
 
@@ -1960,7 +1964,7 @@ TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
   }
 
   SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<int,std::string>;
 
@@ -1974,17 +1978,17 @@ TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
 
   SECTION("E can be constructed and assigned from E2") {
     SECTION("active element is T") {
-      using copy_type = failure<const char*>;
-      using sut_type = result<report_destructor, std::string>;
+      using copy_type = failure<long>;
+      using sut_type = result<report_destructor, int>;
 
-      const auto value = copy_type{"hello world"};
+      const auto value = copy_type{42};
 
       auto is_invoked = false;
       sut_type sut{&is_invoked};
 
       sut = value;
 
-      SECTION("Expected can be assigned") {
+      SECTION("Result can be assigned") {
         STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
       }
       SECTION("Calls 'T's destructor first") {
@@ -1999,16 +2003,16 @@ TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
     }
 
     SECTION("active element is E") {
-      using copy_type = failure<const char*>;
-      using sut_type = result<int, std::string>;
+      using copy_type = failure<int>;
+      using sut_type = result<int, long>;
 
-      const auto value = copy_type{"goodbye world"};
-      sut_type sut{copy_type{"hello world"}};
+      const auto value = copy_type{42};
+      sut_type sut{copy_type{0}};
 
       sut = value;
 
-      SECTION("Expected can be assigned") {
-        STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
+      SECTION("Result can be assigned") {
+        STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
       }
       SECTION("active element is error") {
         REQUIRE(sut.has_error());
@@ -2022,7 +2026,7 @@ TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
 
 TEST_CASE("result<T,E>::operator=(failure<E2>&&)", "[assign]") {
   SECTION("E cant be constructed or assigned from E2") {
-    SECTION("Expected cannot be assigned from E2") {
+    SECTION("Result cannot be assigned from E2") {
       using copy_type = failure<not_copy_or_moveable>;
       using sut_type  = result<int,not_copy_or_moveable>;
 
@@ -2030,7 +2034,7 @@ TEST_CASE("result<T,E>::operator=(failure<E2>&&)", "[assign]") {
     }
   }
   SECTION("E is not nothrow move constructible from E2") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<int,throwing<std::string>>;
 
@@ -2039,7 +2043,7 @@ TEST_CASE("result<T,E>::operator=(failure<E2>&&)", "[assign]") {
   }
 
   SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<int,std::string>;
 
@@ -2064,7 +2068,7 @@ TEST_CASE("result<T,E>::operator=(failure<E2>&&)", "[assign]") {
 
       sut = std::move(value);
 
-      SECTION("Expected can be assigned") {
+      SECTION("Result can be assigned") {
         STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
       }
       SECTION("Calls 'T's destructor first") {
@@ -2088,7 +2092,7 @@ TEST_CASE("result<T,E>::operator=(failure<E2>&&)", "[assign]") {
 
       sut = std::move(value);
 
-      SECTION("Expected can be assigned") {
+      SECTION("Result can be assigned") {
         STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
       }
       SECTION("active element is error") {
@@ -2828,7 +2832,7 @@ TEST_CASE("result<T,E>::flat_map_error(Fn&&) &&", "[monadic]") {
 //-----------------------------------------------------------------------------
 
 TEST_CASE("result<T&,E>::result()", "[ctor]") {
-  SECTION("Expected containing a reference is not default-constructible") {
+  SECTION("Result containing a reference is not default-constructible") {
     using sut_type = result<int&,int>;
 
     STATIC_REQUIRE_FALSE(std::is_default_constructible<sut_type>::value);
@@ -2838,7 +2842,7 @@ TEST_CASE("result<T&,E>::result()", "[ctor]") {
 TEST_CASE("result<T&,E>::result(const result&)", "[ctor]") {
   using sut_type = result<int&,int>;
 
-  SECTION("Expected containing a reference is copy-constructible") {
+  SECTION("Result containing a reference is copy-constructible") {
     STATIC_REQUIRE(std::is_copy_constructible<sut_type>::value);
   }
 
@@ -2857,7 +2861,7 @@ TEST_CASE("result<T&,E>::result(const result&)", "[ctor]") {
 TEST_CASE("result<T&,E>::result(result&&)", "[ctor]") {
   using sut_type = result<int&,move_only<std::string>>;
 
-  SECTION("Expected containing a reference is copy-constructible") {
+  SECTION("Result containing a reference is copy-constructible") {
     STATIC_REQUIRE(std::is_move_constructible<sut_type>::value);
   }
 
@@ -2887,7 +2891,7 @@ TEST_CASE("result<T&,E>::result(const result<T2,E2>&)", "[ctor]") {
     using from_type = result<derived&,int>;
     using sut_type = result<base&,int>;
 
-    SECTION("Expected containing a reference is copy-constructible") {
+    SECTION("Result containing a reference is copy-constructible") {
       STATIC_REQUIRE(std::is_constructible<sut_type, const from_type&>::value);
     }
 
@@ -2922,7 +2926,7 @@ TEST_CASE("result<T&,E>::result(result<T2,E2>&&)", "[ctor]") {
     using from_type = result<derived&,move_only<std::string>>;
     using sut_type = result<base&,move_only<std::string>>;
 
-    SECTION("Expected containing a reference is copy-constructible") {
+    SECTION("Result containing a reference is copy-constructible") {
       STATIC_REQUIRE(std::is_constructible<sut_type, from_type&&>::value);
     }
 
@@ -3192,7 +3196,7 @@ TEST_CASE("result<T&,E>::operator=(U&&)", "[assign]") {
 
     sut = next;
 
-    SECTION("Expected contains a value") {
+    SECTION("Result contains a value") {
       REQUIRE(sut.has_value());
     }
     SECTION("Binds to the new reference") {
@@ -3338,7 +3342,7 @@ TEST_CASE("result<T&,E>::value() const &&", "[observers]") {
 //-----------------------------------------------------------------------------
 
 TEST_CASE("result<void,E>::result()", "[ctor]") {
-  SECTION("Expected is default-constructible") {
+  SECTION("Result is default-constructible") {
     using sut_type = result<void,int>;
 
     STATIC_REQUIRE(std::is_default_constructible<sut_type>::value);
@@ -3360,7 +3364,7 @@ TEST_CASE("result<void,E>::result(const result&)", "[ctor]") {
   SECTION("E is trivially copy-constructible") {
     using sut_type = result<void,int>;
 
-    SECTION("Expected is trivially copy-constructible") {
+    SECTION("Result is trivially copy-constructible") {
       STATIC_REQUIRE(std::is_trivially_copy_constructible<sut_type>::value);
     }
 
@@ -3392,11 +3396,11 @@ TEST_CASE("result<void,E>::result(const result&)", "[ctor]") {
   SECTION("E is copy-constructible, but not trivial") {
     using sut_type = result<void,std::string>;
 
-    SECTION("Expected is not trivially copy-constructible") {
+    SECTION("Result is not trivially copy-constructible") {
       STATIC_REQUIRE_FALSE(std::is_trivially_copy_constructible<sut_type>::value);
     }
 
-    SECTION("Expected is copy-constructible") {
+    SECTION("Result is copy-constructible") {
       STATIC_REQUIRE(std::is_copy_constructible<sut_type>::value);
     }
 
@@ -3430,7 +3434,7 @@ TEST_CASE("result<void,E>::result(const result&)", "[ctor]") {
   SECTION("E is not copy-constructible") {
     using sut_type = result<void,not_copy_or_moveable>;
 
-    SECTION("Expected is not copy-constructible") {
+    SECTION("Result is not copy-constructible") {
       STATIC_REQUIRE_FALSE(std::is_copy_constructible<sut_type>::value);
     }
   }
@@ -3443,7 +3447,7 @@ TEST_CASE("result<void,E>::result(result&&)", "[ctor]") {
   SECTION("E is trivially move-constructible") {
     using sut_type = result<void,int>;
 
-    SECTION("Expected is trivially move-constructible") {
+    SECTION("Result is trivially move-constructible") {
       STATIC_REQUIRE(std::is_trivially_move_constructible<sut_type>::value);
     }
 
@@ -3475,11 +3479,11 @@ TEST_CASE("result<void,E>::result(result&&)", "[ctor]") {
   SECTION("E is move-constructible, but not trivial") {
     using sut_type = result<void,move_only<std::string>>;
 
-    SECTION("Expected is not trivially move-constructible") {
+    SECTION("Result is not trivially move-constructible") {
       STATIC_REQUIRE_FALSE(std::is_trivially_move_constructible<sut_type>::value);
     }
 
-    SECTION("Expected is move-constructible") {
+    SECTION("Result is move-constructible") {
       STATIC_REQUIRE(std::is_move_constructible<sut_type>::value);
     }
 
@@ -3513,7 +3517,7 @@ TEST_CASE("result<void,E>::result(result&&)", "[ctor]") {
   SECTION("E is not move-constructible") {
     using sut_type = result<void,not_copy_or_moveable>;
 
-    SECTION("Expected is not move-constructible") {
+    SECTION("Result is not move-constructible") {
       STATIC_REQUIRE_FALSE(std::is_move_constructible<sut_type>::value);
     }
   }
@@ -3702,7 +3706,7 @@ TEST_CASE("result<void,E>::~result()", "[dtor]") {
 
 TEST_CASE("result<void,E>::operator=(const result& other)", "[assign]") {
   SECTION("E is not nothrow copy constructible") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using sut_type = result<void,std::string>;
 
       STATIC_REQUIRE_FALSE(std::is_copy_assignable<sut_type>::value);
@@ -3710,7 +3714,7 @@ TEST_CASE("result<void,E>::operator=(const result& other)", "[assign]") {
   }
 
   SECTION("E is not copy-assignable") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using sut_type = result<void,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_copy_assignable<sut_type>::value);
@@ -3720,7 +3724,7 @@ TEST_CASE("result<void,E>::operator=(const result& other)", "[assign]") {
   SECTION("E is nothrow copy-constructible") {
     using sut_type = result<void,std::error_code>;
 
-    SECTION("Expected is copy-assignable") {
+    SECTION("Result is copy-assignable") {
       STATIC_REQUIRE(std::is_copy_assignable<sut_type>::value);
     }
     SECTION("Copies the state of 'other'") {
@@ -3758,10 +3762,10 @@ TEST_CASE("result<void,E>::operator=(const result& other)", "[assign]") {
   SECTION("E is trivial copy-constructible and copy-assignable") {
     using sut_type = result<void, int>;
 
-    SECTION("Expected is copy-assignable") {
+    SECTION("Result is copy-assignable") {
       STATIC_REQUIRE(std::is_copy_assignable<sut_type>::value);
     }
-    SECTION("Expected is trivial copy-assignable") {
+    SECTION("Result is trivial copy-assignable") {
       STATIC_REQUIRE(std::is_trivially_copy_assignable<sut_type>::value);
     }
   }
@@ -3769,7 +3773,7 @@ TEST_CASE("result<void,E>::operator=(const result& other)", "[assign]") {
 
 TEST_CASE("result<void,E>::operator=(result&& other)", "[assign]") {
   SECTION("E is not nothrow move constructible") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using sut_type = result<void,throwing<std::string>>;
 
       STATIC_REQUIRE_FALSE(std::is_move_assignable<sut_type>::value);
@@ -3777,7 +3781,7 @@ TEST_CASE("result<void,E>::operator=(result&& other)", "[assign]") {
   }
 
   SECTION("E is not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using sut_type = result<void,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_move_assignable<sut_type>::value);
@@ -3787,7 +3791,7 @@ TEST_CASE("result<void,E>::operator=(result&& other)", "[assign]") {
   SECTION("E is nothrow move-constructible") {
     using sut_type = result<void,move_only<std::error_code>>;
 
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       STATIC_REQUIRE(std::is_move_assignable<sut_type>::value);
     }
     SECTION("Copies the state of 'other'") {
@@ -3825,10 +3829,10 @@ TEST_CASE("result<void,E>::operator=(result&& other)", "[assign]") {
   SECTION("E is trivial move-constructible and move-assignable") {
     using sut_type = result<void, int>;
 
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       STATIC_REQUIRE(std::is_move_assignable<sut_type>::value);
     }
-    SECTION("Expected is trivial move-assignable") {
+    SECTION("Result is trivial move-assignable") {
       STATIC_REQUIRE(std::is_trivially_move_assignable<sut_type>::value);
     }
   }
@@ -3836,7 +3840,7 @@ TEST_CASE("result<void,E>::operator=(result&& other)", "[assign]") {
 
 TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
   SECTION("E is not nothrow copy constructible") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using copy_type = result<int,const char*>;
       using sut_type = result<void,std::string>;
 
@@ -3845,7 +3849,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
   }
 
   SECTION("E is not copy-assignable") {
-    SECTION("Expected is not copy-assignable") {
+    SECTION("Result is not copy-assignable") {
       using copy_type = result<int,const char*>;
       using sut_type = result<void,not_copy_or_moveable>;
 
@@ -3857,11 +3861,37 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
     using copy_type = result<int,std::io_errc>;
     using sut_type = result<void,std::error_code>;
 
-    SECTION("Expected is copy-assignable") {
+    SECTION("Result is copy-assignable") {
       STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
     }
-    SECTION("Copies the state of 'other'") {
-      SECTION("Original contains value") {
+    SECTION("Other contains value") {
+      SECTION("Sut contains value") {
+        const auto output = 42;
+        const copy_type other{output};
+        sut_type sut{};
+
+        sut = other;
+
+        SECTION("Result contains value") {
+          REQUIRE(sut.has_value());
+        }
+      }
+      SECTION("Sut contains error") {
+        const auto output = 42;
+        const copy_type other{output};
+        sut_type sut{
+          fail(std::io_errc::stream)
+        };
+
+        sut = other;
+
+        SECTION("Result contains value") {
+          REQUIRE(sut.has_value());
+        }
+      }
+    }
+    SECTION("Other contains error") {
+      SECTION("Sut contains value") {
         const auto output = fail(std::io_errc::stream);
         const copy_type other{output};
         sut_type sut{};
@@ -3875,9 +3905,9 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
           REQUIRE(output == sut);
         }
       }
-      SECTION("Original contains error") {
+      SECTION("Sut contains error") {
         const auto output = fail(std::io_errc::stream);
-        const sut_type other{output};
+        const copy_type other{output};
         sut_type sut{fail(std::io_errc{})};
 
         sut = other;
@@ -3895,7 +3925,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
 
 TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
   SECTION("E is not nothrow move constructible") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<int,const char*>;
       using sut_type = result<void,std::string>;
 
@@ -3904,7 +3934,7 @@ TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
   }
 
   SECTION("E is not move-assignable") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = result<int,const char*>;
       using sut_type = result<void,not_copy_or_moveable>;
 
@@ -3916,7 +3946,7 @@ TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
     using copy_type = result<int,std::io_errc>;
     using sut_type = result<void,move_only<std::error_code>>;
 
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
     }
     SECTION("Copies the state of 'other'") {
@@ -3954,15 +3984,15 @@ TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
 
 TEST_CASE("result<void,E>::operator=(const failure<E2>&)", "[assign]") {
   SECTION("E cant be constructed or assigned from E2") {
-    SECTION("Expected cannot be assigned from E2") {
+    SECTION("Result cannot be assigned from E2") {
       using copy_type = failure<not_copy_or_moveable>;
       using sut_type  = result<void,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,const copy_type&>::value);
     }
   }
-  SECTION("E is not nothrow move constructible from E2") {
-    SECTION("Expected is not move-assignable") {
+  SECTION("E is not nothrow copy constructible from E2") {
+    SECTION("Result is not copy-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<void,throwing<std::string>>;
 
@@ -3970,8 +4000,8 @@ TEST_CASE("result<void,E>::operator=(const failure<E2>&)", "[assign]") {
     }
   }
 
-  SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
-    SECTION("Expected is move-assignable") {
+  SECTION("E is not nothrow copy constructible from E2, but is nothrow-move constructible") {
+    SECTION("Result is copy-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<void,std::string>;
 
@@ -3986,26 +4016,41 @@ TEST_CASE("result<void,E>::operator=(const failure<E2>&)", "[assign]") {
     using copy_type = failure<long>;
     using sut_type = result<void, int>;
 
-    const auto original = copy_type{42};
-    sut_type sut{};
+    SECTION("Sut contains value") {
+      const auto original = copy_type{42};
+      sut_type sut{};
 
-    sut = original;
+      sut = original;
 
-    SECTION("Expected can be assigned") {
+      SECTION("Contains an error") {
+        REQUIRE(sut.has_error());
+      }
+      SECTION("Error is changed to input") {
+        REQUIRE(sut == original);
+      }
+    }
+    SECTION("Sut contains error") {
+      const auto original = copy_type{42};
+      sut_type sut{fail(0)};
+
+      sut = original;
+
+      SECTION("Contains an error") {
+        REQUIRE(sut.has_error());
+      }
+      SECTION("Error is changed to input") {
+        REQUIRE(sut == original);
+      }
+    }
+    SECTION("Result can be assigned") {
       STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
-    }
-    SECTION("Contains an error") {
-      REQUIRE(sut.has_error());
-    }
-    SECTION("Error is changed to input") {
-      REQUIRE(sut == original);
     }
   }
 }
 
 TEST_CASE("result<void,E>::operator=(failure<E2>&&)", "[assign]") {
   SECTION("E cant be constructed or assigned from E2") {
-    SECTION("Expected cannot be assigned from E2") {
+    SECTION("Result cannot be assigned from E2") {
       using copy_type = failure<not_copy_or_moveable>;
       using sut_type  = result<void,not_copy_or_moveable>;
 
@@ -4013,7 +4058,7 @@ TEST_CASE("result<void,E>::operator=(failure<E2>&&)", "[assign]") {
     }
   }
   SECTION("E is not nothrow move constructible from E2") {
-    SECTION("Expected is not move-assignable") {
+    SECTION("Result is not move-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<void,throwing<std::string>>;
 
@@ -4022,7 +4067,7 @@ TEST_CASE("result<void,E>::operator=(failure<E2>&&)", "[assign]") {
   }
 
   SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
-    SECTION("Expected is move-assignable") {
+    SECTION("Result is move-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<void,std::string>;
 
@@ -4034,23 +4079,41 @@ TEST_CASE("result<void,E>::operator=(failure<E2>&&)", "[assign]") {
   }
 
   SECTION("E can be constructed and assigned from E2") {
-    using copy_type = failure<long>;
-    using sut_type = result<void, int>;
+    using copy_type = failure<std::string>;
+    using sut_type = result<void, move_only<std::string>>;
 
-    auto other = copy_type{42};
-    const auto original = other;
-    sut_type sut{};
+    SECTION("Sut contains value") {
+      auto other = copy_type{"42"};
+      const auto original = other;
+      sut_type sut{};
 
-    sut = std::move(other);
+      sut = std::move(other);
 
-    SECTION("Expected can be assigned") {
+      SECTION("Contains an error") {
+        REQUIRE(sut.has_error());
+      }
+      SECTION("Error is changed to input") {
+        REQUIRE(sut == original);
+      }
+    }
+
+    SECTION("Sut contains error") {
+      auto other = copy_type{"42"};
+      const auto original = other;
+      sut_type sut{fail("")};
+
+      sut = std::move(other);
+
+      SECTION("Contains an error") {
+        REQUIRE(sut.has_error());
+      }
+      SECTION("Error is changed to input") {
+        REQUIRE(sut == original);
+      }
+    }
+
+    SECTION("Result can be assigned") {
       STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
-    }
-    SECTION("Contains an error") {
-      REQUIRE(sut.has_error());
-    }
-    SECTION("Error is changed to input") {
-      REQUIRE(sut == original);
     }
   }
 }
@@ -4112,7 +4175,7 @@ TEST_CASE("result<void,E>::has_error()", "[observers]") {
 
 //-----------------------------------------------------------------------------
 
-TEST_CASE("result<void,E>::value()", "[observers]") {
+TEST_CASE("result<void,E>::value() const &", "[observers]") {
   SECTION("result contains a value") {
     SECTION("Does nothing") {
       auto sut = result<void, int>{};
@@ -4125,6 +4188,23 @@ TEST_CASE("result<void,E>::value()", "[observers]") {
       auto sut = result<void, int>{fail(42)};
 
       REQUIRE_THROWS_AS(sut.value(), bad_result_access<int>);
+    }
+  }
+}
+
+TEST_CASE("result<void,E>::value() &&", "[observers]") {
+  SECTION("result contains a value") {
+    SECTION("Does nothing") {
+      auto sut = result<void, move_only<std::string>>{};
+
+      REQUIRE_NOTHROW(std::move(sut).value());
+    }
+  }
+  SECTION("result contains an error") {
+    SECTION("Throws bad_result_access") {
+      auto sut = result<void, move_only<std::string>>{fail("Hello world")};
+
+      REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access<move_only<std::string>>);
     }
   }
 }
@@ -4469,7 +4549,7 @@ TEST_CASE("result<void,E>::map(Fn&&) &&", "[monadic]") {
   }
 }
 
-TEST_CASE("result<void,E>::map_error(Fn&&) const", "[monadic]") {
+TEST_CASE("result<void,E>::map_error(Fn&&) const &", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Maps the input") {
       auto sut = result<void,std::io_errc>{};
@@ -4487,6 +4567,32 @@ TEST_CASE("result<void,E>::map_error(Fn&&) const", "[monadic]") {
       auto sut = result<void,std::io_errc>{error};
 
       const auto output = sut.map_error([](std::io_errc e){
+        return std::error_code{e};
+      });
+
+      REQUIRE(output == error);
+    }
+  }
+}
+
+TEST_CASE("result<void,E>::map_error(Fn&&) &&", "[monadic]") {
+  SECTION("result contains a value") {
+    SECTION("Maps the input") {
+      auto sut = result<void,move_only<std::error_code>>{};
+
+      const auto output = std::move(sut).map_error([](move_only<std::error_code> e){
+        return std::error_code{e};
+      });
+
+      REQUIRE(output.has_value());
+    }
+  }
+  SECTION("result contains an error") {
+    SECTION("Maps the error") {
+      const auto error = fail(std::io_errc::stream);
+      auto sut = result<void,move_only<std::error_code>>{error};
+
+      const auto output = std::move(sut).map_error([](move_only<std::error_code> e){
         return std::error_code{e};
       });
 
@@ -5413,7 +5519,7 @@ TEST_CASE("operator>=(const result<T1,E1>&, const U&)", "[compare]") {
       }
     }
   }
-  SECTION("Expected contains an error") {
+  SECTION("Result contains an error") {
     SECTION("returns true") {
       const auto lhs = result<int,std::string>{fail("hello world")};
       const auto rhs = 0l;
@@ -5441,7 +5547,7 @@ TEST_CASE("operator>=(const U&, const result<T1,E1>&)", "[compare]") {
       }
     }
   }
-  SECTION("Expected contains an error") {
+  SECTION("Result contains an error") {
     SECTION("returns true") {
       const auto rhs = result<int,std::string>{fail("hello world")};
       const auto lhs = 0l;
@@ -5469,7 +5575,7 @@ TEST_CASE("operator<=(const result<T1,E1>&, const U&)", "[compare]") {
       }
     }
   }
-  SECTION("Expected contains an error") {
+  SECTION("Result contains an error") {
     SECTION("returns false") {
       const auto lhs = result<int,std::string>{fail("hello world")};
       const auto rhs = 9l;
@@ -5497,7 +5603,7 @@ TEST_CASE("operator<=(const U&, const result<T1,E1>&)", "[compare]") {
       }
     }
   }
-  SECTION("Expected contains an error") {
+  SECTION("Result contains an error") {
     SECTION("returns true") {
       const auto rhs = result<int,std::string>{fail("hello world")};
       const auto lhs = 9l;
@@ -5525,7 +5631,7 @@ TEST_CASE("operator>(const result<T1,E1>&, const U&)", "[compare]") {
       }
     }
   }
-  SECTION("Expected contains an error") {
+  SECTION("Result contains an error") {
     SECTION("returns false") {
       const auto lhs = result<int,std::string>{fail("hello world")};
       const auto rhs = 0l;
@@ -5553,7 +5659,7 @@ TEST_CASE("operator>(const U&, const result<T1,E1>&)", "[compare]") {
       }
     }
   }
-  SECTION("Expected contains an error") {
+  SECTION("Result contains an error") {
     SECTION("returns true") {
       const auto rhs = result<int,std::string>{fail("hello world")};
       const auto lhs = 0l;
@@ -5581,7 +5687,7 @@ TEST_CASE("operator<(const result<T1,E1>&, const U&)", "[compare]") {
       }
     }
   }
-  SECTION("Expected contains an error") {
+  SECTION("Result contains an error") {
     SECTION("returns false") {
       const auto lhs = result<int,std::string>{fail("hello world")};
       const auto rhs = 9l;
@@ -5609,7 +5715,7 @@ TEST_CASE("operator<(const U&, const result<T1,E1>&)", "[compare]") {
       }
     }
   }
-  SECTION("Expected contains an error") {
+  SECTION("Result contains an error") {
     SECTION("returns false") {
       const auto rhs = result<int,std::string>{fail("hello world")};
       const auto lhs = 9l;
