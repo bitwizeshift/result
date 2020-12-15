@@ -3860,8 +3860,34 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
     SECTION("Expected is copy-assignable") {
       STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
     }
-    SECTION("Copies the state of 'other'") {
-      SECTION("Original contains value") {
+    SECTION("Other contains value") {
+      SECTION("Sut contains value") {
+        const auto output = 42;
+        const copy_type other{output};
+        sut_type sut{};
+
+        sut = other;
+
+        SECTION("Result contains value") {
+          REQUIRE(sut.has_value());
+        }
+      }
+      SECTION("Sut contains error") {
+        const auto output = 42;
+        const copy_type other{output};
+        sut_type sut{
+          fail(std::io_errc::stream)
+        };
+
+        sut = other;
+
+        SECTION("Result contains value") {
+          REQUIRE(sut.has_value());
+        }
+      }
+    }
+    SECTION("Other contains error") {
+      SECTION("Sut contains value") {
         const auto output = fail(std::io_errc::stream);
         const copy_type other{output};
         sut_type sut{};
@@ -3875,7 +3901,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
           REQUIRE(output == sut);
         }
       }
-      SECTION("Original contains error") {
+      SECTION("Sut contains error") {
         const auto output = fail(std::io_errc::stream);
         const sut_type other{output};
         sut_type sut{fail(std::io_errc{})};
@@ -3961,8 +3987,8 @@ TEST_CASE("result<void,E>::operator=(const failure<E2>&)", "[assign]") {
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,const copy_type&>::value);
     }
   }
-  SECTION("E is not nothrow move constructible from E2") {
-    SECTION("Expected is not move-assignable") {
+  SECTION("E is not nothrow copy constructible from E2") {
+    SECTION("Expected is not copy-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<void,throwing<std::string>>;
 
@@ -3970,8 +3996,8 @@ TEST_CASE("result<void,E>::operator=(const failure<E2>&)", "[assign]") {
     }
   }
 
-  SECTION("E is not nothrow move constructible from E2, but is nothrow-move constructible") {
-    SECTION("Expected is move-assignable") {
+  SECTION("E is not nothrow copy constructible from E2, but is nothrow-move constructible") {
+    SECTION("Expected is copy-assignable") {
       using copy_type = failure<const char*>;
       using sut_type = result<void,std::string>;
 
@@ -3986,19 +4012,34 @@ TEST_CASE("result<void,E>::operator=(const failure<E2>&)", "[assign]") {
     using copy_type = failure<long>;
     using sut_type = result<void, int>;
 
-    const auto original = copy_type{42};
-    sut_type sut{};
+    SECTION("Sut contains value") {
+      const auto original = copy_type{42};
+      sut_type sut{};
 
-    sut = original;
+      sut = original;
 
-    SECTION("Expected can be assigned") {
+      SECTION("Contains an error") {
+        REQUIRE(sut.has_error());
+      }
+      SECTION("Error is changed to input") {
+        REQUIRE(sut == original);
+      }
+    }
+    SECTION("Sut contains error") {
+      const auto original = copy_type{42};
+      sut_type sut{fail(0)};
+
+      sut = original;
+
+      SECTION("Contains an error") {
+        REQUIRE(sut.has_error());
+      }
+      SECTION("Error is changed to input") {
+        REQUIRE(sut == original);
+      }
+    }
+    SECTION("Result can be assigned") {
       STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
-    }
-    SECTION("Contains an error") {
-      REQUIRE(sut.has_error());
-    }
-    SECTION("Error is changed to input") {
-      REQUIRE(sut == original);
     }
   }
 }
@@ -4034,23 +4075,41 @@ TEST_CASE("result<void,E>::operator=(failure<E2>&&)", "[assign]") {
   }
 
   SECTION("E can be constructed and assigned from E2") {
-    using copy_type = failure<long>;
-    using sut_type = result<void, int>;
+    using copy_type = failure<std::string>;
+    using sut_type = result<void, move_only<std::string>>;
 
-    auto other = copy_type{42};
-    const auto original = other;
-    sut_type sut{};
+    SECTION("Sut contains value") {
+      auto other = copy_type{"42"};
+      const auto original = other;
+      sut_type sut{};
 
-    sut = std::move(other);
+      sut = std::move(other);
+
+      SECTION("Contains an error") {
+        REQUIRE(sut.has_error());
+      }
+      SECTION("Error is changed to input") {
+        REQUIRE(sut == original);
+      }
+    }
+
+    SECTION("Sut contains error") {
+      auto other = copy_type{"42"};
+      const auto original = other;
+      sut_type sut{fail("")};
+
+      sut = std::move(other);
+
+      SECTION("Contains an error") {
+        REQUIRE(sut.has_error());
+      }
+      SECTION("Error is changed to input") {
+        REQUIRE(sut == original);
+      }
+    }
 
     SECTION("Expected can be assigned") {
       STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
-    }
-    SECTION("Contains an error") {
-      REQUIRE(sut.has_error());
-    }
-    SECTION("Error is changed to input") {
-      REQUIRE(sut == original);
     }
   }
 }
