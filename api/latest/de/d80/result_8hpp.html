@@ -193,18 +193,18 @@ template&lt;typename T &gt; </td></tr>
 template&lt;typename E , typename E2 &gt; </td></tr>
 <tr class="memitem:a96d745741e3e3435adf2970c6994d286"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::failure_is_value_convertible</b> = std::integral_constant&lt; bool,(std::is_constructible&lt; E, E2 &amp;&amp; &gt;::value &amp;&amp;!std::is_same&lt; typename std::decay&lt; E2 &gt;::type, in_place_t &gt;::value &amp;&amp;!is_failure&lt; typename std::decay&lt; E2 &gt;::type &gt;::value &amp;&amp;!is_result&lt; typename std::decay&lt; E2 &gt;::type &gt;::value)&gt;</td></tr>
 <tr class="separator:a96d745741e3e3435adf2970c6994d286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5375c153f4e0bb5ecf53a30273307a75"><td class="memTemplParams" colspan="2"><a id="a5375c153f4e0bb5ecf53a30273307a75"></a>
+<tr class="memitem:a50fec02dcd896d91736ead433d8c5006"><td class="memTemplParams" colspan="2"><a id="a50fec02dcd896d91736ead433d8c5006"></a>
 template&lt;typename E , typename E2 &gt; </td></tr>
-<tr class="memitem:a5375c153f4e0bb5ecf53a30273307a75"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::failure_is_explicit_value_convertible</b> = std::integral_constant&lt; bool,(failure_is_value_convertible&lt; E, E2 &gt;::value &amp;&amp;!std::is_convertible&lt; E2 &amp;&amp;, E &gt;::value)&gt;</td></tr>
-<tr class="separator:a5375c153f4e0bb5ecf53a30273307a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cd608d5843f18ab71cd2c7698748600"><td class="memTemplParams" colspan="2"><a id="a9cd608d5843f18ab71cd2c7698748600"></a>
+<tr class="memitem:a50fec02dcd896d91736ead433d8c5006"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::failure_is_explicit_value_convertible</b> = std::integral_constant&lt; bool,(failure_is_value_convertible&lt; E, E2 &gt;::value &amp;&amp;!std::is_convertible&lt; E2, E &gt;::value)&gt;</td></tr>
+<tr class="separator:a50fec02dcd896d91736ead433d8c5006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83d4779514c4fe6b5f1bb4aa127b3403"><td class="memTemplParams" colspan="2"><a id="a83d4779514c4fe6b5f1bb4aa127b3403"></a>
 template&lt;typename E , typename E2 &gt; </td></tr>
-<tr class="memitem:a9cd608d5843f18ab71cd2c7698748600"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::failure_is_implicit_value_convertible</b> = std::integral_constant&lt; bool,(failure_is_value_convertible&lt; E, E2 &gt;::value &amp;&amp;std::is_convertible&lt; E2 &amp;&amp;, E &gt;::value)&gt;</td></tr>
-<tr class="separator:a9cd608d5843f18ab71cd2c7698748600"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8df9edf1e780be46ca616ae12119c25"><td class="memTemplParams" colspan="2"><a id="ae8df9edf1e780be46ca616ae12119c25"></a>
+<tr class="memitem:a83d4779514c4fe6b5f1bb4aa127b3403"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::failure_is_implicit_value_convertible</b> = std::integral_constant&lt; bool,(failure_is_value_convertible&lt; E, E2 &gt;::value &amp;&amp;std::is_convertible&lt; E2, E &gt;::value)&gt;</td></tr>
+<tr class="separator:a83d4779514c4fe6b5f1bb4aa127b3403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b6b681e2426ba858a36dd4b0543136"><td class="memTemplParams" colspan="2"><a id="ae5b6b681e2426ba858a36dd4b0543136"></a>
 template&lt;typename E , typename E2 &gt; </td></tr>
-<tr class="memitem:ae8df9edf1e780be46ca616ae12119c25"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::failure_is_value_assignable</b> = std::integral_constant&lt; bool,(!is_result&lt; typename std::decay&lt; E2 &gt;::type &gt;::value &amp;&amp;!is_failure&lt; typename std::decay&lt; E2 &gt;::type &gt;::value &amp;&amp;std::is_assignable&lt; wrapped_result_type&lt; E &gt;, E2 &gt;::value)&gt;</td></tr>
-<tr class="separator:ae8df9edf1e780be46ca616ae12119c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b6b681e2426ba858a36dd4b0543136"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::failure_is_value_assignable</b> = std::integral_constant&lt; bool,(!is_result&lt; typename std::decay&lt; E2 &gt;::type &gt;::value &amp;&amp;!is_failure&lt; typename std::decay&lt; E2 &gt;::type &gt;::value &amp;&amp;std::is_assignable&lt; wrapped_result_type&lt; E &gt; &amp;, E2 &gt;::value)&gt;</td></tr>
+<tr class="separator:ae5b6b681e2426ba858a36dd4b0543136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae484569d6c17fb64bbd962593a8f16a0"><td class="memTemplParams" colspan="2"><a id="ae484569d6c17fb64bbd962593a8f16a0"></a>
 template&lt;bool Condition, typename Base &gt; </td></tr>
 <tr class="memitem:ae484569d6c17fb64bbd962593a8f16a0"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::conditionally_nest_type</b> = typename std::conditional&lt; Condition, typename Base::base_type, Base &gt;::type</td></tr>
@@ -297,14 +297,14 @@ template&lt;typename T1 , typename E1 , typename T2 , typename E2 &gt; </td></tr
 template&lt;typename T1 , typename E1 , typename T2 , typename E2 &gt; </td></tr>
 <tr class="memitem:a870cd9acb860463721fba50a82d086eb"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::result_is_move_convert_assignable</b> = std::integral_constant&lt; bool,(!result_is_convert_assignable&lt; T1, E1, T2, E2 &gt;::value &amp;&amp;std::is_nothrow_constructible&lt; T1, T2 &amp;&amp; &gt;::value &amp;&amp;std::is_assignable&lt; T1 &amp;, T2 &amp;&amp; &gt;::value &amp;&amp;std::is_nothrow_constructible&lt; E1, E2 &amp;&amp; &gt;::value &amp;&amp;std::is_assignable&lt; E1 &amp;, E2 &amp;&amp; &gt;::value)&gt;</td></tr>
 <tr class="separator:a870cd9acb860463721fba50a82d086eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6474d878fdc142f78f0fd65398a8919c"><td class="memTemplParams" colspan="2"><a id="a6474d878fdc142f78f0fd65398a8919c"></a>
+<tr class="memitem:a43c24f4b8daaefb62b80df1cc5d974f5"><td class="memTemplParams" colspan="2"><a id="a43c24f4b8daaefb62b80df1cc5d974f5"></a>
 template&lt;typename T , typename U &gt; </td></tr>
-<tr class="memitem:a6474d878fdc142f78f0fd65398a8919c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::result_is_value_assignable</b> = std::integral_constant&lt; bool,(!is_result&lt; typename std::decay&lt; U &gt;::type &gt;::value &amp;&amp;!is_failure&lt; typename std::decay&lt; U &gt;::type &gt;::value &amp;&amp;std::is_nothrow_constructible&lt; T, U &gt;::value &amp;&amp;std::is_assignable&lt; wrapped_result_type&lt; T &gt;, U &gt;::value &amp;&amp;(!std::is_same&lt; typename std::decay&lt; U &gt;::type, typename std::decay&lt; T &gt;::type &gt;::value||!std::is_scalar&lt; T &gt;::value))&gt;</td></tr>
-<tr class="separator:a6474d878fdc142f78f0fd65398a8919c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77cb611e0dab0bd968d5080e5c42f98e"><td class="memTemplParams" colspan="2"><a id="a77cb611e0dab0bd968d5080e5c42f98e"></a>
+<tr class="memitem:a43c24f4b8daaefb62b80df1cc5d974f5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::result_is_value_assignable</b> = std::integral_constant&lt; bool,(!is_result&lt; typename std::decay&lt; U &gt;::type &gt;::value &amp;&amp;!is_failure&lt; typename std::decay&lt; U &gt;::type &gt;::value &amp;&amp;std::is_nothrow_constructible&lt; T, U &gt;::value &amp;&amp;std::is_assignable&lt; wrapped_result_type&lt; T &gt; &amp;, U &gt;::value &amp;&amp;(!std::is_same&lt; typename std::decay&lt; U &gt;::type, typename std::decay&lt; T &gt;::type &gt;::value||!std::is_scalar&lt; T &gt;::value))&gt;</td></tr>
+<tr class="separator:a43c24f4b8daaefb62b80df1cc5d974f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba61b773c31e69de4edb98433d255cd"><td class="memTemplParams" colspan="2"><a id="a4ba61b773c31e69de4edb98433d255cd"></a>
 template&lt;typename E , typename E2 &gt; </td></tr>
-<tr class="memitem:a77cb611e0dab0bd968d5080e5c42f98e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::result_is_failure_assignable</b> = std::integral_constant&lt; bool,(std::is_nothrow_constructible&lt; E, E2 &gt;::value &amp;&amp;std::is_assignable&lt; E, E2 &gt;::value)&gt;</td></tr>
-<tr class="separator:a77cb611e0dab0bd968d5080e5c42f98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba61b773c31e69de4edb98433d255cd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cpp::bitwizeshift::detail::result_is_failure_assignable</b> = std::integral_constant&lt; bool,(std::is_nothrow_constructible&lt; E, E2 &gt;::value &amp;&amp;std::is_assignable&lt; E &amp;, E2 &gt;::value)&gt;</td></tr>
+<tr class="separator:a4ba61b773c31e69de4edb98433d255cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -380,6 +380,10 @@ template&lt;typename E1 , typename E2 &gt; </td></tr>
 <tr class="memitem:ab8fbd84761c223a2d38dbd99221264ec"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#ab8fbd84761c223a2d38dbd99221264ec">cpp::bitwizeshift::fail</a> (Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, Args... &gt;::value) -&gt; failure&lt; E &gt;</td></tr>
 <tr class="memdesc:ab8fbd84761c223a2d38dbd99221264ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a failure type from a series of arguments.  <a href="../../de/d80/result_8hpp.html#ab8fbd84761c223a2d38dbd99221264ec">More...</a><br /></td></tr>
 <tr class="separator:ab8fbd84761c223a2d38dbd99221264ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38c51eeeb0fc0edf901544820d2287b7"><td class="memTemplParams" colspan="2">template&lt;typename E , typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,std::initializer_list&lt;U&gt;,Args...&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a38c51eeeb0fc0edf901544820d2287b7"><td class="memTemplItemLeft" align="right" valign="top">RESULT_WARN_UNUSED constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#a38c51eeeb0fc0edf901544820d2287b7">cpp::bitwizeshift::fail</a> (std::initializer_list&lt; U &gt; ilist, Args &amp;&amp;...args) noexcept(std::is_nothrow_constructible&lt; E, std::initializer_list&lt; U &gt;, Args... &gt;::value) -&gt; failure&lt; E &gt;</td></tr>
+<tr class="memdesc:a38c51eeeb0fc0edf901544820d2287b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a failure type from an initializer list and series of arguments.  <a href="../../de/d80/result_8hpp.html#a38c51eeeb0fc0edf901544820d2287b7">More...</a><br /></td></tr>
+<tr class="separator:a38c51eeeb0fc0edf901544820d2287b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af77bd267991039468c280748e8f3ae5f"><td class="memTemplParams" colspan="2">template&lt;typename E &gt; </td></tr>
 <tr class="memitem:af77bd267991039468c280748e8f3ae5f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d80/result_8hpp.html#af77bd267991039468c280748e8f3ae5f">cpp::bitwizeshift::swap</a> (failure&lt; E &gt; &amp;lhs, failure&lt; E &gt; &amp;rhs) noexcept(std::is_nothrow_move_constructible&lt; E &gt;::value) -&gt; void</td></tr>
 <tr class="memdesc:af77bd267991039468c280748e8f3ae5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps the contents of two failure values.  <a href="../../de/d80/result_8hpp.html#af77bd267991039468c280748e8f3ae5f">More...</a><br /></td></tr>
@@ -583,7 +587,7 @@ RESULT_CPP17_INLINE constexpr auto&#160;</td><td class="memItemRight" valign="bo
 <p class="definition">Definition in file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="file_ae229fb3e62d7f65fe6b020e16c8c8a30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_ae229fb3e62d7f65fe6b020e16c8c8a30">&#9670;&nbsp;</a></span>fail() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ae229fb3e62d7f65fe6b020e16c8c8a30">&#9670;&nbsp;</a></span>fail() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -620,7 +624,7 @@ template&lt;typename E &gt; </div>
 </div>
 </div>
 <a id="file_a8a420f08e680cac5329ed7685e9c3406"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a8a420f08e680cac5329ed7685e9c3406">&#9670;&nbsp;</a></span>fail() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a8a420f08e680cac5329ed7685e9c3406">&#9670;&nbsp;</a></span>fail() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -657,7 +661,7 @@ template&lt;typename E &gt; </div>
 </div>
 </div>
 <a id="file_ab8fbd84761c223a2d38dbd99221264ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_ab8fbd84761c223a2d38dbd99221264ec">&#9670;&nbsp;</a></span>fail() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ab8fbd84761c223a2d38dbd99221264ec">&#9670;&nbsp;</a></span>fail() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -683,6 +687,59 @@ template&lt;typename E , typename... Args, typename  = typename std::enable_if&l
 </div><div class="memdoc">
 
 <p>Constructs a failure type from a series of arguments. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">E</td><td>the failure type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>the arguments to forward to E's constructor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a constructed failure type </dd></dl>
+
+</div>
+</div>
+<a id="file_a38c51eeeb0fc0edf901544820d2287b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a38c51eeeb0fc0edf901544820d2287b7">&#9670;&nbsp;</a></span>fail() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename E , typename U , typename... Args, typename  = typename std::enable_if&lt;std::is_constructible&lt;E,std::initializer_list&lt;U&gt;,Args...&gt;::value&gt;::type&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RESULT_WARN_UNUSED constexpr auto cpp::bitwizeshift::fail </td>
+          <td>(</td>
+          <td class="paramtype">std::initializer_list&lt; U &gt;&#160;</td>
+          <td class="paramname"><em>ilist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const -&gt;  <a class="el" href="../../dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html">failure</a>&lt; E &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a failure type from an initializer list and series of arguments. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">E</td><td>the failure type </td></tr>

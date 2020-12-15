@@ -150,11 +150,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2f5438c1aa9c78cb00869c6fe52e6f02"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a2f5438c1aa9c78cb00869c6fe52e6f02">operator=</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;&amp;other) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;=default</td></tr>
 <tr class="memdesc:a2f5438c1aa9c78cb00869c6fe52e6f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assigns the result stored in <code>other</code>.  <a href="#a2f5438c1aa9c78cb00869c6fe52e6f02">More...</a><br /></td></tr>
 <tr class="separator:a2f5438c1aa9c78cb00869c6fe52e6f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fd614bccbd9611d76c279e18d1da19d"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;std::is_nothrow_constructible&lt;E,const E2&amp;&gt;::value &amp;&amp;                                                 std::is_assignable&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a9fd614bccbd9611d76c279e18d1da19d"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;std::is_nothrow_constructible&lt;E,const E2&amp;&gt;::value &amp;&amp;                                                 std::is_assignable&lt;E&amp;,const E2&amp;&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:a9fd614bccbd9611d76c279e18d1da19d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a9fd614bccbd9611d76c279e18d1da19d">operator=</a> (const <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;other) noexcept(std::is_nothrow_assignable&lt; E, const E2 &amp;&gt;::<a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a66b291f3a022576fbc4096588dd4bb11">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
 <tr class="memdesc:a9fd614bccbd9611d76c279e18d1da19d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy-converts the state of <code>other</code>.  <a href="#a9fd614bccbd9611d76c279e18d1da19d">More...</a><br /></td></tr>
 <tr class="separator:a9fd614bccbd9611d76c279e18d1da19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8b90b9c4d1d579cc8eb7a90a55d03d8"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;std::is_nothrow_constructible&lt;E,E2&amp;&amp;&gt;::value &amp;&amp;                                                 std::is_assignable&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:af8b90b9c4d1d579cc8eb7a90a55d03d8"><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;std::is_nothrow_constructible&lt;E,E2&amp;&amp;&gt;::value &amp;&amp;                                                 std::is_assignable&lt;E&amp;,E2&amp;&amp;&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:af8b90b9c4d1d579cc8eb7a90a55d03d8"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#af8b90b9c4d1d579cc8eb7a90a55d03d8">operator=</a> (<a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a>&lt; T2, E2 &gt; &amp;&amp;other) noexcept(std::is_nothrow_assignable&lt; E, E2 &amp;&amp;&gt;::<a class="el" href="../../df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html#a66b291f3a022576fbc4096588dd4bb11">value</a>) -&gt; <a class="el" href="../../db/d9a/classcpp_1_1bitwizeshift_1_1result.html">result</a> &amp;</td></tr>
 <tr class="memdesc:af8b90b9c4d1d579cc8eb7a90a55d03d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move-converts the state of <code>other</code>.  <a href="#af8b90b9c4d1d579cc8eb7a90a55d03d8">More...</a><br /></td></tr>
 <tr class="separator:af8b90b9c4d1d579cc8eb7a90a55d03d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -277,7 +277,7 @@ class cpp::bitwizeshift::result&lt; void, E &gt;</h3>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l02649">2649</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d80/result_8hpp_source.html#l02662">2662</a> of file <a class="el" href="../../de/d80/result_8hpp_source.html">result.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7440f2c97a823f07a4f95aa2f04f8c1f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7440f2c97a823f07a4f95aa2f04f8c1f">&#9670;&nbsp;</a></span>result() <span class="overload">[1/10]</span></h2>
@@ -1451,7 +1451,7 @@ This assignment operator is defined as trivial if the following conditions are a
 <div class="memtemplate">
 template&lt;typename E &gt; </div>
 <div class="memtemplate">
-template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;std::is_nothrow_constructible&lt;E,const E2&amp;&gt;::value &amp;&amp;                                                 std::is_assignable&lt;E,const E2&amp;&gt;::value&gt;::type&gt; </div>
+template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;std::is_nothrow_constructible&lt;E,const E2&amp;&gt;::value &amp;&amp;                                                 std::is_assignable&lt;E&amp;,const E2&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1497,7 +1497,7 @@ template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;s
 <div class="memtemplate">
 template&lt;typename E &gt; </div>
 <div class="memtemplate">
-template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;std::is_nothrow_constructible&lt;E,E2&amp;&amp;&gt;::value &amp;&amp;                                                 std::is_assignable&lt;E,E2&amp;&amp;&gt;::value&gt;::type&gt; </div>
+template&lt;typename T2 , typename E2 , typename  = typename std::enable_if&lt;std::is_nothrow_constructible&lt;E,E2&amp;&amp;&gt;::value &amp;&amp;                                                 std::is_assignable&lt;E&amp;,E2&amp;&amp;&gt;::value&gt;::type&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
