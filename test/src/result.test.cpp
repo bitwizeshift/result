@@ -4175,7 +4175,7 @@ TEST_CASE("result<void,E>::has_error()", "[observers]") {
 
 //-----------------------------------------------------------------------------
 
-TEST_CASE("result<void,E>::value()", "[observers]") {
+TEST_CASE("result<void,E>::value() const &", "[observers]") {
   SECTION("result contains a value") {
     SECTION("Does nothing") {
       auto sut = result<void, int>{};
@@ -4188,6 +4188,23 @@ TEST_CASE("result<void,E>::value()", "[observers]") {
       auto sut = result<void, int>{fail(42)};
 
       REQUIRE_THROWS_AS(sut.value(), bad_result_access<int>);
+    }
+  }
+}
+
+TEST_CASE("result<void,E>::value() &&", "[observers]") {
+  SECTION("result contains a value") {
+    SECTION("Does nothing") {
+      auto sut = result<void, move_only<std::string>>{};
+
+      REQUIRE_NOTHROW(std::move(sut).value());
+    }
+  }
+  SECTION("result contains an error") {
+    SECTION("Throws bad_result_access") {
+      auto sut = result<void, move_only<std::string>>{fail("Hello world")};
+
+      REQUIRE_THROWS_AS(std::move(sut).value(), bad_result_access<move_only<std::string>>);
     }
   }
 }
@@ -4532,7 +4549,7 @@ TEST_CASE("result<void,E>::map(Fn&&) &&", "[monadic]") {
   }
 }
 
-TEST_CASE("result<void,E>::map_error(Fn&&) const", "[monadic]") {
+TEST_CASE("result<void,E>::map_error(Fn&&) const &", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Maps the input") {
       auto sut = result<void,std::io_errc>{};
@@ -4550,6 +4567,32 @@ TEST_CASE("result<void,E>::map_error(Fn&&) const", "[monadic]") {
       auto sut = result<void,std::io_errc>{error};
 
       const auto output = sut.map_error([](std::io_errc e){
+        return std::error_code{e};
+      });
+
+      REQUIRE(output == error);
+    }
+  }
+}
+
+TEST_CASE("result<void,E>::map_error(Fn&&) &&", "[monadic]") {
+  SECTION("result contains a value") {
+    SECTION("Maps the input") {
+      auto sut = result<void,move_only<std::error_code>>{};
+
+      const auto output = std::move(sut).map_error([](move_only<std::error_code> e){
+        return std::error_code{e};
+      });
+
+      REQUIRE(output.has_value());
+    }
+  }
+  SECTION("result contains an error") {
+    SECTION("Maps the error") {
+      const auto error = fail(std::io_errc::stream);
+      auto sut = result<void,move_only<std::error_code>>{error};
+
+      const auto output = std::move(sut).map_error([](move_only<std::error_code> e){
         return std::error_code{e};
       });
 
