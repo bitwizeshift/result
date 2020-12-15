@@ -4716,7 +4716,7 @@ auto RESULT_NS_IMPL::result<T,E>::error() const &
   );
 
   return m_storage.storage.m_has_value
-    ? E()
+    ? E{}
     : m_storage.storage.m_error;
 }
 
@@ -4734,7 +4734,7 @@ auto RESULT_NS_IMPL::result<T,E>::error() &&
   );
 
   return m_storage.storage.m_has_value
-    ? E()
+    ? E{}
     : static_cast<E&&>(m_storage.storage.m_error);
 }
 
