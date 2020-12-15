@@ -1,0 +1,50 @@
+name: "Scan Build"
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  scan:
+    runs-on: ubuntu-20.04
+
+    env:
+      build-directory: build
+      artifact-directory: scan-result
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Prepare Environment
+        run: |
+          sudo apt-get install -y clang clang-tools g++-multilib
+          python -m pip install --upgrade pip
+          pip install conan cpp-coveralls
+          cmake -E make_directory ${{env.build-directory}}
+
+      - name: Configure
+        working-directory: ${{env.build-directory}}
+        env:
+          CC: ${{matrix.compiler.cc}}
+          CXX: ${{matrix.compiler.cxx}}
+        run: |
+          conan install ..
+          scan-build -o ../${{env.artifact-directory}} cmake .. -DCMAKE_BUILD_TYPE=${{matrix.build_type}} -DRESULT_COMPILE_UNIT_TESTS=On
+
+      - name: Scan
+        working-directory: ${{env.build-directory}}
+        run: |
+          scan-build -o ../${{env.artifact-directory}} cmake --build .
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Scan Results
+          path: ${{env.artifact-directory}}/
