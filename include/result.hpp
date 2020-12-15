@@ -983,8 +983,8 @@ inline namespace bitwizeshift {
       /// \pre there is no contained value or error at the time of construction
       ///
       /// \param other the other result to construct
-      template <typename Expected>
-      auto construct_error_from_result(Expected&& other) -> void;
+      template <typename Result>
+      auto construct_error_from_result(Result&& other) -> void;
 
       /// \brief Constructs the underlying type from a result object
       ///
@@ -994,8 +994,8 @@ inline namespace bitwizeshift {
       /// \pre there is no contained value or error at the time of construction
       ///
       /// \param other the other result to construct
-      template <typename Expected>
-      auto construct_from_result(Expected&& other) -> void;
+      template <typename Result>
+      auto construct_from_result(Result&& other) -> void;
 
       //-----------------------------------------------------------------------
 
@@ -1007,11 +1007,11 @@ inline namespace bitwizeshift {
       auto assign_error(Error&& error)
         noexcept(std::is_nothrow_assignable<E, Error>::value) -> void;
 
-      template <typename Expected>
-      auto assign_error_from_result(Expected&& other) -> void;
+      template <typename Result>
+      auto assign_error_from_result(Result&& other) -> void;
 
-      template <typename Expected>
-      auto assign_from_result(Expected&& other) -> void;
+      template <typename Result>
+      auto assign_from_result(Result&& other) -> void;
 
       //-----------------------------------------------------------------------
 
@@ -1023,11 +1023,11 @@ inline namespace bitwizeshift {
       auto construct_value_from_result_impl(std::false_type, Value&& value)
         noexcept(std::is_nothrow_constructible<T,Value>::value) -> void;
 
-      template <typename Expected>
-      auto assign_value_from_result_impl(std::true_type, Expected&& other) -> void;
+      template <typename Result>
+      auto assign_value_from_result_impl(std::true_type, Result&& other) -> void;
 
-      template <typename Expected>
-      auto assign_value_from_result_impl(std::false_type, Expected&& other) -> void;
+      template <typename Result>
+      auto assign_value_from_result_impl(std::false_type, Result&& other) -> void;
 
       //-----------------------------------------------------------------------
       // Public Members
@@ -4014,34 +4014,34 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::construct_error(Args&&.
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::construct_error_from_result(
-  Expected&& other
+  Result&& other
 ) -> void
 {
   if (other.storage.m_has_value) {
     construct_value();
   } else {
-    construct_error(detail::forward<Expected>(other).storage.m_error);
+    construct_error(detail::forward<Result>(other).storage.m_error);
   }
 }
 
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::construct_from_result(
-  Expected&& other
+  Result&& other
 ) -> void
 {
   if (other.storage.m_has_value) {
     construct_value_from_result_impl(
       std::is_lvalue_reference<T>{},
-      detail::forward<Expected>(other).storage.m_value
+      detail::forward<Result>(other).storage.m_value
     );
   } else {
-    construct_error(detail::forward<Expected>(other).storage.m_error);
+    construct_error(detail::forward<Result>(other).storage.m_error);
   }
 }
 
@@ -4076,10 +4076,10 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_error(Error&& er
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T, E>::assign_error_from_result(
-  Expected&& other
+  Result&& other
 ) -> void
 {
   if (other.storage.m_has_value != storage.m_has_value) {
@@ -4087,29 +4087,29 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T, E>::assign_error_from_resu
     if (other.storage.m_has_value) {
       construct_value();
     } else {
-      construct_error(detail::forward<Expected>(other).storage.m_error);
+      construct_error(detail::forward<Result>(other).storage.m_error);
     }
   } else if (!other.storage.m_has_value) {
-    storage.m_error = detail::forward<Expected>(other).storage.m_error;
+    storage.m_error = detail::forward<Result>(other).storage.m_error;
   }
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
-auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_from_result(Expected&& other)
+auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_from_result(Result&& other)
   -> void
 {
   if (other.storage.m_has_value != storage.m_has_value) {
     storage.destroy();
-    construct_from_result(detail::forward<Expected>(other));
+    construct_from_result(detail::forward<Result>(other));
   } else if (storage.m_has_value) {
     assign_value_from_result_impl(
       std::is_lvalue_reference<T>{},
-      detail::forward<Expected>(other)
+      detail::forward<Result>(other)
     );
   } else {
-    storage.m_error = detail::forward<Expected>(other).storage.m_error;
+    storage.m_error = detail::forward<Result>(other).storage.m_error;
   }
 }
 
@@ -4144,11 +4144,11 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::construct_value_from_re
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_value_from_result_impl(
   std::true_type,
-  Expected&& other
+  Result&& other
 ) -> void
 {
   // T is a reference; unwrap it
@@ -4156,14 +4156,14 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_value_from_resul
 }
 
 template <typename T, typename E>
-template <typename Expected>
+template <typename Result>
 inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_value_from_result_impl(
   std::false_type,
-  Expected&& other
+  Result&& other
 ) -> void
 {
-  storage.m_value = detail::forward<Expected>(other).storage.m_value;
+  storage.m_value = detail::forward<Result>(other).storage.m_value;
 }
 
 
