@@ -436,7 +436,7 @@ inline namespace bitwizeshift {
     using failure_is_value_assignable = std::integral_constant<bool,(
       !is_result<typename std::decay<E2>::type>::value &&
       !is_failure<typename std::decay<E2>::type>::value &&
-      std::is_assignable<wrapped_result_type<E>,E2>::value
+      std::is_assignable<wrapped_result_type<E>&,E2>::value
     )>;
 
   } // namespace detail
@@ -578,7 +578,7 @@ inline namespace bitwizeshift {
     /// \param other the other failure to copy-convert
     /// \return reference to `(*this)`
     template <typename E2,
-              typename = typename std::enable_if<std::is_assignable<E,const E2&>::value>::type>
+              typename = typename std::enable_if<std::is_assignable<E&,const E2&>::value>::type>
     RESULT_CPP14_CONSTEXPR
     auto operator=(const failure<E2>& other)
       noexcept(std::is_nothrow_assignable<E,const E2&>::value) -> failure&;
@@ -588,7 +588,7 @@ inline namespace bitwizeshift {
     /// \param other the other failure to move-convert
     /// \return reference to `(*this)`
     template <typename E2,
-              typename = typename std::enable_if<std::is_assignable<E,E2&&>::value>::type>
+              typename = typename std::enable_if<std::is_assignable<E&,E2&&>::value>::type>
     RESULT_CPP14_CONSTEXPR
     auto operator=(failure<E2>&& other)
       noexcept(std::is_nothrow_assignable<E,E2&&>::value) -> failure&;
@@ -1427,7 +1427,7 @@ inline namespace bitwizeshift {
       !is_result<typename std::decay<U>::type>::value &&
       !is_failure<typename std::decay<U>::type>::value &&
       std::is_nothrow_constructible<T,U>::value &&
-      std::is_assignable<wrapped_result_type<T>,U>::value &&
+      std::is_assignable<wrapped_result_type<T>&,U>::value &&
       (
         !std::is_same<typename std::decay<U>::type,typename std::decay<T>::type>::value ||
         !std::is_scalar<T>::value
@@ -1437,7 +1437,7 @@ inline namespace bitwizeshift {
     template <typename E, typename E2>
     using result_is_failure_assignable = std::integral_constant<bool,(
       std::is_nothrow_constructible<E,E2>::value &&
-      std::is_assignable<E,E2>::value
+      std::is_assignable<E&,E2>::value
     )>;
 
     // Friending 'extract_error" below was causing some compilers to incorrectly
@@ -2979,7 +2979,7 @@ inline namespace bitwizeshift {
     /// \return reference to `(*this)`
     template <typename T2, typename E2,
               typename = typename std::enable_if<std::is_nothrow_constructible<E,const E2&>::value &&
-                                                 std::is_assignable<E,const E2&>::value>::type>
+                                                 std::is_assignable<E&,const E2&>::value>::type>
     auto operator=(const result<T2,E2>& other)
       noexcept(std::is_nothrow_assignable<E, const E2&>::value) -> result&;
 
@@ -3002,7 +3002,7 @@ inline namespace bitwizeshift {
     /// \return reference to `(*this)`
     template <typename T2, typename E2,
               typename = typename std::enable_if<std::is_nothrow_constructible<E,E2&&>::value &&
-                                                 std::is_assignable<E,E2&&>::value>::type>
+                                                 std::is_assignable<E&,E2&&>::value>::type>
     auto operator=(result<T2,E2>&& other)
       noexcept(std::is_nothrow_assignable<E, E2&&>::value) -> result&;
 
