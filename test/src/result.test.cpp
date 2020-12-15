@@ -59,7 +59,11 @@ struct move_only : public T
 
   move_only() = default;
 
-  move_only(T&& other) : T(std::move(other)){}
+  move_only(T&& other)
+    noexcept(std::is_nothrow_move_constructible<T>::value)
+    : T(std::move(other))
+  {
+  }
   move_only(move_only&&) = default;
   move_only(const move_only&) = delete;
 
@@ -1974,10 +1978,10 @@ TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
 
   SECTION("E can be constructed and assigned from E2") {
     SECTION("active element is T") {
-      using copy_type = failure<const char*>;
-      using sut_type = result<report_destructor, std::string>;
+      using copy_type = failure<long>;
+      using sut_type = result<report_destructor, int>;
 
-      const auto value = copy_type{"hello world"};
+      const auto value = copy_type{42};
 
       auto is_invoked = false;
       sut_type sut{&is_invoked};
@@ -1999,16 +2003,16 @@ TEST_CASE("result<T,E>::operator=(const failure<E2>&)", "[assign]") {
     }
 
     SECTION("active element is E") {
-      using copy_type = failure<const char*>;
-      using sut_type = result<int, std::string>;
+      using copy_type = failure<int>;
+      using sut_type = result<int, long>;
 
-      const auto value = copy_type{"goodbye world"};
-      sut_type sut{copy_type{"hello world"}};
+      const auto value = copy_type{42};
+      sut_type sut{copy_type{0}};
 
       sut = value;
 
       SECTION("Result can be assigned") {
-        STATIC_REQUIRE(std::is_assignable<sut_type,copy_type&&>::value);
+        STATIC_REQUIRE(std::is_assignable<sut_type,const copy_type&>::value);
       }
       SECTION("active element is error") {
         REQUIRE(sut.has_error());
@@ -3903,7 +3907,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
       }
       SECTION("Sut contains error") {
         const auto output = fail(std::io_errc::stream);
-        const sut_type other{output};
+        const copy_type other{output};
         sut_type sut{fail(std::io_errc{})};
 
         sut = other;
