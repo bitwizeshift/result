@@ -3838,10 +3838,10 @@ TEST_CASE("result<void,E>::operator=(result&& other)", "[assign]") {
   }
 }
 
-TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
+TEST_CASE("result<void,E>::operator=(const result<void,E2>&)", "[assign]") {
   SECTION("E is not nothrow copy constructible") {
     SECTION("Result is not copy-assignable") {
-      using copy_type = result<int,const char*>;
+      using copy_type = result<void,const char*>;
       using sut_type = result<void,std::string>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,const copy_type&>::value);
@@ -3850,7 +3850,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
 
   SECTION("E is not copy-assignable") {
     SECTION("Result is not copy-assignable") {
-      using copy_type = result<int,const char*>;
+      using copy_type = result<void,const char*>;
       using sut_type = result<void,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,const copy_type&>::value);
@@ -3858,7 +3858,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
   }
 
   SECTION("E is nothrow copy-constructible") {
-    using copy_type = result<int,std::io_errc>;
+    using copy_type = result<void,std::io_errc>;
     using sut_type = result<void,std::error_code>;
 
     SECTION("Result is copy-assignable") {
@@ -3866,8 +3866,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
     }
     SECTION("Other contains value") {
       SECTION("Sut contains value") {
-        const auto output = 42;
-        const copy_type other{output};
+        const copy_type other{};
         sut_type sut{};
 
         sut = other;
@@ -3877,8 +3876,7 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
         }
       }
       SECTION("Sut contains error") {
-        const auto output = 42;
-        const copy_type other{output};
+        const copy_type other{};
         sut_type sut{
           fail(std::io_errc::stream)
         };
@@ -3923,10 +3921,10 @@ TEST_CASE("result<void,E>::operator=(const result<T2,E2>&)", "[assign]") {
   }
 }
 
-TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
+TEST_CASE("result<void,E>::operator=(result<void,E2>&&)", "[assign]") {
   SECTION("E is not nothrow move constructible") {
     SECTION("Result is not move-assignable") {
-      using copy_type = result<int,const char*>;
+      using copy_type = result<void,const char*>;
       using sut_type = result<void,std::string>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,copy_type&&>::value);
@@ -3935,7 +3933,7 @@ TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
 
   SECTION("E is not move-assignable") {
     SECTION("Result is not move-assignable") {
-      using copy_type = result<int,const char*>;
+      using copy_type = result<void,const char*>;
       using sut_type = result<void,not_copy_or_moveable>;
 
       STATIC_REQUIRE_FALSE(std::is_assignable<sut_type,copy_type&&>::value);
@@ -3943,7 +3941,7 @@ TEST_CASE("result<void,E>::operator=(result<T2,E2>&&)", "[assign]") {
   }
 
   SECTION("E is nothrow move-constructible") {
-    using copy_type = result<int,std::io_errc>;
+    using copy_type = result<void,std::io_errc>;
     using sut_type = result<void,move_only<std::error_code>>;
 
     SECTION("Result is move-assignable") {
