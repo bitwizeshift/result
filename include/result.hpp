@@ -1008,9 +1008,6 @@ inline namespace bitwizeshift {
         noexcept(std::is_nothrow_assignable<E, Error>::value) -> void;
 
       template <typename Result>
-      auto assign_error_from_result(Result&& other) -> void;
-
-      template <typename Result>
       auto assign_from_result(Result&& other) -> void;
 
       //-----------------------------------------------------------------------
@@ -2774,11 +2771,6 @@ inline namespace bitwizeshift {
     /// \note This constructor does not participate in overload resolution
     ///       unless the following conditions are met:
     ///       - `std::is_constructible_v<E, const E2&>` is `true`
-    ///       - `E` is not constructible or convertible from any expression
-    ///         of type (possible const) `result<T2,E2>`
-    ///
-    /// \note This constructor is explicit if and only if
-    ///       `std::is_convertible_v<const E2&, E>` is `false`
     ///
     /// ### Examples
     ///
@@ -2803,15 +2795,7 @@ inline namespace bitwizeshift {
     ///
     /// \note This constructor does not participate in overload resolution
     ///       unless the following conditions are met:
-    ///       - `std::is_constructible_v<T, const U&>` is `true`
-    ///       - `T` is not constructible or convertible from any expression
-    ///         of type (possibly const) `result<T2,E2>`
-    ///       - `E` is not constructible or convertible from any expression
-    ///         of type (possible const) `result<T2,E2>`
-    ///
-    /// \note This constructor is explicit if and only if
-    ///       `std::is_convertible_v<const T2&, T>` or
-    ///       `std::is_convertible_v<const E2&, E>` is `false`
+    ///       - `std::is_constructible_v<E, const E2&>` is `true`
     ///
     /// ### Examples
     ///
@@ -2977,10 +2961,10 @@ inline namespace bitwizeshift {
     ///
     /// \param other the other result object to convert
     /// \return reference to `(*this)`
-    template <typename T2, typename E2,
+    template <typename E2,
               typename = typename std::enable_if<std::is_nothrow_constructible<E,const E2&>::value &&
                                                  std::is_assignable<E&,const E2&>::value>::type>
-    auto operator=(const result<T2,E2>& other)
+    auto operator=(const result<void,E2>& other)
       noexcept(std::is_nothrow_assignable<E, const E2&>::value) -> result&;
 
     /// \brief Move-converts the state of \p other
@@ -3000,10 +2984,10 @@ inline namespace bitwizeshift {
     ///
     /// \param other the other result object to convert
     /// \return reference to `(*this)`
-    template <typename T2, typename E2,
+    template <typename E2,
               typename = typename std::enable_if<std::is_nothrow_constructible<E,E2&&>::value &&
                                                  std::is_assignable<E&,E2&&>::value>::type>
-    auto operator=(result<T2,E2>&& other)
+    auto operator=(result<void,E2>&& other)
       noexcept(std::is_nothrow_assignable<E, E2&&>::value) -> result&;
 
     /// \{
@@ -4078,25 +4062,6 @@ auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_error(Error&& er
 template <typename T, typename E>
 template <typename Result>
 inline RESULT_INLINE_VISIBILITY
-auto RESULT_NS_IMPL::detail::result_construct_base<T, E>::assign_error_from_result(
-  Result&& other
-) -> void
-{
-  if (other.storage.m_has_value != storage.m_has_value) {
-    storage.destroy();
-    if (other.storage.m_has_value) {
-      construct_value();
-    } else {
-      construct_error(detail::forward<Result>(other).storage.m_error);
-    }
-  } else if (!other.storage.m_has_value) {
-    storage.m_error = detail::forward<Result>(other).storage.m_error;
-  }
-}
-
-template <typename T, typename E>
-template <typename Result>
-inline RESULT_INLINE_VISIBILITY
 auto RESULT_NS_IMPL::detail::result_construct_base<T,E>::assign_from_result(Result&& other)
   -> void
 {
@@ -5122,28 +5087,24 @@ RESULT_NS_IMPL::result<void, E>::result(failure<E2>&& e)
 //-----------------------------------------------------------------------------
 
 template <typename E>
-template <typename T2, typename E2, typename>
+template <typename E2, typename>
 inline RESULT_INLINE_VISIBILITY
-auto RESULT_NS_IMPL::result<void, E>::operator=(const result<T2,E2>& other)
+auto RESULT_NS_IMPL::result<void, E>::operator=(const result<void,E2>& other)
   noexcept(std::is_nothrow_assignable<E, const E2&>::value)
   -> result&
 {
-  m_storage.assign_error_from_result(
-    static_cast<const result<T2,E2>&>(other).m_storage
-  );
+  m_storage.assign_from_result(other.m_storage);
   return (*this);
 }
 
 template <typename E>
-template <typename T2, typename E2, typename>
+template <typename E2, typename>
 inline RESULT_INLINE_VISIBILITY
-auto RESULT_NS_IMPL::result<void, E>::operator=(result<T2,E2>&& other)
+auto RESULT_NS_IMPL::result<void, E>::operator=(result<void,E2>&& other)
   noexcept(std::is_nothrow_assignable<E, E2&&>::value)
   -> result&
 {
-  m_storage.assign_error_from_result(
-    static_cast<result<T2,E2>&&>(other).m_storage
-  );
+  m_storage.assign_from_result(static_cast<result<void,E2>&&>(other).m_storage);
   return (*this);
 }
 

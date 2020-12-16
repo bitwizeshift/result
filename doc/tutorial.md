@@ -395,7 +395,9 @@ template <typename Fn>
 auto try_invoke(Fn&& fn) noexcept -> void
 {
   // Coalesce all results to 'void'
-  cpp::result<void,E> result = std::invoke(std::forward<Fn>(fn));
+  auto result = cpp::result<void,E>{
+    std::invoke(std::forward<Fn>(fn))
+  };
   if (!result) {
     // Do something with the error
     signal_service::notify_error(result.error());
@@ -403,25 +405,9 @@ auto try_invoke(Fn&& fn) noexcept -> void
 }
 ```
 
-This erasure also works in terms of other utilities as well. In the same way
-that `std::function` can erase any `R` return type to `void`, the implicit
-conversions also allow for any `result<R,E>` return type to
-`result<void,E>`:
-
-```cpp
-
-auto register_handler(std::function<cpp::result<void,E>()> fn) -> void;
-
-/* ... */
-
-auto int_handler() -> result<int,E>;
-auto string_handler() -> result<std::string,E>;
-
-/* ... */
-
-register_handler(&int_handler);
-register_handler(&string_handler);
-```
+**Note:** Erasure with `result<void,E>` requires explicit construction for both
+construction and assignment, since `result<void,E>` is meant to model the
+behavior and semantics of a `void` cast, which requires explicitness.
 
 ### `failure` with references
 
