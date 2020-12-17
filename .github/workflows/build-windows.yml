@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Windows ${{matrix.compiler.name}} ${{matrix.compiler.version}} ${{matrix.build_type}}
+    name: Windows ${{matrix.compiler.name}} ${{matrix.compiler.version}}
     runs-on: windows-latest
 
     env:
@@ -22,8 +22,6 @@ jobs:
           # - { name: "cl", version: "14.16", cc: cl, cxx: cl }
           - { name: "cl", version: "latest", cc: cl, cxx: cl }
 
-        build_type: [Debug, Release]
-
     steps:
       - name: Clone
         uses: actions/checkout@v2
@@ -40,54 +38,57 @@ jobs:
           python -m pip install --upgrade pip
           pip install conan
           cmake -E make_directory ${{env.build-directory}}
+          cmake -E chdir ${{env.build-directory}} conan install ..
 
       - name: Configure (gcc)
         working-directory: ${{env.build-directory}}
-        shell: powershell
         if: ${{matrix.compiler.name == 'gcc'}}
         env:
           CC: gcc
           CXX: g++
-        run: |
-          conan install ..
-          cmake .. -DCMAKE_BUILD_TYPE=${{matrix.build_type}} -DRESULT_COMPILE_UNIT_TESTS=On -G"MinGW Makefiles"
+        run: cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G"MinGW Makefiles"
 
       - name: Configure (clang)
         working-directory: ${{env.build-directory}}
-        shell: powershell
         if: ${{matrix.compiler.name == 'clang'}}
-        run: |
-          conan install ..
-          cmake .. -DCMAKE_BUILD_TYPE=${{matrix.build_type}} -DRESULT_COMPILE_UNIT_TESTS=On -G"MinGW Makefiles" -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang++.exe"
+        run: cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G"MinGW Makefiles" -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang++.exe"
 
       - name: Configure (clang-cl)
         working-directory: ${{env.build-directory}}
-        shell: powershell
         if: ${{matrix.compiler.name == 'clang-cl'}}
-        run: |
-          conan install ..
-          cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G "Visual Studio 16 2019" -A x64 -T ClangCL
+        run: cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G "Visual Studio 16 2019" -A x64 -T ClangCL
 
       - name: Configure (MSVC)
         working-directory: ${{env.build-directory}}
-        shell: powershell
         if: ${{matrix.compiler.name == 'cl'}}
-        run: |
-          $visual_studio_path = & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere" -latest -property installationPath
-          if ("${{matrix.compiler.version}}" -ne "latest") {
-            & "$visual_studio_path\Common7\Tools\vsdevcmd.bat" -arch=x64 -host_arch=x64 -vcvars_ver="${{matrix.compiler.version}}"
-          }
-          conan install ..
-          cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G "Visual Studio 16 2019"
+        run: cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G "Visual Studio 16 2019"
 
-      - name: Build
-        working-directory: ${{env.build-directory}}
-        shell: powershell
-        run: |
-          cmake --build . --config ${{matrix.build_type}}
+      # Debug Configuration
 
-      - name: Test
+      - name: Configure (Debug)
         working-directory: ${{env.build-directory}}
-        shell: powershell
-        run: |
-          ctest --output-on-failure
+        if: ${{matrix.compiler.name == 'clang' || matrix.compiler.name == 'gcc'}}
+        run: cmake . -DCMAKE_BUILD_TYPE=Debug
+
+      - name: Build (Debug)
+        working-directory: ${{env.build-directory}}
+        run: cmake --build . --config Debug
+
+      - name: Test (Debug)
+        working-directory: ${{env.build-directory}}
+        run: ctest -C Debug --output-on-failure
+
+      # Release Configuration
+
+      - name: Configure (Release)
+        working-directory: ${{env.build-directory}}
+        if: ${{matrix.compiler.name == 'clang' || matrix.compiler.name == 'gcc'}}
+        run: cmake . -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build (Release)
+        working-directory: ${{env.build-directory}}
+        run: cmake --build . --config Release
+
+      - name: Test (Release)
+        working-directory: ${{env.build-directory}}
+        run: ctest -C Release --output-on-failure
