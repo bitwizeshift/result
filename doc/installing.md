@@ -18,7 +18,7 @@ However, if you are using either [`conan`](#conan)  or [`CMake`](#cmake)
 ## Conan
 
 This project provides a `conanfile.py` and public hosting on
-[bintray](https://bintray.com/bitwizeshift/result) for packages.
+[bintray](https://bintray.com/bitwizeshift/public-conan/Result%3Aresult) for packages.
 
 Just follow the instructions in the bintray link for setting up this
 source as a conan repository, and add
