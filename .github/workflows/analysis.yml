@@ -3,8 +3,22 @@ name: "Code Scanning"
 on:
   push:
     branches: [master]
+    paths:
+      - 'include/**.hpp'
+      - 'test/**.cpp'
+      - '**.cmake'
+      - 'conanfile.py'
+      - 'CMakeLists.txt'
+      - 'test/CMakeLists.txt'
   pull_request:
     branches: [master]
+    paths:
+      - 'include/**.hpp'
+      - 'test/**.cpp'
+      - '**.cmake'
+      - 'conanfile.py'
+      - 'CMakeLists.txt'
+      - 'test/CMakeLists.txt'
 
 jobs:
   analysis:
