@@ -9,6 +9,7 @@ on:
       - 'conanfile.py'
       - 'CMakeLists.txt'
       - 'test/CMakeLists.txt'
+      - '.github/workflows/build-windows.yml'
   pull_request:
     paths:
       - 'include/**.hpp'
@@ -17,6 +18,7 @@ on:
       - 'conanfile.py'
       - 'CMakeLists.txt'
       - 'test/CMakeLists.txt'
+      - '.github/workflows/build-windows.yml'
 
 jobs:
   test:
@@ -32,11 +34,11 @@ jobs:
         compiler:
           # Xcode Versions
           - { name: "gcc", version: "latest", cc: gcc, cxx: g++ }
-          - { name: "clang", version: "latest", cc: clang, cxx: clang++ }
+          - { name: "clang", version: "10", cc: clang, cxx: clang++ }
           - { name: "clang-cl", version: "latest", cc: clang-cl, cxx: clang-cl }
-          # - { name: "cl", version: "14.0", cc: cl, cxx: cl }
-          # - { name: "cl", version: "14.16", cc: cl, cxx: cl }
-          - { name: "cl", version: "latest", cc: cl, cxx: cl }
+          # - { name: "cl", version: "14.0", toolset_version: "140", cc: cl, cxx: cl }
+          - { name: "cl", version: "14.16", toolset_version: "141", cc: cl, cxx: cl }
+          - { name: "cl", version: "14.28", toolset_version: "142", cc: cl, cxx: cl }
 
     steps:
       - name: Clone
@@ -48,8 +50,12 @@ jobs:
           python-version: 3.7
 
       - name: Prepare Environment
+        shell: bash
         run: |
-          curl -fsSL -o LLVM10.exe https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/LLVM-10.0.0-win64.exe ; 7z x LLVM10.exe -y -o"C:/Program Files/LLVM"
+          if [[ ${{matrix.compiler.name}} == 'clang' ]]; then
+            curl -fsSL -o LLVM${{matrix.compiler.version}}.exe https://github.com/llvm/llvm-project/releases/download/llvmorg-${{matrix.compiler.version}}.0.0/LLVM-${{matrix.compiler.version}}.0.0-win64.exe
+            7z x LLVM${{matrix.compiler.version}}.exe -y -o"C:/Program Files/LLVM"
+          fi
 
           python -m pip install --upgrade pip
           pip install conan
@@ -62,22 +68,33 @@ jobs:
         env:
           CC: gcc
           CXX: g++
-        run: cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G"MinGW Makefiles"
+        run: |
+          cmake .. -G"MinGW Makefiles"                                        `
+            -DRESULT_COMPILE_UNIT_TESTS=On
 
       - name: Configure (clang)
         working-directory: ${{env.build-directory}}
         if: ${{matrix.compiler.name == 'clang'}}
-        run: cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G"MinGW Makefiles" -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang++.exe"
+        run: |
+          cmake .. -G"MinGW Makefiles"                                        `
+            -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang++.exe"      `
+            -DRESULT_COMPILE_UNIT_TESTS=On
 
       - name: Configure (clang-cl)
         working-directory: ${{env.build-directory}}
         if: ${{matrix.compiler.name == 'clang-cl'}}
-        run: cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G "Visual Studio 16 2019" -A x64 -T ClangCL
+        run: |
+          cmake .. -G "Visual Studio 16 2019" -A x64                          `
+            -T ClangCL                                                        `
+            -DRESULT_COMPILE_UNIT_TESTS=On
 
       - name: Configure (MSVC)
         working-directory: ${{env.build-directory}}
         if: ${{matrix.compiler.name == 'cl'}}
-        run: cmake .. -DRESULT_COMPILE_UNIT_TESTS=On -G "Visual Studio 16 2019"
+        run: |
+          cmake .. -G "Visual Studio 16 2019"                                 `
+            -T v${{matrix.compiler.toolset_version}}                          `
+            -DRESULT_COMPILE_UNIT_TESTS=On
 
       # Debug Configuration
 
