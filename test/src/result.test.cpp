@@ -1070,7 +1070,7 @@ TEST_CASE("result<T,E>::result(in_place_t, Args&&...)", "[ctor]") {
   using sut_type = result<std::string,int>;
 
   const auto input = "hello world";
-  const auto size = 5;
+  const auto size = 5u;
   const auto value = std::string{input, size};
 
   const sut_type sut(in_place, input, size);
@@ -1106,7 +1106,7 @@ TEST_CASE("result<T,E>::result(in_place_error_t, Args&&...)", "[ctor]") {
   using sut_type = result<int,std::string>;
 
   const auto input = "hello world";
-  const auto size = 5;
+  const auto size = 5u;
   const auto result = std::string{input, size};
 
   const sut_type sut(in_place_error, input, size);
@@ -3609,7 +3609,7 @@ TEST_CASE("result<void,E>::result(in_place_error_t, Args&&...)", "[ctor]") {
   using sut_type = result<void,std::string>;
 
   const auto input = "hello world";
-  const auto size = 5;
+  const auto size = 5U;
   const auto result = std::string{input, size};
 
   const sut_type sut(in_place_error, input, size);

@@ -678,7 +678,7 @@ TEST_CASE("fail(E&& e)", "[utilities]") {
 TEST_CASE("fail<E>(Args&&...)", "[utilities]") {
   SECTION("Invokes E's constructor") {
     const auto input = "hello world";
-    const auto size = 5;
+    const auto size = 5u;
     const auto expected = std::string{input, size};
     const auto sut = fail<std::string>(input, size);
 
