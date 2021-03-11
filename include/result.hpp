@@ -4611,7 +4611,12 @@ auto RESULT_NS_IMPL::result<T,E>::has_error()
 #elif defined(__GNUC__)
 # pragma GCC diagnostic push
 # pragma GCC diagnostic ignored "-Wunused-value"
-#endif // defined(__GNUC__)
+#elif defined(_MSC_VER)
+// Older MSVC versions incorrectly warn on returning a reference to a temporary.
+// This has been suppressed
+# pragma warning(push)
+# pragma warning(disable:4172)
+#endif
 
 template <typename T, typename E>
 inline RESULT_INLINE_VISIBILITY RESULT_CPP14_CONSTEXPR
@@ -4665,7 +4670,9 @@ auto RESULT_NS_IMPL::result<T,E>::value()
 # pragma clang diagnostic pop
 #elif defined(__GNUC__)
 # pragma GCC diagnostic pop
-#endif // defined(__GNUC__)
+#elif defined(_MSC_VER)
+# pragma warning(pop)
+#endif
 
 template <typename T, typename E>
 inline RESULT_INLINE_VISIBILITY constexpr
