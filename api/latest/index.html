@@ -158,9 +158,11 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>GCC 5, 6, 7, 8, 9, 10</li>
 <li>Clang 3.5, 3.6, 3.7, 3.8, 3.9, 4, 5, 6, 7, 8, 9, 10, 11</li>
 <li>Apple Clang (Xcode) 10.3, 11.2, 11.3, 12.3</li>
-<li>Visual Studio 2015, 2017, 2019</li>
+<li>Visual Studio 2017<sup>[1]</sup>, 2019</li>
 </ul>
 <p>Latest patch level releases are assumed in the versions listed above.</p>
+<p><b>Note:</b> Visual Studios 2015 is not currently supported due to an internal compiler error experienced in the default constructor of <code>result</code>. Support for this will be added at a later time.</p>
+<p><sup>[1] Visual Studios 2017 is officially supported, though toolchain 14.16 has some issues properly compiling <code>map_error</code> due to insufficient support for SFINAE.</sup></p>
 <h2>License</h2>
 <div class="image">
 <img src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png" align="right"/>
