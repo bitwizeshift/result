@@ -26,6 +26,10 @@
 
 #include <catch2/catch.hpp>
 
+// MSVC 2017 and above compile these tests correctly, but
+// MSVC 2015 struggles with the `constexpr` support.
+#if !defined(_MSC_VER) || _MSC_VER >= 1910
+
 namespace cpp {
 namespace test {
 namespace {
@@ -245,3 +249,5 @@ TEST_CASE("constexpr result<void,E>::error() const &", "[constexpr][observer]") 
 
 } // namespace test
 } // namespace cpp
+
+#endif
