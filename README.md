@@ -209,9 +209,17 @@ with:
 * GCC 5, 6, 7, 8, 9, 10
 * Clang 3.5, 3.6, 3.7, 3.8, 3.9, 4, 5, 6, 7, 8, 9, 10, 11
 * Apple Clang (Xcode) 10.3, 11.2, 11.3, 12.3
-* Visual Studio 2015, 2017, 2019
+* Visual Studio 2017<sup>[1]</sup>, 2019
 
 Latest patch level releases are assumed in the versions listed above.
+
+**Note:** Visual Studios 2015 is not currently supported due to an internal
+compiler error experienced in the default constructor of `result`. Support for
+this will be added at a later time.
+
+<sup>[1] Visual Studios 2017 is officially supported, though toolchain 14.16
+has some issues properly compiling `map_error` due to insufficient support for
+SFINAE.</sup>
 
 ## License
 
