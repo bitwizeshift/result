@@ -2715,6 +2715,8 @@ TEST_CASE("result<T,E>::map(Fn&&) &&", "[monadic]") {
   }
 }
 
+#if !defined(_MSC_VER) || (_MSC_VER >= 1920)
+
 TEST_CASE("result<T,E>::map_error(Fn&&) const &", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Maps the input") {
@@ -2769,6 +2771,8 @@ TEST_CASE("result<T,E>::map_error(Fn&&) &&", "[monadic]") {
   }
 }
 
+#endif // !defined(_MSC_VER) || (_MSC_VER >= 1920)
+
 TEST_CASE("result<T,E>::flat_map_error(Fn&&) const &", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Forwards underlying value") {
@@ -2796,6 +2800,8 @@ TEST_CASE("result<T,E>::flat_map_error(Fn&&) const &", "[monadic]") {
   }
 }
 
+#if !defined(_MSC_VER) || (_MSC_VER >= 1920)
+
 TEST_CASE("result<T,E>::flat_map_error(Fn&&) &&", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Default-initializes T") {
@@ -2822,6 +2828,8 @@ TEST_CASE("result<T,E>::flat_map_error(Fn&&) &&", "[monadic]") {
     }
   }
 }
+
+#endif // !defined(_MSC_VER) || (_MSC_VER >= 1920)
 
 //=============================================================================
 // class : result<T, E>
@@ -4547,6 +4555,8 @@ TEST_CASE("result<void,E>::map(Fn&&) &&", "[monadic]") {
   }
 }
 
+#if !defined(_MSC_VER) || (_MSC_VER >= 1920)
+
 TEST_CASE("result<void,E>::map_error(Fn&&) const &", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Maps the input") {
@@ -4599,6 +4609,8 @@ TEST_CASE("result<void,E>::map_error(Fn&&) &&", "[monadic]") {
   }
 }
 
+#endif // !defined(_MSC_VER) || (_MSC_VER >= 1920)
+
 TEST_CASE("result<void,E>::flat_map_error(Fn&&) const &", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Default-initializes T") {
@@ -4625,6 +4637,8 @@ TEST_CASE("result<void,E>::flat_map_error(Fn&&) const &", "[monadic]") {
   }
 }
 
+#if !defined(_MSC_VER) || (_MSC_VER >= 1920)
+
 TEST_CASE("result<void,E>::flat_map_error(Fn&&) &&", "[monadic]") {
   SECTION("result contains a value") {
     SECTION("Default-initializes T") {
@@ -4650,6 +4664,8 @@ TEST_CASE("result<void,E>::flat_map_error(Fn&&) &&", "[monadic]") {
     }
   }
 }
+
+#endif // !defined(_MSC_VER) || (_MSC_VER >= 1920)
 
 //=============================================================================
 // non-member functions : class : result<void, E>
