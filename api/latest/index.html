@@ -85,10 +85,10 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="contents">
 <div class="textblock"><p><a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AUbuntu"></a> <a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AmacOS"></a> <a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AWindows"></a> <a href="https://www.codacy.com/gh/bitwizeshift/result/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=bitwizeshift/result&amp;amp;utm_campaign=Badge_Grade"></a> <a href="https://coveralls.io/github/bitwizeshift/result?branch=master"></a> <a href="http://github.com/bitwizeshift/result/issues"></a> <br />
  <a href="https://github.com/bitwizeshift/result/releases"></a> <br />
- <a href="https://godbolt.org/z/nKfqbK"></a></p>
+ <a href="https://godbolt.org/z/qG11qK"></a></p>
 <p><b>Result</b> is a modern, simple, and light-weight error-handling alternative to exceptions.</p>
 <h2>Teaser</h2>
-<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> To, <span class="keyword">typename</span> From&gt;</div><div class="line"><span class="keyword">auto</span> try_narrow(<span class="keyword">const</span> From&amp; from) noexcept -&gt; cpp::result&lt;To,narrow_error&gt;</div><div class="line">{</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> to = <span class="keyword">static_cast&lt;</span>To<span class="keyword">&gt;</span>(from);</div><div class="line"></div><div class="line">  <span class="keywordflow">if</span> ((to &lt; To{}) != (from &lt; From{})) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::sign_change);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">if</span> (static_cast&lt;From&gt;(to) != from) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::loss_of_data);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">return</span> to;</div><div class="line">}</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/nKfqbK">Live Example</a></code></p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> To, <span class="keyword">typename</span> From&gt;</div><div class="line"><span class="keyword">auto</span> try_narrow(<span class="keyword">const</span> From&amp; from) noexcept -&gt; cpp::result&lt;To,narrow_error&gt;</div><div class="line">{</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> to = <span class="keyword">static_cast&lt;</span>To<span class="keyword">&gt;</span>(from);</div><div class="line"></div><div class="line">  <span class="keywordflow">if</span> ((to &lt; To{}) != (from &lt; From{})) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::sign_change);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">if</span> (static_cast&lt;From&gt;(to) != from) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::loss_of_data);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">return</span> to;</div><div class="line">}</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/q8fcKK">Live Example</a></code></p>
 <h2>Features</h2>
 <ul>
 <li>[x] Offers a coherent, light-weight alternative to exceptions</li>
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>[x] Support for value-type, reference-type, and <code>void</code>-type values in <code>result</code></li>
 <li>[x] Monadic composition functions like <code>map</code>, <code>flat_map</code>, and <code>map_error</code> for easy functional use</li>
 <li>[x] <a href="https://coveralls.io/github/bitwizeshift/result?branch=master">Comprehensively unit tested</a> for both static behavior and runtime validation</li>
-<li>[x] <a href="https://godbolt.org/z/M69T4v">Incurs minimal cost when optimized</a>, especially for trivial types</li>
+<li>[x] <a href="https://godbolt.org/z/TsonT1">Incurs minimal cost when optimized</a>, especially for trivial types</li>
 </ul>
 <p>For more details and examples on what is available in <b>Result</b>, please check out the tutorial section.</p>
 <p>For details describing how this implementation deviates from the <code>std::result</code> proposals, see this page.</p>
@@ -129,10 +129,10 @@ $(document).ready(function(){initNavTree('index.html','');});
 <h3>Using a Custom Namespace</h3>
 <p>The <code>namespace</code> that <code>result</code> is defined in is configurable. By default, it is defined in <code>namespace cpp</code>; however this can be toggled by defining the preprocessor symbol <code>RESULT_NAMESPACE</code> to be the name of the desired namespace.</p>
 <p>This could be done either through a <code>#define</code> preprocessor directive:</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#define RESULT_NAMESPACE example</span></div><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="de/d80/result_8hpp.html">result.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">auto</span> test() -&gt; example::result&lt;int,int&gt;;</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/a4GccT">Try Online</a></code></p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define RESULT_NAMESPACE example</span></div><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="de/d80/result_8hpp.html">result.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">auto</span> test() -&gt; example::result&lt;int,int&gt;;</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/Pe7e6e">Try Online</a></code></p>
 <p>Or it could also be defined using the compile-time definition with <code>-D</code>, such as:</p>
 <p><code>g++ -std=c++11 -DRESULT_NAMESPACE=example test.cpp</code></p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="de/d80/result_8hpp.html">result.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">auto</span> test() -&gt; example::result&lt;int,int&gt;;</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/5xTsdj">Try Online</a></code></p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="de/d80/result_8hpp.html">result.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">auto</span> test() -&gt; example::result&lt;int,int&gt;;</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/Kxf8nr">Try Online</a></code></p>
 <h3>Disabling Exceptions</h3>
 <p>Since <code>result</code> serves to act as an orthogonal/alternative error-handling mechanism to exceptions, it may be desirable to not have <em>any</em> exceptions at all. IF the compiler has been configured to disable exception entirely, simply having a path that even encounters a <code>throw</code> &ndash; even if never reached in practice may trigger compile errors.</p>
 <p>To account for this possibility, <b>Result</b> may have exceptions removed by defining the preprocessor symbol <code>RESULT_DISABLE_EXCEPTIONS</code>.</p>
@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>Contract violations will print directly to <code>stderr</code> to allow context for the termination</li>
 <li>Since exceptions are disabled, there is no way to perform a proper stack unwinding &ndash; so destructors will <em>not be run</em>. There is simply no way to allow for proper RAII cleanup without exceptions in this case.</li>
 </ul>
-<p><code><a href="https://godbolt.org/z/bjbqaG">Try Online</a></code></p>
+<p><code><a href="https://godbolt.org/z/9sYrec">Try Online</a></code></p>
 <h2>Building the Unit Tests</h2>
 <p>Building the unit tests are not necessary to use this project. However, if you are interested in running these yourself, you will require the following installed:</p>
 <ul>
