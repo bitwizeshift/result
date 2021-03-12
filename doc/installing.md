@@ -17,13 +17,12 @@ However, if you are using either [`conan`](#conan)  or [`CMake`](#cmake)
 
 ## Conan
 
-This project provides a `conanfile.py` and public hosting on
-[bintray](https://bintray.com/bitwizeshift/public-conan/Result%3Aresult) for packages.
+This project provides a `conanfile.py` for packaging. It is not currently hosted
+as Bintray has been sunset, but this will hopefully be available on conan-center
+before long.
 
-Just follow the instructions in the bintray link for setting up this
-source as a conan repository, and add
-`Result/<the version you want>@result/stable` as a dependency in your
-`conanfile.py`, and you can install this into your project.
+For the time being, this project can be built and packaged locally using `conan`
+which will allow it to be used, or hosted, on any system of your choosing.
 
 ## CMake
 

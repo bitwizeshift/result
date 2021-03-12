@@ -8,7 +8,6 @@
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/result.svg)](http://github.com/bitwizeshift/result/issues)
 <br>
 [![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/result.svg?include_prereleases)](https://github.com/bitwizeshift/result/releases)
-[![Bintray Releases](https://api.bintray.com/packages/bitwizeshift/public-conan/Result%3Aresult/images/download.svg) ](https://bintray.com/bitwizeshift/public-conan/Result%3Aresult/_latestVersion)
 <br>
 [![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://godbolt.org/z/nKfqbK)
 
