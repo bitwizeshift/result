@@ -9,7 +9,7 @@
 <br>
 [![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/result.svg?include_prereleases)](https://github.com/bitwizeshift/result/releases)
 <br>
-[![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://godbolt.org/z/nKfqbK)
+[![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://godbolt.org/z/qG11qK)
 
 **Result** is a modern, simple, and light-weight error-handling alternative to exceptions.
 
@@ -31,7 +31,7 @@ auto try_narrow(const From& from) noexcept -> cpp::result<To,narrow_error>
 }
 ```
 
-<kbd>[Live Example](https://godbolt.org/z/nKfqbK)</kbd>
+<kbd>[Live Example](https://godbolt.org/z/q8fcKK)</kbd>
 
 ## Features
 
@@ -45,7 +45,7 @@ auto try_narrow(const From& from) noexcept -> cpp::result<To,narrow_error>
       easy functional use
 * [x] [Comprehensively unit tested](https://coveralls.io/github/bitwizeshift/result?branch=master) for both static
       behavior and runtime validation
-* [x] [Incurs minimal cost when optimized](https://godbolt.org/z/M69T4v), especially for trivial types
+* [x] [Incurs minimal cost when optimized](https://godbolt.org/z/TsonT1), especially for trivial types
 
 For more details and examples on what is available in **Result**, please
 check out the [tutorial](doc/tutorial.md) section.
@@ -130,7 +130,7 @@ This could be done either through a `#define` preprocessor directive:
 auto test() -> example::result<int,int>;
 ```
 
-<kbd>[Try Online](https://godbolt.org/z/a4GccT)</kbd>
+<kbd>[Try Online](https://godbolt.org/z/Pe7e6e)</kbd>
 
 Or it could also be defined using the compile-time definition with `-D`, such
 as:
@@ -143,7 +143,7 @@ as:
 auto test() -> example::result<int,int>;
 ```
 
-<kbd>[Try Online](https://godbolt.org/z/5xTsdj)</kbd>
+<kbd>[Try Online](https://godbolt.org/z/Kxf8nr)</kbd>
 
 ### Disabling Exceptions
 
@@ -166,7 +166,7 @@ Note that if this is done, contract-violations will now behave differently:
   unwinding -- so destructors will _not be run_. There is simply no way to
   allow for proper RAII cleanup without exceptions in this case.
 
-<kbd>[Try Online](https://godbolt.org/z/bjbqaG)</kbd>
+<kbd>[Try Online](https://godbolt.org/z/9sYrec)</kbd>
 
 ## Building the Unit Tests
 
