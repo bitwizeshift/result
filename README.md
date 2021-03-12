@@ -228,7 +228,7 @@ SFINAE.</sup>
 **Result** is licensed under the
 [MIT License](http://opensource.org/licenses/MIT):
 
-> Copyright &copy; 2017 Matthew Rodusek
+> Copyright &copy; 2017-2021 Matthew Rodusek
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
