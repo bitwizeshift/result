@@ -1,0 +1,7 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="cpp::bitwizeshift::\lresult\< void, E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/dae/classcpp_1_1bitwizeshift_1_1result_3_01void_00_01_e_01_4.html",tooltip="Partial specialization of result<void, E> "];
+}
