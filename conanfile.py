@@ -6,7 +6,7 @@ class ResultConan(ConanFile):
 
     # Package Info
     name = "Result"
-    version = "0.0.1"
+    version = "1.0.0"
     description = " A lightweight C++11-compatible error-handling mechanism"
     url = "https://github.com/bitwizeshift/Result"
     author = "Matthew Rodusek <matthew.rodusek@gmail.com>"
