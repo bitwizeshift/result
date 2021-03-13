@@ -33,6 +33,28 @@ You can either [add this project via `add_subdirectory`](#via-subdirectory)
 or [pull this project in with a `find_package`](#via-installation)
 call after installing it.
 
+### Via installation
+
+You can also create an installation package of **Result** and
+share with other users, or just use locally on your system.
+
+Then, to consume this package you just need to find it with
+`find_package`. For example:
+
+```cmake
+find_package(Result REQUIRED)
+
+# ...
+
+add_library(MyLibrary ...)
+target_link_libraries(MyLibrary
+  PRIVATE Result::Result
+)
+```
+
+And in your implementation of `MyLibrary`, you can easily include
+the project with `#include "result.hpp"`!
+
 ### Via subdirectory
 
 If you have added this repo as a `git submodule`, or as a subtree,
@@ -51,28 +73,6 @@ add_subdirectory("external/Result")
 add_library(MyLibrary ...)
 target_link_libraries(MyLibrary
   PRIVATE Result::Result
-)
-```
-
-And in your implementation of `MyLibrary`, you can easily include
-the project with `#include "result.hpp"`!
-
-### Via installation
-
-You can also create an installation package of **Result** and
-share with other users, or just use locally on your system.
-
-Then, to consume this package you just need to find it with
-`find_package`. For example:
-
-```cmake
-find_package(Result REQUIRED)
-
-# ...
-
-add_library(MyLibrary ...)
-target_link_libraries(MyLibrary
-  PRIVATE Result::Result # 'PRIVATE" assuming private dependency...
 )
 ```
 
