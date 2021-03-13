@@ -1,41 +1,35 @@
+cmake_minimum_required(VERSION 3.8)
+
+project(Result_tests CXX)
+
+find_package(Result CONFIG REQUIRED)
+
 find_package(Catch2 REQUIRED)
-
-set(source_files
-  src/main.cpp
-  src/result.test.cpp
-  src/result.constexpr.test.cpp
-  src/failure.test.cpp
-)
-
-add_executable(${PROJECT_NAME}.test
-  ${source_files}
-)
-add_executable(${PROJECT_NAME}::test ALIAS ${PROJECT_NAME}.test)
-
-target_link_libraries(${PROJECT_NAME}.test
-  PRIVATE ${PROJECT_NAME}::${PROJECT_NAME}
-  PRIVATE Catch2::Catch2
-)
-
-set_target_properties(${UNITTEST_TARGET_NAME} PROPERTIES
-  CXX_STANDARD 11
-  CXX_STANDARD_REQUIRED ON
-  CXX_EXTENSIONS OFF
-)
-
-if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND
-    "${CMAKE_CXX_SIMULATE_ID}" STREQUAL "MSVC")
-  target_compile_options(${PROJECT_NAME}.test PRIVATE
-    -Wno-sign-conversion
-    -Wno-shorten-64-to-32
-    -Wno-unneeded-member-function
-    -Wno-unused-member-function
-  )
-endif ()
-
-##############################################################################
-# CTest
-##############################################################################
-
 include(Catch)
-catch_discover_tests(${PROJECT_NAME}.test)
+
+add_executable(
+    Result.test
+    src/main.cpp
+    src/result.test.cpp
+    src/result.constexpr.test.cpp
+    src/failure.test.cpp
+)
+target_link_libraries(Result.test PRIVATE Result::Result Catch2::Catch2)
+target_compile_features(Result.test PRIVATE cxx_std_11)
+
+if(
+    CMAKE_CXX_COMPILER_ID MATCHES "Clang"
+    AND CMAKE_CXX_SIMULATE_ID STREQUAL "MSVC"
+)
+  target_compile_options(
+      Result.test
+      PRIVATE
+      -Wno-sign-conversion
+      -Wno-shorten-64-to-32
+      -Wno-unneeded-member-function
+      -Wno-unused-member-function
+  )
+endif()
+
+enable_testing()
+catch_discover_tests(Result.test)
