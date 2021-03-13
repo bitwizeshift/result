@@ -26,9 +26,8 @@ which will allow it to be used, or hosted, on any system of your choosing.
 
 ## CMake
 
-This project is written with idiomatic & "modern" `CMake` (3.4+) and
-provides the target `Result::Result` which can be used as a dependency
-in your cmake build.
+This project is written with idiomatic & "modern" CMake (3.8+) and provides the
+target `Result::Result` which can be used as a dependency in your cmake build.
 
 You can either [add this project via `add_subdirectory`](#via-subdirectory)
 or [pull this project in with a `find_package`](#via-installation)
