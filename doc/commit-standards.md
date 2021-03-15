@@ -1,45 +1,25 @@
 # Commit Standards
 
-This project has some some requirements on how git commit messages are formed.
+This project has some some basic standards for the `git` commit messages.
 
-**General:**
 
-* Commits should be small, granular, and easy to follow and revert. Ideally,
-  the same SoC practices that would be applied to software development should
-  be applied to commits; each commit identifies a separtion of concerns.
+1. Commits should follow the 50/72 rule (max 50 columns for the title, 72 columns
+  per description line<sup>[[1]](#exception)</sup>)
+2. Commits should be small, granular, and independent.
+3. Commit titles should be written in imperative, present-tense
+4. Commit messages should, where clarification is beneficial, describe the
+  "What", "Where", and "Why"
 
-**Commit titles:**
+This is not required, but please consider prefixing your commit titles with an
+[emoji key](#emoji-key), as listed below, to help categorize commit messages.
 
-* must be in imperitive, present-tense
-
-* must be no longer than 50 characters
-
-* must be prefixed by an [emoji key](#emoji-key) to indicate what the change
-  is, followed by a space
-
-  * If a commit may use more than one emoji to identify the change, it might
-    indicate that the change is _not granular enough_, and you may be a
-    candidate to be broken down into smaller commits for easier consumption
-
-**Commit messages:**
-
-* Must not exceed 72-character wide
-
-  * Exceptions are made if a message contains a link or other figure that
-    exceeds the 72 character rule by nature (e.g. code, compile message, etc)
-
-* Must indicate the rationale for the change, what was changed, and why
-
-  * In general, more details are always better to help identify the cause of
-    changes in a repository
-
+<sup id="exception">[1]: Exceptions are made for code snippets and URLs</sup>
 ## Emoji Key
 
 Emojis are used to prefix commit titles in order to simplify categorization
 of git log messages.
 
-Use the table below to identify which prefixes should be used for the
-respective change:
+The table below identifies the common prefixes used in this project:
 
 | Emoji | Reason                                                              |
 |---|-------------------------------------------------------------------------|
@@ -52,18 +32,9 @@ respective change:
 | 🔨 | Refactor                                                               |
 | ⚠ | Deprecation                                                             |
 | 🗑️ | Removal                                                               |
-| 🎨 | Cosmetic                                                               |
 | 🩹 | Bug fix                                                                |
 | 🧹 | Code Cleanup (includes moving types/files around)                      |
 | ⏱ | Tuning / Performance                                                    |
 | 🎯 | Testing (unit, benchmark, integration, etc)                            |
 | 🔧 | Tooling                                                                |
 | 🔐 | Security                                                               |
-| ♿ | Accessibility                                                           |
-| 🌐 | Localization / Internationalization                                    |
-| 🚧 | WIP                                                                    |
-
-**Note:** This list may be incomplete, and not cover all possible areas that
-would be needed. Please feel free to start a discussion if new tags would be
-more appropriate. Similarly, if there are more appropriate emojis to use as
-tags, feel free to provide suggestions!

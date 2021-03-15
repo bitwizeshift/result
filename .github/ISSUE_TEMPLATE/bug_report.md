@@ -1,12 +1,13 @@
 ---
-name: Bug report
+name: 🐛 Bug Report
 about: Create a report to help us improve
 
 ---
 
 ### Checklist
 
-- [ ] I did not find a duplicate of this bug in the Github Issues section.
+- [ ] I did not find a duplicate of this in the
+      [Issues](https://github.com/bitwizeshift/result/issues) section.
 
 ----------
 
