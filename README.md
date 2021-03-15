@@ -8,6 +8,7 @@
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/result.svg)](http://github.com/bitwizeshift/result/issues)
 <br>
 [![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/result.svg?include_prereleases)](https://github.com/bitwizeshift/result/releases)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub-Sponsors-ff69b4)](https://github.com/sponsors/bitwizeshift)
 <br>
 [![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://godbolt.org/z/qG11qK)
 
