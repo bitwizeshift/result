@@ -42,8 +42,6 @@ For details describing how this implementation deviates from the
   For a quick guide on how to install/use this in other projects
 * [Tutorial](doc/tutorial.md) \
   A quick pocket-guide to using **Result**
-* [Examples](doc/examples.md) \
-  Some preset live-examples of this library in use
 * [API Reference](https://bitwizeshift.github.io/result/api/latest/) \
   For doxygen-generated API information
 * [Attribution](doc/legal.md) \
