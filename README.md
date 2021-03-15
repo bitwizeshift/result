@@ -12,41 +12,44 @@
 <br>
 [![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://godbolt.org/z/qG11qK)
 
-**Result** is a modern, simple, and light-weight error-handling alternative to exceptions.
+**Result** is a modern, simple, and light-weight error-handling alternative to
+exceptions with a rich feature-set.
 
 ## Features
 
-* [x] Offers a coherent, light-weight alternative to exceptions
-* [x] Compatible with <kbd>C++11</kbd> (with more features in <kbd>C++14</kbd> and <kbd>C++17</kbd>)
-* [x] Single-header, **header-only** solution -- easily drops into any project
-* [x] Zero overhead abstractions -- don't pay for what you don't use.
-* [x] No dependencies
-* [x] Support for value-type, reference-type, and `void`-type values in `result`
-* [x] Monadic composition functions like `map`, `flat_map`, and `map_error` for
-      easy functional use
-* [x] [Comprehensively unit tested](https://coveralls.io/github/bitwizeshift/result?branch=master) for both static
-      behavior and runtime validation
-* [x] [Incurs minimal cost when optimized](https://godbolt.org/z/TsonT1), especially for trivial types
+✔️ Offers a coherent, light-weight alternative to exceptions \
+✔️ Compatible with <kbd>C++11</kbd> (with more features in <kbd>C++14</kbd> and <kbd>C++17</kbd>) \
+✔️ Single-header, **header-only** solution -- easily drops into any project \
+✔️ Zero overhead abstractions -- don't pay for what you don't use. \
+✔️ No dependencies \
+✔️ Support for value-type, reference-type, and `void`-type values in `result` \
+✔️ Monadic composition functions like `map`, `flat_map`, and `map_error` for
+      easy functional use \
+✔️ [Comprehensively unit tested](https://coveralls.io/github/bitwizeshift/result?branch=master) for both static
+      behavior and runtime validation \
+✔️ [Incurs minimal cost when optimized](https://godbolt.org/z/TsonT1), especially for trivial types
 
-For more details and examples on what is available in **Result**, please
-check out the [tutorial](doc/tutorial.md) section.
+Check out the [tutorial](doc/tutorial.md) to see what other features **Result**
+offers.
 
-For details describing how this implementation deviates from the
-`std::result` proposals, see [this page](doc/deviations-from-proposal.md).
+If you're interested in how `cpp::result` deviates from `std::expected`
+proposals, please see [this page](doc/deviations-from-proposal.md).
 
 ## Documentation
 
-* [Background](#background) \
+* [🔍 Background](#background) \
   A background on the problem **Result** solves
-* [Installation](doc/installing.md) \
+* [💾 Installation](doc/installing.md) \
   For a quick guide on how to install/use this in other projects
-* [Tutorial](doc/tutorial.md) \
+* [📚 Tutorial](doc/tutorial.md) \
   A quick pocket-guide to using **Result**
-* [API Reference](https://bitwizeshift.github.io/result/api/latest/) \
+* [📄 API Reference](https://bitwizeshift.github.io/result/api/latest/) \
   For doxygen-generated API information
-* [Attribution](doc/legal.md) \
+* [🚀 Contributing](.github/CONTRIBUTING.md) \
+  How  to contribute to the **Result** project
+* [💼 Attribution](doc/legal.md) \
   Information about how to attribute this project
-* [FAQ](doc/faq.md) \
+* [❓ FAQ](doc/faq.md) \
   A list of frequently asked questions
 
 ## Background
