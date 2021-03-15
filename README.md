@@ -1,4 +1,4 @@
-# Result
+[![A Modern C++ Result Type](doc/feature-preview-banner.gif)](https://github.com/bitwizeshift/result/releases)
 
 [![Ubuntu Build Status](https://github.com/bitwizeshift/result/workflows/Ubuntu/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions?query=workflow%3AUbuntu)
 [![macOS Build Status](https://github.com/bitwizeshift/result/workflows/macOS/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions?query=workflow%3AmacOS)
@@ -12,26 +12,6 @@
 [![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://godbolt.org/z/qG11qK)
 
 **Result** is a modern, simple, and light-weight error-handling alternative to exceptions.
-
-## Teaser
-
-```cpp
-template <typename To, typename From>
-auto try_narrow(const From& from) noexcept -> cpp::result<To,narrow_error>
-{
-  const auto to = static_cast<To>(from);
-
-  if ((to < To{}) != (from < From{})) {
-    return cpp::fail(narrow_error::sign_change);
-  }
-  if (static_cast<From>(to) != from) {
-    return cpp::fail(narrow_error::loss_of_data);
-  }
-  return to;
-}
-```
-
-<kbd>[Live Example](https://godbolt.org/z/q8fcKK)</kbd>
 
 ## Features
 
