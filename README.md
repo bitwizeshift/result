@@ -25,6 +25,7 @@ exceptions with a rich feature-set.
 ✔️ Support for value-type, reference-type, and `void`-type values in `result` \
 ✔️ Monadic composition functions like `map`, `flat_map`, and `map_error` for
       easy functional use \
+✔️ Optional support to disable all exceptions and rename the `cpp` `namespace` \
 ✔️ [Comprehensively unit tested](https://coveralls.io/github/bitwizeshift/result?branch=master) for both static
       behavior and runtime validation \
 ✔️ [Incurs minimal cost when optimized](https://godbolt.org/z/TsonT1), especially for trivial types
@@ -35,9 +36,40 @@ offers.
 If you're interested in how `cpp::result` deviates from `std::expected`
 proposals, please see [this page](doc/deviations-from-proposal.md).
 
-## Documentation
+## Teaser
 
-* [🔍 Background](#background) \
+```cpp
+enum class narrow_error{ none, loss_of_data };
+
+template <typename To, typename From>
+auto try_narrow(const From& from) noexcept -> cpp::result<To,narrow_error>
+{
+  const auto to = static_cast<To>(from);
+
+  if (static_cast<From>(to) != from) {
+    return cpp::fail(narrow_error::loss_of_data);
+  }
+
+  return to;
+}
+
+struct {
+  template <typename T>
+  auto operator()(const T& x) -> std::string {
+    return std::to_string(x);
+  }
+} to_string;
+
+auto main() -> int {
+  assert(try_narrow<std::uint8_t>(42LL).map(to_string) == "42");
+}
+```
+
+<kbd>[Try online](https://godbolt.org/z/448vf9)</kbd>
+
+## Quick References
+
+* [🔍 Why `result`?](#why-result) \
   A background on the problem **Result** solves
 * [💾 Installation](doc/installing.md) \
   For a quick guide on how to install/use this in other projects
@@ -46,13 +78,13 @@ proposals, please see [this page](doc/deviations-from-proposal.md).
 * [📄 API Reference](https://bitwizeshift.github.io/result/api/latest/) \
   For doxygen-generated API information
 * [🚀 Contributing](.github/CONTRIBUTING.md) \
-  How  to contribute to the **Result** project
+  How to contribute to the **Result** project
 * [💼 Attribution](doc/legal.md) \
   Information about how to attribute this project
 * [❓ FAQ](doc/faq.md) \
   A list of frequently asked questions
 
-## Background
+## Why `result`?
 
 Error cases in C++ are often difficult to discern from the API. Any function
 not marked `noexcept` can be assumed to throw an exception, but the exact _type_
