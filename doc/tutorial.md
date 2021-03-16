@@ -21,6 +21,9 @@ and the latter represents a possible error type.
     1. [Monadic-functions](#monadic-functions)
     2. [Type-erasure with `result<void,e>`](#type-erasure-with-resultvoide)
     3. [`failure` with references](#failure-with-references)
+3. [Optional Features](#optional-features)
+    1. [Using a custom namespace](#using-a-custom-namespace)
+    2. [Disabling exceptions](#disabling-exceptions)
 
 ## The Basics
 
@@ -381,6 +384,28 @@ auto to_user_error(parse_error)
 auto result = try_to_uint8(str).map(to_client_code).map_error(to_user_error);
 ```
 
+
+#### Chaining Member Functions
+
+The various monadic functions in `result` are made to work with any invocable
+expression. Since member pointers are valid for the purposes of invoke
+expressions, this allows for a really convenient way to chain functions on a
+`result` result while also propagating the potential error.
+
+For example:
+
+```cpp
+enum class some_error : int;
+auto try_get_string() -> cpp::result<std::string,some_error>;
+
+// ...
+
+auto exp = try_get_string().map(&std::string::size);
+```
+
+<kbd>[Live example](https://godbolt.org/z/vbeWc1)</kbd>
+
+
 ### Type-erasure with `result<void,E>`
 
 The `result<void,E>` specialization is constructible from any `result<T,E2>`
@@ -430,3 +455,66 @@ if (exp == cpp::fail(std::ref(some_error_object))) {
   ...
 }
 ```
+
+
+## Optional Features
+
+Although not required or enabled by default, **Result** supports two optional
+features that may be controlled through preprocessor symbols:
+
+1. Using a custom namespace, and
+2. Disabling all exceptions
+
+### Using a Custom Namespace
+
+The `namespace` that `result` is defined in is configurable. By default,
+it is defined in `namespace cpp`; however this can be toggled by defining
+the preprocessor symbol `RESULT_NAMESPACE` to be the name of the desired
+namespace.
+
+This could be done either through a `#define` preprocessor directive:
+
+```cpp
+#define RESULT_NAMESPACE example
+#include <result.hpp>
+
+auto test() -> example::result<int,int>;
+```
+
+<kbd>[Try Online](https://godbolt.org/z/Pe7e6e)</kbd>
+
+Or it could also be defined using the compile-time definition with `-D`, such
+as:
+
+`g++ -std=c++11 -DRESULT_NAMESPACE=example test.cpp`
+
+```cpp
+#include <result.hpp>
+
+auto test() -> example::result<int,int>;
+```
+
+<kbd>[Try Online](https://godbolt.org/z/Kxf8nr)</kbd>
+
+### Disabling Exceptions
+
+Since `result` serves to act as an orthogonal/alternative error-handling
+mechanism to exceptions, it may be desirable to not have _any_ exceptions at
+all. IF the compiler has been configured to disable exception entirely, simply
+having a path that even encounters a `throw` -- even if never reached in
+practice may trigger compile errors.
+
+To account for this possibility, **Result** may have exceptions removed by
+defining the preprocessor symbol `RESULT_DISABLE_EXCEPTIONS`.
+
+Note that if this is done, contract-violations will now behave differently:
+
+* Contract violations will call `std::abort`, causing immediate termination
+  (and often, core-dumps for diagnostic purposes)
+* Contract violations will print directly to `stderr` to allow context for the
+  termination
+* Since exceptions are disabled, there is no way to perform a proper stack
+  unwinding -- so destructors will _not be run_. There is simply no way to
+  allow for proper RAII cleanup without exceptions in this case.
+
+<kbd>[Try Online](https://godbolt.org/z/9sYrec)</kbd>

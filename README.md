@@ -1,4 +1,4 @@
-# Result
+[![A Modern C++ Result Type](doc/feature-preview-banner.gif)](https://github.com/bitwizeshift/result/releases)
 
 [![Ubuntu Build Status](https://github.com/bitwizeshift/result/workflows/Ubuntu/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions?query=workflow%3AUbuntu)
 [![macOS Build Status](https://github.com/bitwizeshift/result/workflows/macOS/badge.svg?branch=master)](https://github.com/bitwizeshift/result/actions?query=workflow%3AmacOS)
@@ -8,69 +8,83 @@
 [![Github Issues](https://img.shields.io/github/issues/bitwizeshift/result.svg)](http://github.com/bitwizeshift/result/issues)
 <br>
 [![Github Releases](https://img.shields.io/github/v/release/bitwizeshift/result.svg?include_prereleases)](https://github.com/bitwizeshift/result/releases)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub-Sponsors-ff69b4)](https://github.com/sponsors/bitwizeshift)
 <br>
 [![Try online](https://img.shields.io/badge/try-online-blue.svg)](https://godbolt.org/z/qG11qK)
 
-**Result** is a modern, simple, and light-weight error-handling alternative to exceptions.
+**Result** is a modern, simple, and light-weight error-handling alternative to
+exceptions with a rich feature-set.
+
+## Features
+
+✔️ Offers a coherent, light-weight alternative to exceptions \
+✔️ Compatible with <kbd>C++11</kbd> (with more features in <kbd>C++14</kbd> and <kbd>C++17</kbd>) \
+✔️ Single-header, **header-only** solution -- easily drops into any project \
+✔️ Zero overhead abstractions -- don't pay for what you don't use. \
+✔️ No dependencies \
+✔️ Support for value-type, reference-type, and `void`-type values in `result` \
+✔️ Monadic composition functions like `map`, `flat_map`, and `map_error` for
+      easy functional use \
+✔️ Optional support to disable all exceptions and rename the `cpp` `namespace` \
+✔️ [Comprehensively unit tested](https://coveralls.io/github/bitwizeshift/result?branch=master) for both static
+      behavior and runtime validation \
+✔️ [Incurs minimal cost when optimized](https://godbolt.org/z/TsonT1), especially for trivial types
+
+Check out the [tutorial](doc/tutorial.md) to see what other features **Result**
+offers.
+
+If you're interested in how `cpp::result` deviates from `std::expected`
+proposals, please see [this page](doc/deviations-from-proposal.md).
 
 ## Teaser
 
 ```cpp
+enum class narrow_error{ none, loss_of_data };
+
 template <typename To, typename From>
 auto try_narrow(const From& from) noexcept -> cpp::result<To,narrow_error>
 {
   const auto to = static_cast<To>(from);
 
-  if ((to < To{}) != (from < From{})) {
-    return cpp::fail(narrow_error::sign_change);
-  }
   if (static_cast<From>(to) != from) {
     return cpp::fail(narrow_error::loss_of_data);
   }
+
   return to;
+}
+
+struct {
+  template <typename T>
+  auto operator()(const T& x) -> std::string {
+    return std::to_string(x);
+  }
+} to_string;
+
+auto main() -> int {
+  assert(try_narrow<std::uint8_t>(42LL).map(to_string) == "42");
 }
 ```
 
-<kbd>[Live Example](https://godbolt.org/z/q8fcKK)</kbd>
+<kbd>[Try online](https://godbolt.org/z/448vf9)</kbd>
 
-## Features
+## Quick References
 
-* [x] Offers a coherent, light-weight alternative to exceptions
-* [x] Compatible with <kbd>C++11</kbd> (with more features in <kbd>C++14</kbd> and <kbd>C++17</kbd>)
-* [x] Single-header, **header-only** solution -- easily drops into any project
-* [x] Zero overhead abstractions -- don't pay for what you don't use.
-* [x] No dependencies
-* [x] Support for value-type, reference-type, and `void`-type values in `result`
-* [x] Monadic composition functions like `map`, `flat_map`, and `map_error` for
-      easy functional use
-* [x] [Comprehensively unit tested](https://coveralls.io/github/bitwizeshift/result?branch=master) for both static
-      behavior and runtime validation
-* [x] [Incurs minimal cost when optimized](https://godbolt.org/z/TsonT1), especially for trivial types
-
-For more details and examples on what is available in **Result**, please
-check out the [tutorial](doc/tutorial.md) section.
-
-For details describing how this implementation deviates from the
-`std::result` proposals, see [this page](doc/deviations-from-proposal.md).
-
-## Documentation
-
-* [Background](#background) \
+* [🔍 Why `result`?](#why-result) \
   A background on the problem **Result** solves
-* [Installation](doc/installing.md) \
+* [💾 Installation](doc/installing.md) \
   For a quick guide on how to install/use this in other projects
-* [Tutorial](doc/tutorial.md) \
+* [📚 Tutorial](doc/tutorial.md) \
   A quick pocket-guide to using **Result**
-* [Examples](doc/examples.md) \
-  Some preset live-examples of this library in use
-* [API Reference](https://bitwizeshift.github.io/result/api/latest/) \
+* [📄 API Reference](https://bitwizeshift.github.io/result/api/latest/) \
   For doxygen-generated API information
-* [Attribution](doc/legal.md) \
+* [🚀 Contributing](.github/CONTRIBUTING.md) \
+  How to contribute to the **Result** project
+* [💼 Attribution](doc/legal.md) \
   Information about how to attribute this project
-* [FAQ](doc/faq.md) \
+* [❓ FAQ](doc/faq.md) \
   A list of frequently asked questions
 
-## Background
+## Why `result`?
 
 Error cases in C++ are often difficult to discern from the API. Any function
 not marked `noexcept` can be assumed to throw an exception, but the exact _type_
@@ -105,99 +119,6 @@ In `(2)`, on the other hand, it is explicit that `to_uint32` _cannot_ throw --
 so there is no need for a `catch` handler. It's also clear that it may fail for
 whatever reasons are in `parse_error`, which discretely enumerates any possible
 case for failure.
-
-## Optional Features
-
-Although not required or enabled by default, **Result** supports two optional
-features that may be controlled through preprocessor symbols:
-
-1. Using a custom namespace, and
-2. Disabling all exceptions
-
-### Using a Custom Namespace
-
-The `namespace` that `result` is defined in is configurable. By default,
-it is defined in `namespace cpp`; however this can be toggled by defining
-the preprocessor symbol `RESULT_NAMESPACE` to be the name of the desired
-namespace.
-
-This could be done either through a `#define` preprocessor directive:
-
-```cpp
-#define RESULT_NAMESPACE example
-#include <result.hpp>
-
-auto test() -> example::result<int,int>;
-```
-
-<kbd>[Try Online](https://godbolt.org/z/Pe7e6e)</kbd>
-
-Or it could also be defined using the compile-time definition with `-D`, such
-as:
-
-`g++ -std=c++11 -DRESULT_NAMESPACE=example test.cpp`
-
-```cpp
-#include <result.hpp>
-
-auto test() -> example::result<int,int>;
-```
-
-<kbd>[Try Online](https://godbolt.org/z/Kxf8nr)</kbd>
-
-### Disabling Exceptions
-
-Since `result` serves to act as an orthogonal/alternative error-handling
-mechanism to exceptions, it may be desirable to not have _any_ exceptions at
-all. IF the compiler has been configured to disable exception entirely, simply
-having a path that even encounters a `throw` -- even if never reached in
-practice may trigger compile errors.
-
-To account for this possibility, **Result** may have exceptions removed by
-defining the preprocessor symbol `RESULT_DISABLE_EXCEPTIONS`.
-
-Note that if this is done, contract-violations will now behave differently:
-
-* Contract violations will call `std::abort`, causing immediate termination
-  (and often, core-dumps for diagnostic purposes)
-* Contract violations will print directly to `stderr` to allow context for the
-  termination
-* Since exceptions are disabled, there is no way to perform a proper stack
-  unwinding -- so destructors will _not be run_. There is simply no way to
-  allow for proper RAII cleanup without exceptions in this case.
-
-<kbd>[Try Online](https://godbolt.org/z/9sYrec)</kbd>
-
-## Building the Unit Tests
-
-Building the unit tests are not necessary to use this project. However, if
-you are interested in running these yourself, you will require
-the following installed:
-
-* [CMake](https://cmake.org): Used for configuring/building the project
-* [Catch2](https://github.com/catchorg/Catch2): the unit-test library
-
-Additionally, you will need to toggle the `RESULT_COMPILE_UNIT_TESTS` option
-during cmake configuration to ensure that unit tests configure and build.
-
-The easiest way to install Catch2 is using the [`conan`](https://conan.io/index.html)
-package manager and installing with `conan install <path to conanfile>` from your
-build directory.
-
-A complete example of configuring, compiling, and running the tests:
-
-```sh
-# Make the build directory and enter it
-mkdir build && cd build
-# Install Catch with conan (optional)
-conan install ..
-# Configure the project
-cmake .. -DRESULT_COMPILE_UNIT_TESTS=On
-# Build everything
-cmake --build .
-# run the tests
-cmake --build . --target test
-```
 
 ## Compiler Compatibility
 
