@@ -4,8 +4,7 @@ var indexSectionsWithContent =
   1: "bfhir",
   2: "r",
   3: "abefhmorsv",
-  4: "efrv",
-  5: "r"
+  4: "efrv"
 };
 
 var indexSectionNames =
@@ -14,8 +13,7 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "typedefs",
-  5: "pages"
+  4: "typedefs"
 };
 
 var indexSectionLabels =
@@ -24,7 +22,6 @@ var indexSectionLabels =
   1: "Classes",
   2: "Files",
   3: "Functions",
-  4: "Typedefs",
-  5: "Pages"
+  4: "Typedefs"
 };
 

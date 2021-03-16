@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Result: Result</title>
+<title>Result: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,79 +80,38 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Result </div>  </div>
+<div class="title">Result Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AUbuntu"></a> <a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AmacOS"></a> <a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AWindows"></a> <a href="https://www.codacy.com/gh/bitwizeshift/result/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=bitwizeshift/result&amp;amp;utm_campaign=Badge_Grade"></a> <a href="https://coveralls.io/github/bitwizeshift/result?branch=master"></a> <a href="http://github.com/bitwizeshift/result/issues"></a> <br />
- <a href="https://github.com/bitwizeshift/result/releases"></a> <br />
+<div class="textblock"><p><a href="https://github.com/bitwizeshift/result/releases"></a></p>
+<p><a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AUbuntu"></a> <a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AmacOS"></a> <a href="https://github.com/bitwizeshift/result/actions?query=workflow%3AWindows"></a> <a href="https://www.codacy.com/gh/bitwizeshift/result/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=bitwizeshift/result&amp;amp;utm_campaign=Badge_Grade"></a> <a href="https://coveralls.io/github/bitwizeshift/result?branch=master"></a> <a href="http://github.com/bitwizeshift/result/issues"></a> <br />
+ <a href="https://github.com/bitwizeshift/result/releases"></a> <a href="https://github.com/sponsors/bitwizeshift"></a> <br />
  <a href="https://godbolt.org/z/qG11qK"></a></p>
-<p><b>Result</b> is a modern, simple, and light-weight error-handling alternative to exceptions.</p>
-<h2>Teaser</h2>
-<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> To, <span class="keyword">typename</span> From&gt;</div><div class="line"><span class="keyword">auto</span> try_narrow(<span class="keyword">const</span> From&amp; from) noexcept -&gt; cpp::result&lt;To,narrow_error&gt;</div><div class="line">{</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> to = <span class="keyword">static_cast&lt;</span>To<span class="keyword">&gt;</span>(from);</div><div class="line"></div><div class="line">  <span class="keywordflow">if</span> ((to &lt; To{}) != (from &lt; From{})) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::sign_change);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">if</span> (static_cast&lt;From&gt;(to) != from) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::loss_of_data);</div><div class="line">  }</div><div class="line">  <span class="keywordflow">return</span> to;</div><div class="line">}</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/q8fcKK">Live Example</a></code></p>
+<p><b>Result</b> is a modern, simple, and light-weight error-handling alternative to exceptions with a rich feature-set.</p>
 <h2>Features</h2>
+<p>✔️ Offers a coherent, light-weight alternative to exceptions \ ✔️ Compatible with <code>C++11</code> (with more features in <code>C++14</code> and <code>C++17</code>) \ ✔️ Single-header, <b>header-only</b> solution &ndash; easily drops into any project \ ✔️ Zero overhead abstractions &ndash; don't pay for what you don't use. \ ✔️ No dependencies \ ✔️ Support for value-type, reference-type, and <code>void</code>-type values in <code>result</code> \ ✔️ Monadic composition functions like <code>map</code>, <code>flat_map</code>, and <code>map_error</code> for easy functional use \ ✔️ Optional support to disable all exceptions and rename the <code>cpp</code> <code>namespace</code> \ ✔️ <a href="https://coveralls.io/github/bitwizeshift/result?branch=master">Comprehensively unit tested</a> for both static behavior and runtime validation \ ✔️ <a href="https://godbolt.org/z/TsonT1">Incurs minimal cost when optimized</a>, especially for trivial types</p>
+<p>Check out the tutorial to see what other features <b>Result</b> offers.</p>
+<p>If you're interested in how <code>cpp::result</code> deviates from <code>std::expected</code> proposals, please see this page.</p>
+<h2>Teaser</h2>
+<div class="fragment"><div class="line"><span class="keyword">enum class</span> narrow_error{ none, loss_of_data };</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> To, <span class="keyword">typename</span> From&gt;</div><div class="line"><span class="keyword">auto</span> try_narrow(<span class="keyword">const</span> From&amp; from) noexcept -&gt; cpp::result&lt;To,narrow_error&gt;</div><div class="line">{</div><div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> to = <span class="keyword">static_cast&lt;</span>To<span class="keyword">&gt;</span>(from);</div><div class="line"></div><div class="line">  <span class="keywordflow">if</span> (static_cast&lt;From&gt;(to) != from) {</div><div class="line">    <span class="keywordflow">return</span> cpp::fail(narrow_error::loss_of_data);</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="keywordflow">return</span> to;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">struct </span>{</div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line">  <span class="keyword">auto</span> operator()(<span class="keyword">const</span> T&amp; x) -&gt; std::string {</div><div class="line">    <span class="keywordflow">return</span> std::to_string(x);</div><div class="line">  }</div><div class="line">} to_string;</div><div class="line"></div><div class="line"><span class="keyword">auto</span> main() -&gt; <span class="keywordtype">int</span> {</div><div class="line">  assert(try_narrow&lt;std::uint8_t&gt;(42LL).map(to_string) == <span class="stringliteral">&quot;42&quot;</span>);</div><div class="line">}</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/448vf9">Try online</a></code></p>
+<h2>Quick References</h2>
 <ul>
-<li>[x] Offers a coherent, light-weight alternative to exceptions</li>
-<li>[x] Compatible with <code>C++11</code> (with more features in <code>C++14</code> and <code>C++17</code>)</li>
-<li>[x] Single-header, <b>header-only</b> solution &ndash; easily drops into any project</li>
-<li>[x] Zero overhead abstractions &ndash; don't pay for what you don't use.</li>
-<li>[x] No dependencies</li>
-<li>[x] Support for value-type, reference-type, and <code>void</code>-type values in <code>result</code></li>
-<li>[x] Monadic composition functions like <code>map</code>, <code>flat_map</code>, and <code>map_error</code> for easy functional use</li>
-<li>[x] <a href="https://coveralls.io/github/bitwizeshift/result?branch=master">Comprehensively unit tested</a> for both static behavior and runtime validation</li>
-<li>[x] <a href="https://godbolt.org/z/TsonT1">Incurs minimal cost when optimized</a>, especially for trivial types</li>
+<li><a href="#why-result">🔍 Why <code>result</code>?</a> \ A background on the problem <b>Result</b> solves</li>
+<li>💾 Installation \ For a quick guide on how to install/use this in other projects</li>
+<li>📚 Tutorial \ A quick pocket-guide to using <b>Result</b></li>
+<li><a href="https://bitwizeshift.github.io/result/api/latest/">📄 API Reference</a> \ For doxygen-generated API information</li>
+<li>.github/CONTRIBUTING.md "🚀 Contributing" \ How to contribute to the <b>Result</b> project</li>
+<li>💼 Attribution \ Information about how to attribute this project</li>
+<li>❓ FAQ \ A list of frequently asked questions</li>
 </ul>
-<p>For more details and examples on what is available in <b>Result</b>, please check out the tutorial section.</p>
-<p>For details describing how this implementation deviates from the <code>std::result</code> proposals, see this page.</p>
-<h2>Documentation</h2>
-<ul>
-<li><a href="#background">Background</a> \ A background on the problem <b>Result</b> solves</li>
-<li>Installation \ For a quick guide on how to install/use this in other projects</li>
-<li>Tutorial \ A quick pocket-guide to using <b>Result</b></li>
-<li>Examples \ Some preset live-examples of this library in use</li>
-<li><a href="https://bitwizeshift.github.io/result/api/latest/">API Reference</a> \ For doxygen-generated API information</li>
-<li>Attribution \ Information about how to attribute this project</li>
-<li>FAQ \ A list of frequently asked questions</li>
-</ul>
-<h2>Background</h2>
+<h2>Why <code>result</code>?</h2>
 <p>Error cases in C++ are often difficult to discern from the API. Any function not marked <code>noexcept</code> can be assumed to throw an exception, but the exact <em>type</em> of exception, and if it even derives from <code>std::exception</code>, is ambiguous. Nothing in the language forces which exceptions may propagate from an API, which can make dealing with such APIs complicated.</p>
 <p>Often it is more desirable to achieve <code>noexcept</code> functions where possible, since this allows for better optimizations in containers (e.g. optimal moves/swaps) and less cognitive load on consumers.</p>
 <p>Having a <code>result&lt;T, E&gt;</code> type on your API not only semantically encodes that a function is <em>able to</em> fail, it also indicates to the caller <em>how</em> the function may fail, and what discrete, testable conditions may cause it to fail &ndash; which is what this library intends to solve.</p>
 <p>As a simple example, compare these two identical functions:</p>
 <div class="fragment"><div class="line"><span class="comment">// (1)</span></div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) -&gt; std::uint32_t;</div><div class="line"></div><div class="line"><span class="comment">// (2)</span></div><div class="line"><span class="keyword">enum class</span> parse_error { overflow=1, underflow=2, bad_input=3};</div><div class="line"><span class="keyword">auto</span> to_uint32(<span class="keyword">const</span> std::string&amp; x) noexcept -&gt; result&lt;std::uint32_t,parse_error&gt;;</div></div><!-- fragment --><p>In <code>(1)</code>, it is ambiguous <em>what</em> (if anything) this function may throw on failure, or how this error case may be accounted for.</p>
 <p>In <code>(2)</code>, on the other hand, it is explicit that <code>to_uint32</code> <em>cannot</em> throw &ndash; so there is no need for a <code>catch</code> handler. It's also clear that it may fail for whatever reasons are in <code>parse_error</code>, which discretely enumerates any possible case for failure.</p>
-<h2>Optional Features</h2>
-<p>Although not required or enabled by default, <b>Result</b> supports two optional features that may be controlled through preprocessor symbols:</p>
-<ol type="1">
-<li>Using a custom namespace, and</li>
-<li>Disabling all exceptions</li>
-</ol>
-<h3>Using a Custom Namespace</h3>
-<p>The <code>namespace</code> that <code>result</code> is defined in is configurable. By default, it is defined in <code>namespace cpp</code>; however this can be toggled by defining the preprocessor symbol <code>RESULT_NAMESPACE</code> to be the name of the desired namespace.</p>
-<p>This could be done either through a <code>#define</code> preprocessor directive:</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#define RESULT_NAMESPACE example</span></div><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="de/d80/result_8hpp.html">result.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">auto</span> test() -&gt; example::result&lt;int,int&gt;;</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/Pe7e6e">Try Online</a></code></p>
-<p>Or it could also be defined using the compile-time definition with <code>-D</code>, such as:</p>
-<p><code>g++ -std=c++11 -DRESULT_NAMESPACE=example test.cpp</code></p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="de/d80/result_8hpp.html">result.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">auto</span> test() -&gt; example::result&lt;int,int&gt;;</div></div><!-- fragment --><p><code><a href="https://godbolt.org/z/Kxf8nr">Try Online</a></code></p>
-<h3>Disabling Exceptions</h3>
-<p>Since <code>result</code> serves to act as an orthogonal/alternative error-handling mechanism to exceptions, it may be desirable to not have <em>any</em> exceptions at all. IF the compiler has been configured to disable exception entirely, simply having a path that even encounters a <code>throw</code> &ndash; even if never reached in practice may trigger compile errors.</p>
-<p>To account for this possibility, <b>Result</b> may have exceptions removed by defining the preprocessor symbol <code>RESULT_DISABLE_EXCEPTIONS</code>.</p>
-<p>Note that if this is done, contract-violations will now behave differently:</p>
-<ul>
-<li>Contract violations will call <code>std::abort</code>, causing immediate termination (and often, core-dumps for diagnostic purposes)</li>
-<li>Contract violations will print directly to <code>stderr</code> to allow context for the termination</li>
-<li>Since exceptions are disabled, there is no way to perform a proper stack unwinding &ndash; so destructors will <em>not be run</em>. There is simply no way to allow for proper RAII cleanup without exceptions in this case.</li>
-</ul>
-<p><code><a href="https://godbolt.org/z/9sYrec">Try Online</a></code></p>
-<h2>Building the Unit Tests</h2>
-<p>Building the unit tests are not necessary to use this project. However, if you are interested in running these yourself, you will require the following installed:</p>
-<ul>
-<li><a href="https://cmake.org">CMake</a>: Used for configuring/building the project</li>
-<li><a href="https://github.com/catchorg/Catch2">Catch2</a>: the unit-test library</li>
-</ul>
-<p>Additionally, you will need to toggle the <code>RESULT_COMPILE_UNIT_TESTS</code> option during cmake configuration to ensure that unit tests configure and build.</p>
-<p>The easiest way to install Catch2 is using the <a href="https://conan.io/index.html"><code>conan</code></a> package manager and installing with <code>conan install &lt;path to conanfile&gt;</code> from your build directory.</p>
-<p>A complete example of configuring, compiling, and running the tests:</p>
-<div class="fragment"><div class="line"># Make the build directory and enter it</div><div class="line">mkdir build &amp;&amp; cd build</div><div class="line"># Install Catch with conan (optional)</div><div class="line">conan install ..</div><div class="line"># Configure the project</div><div class="line">cmake .. -DRESULT_COMPILE_UNIT_TESTS=On</div><div class="line"># Build everything</div><div class="line">cmake --build .</div><div class="line"># run the tests</div><div class="line">cmake --build . --target test</div></div><!-- fragment --><h2>Compiler Compatibility</h2>
+<h2>Compiler Compatibility</h2>
 <p><b>Result</b> is compatible with any compiler capable of compiling valid <code>C++11</code>. Specifically, this has been tested and is known to work with:</p>
 <ul>
 <li>GCC 5, 6, 7, 8, 9, 10</li>
