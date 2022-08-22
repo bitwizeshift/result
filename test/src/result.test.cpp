@@ -2328,7 +2328,6 @@ TEST_CASE("result<T,E>::value() const &&", "[observers]") {
 
 //-----------------------------------------------------------------------------
 
-
 TEST_CASE("result<T,E>::error() const &", "[observers]") {
   SECTION("result contains a value") {
     SECTION("Returns default-constructed error") {
@@ -2373,6 +2372,33 @@ TEST_CASE("result<T,E>::error() &&", "[observers]") {
   }
 }
 
+//-----------------------------------------------------------------------------
+
+TEST_CASE("result<T,E>::expect(String&&) &", "[observers]") {
+  SECTION("result contains value") {
+    auto sut = result<int,int>{42};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(sut.expect("test"));
+    }
+    SECTION("Returns the value") {
+      REQUIRE(sut.expect("test") == 42);
+    }
+    SECTION("Returns lvalue reference to internal storage") {
+      STATIC_REQUIRE(std::is_same<decltype(sut.expect("test")),int&>::value);
+    }
+  }
+
+  SECTION("result contains error") {
+    auto sut = result<int,int>{fail(42)};
+
+    SECTION("throws exception") {
+      REQUIRE_THROWS_AS(sut.expect("test"), bad_result_access<int>);
+      REQUIRE_THROWS_WITH(sut.expect("test"), "test");
+    }
+  }
+}
+
 TEST_CASE("result<T,E>::expect(String&&) const &", "[observers]") {
   SECTION("result contains value") {
     const auto sut = result<int,int>{42};
@@ -2380,29 +2406,71 @@ TEST_CASE("result<T,E>::expect(String&&) const &", "[observers]") {
     SECTION("Does not throw exception") {
       REQUIRE_NOTHROW(sut.expect("test"));
     }
+    SECTION("Returns the value") {
+      REQUIRE(sut.expect("test") == 42);
+    }
+    SECTION("Returns lvalue reference to internal storage") {
+      STATIC_REQUIRE(std::is_same<decltype(sut.expect("test")),const int&>::value);
+    }
   }
-  SECTION("result contains error") {
-    SECTION("throws exception") {
-      const auto sut = result<int,int>{fail(42)};
 
+  SECTION("result contains error") {
+    const auto sut = result<int,int>{fail(42)};
+
+    SECTION("throws exception") {
       REQUIRE_THROWS_AS(sut.expect("test"), bad_result_access<int>);
+      REQUIRE_THROWS_WITH(sut.expect("test"), "test");
     }
   }
 }
 
 TEST_CASE("result<T,E>::expect(String&&) &&", "[observers]") {
   SECTION("result contains value") {
-    auto sut = result<int,move_only<std::string>>{42};
+    auto sut = result<int,int>{42};
 
     SECTION("Does not throw exception") {
       REQUIRE_NOTHROW(std::move(sut).expect("test"));
     }
+    SECTION("Returns the value") {
+      REQUIRE(std::move(sut).expect("test") == 42);
+    }
+    SECTION("Returns lvalue reference to internal storage") {
+      STATIC_REQUIRE(std::is_same<decltype(std::move(sut).expect("test")),int&&>::value);
+    }
   }
-  SECTION("result contains error") {
-    SECTION("throws exception") {
-      auto sut = result<int,move_only<std::string>>{fail("hello world")};
 
-      REQUIRE_THROWS_AS(std::move(sut).expect("test"), bad_result_access<move_only<std::string>>);
+  SECTION("result contains error") {
+    auto sut = result<int,int>{fail(42)};
+
+    SECTION("throws exception") {
+      REQUIRE_THROWS_AS(std::move(sut).expect("test"), bad_result_access<int>);
+      REQUIRE_THROWS_WITH(std::move(sut).expect("test"), "test");
+    }
+  }
+}
+
+
+TEST_CASE("result<T,E>::expect(String&&) const &&", "[observers]") {
+  SECTION("result contains value") {
+    const auto sut = result<int,int>{42};
+
+    SECTION("Does not throw exception") {
+      REQUIRE_NOTHROW(std::move(sut).expect("test"));
+    }
+    SECTION("Returns the value") {
+      REQUIRE(std::move(sut).expect("test") == 42);
+    }
+    SECTION("Returns lvalue reference to internal storage") {
+      STATIC_REQUIRE(std::is_same<decltype(std::move(sut).expect("test")),const int&&>::value);
+    }
+  }
+
+  SECTION("result contains error") {
+    const auto sut = result<int,int>{fail(42)};
+
+    SECTION("throws exception") {
+      REQUIRE_THROWS_AS(std::move(sut).expect("test"), bad_result_access<int>);
+      REQUIRE_THROWS_WITH(std::move(sut).expect("test"), "test");
     }
   }
 }
