@@ -2377,18 +2377,32 @@ inline namespace bitwizeshift {
     /// ```
     ///
     /// \param message the message to provide to this expectation
+    ///
+    /// \return the value of `*this`
+    template <typename String,
+            typename = typename std::enable_if<(
+                    std::is_convertible<String,const std::string&>::value &&
+                    std::is_copy_constructible<E>::value
+            )>::type>
+    RESULT_CPP14_CONSTEXPR auto expect(String&& message) & -> typename std::add_lvalue_reference<T>::type;
+    template <typename String,
+            typename = typename std::enable_if<(
+                    std::is_convertible<String,const std::string&>::value &&
+                    std::is_move_constructible<E>::value
+            )>::type>
+    RESULT_CPP14_CONSTEXPR auto expect(String&& message) && -> typename std::add_rvalue_reference<T>::type;
     template <typename String,
               typename = typename std::enable_if<(
                 std::is_convertible<String,const std::string&>::value &&
                 std::is_copy_constructible<E>::value
               )>::type>
-    RESULT_CPP14_CONSTEXPR auto expect(String&& message) const & -> void;
+    RESULT_CPP14_CONSTEXPR auto expect(String&& message) const & -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type;
     template <typename String,
-              typename = typename std::enable_if<(
-                std::is_convertible<String,const std::string&>::value &&
-                std::is_move_constructible<E>::value
-              )>::type>
-    RESULT_CPP14_CONSTEXPR auto expect(String&& message) && -> void;
+            typename = typename std::enable_if<(
+                    std::is_convertible<String,const std::string&>::value &&
+                    std::is_copy_constructible<E>::value
+            )>::type>
+    RESULT_CPP14_CONSTEXPR auto expect(String&& message) const && -> typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
     /// \}
 
     //-------------------------------------------------------------------------
@@ -4716,28 +4730,64 @@ template <typename T, typename E>
 template <typename String, typename>
 inline RESULT_CPP14_CONSTEXPR
 auto RESULT_NS_IMPL::result<T,E>::expect(String&& message)
-  const & -> void
+  & -> typename std::add_lvalue_reference<T>::type
 {
-  if (has_error()) {
-    detail::throw_bad_result_access_message(
-      detail::forward<String>(message),
-      m_storage.storage.m_error
-    );
-  }
+  return (has_value() ||
+          (detail::throw_bad_result_access_message(
+                  detail::forward<String>(message),
+                  m_storage.storage.m_error
+          ), true),
+          m_storage.storage.m_value
+  );
 }
 
 template <typename T, typename E>
 template <typename String, typename>
 inline RESULT_CPP14_CONSTEXPR
 auto RESULT_NS_IMPL::result<T,E>::expect(String&& message)
-  && -> void
+  && -> typename std::add_rvalue_reference<T>::type
 {
-  if (has_error()) {
-    detail::throw_bad_result_access_message(
-      detail::forward<String>(message),
-      static_cast<E&&>(m_storage.storage.m_error)
+  using reference = typename std::add_rvalue_reference<T>::type;
+
+  return (has_value() ||
+          (detail::throw_bad_result_access_message(
+                  detail::forward<String>(message),
+                  static_cast<E&&>(m_storage.storage.m_error)
+          ), true),
+          static_cast<reference>(m_storage.storage.m_value)
+  );
+}
+
+template <typename T, typename E>
+template <typename String, typename>
+inline RESULT_CPP14_CONSTEXPR
+auto RESULT_NS_IMPL::result<T,E>::expect(String&& message)
+  const & -> typename std::add_lvalue_reference<typename std::add_const<T>::type>::type
+{
+    return (has_value() ||
+            (detail::throw_bad_result_access_message(
+                    detail::forward<String>(message),
+                    m_storage.storage.m_error
+            ), true),
+            m_storage.storage.m_value
     );
-  }
+}
+
+template <typename T, typename E>
+template <typename String, typename>
+inline RESULT_CPP14_CONSTEXPR
+auto RESULT_NS_IMPL::result<T,E>::expect(String&& message)
+  const && -> typename std::add_rvalue_reference<typename std::add_const<T>::type>::type
+{
+    using reference = typename std::add_rvalue_reference<typename std::add_const<T>::type>::type;
+
+    return (has_value() ||
+            (detail::throw_bad_result_access_message(
+                    detail::forward<String>(message),
+                    static_cast<const E&&>(m_storage.storage.m_error)
+            ), true),
+            (static_cast<reference>(m_storage.storage.m_value))
+    );
 }
 
 //-----------------------------------------------------------------------------
