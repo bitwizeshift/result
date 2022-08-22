@@ -26,7 +26,7 @@ class ResultConan(ConanFile):
     generators = "cmake"
 
     # Dependencies
-    build_requires = ("Catch2/2.7.1@catchorg/stable")
+    build_requires = ("catch2/2.13.9")
 
     def package(self):
         cmake = CMake(self)
