@@ -1,7 +1,8 @@
 digraph "Graphical Class Hierarchy"
 {
+ // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="cpp::bitwizeshift::\lfailure\< E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/dd0/classcpp_1_1bitwizeshift_1_1failure.html",tooltip="A semantic type used for distinguishing failure values in an API that returns result types..."];
+  Node0 [label="cpp::bitwizeshift::\lbad_result_access\< E \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dac/classcpp_1_1bitwizeshift_1_1bad__result__access.html",tooltip="An exception thrown when result::value is accessed without a contained value."];
 }

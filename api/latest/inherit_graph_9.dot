@@ -1,7 +1,12 @@
 digraph "Graphical Class Hierarchy"
 {
+ // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="std::hash\<::RESULT\l_NS_IMPL::result\< void,\l E \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/de7/structstd_1_1hash_3_1_1_r_e_s_u_l_t___n_s___i_m_p_l_1_1result_3_01void_00_01_e_01_4_01_4.html"];
+  Node14 [label="false_type",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node14 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="cpp::bitwizeshift::\lis_failure\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d82/structcpp_1_1bitwizeshift_1_1is__failure.html",tooltip=" "];
+  Node14 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="cpp::bitwizeshift::\lis_result\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dff/structcpp_1_1bitwizeshift_1_1is__result.html",tooltip=" "];
 }
