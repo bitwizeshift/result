@@ -334,6 +334,8 @@ The supported monadic functionalities are:
   returns an `result` object
 * `map_error`: Similar to `map`, except it operates on the error rather than the
   value
+* `flat_map_error`: Similar to `flat_map`, except it operates on the error rather
+  than the value. 
 
 For example:
 
@@ -365,6 +367,11 @@ auto next_res = res.map(to_uint);
 auto consumer_res = internal_res.map_error(to_external_error);
 // Calls 'to_external_error' to convert an internal error code to an external
 // (consumer-facing) error-code
+
+// (7) `flat_map_error`
+auto next_res = res.flat_map_error(get_res);
+// Tries to replace the stored error with the output of 'get_res', which may 
+// fail. Simply returns the current 'res' if it exists. 
 ```
 
 A practical example of this composition is chaining a conversion of a
